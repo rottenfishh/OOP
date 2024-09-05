@@ -1,7 +1,5 @@
 package oop.kolodina;
 
-import java.util.Scanner;
-
 public class HeapSort {
     /*
      *method to sift down non-leaf element until it reaches it's correct position in max-heap
