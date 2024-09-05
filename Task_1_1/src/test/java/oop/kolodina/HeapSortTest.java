@@ -7,6 +7,9 @@ import java.util.Arrays;
 import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Integer.MAX_VALUE;
 public class HeapSortTest {
+    /*
+    testing with random arrays
+     */
     @Test
     public void testArraysWithRandom() {
         for (int i=0; i<10000; i++) {
@@ -21,6 +24,9 @@ public class HeapSortTest {
             assertArrayEquals(array1, array2);
         }
     }
+    /*
+    testing edge cases with max and min values
+     */
     @Test
     public void testEdges(){
         int[] array1 = {MIN_VALUE, MIN_VALUE, MAX_VALUE, MAX_VALUE, 0, -1000000, 321534, 0, -132456876, 777};
@@ -31,6 +37,9 @@ public class HeapSortTest {
         Arrays.sort(array2);
         assertArrayEquals(array1, array2);
     }
+    /*
+    testing array with equal elements
+     */
     @Test
     public void checkEquals(){
         int[] array1 = {124, 124, 124, 124, 124, 124, 124, 124,124};
@@ -41,6 +50,9 @@ public class HeapSortTest {
         Arrays.sort(array2);
         assertArrayEquals(array1,array2);
     }
+    /*
+    testing array with one element
+     */
     @Test
     public void checkOneElem(){
         int[] array1 = {100};
