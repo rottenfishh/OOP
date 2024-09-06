@@ -35,7 +35,7 @@ public class HeapSortTest {
     @Test
     public void testEdges() {
         int[] array1 = {MIN_VALUE, MIN_VALUE, MAX_VALUE, MAX_VALUE,
-                -1000000, 321534, 0, -132456876, 777};
+            -1000000, 321534, 0, -132456876, 777};
         int[] array2 = new int[array1.length];
         System.arraycopy(array1, 0, array2, 0, array1.length);
         HeapSort object = new HeapSort();
