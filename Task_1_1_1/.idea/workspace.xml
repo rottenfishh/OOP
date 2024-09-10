@@ -4,23 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43818863-b71e-488b-9db2-ff4196dc558f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+    <list default="true" id="4d8dfb86-2101-4d59-9b27-a15184e96197" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew.bat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Task_1_1/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/main/java/oop/kolodina/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/kolodina/HeapSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/test/java/oop/kolodina/HeapSortTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oop/kolodina/HeapSortTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/main/java/oop/kolodina/HeapSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/test/java/oop/kolodina/HeapSortTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +40,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ru.nsu.kolodina" type="f1a62948:ProjectNode" />
+                <item name="untitled" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -49,45 +49,16 @@
       </state>
     </system>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2leZj3EUNm3iQjPw3AgSDaCItEh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Gradle.HeapSortTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Task-1-1-1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/git/OOP/Task_1_1_1",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "git-widget-placeholder": "task-1-1"
   }
 }]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="43818863-b71e-488b-9db2-ff4196dc558f" name="Changes" comment="" />
-      <created>1725542634910</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1725542634910</updated>
-    </task>
     <servers />
   </component>
 </project>
