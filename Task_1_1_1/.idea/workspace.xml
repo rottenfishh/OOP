@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d8dfb86-2101-4d59-9b27-a15184e96197" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/main/java/oop/kolodina/HeapSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_1/src/test/java/oop/kolodina/HeapSortTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4d8dfb86-2101-4d59-9b27-a15184e96197" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
