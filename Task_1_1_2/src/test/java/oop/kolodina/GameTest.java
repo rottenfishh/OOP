@@ -35,10 +35,6 @@ public class GameTest {
         else{
             assertTrue(output.contains("Счет"));
         }
-        //assertTrue(output.contains("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры"));
-        //assertTrue(output.contains("Счет") || output.contains("блекджек"));
-        //assertTrue(output.contains("Ход дилера") || output.contains("блекджек"));
-        //assertTrue(output.contains("Дилер открывает закрытую карту"));
     }
 
 }
