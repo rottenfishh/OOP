@@ -27,7 +27,6 @@ public class Game {
     }
     public void newRound(){
         Scanner scanner = new Scanner(System.in);
-
         deck.shuffle();
         int choice=-1;
 
