@@ -3,7 +3,9 @@ package oop.kolodina;
 public class Main {
     public static int wins, losses, draws;
 
+    public static Boolean stopGame;
     public static void main(String[] args) {
+        stopGame = false;
         Game game = new Game();
         wins=0; losses = 0; draws = 0;
         int rounds = 1;
@@ -13,6 +15,9 @@ public class Main {
             System.out.println("Раунд "+ rounds);
             game.startGame();
             rounds++;
+            if (stopGame){
+                break;
+            }
         }
     }
 }
