@@ -62,8 +62,8 @@ public class Game {
         System.out.println("Ваш ход");
         System.out.println("--------");
 
-        while(choice != 0 && player.getHand().findValue()<= 21) {
-            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться .");
+        while(choice != 0 && player.getHand().findValue()<= 21 && choice != 2) {
+            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры");
             Scanner scanner = new Scanner(System.in);
             choice = scanner.nextInt();
             if (choice == 1){
@@ -73,7 +73,10 @@ public class Game {
                 player.showDeck(player);
                 dealer.showDeck(dealer, 0);
             }
-
+            if (choice == 2){
+                Main.stopGame = true;
+                return;
+            }
             if (player.hasBlackJack()){
                 Main.wins++;
                 System.out.println("Вы получили блекджек и выиграли раунд! Счет " + Main.wins + ":" + Main.losses + " в вашу пользу!");
