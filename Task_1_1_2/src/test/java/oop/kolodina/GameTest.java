@@ -41,11 +41,11 @@ public class GameTest {
                     + " чтобы остановиться. Введите 2, чтобы выйти из игры"));
             assertTrue(output.contains("Вы открыли карту"));
             assertTrue(output.contains("Вы проиграли раунд!")
-                    || output.contains("блекджек") ||
-                    (output.contains("Ход дилера") && output.contains("Дилер открывает карту")));
-            assertTrue(output.contains("Вы проиграли раунд") || output.contains("Вы выиграли раунд"));
-        }
-        else{
+                    || output.contains("блекджек")
+                    || (output.contains("Ход дилера") && output.contains("Дилер открывает карту")));
+            assertTrue(output.contains("Вы проиграли раунд")
+                    || output.contains("Вы выиграли раунд"));
+        } else {
             assertTrue(output.contains("Счет"));
         }
     }
