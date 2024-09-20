@@ -27,8 +27,8 @@ public class GameTest {
         assertTrue(output.contains("Дилер раздал карты"));
         if (!(output.contains("блекджек") || (output.contains("Ничья!")))) {
             assertTrue(output.contains("Ваш ход"));
-            assertTrue(output.contains("Введите “1”, чтобы взять карту, и “0”," +
-                    " чтобы остановиться . Введите 2, чтобы выйти из игры"));
+            assertTrue(output.contains("Введите “1”, чтобы взять карту, и “0”,"
+                    + " чтобы остановиться . Введите 2, чтобы выйти из игры"));
             assertTrue(output.contains("Вы открыли карту"));
             assertTrue(output.contains("Вы проиграли раунд!")
                     || output.contains("блекджек") || output.contains("Ход дилера"));

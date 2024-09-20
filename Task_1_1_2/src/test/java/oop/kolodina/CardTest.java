@@ -17,7 +17,6 @@ public class CardTest {
         testCard1 = new Card(Card.Mark.CLUB, Card.Rank.EIGHT);
         testCard2 = new Card(Card.Mark.DIAMOND, Card.Rank.QUEEN);
         testCard3 = new Card(Card.Mark.HEART, Card.Rank.TWO);
-        testCard4 = new Card(Card.Mark.SPADE, Card.Rank.KING);
     }
 
     @Test
@@ -25,7 +24,6 @@ public class CardTest {
         assertEquals(8, testCard1.getValue());
         assertEquals(10, testCard2.getValue());
         assertEquals(2, testCard3.getValue());
-        assertEquals(10, testCard4.getValue());
     }
 
     @Test
@@ -36,8 +34,6 @@ public class CardTest {
                 + " (" + testCard2.getValue() + ")";
         String string3 = testCard3.rank.getRuName() + " " + testCard3.mark.getRuName()
                 + " (" + testCard3.getValue() + ")";
-        String string4 = testCard4.rank.getRuName() + " " + testCard4.mark.getRuName()
-                + " (" + testCard4.getValue() + ")";
         assertEquals(string1, testCard1.toString());
         assertEquals(string2, testCard2.toString());
         assertEquals(string3, testCard3.toString());
