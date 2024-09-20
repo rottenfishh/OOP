@@ -132,6 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Hand</span>
 extends java.lang.Object</pre>
+<div class="block">class handling hand structure(cards that player or dealer currently have).</div>
 </li>
 </ul>
 </div>
@@ -176,38 +177,52 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addCard(oop.kolodina.Card)">addCard</a></span>&#8203;(<a href="Card.html" title="class in oop.kolodina">Card</a>&nbsp;card)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">adding card to the hand.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#didPlayerWin(oop.kolodina.Hand,oop.kolodina.Hand)">didPlayerWin</a></span>&#8203;(<a href="Hand.html" title="class in oop.kolodina">Hand</a>&nbsp;playerHand,
             <a href="Hand.html" title="class in oop.kolodina">Hand</a>&nbsp;dealerHand)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">checks if player won.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findValue()">findValue</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">finds value of cards currently on hand.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="Card.html" title="class in oop.kolodina">Card</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showCard(int)">showCard</a></span>&#8203;(int&nbsp;idx)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">showing card from the hand.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showHand()">showHand</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">shows all cards on the hand at the moment.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="Card.html" title="class in oop.kolodina">Card</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showLastCard()">showLastCard</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">showing last card taken to the hand.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#takeFromDeck(oop.kolodina.Deck)">takeFromDeck</a></span>&#8203;(<a href="Deck.html" title="class in oop.kolodina">Deck</a>&nbsp;deck)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">taking one card from the deck.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -260,6 +275,14 @@ extends java.lang.Object</pre>
 <h4>didPlayerWin</h4>
 <pre class="methodSignature">public static&nbsp;int&nbsp;didPlayerWin&#8203;(<a href="Hand.html" title="class in oop.kolodina">Hand</a>&nbsp;playerHand,
                                <a href="Hand.html" title="class in oop.kolodina">Hand</a>&nbsp;dealerHand)</pre>
+<div class="block">checks if player won.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>playerHand</code> - - player's hand</dd>
+<dd><code>dealerHand</code> - - dealer's hand</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>-1 if dealer won, 1 if player won, 0 if its a draw</dd>
+</dl>
 </li>
 </ul>
 <a id="takeFromDeck(oop.kolodina.Deck)">
@@ -269,6 +292,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>takeFromDeck</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;takeFromDeck&#8203;(<a href="Deck.html" title="class in oop.kolodina">Deck</a>&nbsp;deck)</pre>
+<div class="block">taking one card from the deck.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>deck</code> - - deck to take card from</dd>
+</dl>
 </li>
 </ul>
 <a id="addCard(oop.kolodina.Card)">
@@ -278,6 +306,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>addCard</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addCard&#8203;(<a href="Card.html" title="class in oop.kolodina">Card</a>&nbsp;card)</pre>
+<div class="block">adding card to the hand.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>card</code> - - card to add</dd>
+</dl>
 </li>
 </ul>
 <a id="showCard(int)">
@@ -287,6 +320,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showCard</h4>
 <pre class="methodSignature">public&nbsp;<a href="Card.html" title="class in oop.kolodina">Card</a>&nbsp;showCard&#8203;(int&nbsp;idx)</pre>
+<div class="block">showing card from the hand.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>idx</code> - - index of the card to show</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- card to be shown</dd>
+</dl>
 </li>
 </ul>
 <a id="showLastCard()">
@@ -296,6 +336,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showLastCard</h4>
 <pre class="methodSignature">public&nbsp;<a href="Card.html" title="class in oop.kolodina">Card</a>&nbsp;showLastCard()</pre>
+<div class="block">showing last card taken to the hand.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>last card</dd>
+</dl>
 </li>
 </ul>
 <a id="showHand()">
@@ -305,6 +350,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showHand</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;showHand()</pre>
+<div class="block">shows all cards on the hand at the moment.</div>
 </li>
 </ul>
 <a id="findValue()">
@@ -314,6 +360,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>findValue</h4>
 <pre class="methodSignature">public&nbsp;int&nbsp;findValue()</pre>
+<div class="block">finds value of cards currently on hand.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- the value of cards</dd>
+</dl>
 </li>
 </ul>
 </li>

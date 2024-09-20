@@ -132,6 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">Dealer</span>
 extends java.lang.Object</pre>
+<div class="block">class to handle logic of dealer.</div>
 </li>
 </ul>
 </div>
@@ -176,7 +177,9 @@ extends java.lang.Object</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="Hand.html" title="class in oop.kolodina">Hand</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHand()">getHand</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">get dealer's hand.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -186,13 +189,17 @@ extends java.lang.Object</pre>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Card.html" title="class in oop.kolodina">Card</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showCard(int)">showCard</a></span>&#8203;(int&nbsp;idx)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">show one card from dealer's hand.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#showDeck(oop.kolodina.Dealer,int)">showDeck</a></span>&#8203;(<a href="Dealer.html" title="class in oop.kolodina">Dealer</a>&nbsp;dealer,
         int&nbsp;isOpened)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">show deck dealer currently has.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -244,6 +251,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getHand</h4>
 <pre class="methodSignature">public&nbsp;<a href="Hand.html" title="class in oop.kolodina">Hand</a>&nbsp;getHand()</pre>
+<div class="block">get dealer's hand.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>hand consisting of cards dealer has</dd>
+</dl>
 </li>
 </ul>
 <a id="showCard(int)">
@@ -253,6 +265,13 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>showCard</h4>
 <pre class="methodSignature">public&nbsp;<a href="Card.html" title="class in oop.kolodina">Card</a>&nbsp;showCard&#8203;(int&nbsp;idx)</pre>
+<div class="block">show one card from dealer's hand.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>idx</code> - index of the card to draw</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>card we draw</dd>
+</dl>
 </li>
 </ul>
 <a id="showDeck(oop.kolodina.Dealer,int)">
@@ -263,6 +282,12 @@ extends java.lang.Object</pre>
 <h4>showDeck</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;showDeck&#8203;(<a href="Dealer.html" title="class in oop.kolodina">Dealer</a>&nbsp;dealer,
                      int&nbsp;isOpened)</pre>
+<div class="block">show deck dealer currently has.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>dealer</code> - - dealer</dd>
+<dd><code>isOpened</code> - - 1 or 0 value that shows if dealer opened closed card</dd>
+</dl>
 </li>
 </ul>
 <a id="hasBlackJack()">
