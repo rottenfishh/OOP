@@ -2,6 +2,9 @@ package oop.kolodina;
 
 import java.util.ArrayList;
 
+/**
+ * class handling hand structure(cards that player or dealer currently have).
+ */
 public class Hand {
     private final ArrayList<Card> cardsTaken;
 
@@ -9,6 +12,12 @@ public class Hand {
         cardsTaken = new ArrayList<Card>();
     }
 
+    /**
+     * checks if player won.
+     * @param playerHand - player's hand
+     * @param dealerHand - dealer's hand
+     * @return -1 if dealer won, 1 if player won, 0 if its a draw
+     */
     public static int didPlayerWin(Hand playerHand, Hand dealerHand) {
         int playerScore = playerHand.findValue();
         int dealerScore = dealerHand.findValue();
@@ -22,22 +31,42 @@ public class Hand {
         }
     }
 
+    /**
+     * taking one card from the deck.
+     * @param deck - deck to take card from
+     */
     public void takeFromDeck(Deck deck) {
         this.addCard(deck.drawCard());
     }
 
+    /**
+     * adding card to the hand.
+     * @param card - card to add
+     */
     public void addCard(Card card) {
         cardsTaken.add(card);
     }
 
+    /**
+     * showing card from the hand.
+     * @param idx - index of the card to show
+     * @return - card to be shown
+     */
     public Card showCard(int idx) {
         return cardsTaken.get(idx);
     }
 
+    /**
+     * showing last card taken to the hand.
+     * @return last card
+     */
     public Card showLastCard() {
         return cardsTaken.get(cardsTaken.size() - 1);
     }
 
+    /**
+     * shows all cards on the hand at the moment.
+     */
     public void showHand() {
         System.out.print("[");
         for (int i = 0; i < cardsTaken.size() - 1; i++) {
@@ -47,6 +76,10 @@ public class Hand {
         System.out.print("] ");
     }
 
+    /**
+     * finds value of cards currently on hand.
+     * @return - the value of cards
+     */
     public int findValue() {
         int value = 0;
         int acesCount = 0;

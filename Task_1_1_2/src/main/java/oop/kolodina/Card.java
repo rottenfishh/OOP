@@ -1,5 +1,8 @@
 package oop.kolodina;
 
+/**
+ * class to handle logic of cards' structure
+ */
 public class Card {
 
     public final Mark mark;
@@ -12,14 +15,26 @@ public class Card {
         this.value = rank.assignValue();
     }
 
+    /**
+     * get value of card.
+     * @return value of the card
+     */
     public int getValue() {
         return rank.assignValue();
     }
 
+    /**
+     * convert card to readable string.
+     * @return string consisting of card's mark, rank and value
+     */
     public String toString() {
         return rank.getRuName() + " " + mark.getRuName() + " (" + value + ")";
     }
 
+    /**
+     * checks if card is Ace.
+     * @return true or false value
+     */
     public Boolean isAce() {
         return this.rank.equals(Rank.ACE);
     }

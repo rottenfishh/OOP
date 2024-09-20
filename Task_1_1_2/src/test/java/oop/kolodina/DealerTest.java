@@ -8,6 +8,9 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * test for Dealer class
+ */
 public class DealerTest {
     Dealer dealer;
     Hand dealerHand;
@@ -15,6 +18,9 @@ public class DealerTest {
     Card card2;
     private ByteArrayOutputStream outputStream;
 
+    /**
+     * initializing necessary objects.
+     */
     @BeforeEach
     void init() {
         dealer = new Dealer();
@@ -25,6 +31,9 @@ public class DealerTest {
         System.setOut(new PrintStream(outputStream));
     }
 
+    /**
+     * testing if card is shown from dealer's hand correctly.
+     */
     @Test
     public void showCardTest() {
         dealerHand.addCard(card1);
@@ -32,6 +41,9 @@ public class DealerTest {
         assertEquals(card1, card2);
     }
 
+    /**
+     * testing if deck is shown correctly.
+     */
     @Test
     public void showDeckTest() {
         dealerHand.addCard(card1);
@@ -43,8 +55,14 @@ public class DealerTest {
         outputStream.reset();
     }
 
+    /**
+     * testing if hasBlackJack works correctly.
+     * Dealer doesnt have 21, so it should return false
+     */
     @Test
     public void hasBlackJackTest() {
+        dealerHand.addCard(card1);
+        dealerHand.addCard(card2);
         assertFalse(dealer.hasBlackJack());
     }
 }
