@@ -11,6 +11,7 @@ public class Card {
 
     /**
      * constructor for card creation.
+     *
      * @param mark - mark of a card
      * @param rank - rank of a card
      */
@@ -67,6 +68,9 @@ public class Card {
         }
     }
 
+    /**
+     * enum for assigning ranks to cards.
+     */
     public enum Rank {
         TWO("Два", 2),
         THREE("Три", 3),
