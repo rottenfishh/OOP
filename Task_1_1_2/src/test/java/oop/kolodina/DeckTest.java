@@ -3,24 +3,27 @@ package oop.kolodina;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DeckTest {
     Deck deck;
     Card card1;
+
     @BeforeEach
-    void init(){
+    void init() {
         deck = new Deck();
         card1 = new Card(Card.Mark.DIAMOND, Card.Rank.QUEEN);
     }
+
     @Test
-    public void fillDeckTest(){
+    public void fillDeckTest() {
         deck.fillDeck();
         assertNotNull(deck.drawCard());
     }
 
     @Test
-    public void addingToDeckAndDrawingFromDeckTest(){
+    public void addingToDeckAndDrawingFromDeckTest() {
         deck.addToDeck(card1);
         deck.shuffle();
         Card card = deck.drawCard();

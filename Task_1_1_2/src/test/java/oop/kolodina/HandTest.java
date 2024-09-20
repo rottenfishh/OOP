@@ -1,14 +1,13 @@
 package oop.kolodina;
 
-import static oop.kolodina.Hand.didPlayerWin;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static oop.kolodina.Hand.didPlayerWin;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HandTest {
     Deck deck;
@@ -19,7 +18,7 @@ public class HandTest {
     private ByteArrayOutputStream outputStream;
 
     @BeforeEach
-    void init(){
+    void init() {
         deck = new Deck();
         hand = new Hand();
         card1 = new Card(Card.Mark.DIAMOND, Card.Rank.FOUR);
@@ -27,6 +26,7 @@ public class HandTest {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
+
     @Test
     public void testTakeFromDeck() {
         deck.addToDeck(card1);
@@ -43,21 +43,23 @@ public class HandTest {
     }
 
     @Test
-    public void testAddCard(){
+    public void testAddCard() {
         Card card2 = new Card(Card.Mark.DIAMOND, Card.Rank.TEN);
         hand.addCard(card2);
         Card card = hand.showCard(0);
         assertEquals(card2, card);
     }
+
     @Test
-    public void testShowLastCard(){
+    public void testShowLastCard() {
         hand.addCard(card2);
         Card lastCard = hand.showLastCard();
         Card card = hand.showCard(0);
         assertEquals(card, lastCard);
     }
+
     @Test
-    public void testShowHand(){
+    public void testShowHand() {
         deck.addToDeck(card1);
         hand.takeFromDeck(deck);
         hand.showHand();
@@ -66,14 +68,16 @@ public class HandTest {
         assertEquals(expectedOutput, output);
         outputStream.reset();
     }
+
     @Test
-    public void testFindValue(){
+    public void testFindValue() {
         hand.addCard(card1);
         int value = hand.findValue();
         assertEquals(4, value);
     }
+
     @Test
-    public void testDidPlayerWin(){
+    public void testDidPlayerWin() {
         Card cardPlayer1 = new Card(Card.Mark.DIAMOND, Card.Rank.ACE);
         Card cardPlayer2 = new Card(Card.Mark.DIAMOND, Card.Rank.TWO);
 

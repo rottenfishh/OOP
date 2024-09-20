@@ -4,18 +4,21 @@ public class Main {
     public static int wins, losses, draws;
 
     public static Boolean stopGame;
+
     public static void main(String[] args) {
         stopGame = false;
         Game game = new Game();
-        wins=0; losses = 0; draws = 0;
+        wins = 0;
+        losses = 0;
+        draws = 0;
         int rounds = 1;
         System.out.println("Добро пожаловать в Блэкджек! Введите q, чтобы выйти из игры.");
-        while(true) {
+        while (true) {
             System.out.println("----------");
-            System.out.println("Раунд "+ rounds);
+            System.out.println("Раунд " + rounds);
             game.startGame();
             rounds++;
-            if (stopGame){
+            if (stopGame) {
                 break;
             }
         }

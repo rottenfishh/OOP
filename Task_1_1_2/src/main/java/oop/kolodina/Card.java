@@ -1,7 +1,29 @@
 package oop.kolodina;
+
 public class Card {
 
-    public enum Mark{
+    public final Mark mark;
+    public final Rank rank;
+    private final int value;
+    public Card(Mark mark, Rank rank) {
+        this.mark = mark;
+        this.rank = rank;
+        this.value = rank.assignValue();
+    }
+
+    public int getValue() {
+        return rank.assignValue();
+    }
+
+    public String toString() {
+        return rank.getRuName() + " " + mark.getRuName() + " (" + value + ")";
+    }
+
+    public Boolean isAce() {
+        return this.rank.equals(Rank.ACE);
+    }
+
+    public enum Mark {
         HEART("червы"),
         DIAMOND("бубны"),
         CLUB("трефы"),
@@ -9,14 +31,15 @@ public class Card {
 
         private final String ruName;
 
-        Mark(String ruName){
+        Mark(String ruName) {
             this.ruName = ruName;
         }
 
-        public String getRuName(){
+        public String getRuName() {
             return ruName;
         }
     }
+
     public enum Rank {
         TWO("Два", 2),
         THREE("Три", 3),
@@ -40,39 +63,12 @@ public class Card {
             this.value = value;
         }
 
-        public String getRuName(){
+        public String getRuName() {
             return ruName;
         }
 
-        private int assignValue(){
+        private int assignValue() {
             return value;
-        }
-    }
-
-    public final Mark mark;
-    public final Rank rank;
-    private final int value;
-
-    public Card(Mark mark, Rank rank){
-        this.mark = mark;
-        this.rank = rank;
-        this.value = rank.assignValue();
-    }
-
-    public int getValue(){
-        return rank.assignValue();
-    }
-
-    public String toString() {
-        return rank.getRuName() + " " + mark.getRuName() + " (" + value + ")";
-    }
-
-    public Boolean isAce(){
-        if (this.rank.equals(Card.Rank.ACE)){
-            return true;
-        }
-        else{
-            return false;
         }
     }
 }
