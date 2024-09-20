@@ -1,17 +1,22 @@
 package oop.kolodina;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * tests for Card class
+ */
 public class CardTest {
     public Card testCard1;
     public Card testCard2;
     public Card testCard3;
     public Card testCard4;
 
+    /**
+     * creating cards for tests.
+     */
     @BeforeEach
     void createCards() {
         testCard1 = new Card(Card.Mark.CLUB, Card.Rank.EIGHT);
@@ -19,6 +24,9 @@ public class CardTest {
         testCard3 = new Card(Card.Mark.HEART, Card.Rank.TWO);
     }
 
+    /**
+     * testing if value is taken correctly by getValue() method.
+     */
     @Test
     public void testGetValue() {
         assertEquals(8, testCard1.getValue());
@@ -26,6 +34,9 @@ public class CardTest {
         assertEquals(2, testCard3.getValue());
     }
 
+    /**
+     * testing if cards get converted to Strings correctly.
+     */
     @Test
     public void testToString() {
         String string1 = testCard1.rank.getRuName() + " " + testCard1.mark.getRuName()
@@ -39,12 +50,15 @@ public class CardTest {
         assertEquals(string3, testCard3.toString());
     }
 
+    /**
+     * testing if isAce return correct values.
+     */
     @Test
     public void testIsAce() {
         Card ace1 = new Card(Card.Mark.DIAMOND, Card.Rank.ACE);
         assertTrue(ace1.isAce());
 
-        Card ace2 = new Card(Card.Mark.HEART, Card.Rank.ACE);
-        assertTrue(ace2.isAce());
+        Card ace2 = new Card(Card.Mark.HEART, Card.Rank.TEN);
+        assertFalse(ace2.isAce());
     }
 }

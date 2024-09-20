@@ -8,6 +8,9 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests for Hand class.
+ */
 public class HandTest {
     Deck deck;
     Hand hand;
@@ -16,6 +19,9 @@ public class HandTest {
 
     private ByteArrayOutputStream outputStream;
 
+    /**
+     * initializing necessary objects.
+     */
     @BeforeEach
     void init() {
         deck = new Deck();
@@ -26,6 +32,9 @@ public class HandTest {
         System.setOut(new PrintStream(outputStream));
     }
 
+    /**
+     * testing if card is taken from the deck correctly.
+     */
     @Test
     public void testTakeFromDeck() {
         deck.addToDeck(card1);
@@ -33,6 +42,9 @@ public class HandTest {
         assertEquals(card1, hand.showCard(0));
     }
 
+    /**
+     * testing if card is shown correctly.
+     */
     @Test
     public void testShowCard() {
         deck.addToDeck(card1);

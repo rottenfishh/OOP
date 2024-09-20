@@ -8,15 +8,25 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests for Game class
+ */
 public class GameTest {
     private ByteArrayOutputStream outputStream;
 
+    /**
+     * creating streams to imitate input for the game flow.
+     */
     @BeforeEach
     void init() {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
 
+    /**
+     * checking if game outputs strings it needs.
+     * to write for the player to interact with the game
+     */
     @Test
     public void testGame() {
         String input = "1\n0\n2\n";

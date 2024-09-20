@@ -4,6 +4,9 @@ import static oop.kolodina.Hand.didPlayerWin;
 
 import java.util.Scanner;
 
+/**
+ * class for handling the Blackjack game flow.
+ */
 public class Game {
 
     private Deck deck;
@@ -16,6 +19,9 @@ public class Game {
 
     private Hand playerHand;
 
+    /**
+     * method for initializing necessary objects and starting the game
+     */
     public void startGame() {
         deck = new Deck();
         deck.fillDeck();
@@ -26,6 +32,9 @@ public class Game {
         newRound();
     }
 
+    /**
+     * method that handles game logic.
+     */
     public void newRound() {
         Scanner scanner = new Scanner(System.in);
         deck.shuffle();

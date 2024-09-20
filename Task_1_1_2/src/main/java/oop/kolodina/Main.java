@@ -1,5 +1,10 @@
 package oop.kolodina;
 
+/**
+ * class to initialize wins, draws, losses.
+ * starting and stopping the game
+ * starting new rounds
+ */
 public class Main {
     public static int wins;
     public static int losses;
@@ -7,6 +12,12 @@ public class Main {
 
     public static Boolean stopGame;
 
+    /**
+     * main method which assigns values to wins, losses and draws.
+     * starts and stops the game
+     * handles rounds
+     * @param args default arguments
+     */
     public static void main(String[] args) {
         stopGame = false;
         Game game = new Game();

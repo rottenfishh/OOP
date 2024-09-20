@@ -8,6 +8,9 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * tests for Player class.
+ */
 public class PlayerTest {
     Player player;
     Hand playerHand;
