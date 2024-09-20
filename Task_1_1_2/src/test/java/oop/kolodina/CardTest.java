@@ -30,14 +30,14 @@ public class CardTest {
 
     @Test
     public void testToString() {
-        String string1 = testCard1.rank.getRuName() + " " + testCard1.mark.getRuName() +
-                " (" + testCard1.getValue() + ")";
-        String string2 = testCard2.rank.getRuName() + " " + testCard2.mark.getRuName() +
-                " (" + testCard2.getValue() + ")";
-        String string3 = testCard3.rank.getRuName() + " " + testCard3.mark.getRuName() +
-                " (" + testCard3.getValue() + ")";
-        String string4 = testCard4.rank.getRuName() + " " + testCard4.mark.getRuName() +
-                " (" + testCard4.getValue() + ")";
+        String string1 = testCard1.rank.getRuName() + " " + testCard1.mark.getRuName()
+                + " (" + testCard1.getValue() + ")";
+        String string2 = testCard2.rank.getRuName() + " " + testCard2.mark.getRuName()
+                + " (" + testCard2.getValue() + ")";
+        String string3 = testCard3.rank.getRuName() + " " + testCard3.mark.getRuName()
+                + " (" + testCard3.getValue() + ")";
+        String string4 = testCard4.rank.getRuName() + " " + testCard4.mark.getRuName()
+                + " (" + testCard4.getValue() + ")";
         assertEquals(string1, testCard1.toString());
         assertEquals(string2, testCard2.toString());
         assertEquals(string3, testCard3.toString());

@@ -1,7 +1,9 @@
 package oop.kolodina;
 
 public class Main {
-    public static int wins, losses, draws;
+    public static int wins;
+    public static int losses;
+    public static int draws;
 
     public static Boolean stopGame;
 

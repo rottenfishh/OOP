@@ -1,8 +1,8 @@
 package oop.kolodina;
 
-import java.util.Scanner;
-
 import static oop.kolodina.Hand.didPlayerWin;
+
+import java.util.Scanner;
 
 public class Game {
 
@@ -51,14 +51,16 @@ public class Game {
                 return;
             } else {
                 Main.losses++;
-                System.out.println("Дилер получил блекджек. Вы проиграли раунд! Счет " + Main.losses + ":" + Main.wins + " в пользу дилера");
+                System.out.println("Дилер получил блекджек. Вы проиграли раунд! Счет "
+                        + Main.losses + ":" + Main.wins + " в пользу дилера");
             }
             return;
         }
 
         if (player.hasBlackJack()) {
             Main.wins++;
-            System.out.println("Вы получили блекджек и выиграли раунд! Счет " + Main.wins + ":" + Main.losses + " в вашу пользу!");
+            System.out.println("Вы получили блекджек и выиграли раунд! Счет "
+                    + Main.wins + ":" + Main.losses + " в вашу пользу!");
             return;
         }
 
@@ -66,7 +68,8 @@ public class Game {
         System.out.println("--------");
 
         while (choice != 0 && player.getHand().findValue() <= 21 && choice != 2) {
-            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры");
+            System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться. "
+                    + "Введите 2, чтобы выйти из игры");
             choice = scanner.nextInt();
             if (choice == 1) {
                 playerHand.takeFromDeck(deck);
@@ -81,14 +84,16 @@ public class Game {
             }
             if (player.hasBlackJack()) {
                 Main.wins++;
-                System.out.println("Вы получили блекджек и выиграли раунд! Счет " + Main.wins + ":" + Main.losses + " в вашу пользу!");
+                System.out.println("Вы получили блекджек и выиграли раунд! Счет "
+                        + Main.wins + ":" + Main.losses + " в вашу пользу!");
                 return;
             }
         }
 
         if (playerHand.findValue() > 21) {
             Main.losses++;
-            System.out.println("Вы проиграли раунд! Счет " + Main.losses + ":" + Main.wins + " в пользу дилера");
+            System.out.println("Вы проиграли раунд! Счет "
+                    + Main.losses + ":" + Main.wins + " в пользу дилера");
             return;
         }
 
@@ -108,16 +113,19 @@ public class Game {
 
         if (dealer.hasBlackJack()) {
             Main.losses++;
-            System.out.println("Дилер получил блекджек. Вы проиграли раунд! Счет " + Main.losses + ":" + Main.wins + " в пользу дилера");
+            System.out.println("Дилер получил блекджек. Вы проиграли раунд! Счет "
+                    + Main.losses + ":" + Main.wins + " в пользу дилера");
             return;
         }
 
         if (didPlayerWin(playerHand, dealerHand) == 1) {
             Main.wins++;
-            System.out.println("Вы выиграли раунд! Счет " + Main.wins + ":" + Main.losses + " в вашу пользу!");
+            System.out.println("Вы выиграли раунд! Счет "
+                    + Main.wins + ":" + Main.losses + " в вашу пользу!");
         } else if (didPlayerWin(playerHand, dealerHand) == -1) {
             Main.losses++;
-            System.out.println("Вы проиграли раунд! Счет " + Main.losses + ":" + Main.wins + " в пользу дилера");
+            System.out.println("Вы проиграли раунд! Счет "
+                    + Main.losses + ":" + Main.wins + " в пользу дилера");
         } else {
             System.out.println("Ничья! Счет " + Main.losses + ":" + Main.wins);
         }
