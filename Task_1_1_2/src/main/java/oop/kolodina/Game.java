@@ -26,6 +26,8 @@ public class Game {
         newRound();
     }
     public void newRound(){
+        Scanner scanner = new Scanner(System.in);
+
         deck.shuffle();
         int choice=-1;
 
@@ -44,7 +46,9 @@ public class Game {
 
         if (dealer.hasBlackJack()){
             if (player.hasBlackJack()){
-                System.out.println("дамн");
+                System.out.println("Ничья!");
+                Main.draws++;
+                return;
             }
             else{
                 Main.losses++;
@@ -64,7 +68,6 @@ public class Game {
 
         while(choice != 0 && player.getHand().findValue()<= 21 && choice != 2) {
             System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры");
-            Scanner scanner = new Scanner(System.in);
             choice = scanner.nextInt();
             if (choice == 1){
                 playerHand.takeFromDeck(deck);

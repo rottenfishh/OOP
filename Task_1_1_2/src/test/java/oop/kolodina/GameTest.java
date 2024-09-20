@@ -25,9 +25,20 @@ public class GameTest {
         game.startGame();
         String output = outputStream.toString();
         assertTrue(output.contains("Дилер раздал карты"));
-        //assertTrue(output.contains("Ваш ход"));
+        if (!(output.contains("блекджек") || (output.contains("Ничья!")))){
+            assertTrue(output.contains("Ваш ход"));
+            assertTrue(output.contains("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры"));
+            assertTrue(output.contains("Вы открыли карту"));
+            assertTrue(output.contains("Вы проиграли раунд!")
+                    || output.contains("блекджек") || output.contains("Ход дилера"));
+        }
+        else{
+            assertTrue(output.contains("Счет"));
+        }
         //assertTrue(output.contains("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться . Введите 2, чтобы выйти из игры"));
-        assertTrue(output.contains("Счет"));
+        //assertTrue(output.contains("Счет") || output.contains("блекджек"));
+        //assertTrue(output.contains("Ход дилера") || output.contains("блекджек"));
+        //assertTrue(output.contains("Дилер открывает закрытую карту"));
     }
 
 }
