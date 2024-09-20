@@ -42,8 +42,10 @@ public class GameTest {
             assertTrue(output.contains("Вы открыли карту"));
             assertTrue(output.contains("Вы проиграли раунд!")
                     || output.contains("блекджек") ||
-                    (output.contains("Ход дилера") && output.contains("Дилер открывает крату")));
-        } else {
+                    (output.contains("Ход дилера") && output.contains("Дилер открывает карту")));
+            assertTrue(output.contains("Вы проиграли раунд") || output.contains("Вы выиграли раунд"));
+        }
+        else{
             assertTrue(output.contains("Счет"));
         }
     }
