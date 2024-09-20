@@ -1,11 +1,13 @@
 package oop.kolodina;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DealerTest {
     Dealer dealer;
@@ -15,7 +17,7 @@ public class DealerTest {
     private ByteArrayOutputStream outputStream;
 
     @BeforeEach
-    void init(){
+    void init() {
         dealer = new Dealer();
         dealerHand = dealer.getHand();
         card1 = new Card(Card.Mark.DIAMOND, Card.Rank.FOUR);
@@ -23,15 +25,16 @@ public class DealerTest {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
+
     @Test
-    public void showCardTest(){
+    public void showCardTest() {
         dealerHand.addCard(card1);
         Card card2 = dealerHand.showCard(0);
         assertEquals(card1, card2);
     }
 
     @Test
-    public void showDeckTest(){
+    public void showDeckTest() {
         dealerHand.addCard(card1);
         dealerHand.addCard(card2);
         dealer.showDeck(dealer, 1);
@@ -42,7 +45,7 @@ public class DealerTest {
     }
 
     @Test
-    public void hasBlackJackTest(){
-        assertEquals(false, dealer.hasBlackJack());
+    public void hasBlackJackTest() {
+        assertFalse(dealer.hasBlackJack());
     }
 }

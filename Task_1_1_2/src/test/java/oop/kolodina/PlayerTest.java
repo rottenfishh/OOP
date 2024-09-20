@@ -1,13 +1,13 @@
 package oop.kolodina;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PlayerTest {
     Player player;
@@ -15,8 +15,9 @@ public class PlayerTest {
     Card card1;
     Card card2;
     private ByteArrayOutputStream outputStream;
+
     @BeforeEach
-    void init(){
+    void init() {
         player = new Player();
         playerHand = player.getHand();
         card1 = new Card(Card.Mark.DIAMOND, Card.Rank.TEN);
@@ -26,8 +27,9 @@ public class PlayerTest {
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
+
     @Test
-    public void showDeckTest(){
+    public void showDeckTest() {
         player.showDeck(player);
         String output = outputStream.toString().trim();
         String exceptedOutput = "Ваши карты: [Десять бубны (10), Туз пики (11)] =>21";
@@ -36,7 +38,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void hasBlackJackTest(){
-        assertEquals(true, player.hasBlackJack());
+    public void hasBlackJackTest() {
+        assertTrue(player.hasBlackJack());
     }
 }
