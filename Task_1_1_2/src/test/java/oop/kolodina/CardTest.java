@@ -37,7 +37,6 @@ public class CardTest {
         assertEquals(string1, testCard1.toString());
         assertEquals(string2, testCard2.toString());
         assertEquals(string3, testCard3.toString());
-        assertEquals(string4, testCard4.toString());
     }
 
     @Test

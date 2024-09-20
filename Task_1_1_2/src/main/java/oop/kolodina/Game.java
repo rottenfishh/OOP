@@ -65,7 +65,7 @@ public class Game {
 
         System.out.println("Ваш ход");
         System.out.println("--------");
-        
+
         int choice = -1;
 
         while (choice != 0 && player.getHand().findValue() <= 21 && choice != 2) {
