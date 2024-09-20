@@ -29,7 +29,6 @@ public class Game {
     public void newRound() {
         Scanner scanner = new Scanner(System.in);
         deck.shuffle();
-        int choice = -1;
 
         playerHand.takeFromDeck(deck);
         playerHand.takeFromDeck(deck);
@@ -66,6 +65,8 @@ public class Game {
 
         System.out.println("Ваш ход");
         System.out.println("--------");
+        
+        int choice = -1;
 
         while (choice != 0 && player.getHand().findValue() <= 21 && choice != 2) {
             System.out.println("Введите “1”, чтобы взять карту, и “0”, чтобы остановиться. "

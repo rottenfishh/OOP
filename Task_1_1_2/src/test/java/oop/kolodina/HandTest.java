@@ -80,14 +80,14 @@ public class HandTest {
         Card cardPlayer1 = new Card(Card.Mark.DIAMOND, Card.Rank.ACE);
         Card cardPlayer2 = new Card(Card.Mark.DIAMOND, Card.Rank.TWO);
 
-        Card cardDealer1 = new Card(Card.Mark.DIAMOND, Card.Rank.THREE);
-        Card cardDealer2 = new Card(Card.Mark.DIAMOND, Card.Rank.TWO);
-
         Hand playerHand = new Hand();
         Hand dealerHand = new Hand();
 
         playerHand.addCard(cardPlayer1);
         playerHand.addCard(cardPlayer2);
+
+        Card cardDealer1 = new Card(Card.Mark.DIAMOND, Card.Rank.THREE);
+        Card cardDealer2 = new Card(Card.Mark.DIAMOND, Card.Rank.TWO);
 
         dealerHand.addCard(cardDealer1);
         dealerHand.addCard(cardDealer2);

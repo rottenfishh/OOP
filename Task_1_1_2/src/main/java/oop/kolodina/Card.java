@@ -5,7 +5,7 @@ public class Card {
     public final Mark mark;
     public final Rank rank;
     private final int value;
-    
+
     public Card(Mark mark, Rank rank) {
         this.mark = mark;
         this.rank = rank;
