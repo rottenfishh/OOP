@@ -12,6 +12,7 @@ public class Player {
 
     /**
      * returns player's hand.
+     *
      * @return value - Hand with cards player has
      */
     public Hand getHand() {
@@ -20,6 +21,7 @@ public class Player {
 
     /**
      * shows player's current deck.
+     *
      * @param player - player
      */
     public void showDeck(Player player) {
@@ -30,6 +32,7 @@ public class Player {
 
     /**
      * checks if player has Blackjack.
+     *
      * @return true or false value
      */
     public boolean hasBlackJack() {

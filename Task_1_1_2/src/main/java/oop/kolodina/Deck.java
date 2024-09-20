@@ -28,6 +28,7 @@ public class Deck {
 
     /**
      * adding one card to the deck.
+     *
      * @param card to add
      */
     public void addToDeck(Card card) {
@@ -42,7 +43,8 @@ public class Deck {
     }
 
     /**
-     * drawing one card from the deck
+     * drawing one card from the deck.
+     *
      * @return card we draw
      */
     public Card drawCard() {
