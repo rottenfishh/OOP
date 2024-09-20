@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * test for Dealer class
+ * test for Dealer class.
  */
 public class DealerTest {
     Dealer dealer;

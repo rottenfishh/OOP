@@ -12,6 +12,7 @@ public class Dealer {
 
     /**
      * get dealer's hand.
+     *
      * @return hand consisting of cards dealer has
      */
     public Hand getHand() {
@@ -20,6 +21,7 @@ public class Dealer {
 
     /**
      * show one card from dealer's hand.
+     *
      * @param idx index of the card to draw
      * @return card we draw
      */
@@ -29,6 +31,7 @@ public class Dealer {
 
     /**
      * show deck dealer currently has.
+     *
      * @param dealer - dealer
      * @param isOpened - 1 or 0 value that shows if dealer opened closed card
      */
@@ -46,6 +49,11 @@ public class Dealer {
         }
     }
 
+    /**
+     * checks if dealer hasBlackJack.
+     *
+     * @return true or false value
+     */
     public boolean hasBlackJack() {
         return this.dealerHand.findValue() == 21;
     }

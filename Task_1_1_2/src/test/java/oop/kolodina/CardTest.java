@@ -3,16 +3,17 @@ package oop.kolodina;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * tests for Card class
+ * tests for Card class.
  */
 public class CardTest {
     public Card testCard1;
     public Card testCard2;
     public Card testCard3;
-    public Card testCard4;
 
     /**
      * creating cards for tests.

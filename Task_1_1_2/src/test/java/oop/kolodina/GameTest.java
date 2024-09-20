@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * tests for Game class
+ * tests for Game class.
  */
 public class GameTest {
     private ByteArrayOutputStream outputStream;

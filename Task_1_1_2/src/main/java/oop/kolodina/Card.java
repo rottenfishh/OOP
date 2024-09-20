@@ -1,7 +1,7 @@
 package oop.kolodina;
 
 /**
- * class to handle logic of cards' structure
+ * class to handle logic of cards' structure.
  */
 public class Card {
 
@@ -17,6 +17,7 @@ public class Card {
 
     /**
      * get value of card.
+     *
      * @return value of the card
      */
     public int getValue() {
@@ -25,6 +26,7 @@ public class Card {
 
     /**
      * convert card to readable string.
+     *
      * @return string consisting of card's mark, rank and value
      */
     public String toString() {
@@ -33,6 +35,7 @@ public class Card {
 
     /**
      * checks if card is Ace.
+     *
      * @return true or false value
      */
     public Boolean isAce() {

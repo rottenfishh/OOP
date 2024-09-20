@@ -20,7 +20,7 @@ public class Game {
     private Hand playerHand;
 
     /**
-     * method for initializing necessary objects and starting the game
+     * method for initializing necessary objects and starting the game.
      */
     public void startGame() {
         deck = new Deck();

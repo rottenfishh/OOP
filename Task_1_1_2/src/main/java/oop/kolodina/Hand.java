@@ -14,6 +14,7 @@ public class Hand {
 
     /**
      * checks if player won.
+     *
      * @param playerHand - player's hand
      * @param dealerHand - dealer's hand
      * @return -1 if dealer won, 1 if player won, 0 if its a draw
@@ -33,6 +34,7 @@ public class Hand {
 
     /**
      * taking one card from the deck.
+     *
      * @param deck - deck to take card from
      */
     public void takeFromDeck(Deck deck) {
@@ -41,6 +43,7 @@ public class Hand {
 
     /**
      * adding card to the hand.
+     *
      * @param card - card to add
      */
     public void addCard(Card card) {
@@ -49,6 +52,7 @@ public class Hand {
 
     /**
      * showing card from the hand.
+     *
      * @param idx - index of the card to show
      * @return - card to be shown
      */
@@ -58,6 +62,7 @@ public class Hand {
 
     /**
      * showing last card taken to the hand.
+     *
      * @return last card
      */
     public Card showLastCard() {
@@ -78,6 +83,7 @@ public class Hand {
 
     /**
      * finds value of cards currently on hand.
+     *
      * @return - the value of cards
      */
     public int findValue() {

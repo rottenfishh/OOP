@@ -16,6 +16,7 @@ public class Main {
      * main method which assigns values to wins, losses and draws.
      * starts and stops the game
      * handles rounds
+     *
      * @param args default arguments
      */
     public static void main(String[] args) {
