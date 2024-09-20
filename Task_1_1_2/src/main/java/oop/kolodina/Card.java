@@ -9,6 +9,11 @@ public class Card {
     public final Rank rank;
     private final int value;
 
+    /**
+     * constructor for card creation.
+     * @param mark - mark of a card
+     * @param rank - rank of a card
+     */
     public Card(Mark mark, Rank rank) {
         this.mark = mark;
         this.rank = rank;
@@ -42,6 +47,9 @@ public class Card {
         return this.rank.equals(Rank.ACE);
     }
 
+    /**
+     * enum for assigning marks to cards.
+     */
     public enum Mark {
         HEART("червы"),
         DIAMOND("бубны"),
