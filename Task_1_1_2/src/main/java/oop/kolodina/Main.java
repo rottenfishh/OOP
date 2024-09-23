@@ -10,7 +10,7 @@ public class Main {
     public static int losses;
     public static int draws;
 
-    public static Boolean stopGame;
+    public static boolean stopGame;
 
     /**
      * main method which assigns values to wins, losses and draws.
