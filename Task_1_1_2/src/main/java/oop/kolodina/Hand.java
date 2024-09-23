@@ -66,19 +66,31 @@ public class Hand {
      * @return last card
      */
     public Card showLastCard() {
-        return cardsTaken.get(cardsTaken.size() - 1);
+
+        if (cardsTaken.size() == 0) {
+            System.out.println("No cards to take");
+            return null;
+        }
+        else {
+            return cardsTaken.get(cardsTaken.size() - 1);
+        }
     }
 
     /**
      * shows all cards on the hand at the moment.
      */
     public void showHand() {
-        System.out.print("[");
-        for (int i = 0; i < cardsTaken.size() - 1; i++) {
-            System.out.print(cardsTaken.get(i).toString() + ", ");
+        if (cardsTaken.size() == 0) {
+            System.out.println("No cards to show");
         }
-        System.out.print(cardsTaken.get(cardsTaken.size() - 1));
-        System.out.print("] ");
+        else {
+            System.out.print("[");
+            for (int i = 0; i < cardsTaken.size() - 1; i++) {
+                System.out.print(cardsTaken.get(i).toString() + ", ");
+            }
+            System.out.print(cardsTaken.get(cardsTaken.size() - 1));
+            System.out.print("] ");
+        }
     }
 
     /**
