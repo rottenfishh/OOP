@@ -70,8 +70,7 @@ public class Hand {
         if (cardsTaken.size() == 0) {
             System.out.println("No cards to take");
             return null;
-        }
-        else {
+        } else {
             return cardsTaken.get(cardsTaken.size() - 1);
         }
     }
@@ -82,8 +81,7 @@ public class Hand {
     public void showHand() {
         if (cardsTaken.size() == 0) {
             System.out.println("No cards to show");
-        }
-        else {
+        } else {
             System.out.print("[");
             for (int i = 0; i < cardsTaken.size() - 1; i++) {
                 System.out.print(cardsTaken.get(i).toString() + ", ");
