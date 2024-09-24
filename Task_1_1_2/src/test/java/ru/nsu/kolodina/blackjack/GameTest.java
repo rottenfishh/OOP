@@ -30,7 +30,7 @@ public class GameTest {
      */
     @Test
     public void testGame() {
-        for (int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             String input = "1\n0\n2\n";
             System.setIn(new ByteArrayInputStream(input.getBytes()));
             Game game = new Game();
@@ -44,7 +44,8 @@ public class GameTest {
                 assertTrue(output.contains("Вы открыли карту"));
                 assertTrue(output.contains("Вы проиграли раунд!")
                         || output.contains("блекджек")
-                        || (output.contains("Ход дилера") && output.contains("Дилер открывает карту")));
+                        || (output.contains("Ход дилера")
+                        && output.contains("Дилер открывает карту")));
                 assertTrue(output.contains("Вы проиграли раунд")
                         || output.contains("Вы выиграли раунд")
                         || output.contains("Ничья! Счет") || output.contains("блекджек"));
