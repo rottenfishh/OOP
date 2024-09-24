@@ -4,7 +4,7 @@ plugins {
     id("jacoco")
 }
 
-group = "oop.kolodina"
+group = "ru.nsu.kolodina.blackjack"
 version = "1.0-SNAPSHOT"
 
 repositories {

@@ -1,8 +1,10 @@
-package oop.kolodina;
+package ru.nsu.kolodina.blackjack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import ru.nsu.kolodina.blackjack.Card;
+import ru.nsu.kolodina.blackjack.Deck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

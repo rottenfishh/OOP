@@ -1,4 +1,4 @@
-package oop.kolodina;
+package ru.nsu.kolodina.blackjack;
 
 /**
  * class for handling the logic for the Player.
