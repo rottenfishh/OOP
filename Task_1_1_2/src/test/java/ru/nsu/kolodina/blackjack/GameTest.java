@@ -6,9 +6,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import ru.nsu.kolodina.blackjack.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.kolodina.blackjack.Game;
 
 /**
  * tests for Game class.

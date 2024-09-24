@@ -1,7 +1,6 @@
 package ru.nsu.kolodina.blackjack;
 
 import java.util.Scanner;
-
 /**
  * class for handling the Blackjack game flow.
  */
