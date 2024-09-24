@@ -1,7 +1,6 @@
 package ru.nsu.kolodina.blackjack;
 
 import java.util.ArrayList;
-
 import org.jetbrains.annotations.Nullable;
 
 /**
