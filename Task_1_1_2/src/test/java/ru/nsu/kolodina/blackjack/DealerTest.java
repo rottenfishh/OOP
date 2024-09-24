@@ -48,7 +48,7 @@ public class DealerTest {
     public void showDeckTest() {
         dealerHand.addCard(card1);
         dealerHand.addCard(card2);
-        dealer.showDeck(dealer, 1);
+        dealer.showDeck(dealer, true);
         String output = outputStream.toString().trim();
         String exceptedOutput = "Карты дилера: [Четыре бубны (4), Туз бубны (11)] =>15";
         assertEquals(exceptedOutput, output);

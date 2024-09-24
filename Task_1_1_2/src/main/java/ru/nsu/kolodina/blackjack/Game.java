@@ -48,7 +48,7 @@ public class Game {
         System.out.println("Дилер раздал карты");
         player.showDeck(player);
 
-        dealer.showDeck(dealer, 0);
+        dealer.showDeck(dealer, false);
 
         if (dealer.hasBlackJack()) {
             if (player.hasBlackJack()) {
@@ -84,7 +84,7 @@ public class Game {
                 cardOpened = player.getHand().showLastCard();
                 System.out.println("Вы открыли карту " + cardOpened.toString());
                 player.showDeck(player);
-                dealer.showDeck(dealer, 0);
+                dealer.showDeck(dealer, false);
             }
             if (choice == 2) {
                 Main.stopGame = true;
@@ -109,14 +109,14 @@ public class Game {
         Card closedCard = dealer.showCard(1);
         System.out.println("Дилер открывает закрытую карту " + closedCard.toString());
         player.showDeck(player);
-        dealer.showDeck(dealer, 1);
+        dealer.showDeck(dealer, true);
 
         while (dealerHand.findValue() <= 17) {
             dealerHand.takeFromDeck(deck);
             cardOpened = dealerHand.showLastCard();
             System.out.println("Дилер открывает карту " + cardOpened.toString());
             player.showDeck(player);
-            dealer.showDeck(dealer, 1);
+            dealer.showDeck(dealer, true);
         }
 
         if (dealer.hasBlackJack()) {
