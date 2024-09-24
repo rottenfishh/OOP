@@ -1,8 +1,8 @@
 package ru.nsu.kolodina.blackjack;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * class handling hand structure(cards that player or dealer currently have).
