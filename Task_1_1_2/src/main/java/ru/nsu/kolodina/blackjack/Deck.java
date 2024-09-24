@@ -1,12 +1,10 @@
 package ru.nsu.kolodina.blackjack;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
+import org.jetbrains.annotations.Nullable;
 /**
  * class for handling the structure of deck.
  */
@@ -56,8 +54,7 @@ public class Deck {
         if (drawnCard == null || drawnCard.mark == null || drawnCard.rank == null) {
             System.out.println("Didn't draw card");
             return null;
-        }
-        else {
+        } else {
             return drawnCard;
         }
     }
