@@ -1,7 +1,7 @@
 package ru.nsu.kolodina.blackjack;
 
-import static ru.nsu.kolodina.blackjack.Hand.didPlayerWin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static ru.nsu.kolodina.blackjack.Hand.didPlayerWin;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
