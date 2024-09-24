@@ -1,10 +1,14 @@
-package oop.kolodina;
+package ru.nsu.kolodina.blackjack;
 
-import static oop.kolodina.Hand.didPlayerWin;
+import static ru.nsu.kolodina.blackjack.Hand.didPlayerWin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
+import ru.nsu.kolodina.blackjack.Card;
+import ru.nsu.kolodina.blackjack.Deck;
+import ru.nsu.kolodina.blackjack.Hand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

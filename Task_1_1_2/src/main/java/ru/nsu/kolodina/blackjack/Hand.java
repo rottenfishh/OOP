@@ -1,4 +1,4 @@
-package oop.kolodina;
+package ru.nsu.kolodina.blackjack;
 
 import java.util.ArrayList;
 

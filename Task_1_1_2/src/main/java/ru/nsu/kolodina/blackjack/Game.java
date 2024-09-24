@@ -1,6 +1,4 @@
-package oop.kolodina;
-
-import static oop.kolodina.Hand.didPlayerWin;
+package ru.nsu.kolodina.blackjack;
 
 import java.util.Scanner;
 
@@ -128,11 +126,11 @@ public class Game {
             return;
         }
 
-        if (didPlayerWin(playerHand, dealerHand) == 1) {
+        if (Hand.didPlayerWin(playerHand, dealerHand) == 1) {
             Main.wins++;
             System.out.println("Вы выиграли раунд! Счет "
                     + Main.wins + ":" + Main.losses + " в вашу пользу!");
-        } else if (didPlayerWin(playerHand, dealerHand) == -1) {
+        } else if (Hand.didPlayerWin(playerHand, dealerHand) == -1) {
             Main.losses++;
             System.out.println("Вы проиграли раунд! Счет "
                     + Main.losses + ":" + Main.wins + " в пользу дилера");
