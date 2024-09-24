@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import org.jetbrains.annotations.Nullable;
+
 /**
  * class for handling the structure of deck.
  */
