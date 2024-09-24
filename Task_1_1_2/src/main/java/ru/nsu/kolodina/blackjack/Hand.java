@@ -1,5 +1,7 @@
 package ru.nsu.kolodina.blackjack;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 /**
@@ -65,8 +67,8 @@ public class Hand {
      *
      * @return last card
      */
+    @Nullable
     public Card showLastCard() {
-
         if (cardsTaken.size() == 0) {
             System.out.println("No cards to take");
             return null;
