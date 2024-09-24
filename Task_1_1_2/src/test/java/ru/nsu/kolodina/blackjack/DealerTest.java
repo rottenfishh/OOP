@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
-import ru.nsu.kolodina.blackjack.Card;
-import ru.nsu.kolodina.blackjack.Dealer;
-import ru.nsu.kolodina.blackjack.Hand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
