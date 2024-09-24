@@ -1,13 +1,14 @@
 package ru.nsu.kolodina.blackjack;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * class handling hand structure(cards that player or dealer currently have).
  */
 public class Hand {
-    private final ArrayList<Card> cardsTaken;
+    private final List<Card> cardsTaken;
 
     public Hand() {
         cardsTaken = new ArrayList<Card>();
