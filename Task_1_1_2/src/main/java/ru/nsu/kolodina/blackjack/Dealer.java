@@ -33,7 +33,7 @@ public class Dealer {
      * show deck dealer currently has.
      *
      * @param dealer - dealer
-     * @param isOpened - 1 or 0 value that shows if dealer opened closed card
+     * @param isOpened -true or false value that shows if dealer opened closed card
      */
     public void showDeck(Dealer dealer, boolean isOpened) {
         if (isOpened == false) {
