@@ -2,31 +2,56 @@ package ru.nsu.kolodina.expressions;
 
 import java.util.Map;
 
-public class Mul extends Expression{
+/**
+ * class which implements multiplication of two expressions.
+ */
+public class Mul extends Expression {
 
     final Expression left;
 
     final Expression right;
-    public Mul(Expression left, Expression right){
+
+    public Mul(Expression left, Expression right) {
         this.left = left;
         this.right = right;
     }
 
-    public double eval(Map<String, Double> variables){
+    /**
+     * eval implementation for finding multiplication of two expressions.
+     *
+     * @param variables map structure containing variables of the expression
+     * @return result of evaluation
+     */
+    public double eval(Map<String, Double> variables) {
         return left.eval(variables) * right.eval(variables);
     }
 
-    public Expression derivative(String variable){
-        return new Add (new Mul(left.derivative(variable), this.right), new Mul (right.derivative(variable), this.left));
+    /**
+     * derivative implementation for multiplication of two expressions.
+     *find derivative using formula of derivative from multiplication
+     *
+     * @param variable given variable for which we find derivative
+     * @return new expression which is derivative of source expression
+     */
+    public Expression derivative(String variable) {
+        return new Add(new Mul(left.derivative(variable), this.right), new Mul(right.derivative(variable), this.left));
     }
 
-    public String convertToString(){
+    /**
+     * convert expression to string.
+     *
+     * @return String version of expression
+     */
+    public String convertToString() {
         String newString = "(" + left.convertToString() + "*" + right.convertToString() + ")";
         return newString;
     }
 
+    /**
+     * print expression.
+     */
     @Override
-    public void printExpression(){
+    public void printExpression() {
         System.out.println(this.convertToString());
     }
 }
