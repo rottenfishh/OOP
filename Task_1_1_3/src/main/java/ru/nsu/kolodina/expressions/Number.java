@@ -20,7 +20,7 @@ public class Number extends Expression {
      * @return the value of number, because it is constant
      */
     @Override
-    public double eval(Map<String, Double> variables) {
+    public double eval(String variables) {
         return this.value;
     }
 

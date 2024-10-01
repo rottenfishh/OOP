@@ -1,6 +1,8 @@
 package ru.nsu.kolodina.expressions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -119,5 +121,17 @@ public class Parser {
             }
         }
         return expression.pop();
+    }
+    public static Map<String, Double> parseVar(String string){
+        Map<String, Double> variablesMap = new HashMap<>();
+        string = string.replaceAll(" ", "");
+        String[] variablesList = string.split(";");
+        for (int i = 0; i < variablesList.length ; i++) {
+            String[] values = variablesList[i].split("=");
+            String var = values[0];
+            Double number = Double.parseDouble(values[1]);
+            variablesMap.put(var, number);
+        }
+        return variablesMap;
     }
 }

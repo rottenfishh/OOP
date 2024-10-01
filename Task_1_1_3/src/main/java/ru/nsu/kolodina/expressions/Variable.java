@@ -2,6 +2,8 @@ package ru.nsu.kolodina.expressions;
 
 import java.util.Map;
 
+import static ru.nsu.kolodina.expressions.Parser.parseVar;
+
 /**
  * class implementing variables.
  */
@@ -21,8 +23,9 @@ public class Variable extends Expression {
      * @return result of evaluating variable with passed value
      */
     @Override
-    public double eval(Map<String, Double> variables) {
-        return (variables.get(name));
+    public double eval(String variables) {
+        Map<String,Double> variablesMap = parseVar(variables);
+        return (variablesMap.get(name));
     }
 
     /**

@@ -21,11 +21,11 @@ public class Main {
         e.printExpression();
         Expression de = e.derivative("x");
         de.printExpression();
-        double result = e.eval(map);
+        double result = e.eval("x=10");
         System.out.println(result);
         de = expr.derivative("x");
         de.printExpression();
-        result = expr.eval(map);
+        result = expr.eval("x=5");
         System.out.println(result);
     }
 }

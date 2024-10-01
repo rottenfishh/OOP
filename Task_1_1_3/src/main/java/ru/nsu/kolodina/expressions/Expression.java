@@ -13,7 +13,7 @@ abstract class Expression {
      * @param variables map structure containing variables of the expression
      * @return double value - result of evaluation
      */
-    public abstract double eval(Map<String, Double> variables);
+    public abstract double eval(String variables);
 
     /**
      * method to find the derivative of expression.

@@ -2,6 +2,8 @@ package ru.nsu.kolodina.expressions;
 
 import java.util.Map;
 
+import static ru.nsu.kolodina.expressions.Parser.parseVar;
+
 /**
  * class which implements multiplication of two expressions.
  */
@@ -22,7 +24,7 @@ public class Mul extends Expression {
      * @param variables map structure containing variables of the expression
      * @return result of evaluation
      */
-    public double eval(Map<String, Double> variables) {
+    public double eval(String variables) {
         return left.eval(variables) * right.eval(variables);
     }
 

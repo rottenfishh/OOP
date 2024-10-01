@@ -23,7 +23,7 @@ public class Sub extends Expression {
      * @param variables map structure containing variables of the expression
      * @return result of evaluation
      */
-    public double eval(Map<String, Double> variables) {
+    public double eval(String variables) {
         return left.eval(variables) - right.eval(variables);
     }
 
