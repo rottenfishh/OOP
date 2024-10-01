@@ -24,5 +24,9 @@ public class Main {
         de.printExpression();
         double result = e.eval(map);
         System.out.println(result);
+        de = expr.derivative("x");
+        de.printExpression();
+        result = expr.eval(map);
+        System.out.println(result);
     }
 }
