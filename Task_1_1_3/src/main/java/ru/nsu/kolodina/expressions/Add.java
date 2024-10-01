@@ -23,7 +23,7 @@ public class Add extends Expression {
      * @return result of evaluation
      */
     @Override
-    public double eval(Map<String, Double> variables) {
+    public double eval(String variables) {
         return left.eval(variables) + right.eval(variables);
     }
 
