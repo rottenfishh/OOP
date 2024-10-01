@@ -34,6 +34,7 @@ public class Parser {
                 }
                 i--;
                 outputPN.add(temp.toString());
+                flag = 1;
             }
             else if (c == ')') {
                 while (!stackOperators.empty() && stackOperators.peek()!= '(') {
@@ -43,12 +44,13 @@ public class Parser {
                     }
                     stackOperators.pop();
                 }
-            else if (c == '+' || c == '*' || c == '*' || c =='/') {
+            else if (c == '+' || c == '*' || c == '-' || c =='/') {
                 while (!stackOperators.empty() && operationOrder(stackOperators.peek())>= operationOrder(c)) {
                     String operator = Character.toString(stackOperators.pop());
                     outputPN.add(operator);
                 }
                 stackOperators.push(c);
+                flag = 0;
             }
         }
         while (!stackOperators.empty()) {
