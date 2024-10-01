@@ -36,7 +36,7 @@ public class Dealer {
      * @param isOpened -true or false value that shows if dealer opened closed card
      */
     public void showDeck(Dealer dealer, boolean isOpened) {
-        if (isOpened == false) {
+        if (!isOpened) {
             Card firstCard = dealer.showCard(0);
             System.out.print("    Карты дилера: ");
             System.out.print("[");
