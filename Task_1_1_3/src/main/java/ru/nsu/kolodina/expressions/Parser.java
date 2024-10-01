@@ -1,9 +1,19 @@
 package ru.nsu.kolodina.expressions;
 
-import java.lang.reflect.Array;
-import java.util.Stack;
 import java.util.ArrayList;
+import java.util.Stack;
+
+/**
+ * Parser class for parsing expressions.
+ */
 public class Parser {
+
+    /**
+     * method to get value of operation order from passed operator.
+     *
+     * @param operation passed operator
+     * @return vlaue of operation order
+     */
     public static int operationOrder(char operation) {
         if (operation == '+' || operation == '-') {
             return 1;
@@ -14,6 +24,12 @@ public class Parser {
         return 0;
     }
 
+    /**
+     * implementation of converting expression to reverse polish notation using shunting yard algorithm.
+     *
+     * @param string we want to parse
+     * @return list of parsed values, variables and operators
+     */
     public static ArrayList<String> polishNotation(String string) {
         int i;
         int flag = 0;
@@ -25,8 +41,7 @@ public class Parser {
             if (c == '(') {
                 stackOperators.push(c);
                 flag = 0;
-            }
-            else if (Character.isDigit(c)) {
+            } else if (Character.isDigit(c)) {
                 StringBuilder temp = new StringBuilder();
                 while (i < string.length() && Character.isDigit(string.charAt(i))) {
                     temp.append(string.charAt(i));
@@ -35,22 +50,22 @@ public class Parser {
                 i--;
                 outputPN.add(temp.toString());
                 flag = 1;
-            }
-            else if (c == ')') {
-                while (!stackOperators.empty() && stackOperators.peek()!= '(') {
-                        char top = stackOperators.pop();
-                        String outputTop = Character.toString(top);
-                        outputPN.add(outputTop);
-                    }
-                    stackOperators.pop();
+            } else if (c == ')') {
+                while (!stackOperators.empty() && stackOperators.peek() != '(') {
+                    char top = stackOperators.pop();
+                    String outputTop = Character.toString(top);
+                    outputPN.add(outputTop);
                 }
-            else if (c == '+' || c == '*' || c == '-' || c =='/') {
-                while (!stackOperators.empty() && operationOrder(stackOperators.peek())>= operationOrder(c)) {
+                stackOperators.pop();
+            } else if (c == '+' || c == '*' || c == '-' || c == '/') {
+                while (!stackOperators.empty() && operationOrder(stackOperators.peek()) >= operationOrder(c)) {
                     String operator = Character.toString(stackOperators.pop());
                     outputPN.add(operator);
                 }
                 stackOperators.push(c);
                 flag = 0;
+            } else {
+                outputPN.add(Character.toString(c));
             }
         }
         while (!stackOperators.empty()) {
@@ -60,10 +75,16 @@ public class Parser {
         return outputPN;
     }
 
+    /**
+     * convert passed string to reverse polish notation and then to our expression implementation.
+     *
+     * @param string we want to parse and convert
+     * @return Expression made from the string
+     */
     public static Expression returnExpression(String string) {
         ArrayList<String> outputPN = polishNotation(string);
         String curr;
-        Stack <Expression> expression = new Stack<>();
+        Stack<Expression> expression = new Stack<>();
         Expression left;
         Expression right;
         Expression newExpr;

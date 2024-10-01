@@ -2,31 +2,54 @@ package ru.nsu.kolodina.expressions;
 
 import java.util.Map;
 
-public class Number extends Expression{
+/**
+ * class which implements constant numbers realization.
+ */
+public class Number extends Expression {
 
     final double value;
 
-    public Number(double value){
+    public Number(double value) {
         this.value = value;
     }
 
+    /**
+     * eval implementation for numbers.
+     *
+     * @param variables map structure containing variables of the expression
+     * @return the value of number, because it is constant
+     */
     @Override
-    public double eval(Map<String, Double> variables){
+    public double eval(Map<String, Double> variables) {
         return this.value;
     }
 
+    /**
+     * derivative implementation for number constant.
+     *
+     * @param variable given variable for which we find derivative
+     * @return 0 because derivative of constant is 0
+     */
     @Override
-    public Number derivative(String variable){
+    public Number derivative(String variable) {
         return new Number(0);
     }
 
+    /**
+     * convert expression to string.
+     *
+     * @return String version of number
+     */
     @Override
-    public String convertToString(){
+    public String convertToString() {
         return String.valueOf(value);
     }
 
+    /**
+     * print expression.
+     */
     @Override
-    public void printExpression(){
+    public void printExpression() {
         System.out.println(this.convertToString());
     }
 }
