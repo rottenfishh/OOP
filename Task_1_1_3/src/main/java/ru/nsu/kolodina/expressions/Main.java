@@ -1,9 +1,5 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
 
 /**

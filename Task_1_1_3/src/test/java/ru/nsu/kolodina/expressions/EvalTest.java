@@ -3,13 +3,12 @@ package ru.nsu.kolodina.expressions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
 
-
 import org.junit.jupiter.api.Test;
 
 /**
  * class for testing evaluation of Expressions.
  */
-public class evalTest {
+public class EvalTest {
     public Expression expr;
     String exprString;
 

@@ -32,7 +32,8 @@ public class Mul extends Expression {
      * @return new expression which is derivative of source expression
      */
     public Expression derivative(String variable) {
-        return new Add(new Mul(left.derivative(variable), this.right), new Mul(right.derivative(variable), this.left));
+        return new Add(new Mul(left.derivative(variable), this.right),
+                new Mul(right.derivative(variable), this.left));
     }
 
     /**
