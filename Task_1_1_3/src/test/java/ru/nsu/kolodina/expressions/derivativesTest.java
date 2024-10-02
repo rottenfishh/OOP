@@ -1,14 +1,14 @@
 package ru.nsu.kolodina.expressions;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * class for testing result of derivative method.
  */
-public class correctDerivativesTest {
+public class derivativesTest {
     public Expression expr;
     public Expression result;
     String exprString;

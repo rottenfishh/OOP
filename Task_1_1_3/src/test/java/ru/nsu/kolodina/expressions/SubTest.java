@@ -1,9 +1,9 @@
 package ru.nsu.kolodina.expressions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * testing Mul class.
@@ -45,7 +45,8 @@ public class SubTest {
      */
     @Test
     public void testConvertToString() {
-        String exceptedString = "(" + (new Number(140.0)).convertToString() + "-" + (new Variable("xp")).convertToString() + ")";
+        String exceptedString = "(" + (new Number(140.0)).convertToString()
+                + "-" + (new Variable("xp")).convertToString() + ")";
         assertEquals(exceptedString, expr.convertToString());
     }
 

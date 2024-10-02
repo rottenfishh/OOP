@@ -1,14 +1,15 @@
 package ru.nsu.kolodina.expressions;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
+
+
+import org.junit.jupiter.api.Test;
 
 /**
  * class for testing evaluation of Expressions.
  */
-public class correctEvalTest {
+public class evalTest {
     public Expression expr;
     String exprString;
 
