@@ -34,7 +34,6 @@ public class Parser {
      */
     public static ArrayList<String> polishNotation(String string) {
         int i;
-        int flag = 0;
         Stack<Character> stackOperators = new Stack<>();
         ArrayList<String> outputPN = new ArrayList<>();
         string = string.replaceAll(" ", "");
@@ -42,7 +41,6 @@ public class Parser {
             char c = string.charAt(i);
             if (c == '(') {
                 stackOperators.push(c);
-                flag = 0;
             } else if (Character.isDigit(c)) {
                 StringBuilder temp = new StringBuilder();
                 while (i < string.length() && Character.isDigit(string.charAt(i))) {
@@ -51,7 +49,6 @@ public class Parser {
                 }
                 i--;
                 outputPN.add(temp.toString());
-                flag = 1;
             } else if (c == ')') {
                 while (!stackOperators.empty() && stackOperators.peek() != '(') {
                     char top = stackOperators.pop();
@@ -65,9 +62,14 @@ public class Parser {
                     outputPN.add(operator);
                 }
                 stackOperators.push(c);
-                flag = 0;
             } else {
-                outputPN.add(Character.toString(c));
+                StringBuilder var = new StringBuilder();
+                while (i<string.length() && string.charAt(i)>64) {
+                    var.append(string.charAt(i));
+                    i++;
+                }
+                outputPN.add(var.toString());
+                i--;
             }
         }
         while (!stackOperators.empty()) {
@@ -122,6 +124,13 @@ public class Parser {
         }
         return expression.pop();
     }
+
+    /**
+     * parsing variables we set values for.
+     *
+     * @param string with following structure: "x = 5; y = 4"
+     * @return map structure where name of variable is key, and number is mapped value
+     */
     public static Map<String, Double> parseVar(String string){
         Map<String, Double> variablesMap = new HashMap<>();
         string = string.replaceAll(" ", "");
