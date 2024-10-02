@@ -42,7 +42,7 @@ public class Main {
         Expression exceptedDerivative = new Sub(new Number(0.0), new Number(1.0));
         derivative.printExpression();
         exceptedDerivative.printExpression();
-        String exprString = "(y * 3 / x) - 5";
+        String exprString = "5+x";
         expr = returnExpression(exprString);
         Expression result2 = expr.derivative("x");
         String resul = result2.convertToString();
