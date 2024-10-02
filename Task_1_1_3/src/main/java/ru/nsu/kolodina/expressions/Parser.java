@@ -88,14 +88,14 @@ public class Parser {
      * @return Expression made from the string
      */
     public static Expression returnExpression(String string) {
-        ArrayList<String> outputPN = polishNotation(string);
+        ArrayList<String> outputpn = polishNotation(string);
         String curr;
         Stack<Expression> expression = new Stack<>();
         Expression left;
         Expression right;
         Expression newExpr;
-        for (int i = 0; i < outputPN.size(); i++) {
-            curr = outputPN.get(i);
+        for (int i = 0; i < outputpn.size(); i++) {
+            curr = outputpn.get(i);
             if (Character.isDigit(curr.charAt(0))) {
                 newExpr = new Number(Double.parseDouble(curr));
                 expression.push(newExpr);
