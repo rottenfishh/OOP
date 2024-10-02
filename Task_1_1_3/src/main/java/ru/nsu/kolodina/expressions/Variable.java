@@ -1,8 +1,8 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.Map;
-
 import static ru.nsu.kolodina.expressions.Parser.parseVar;
+
+import java.util.Map;
 
 /**
  * class implementing variables.

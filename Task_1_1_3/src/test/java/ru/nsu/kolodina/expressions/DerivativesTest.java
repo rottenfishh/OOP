@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * class for testing result of derivative method.
  */
-public class derivativesTest {
+public class DerivativesTest {
     public Expression expr;
     public Expression result;
     String exprString;

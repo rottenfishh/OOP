@@ -27,7 +27,8 @@ public class Parser {
     }
 
     /**
-     * implementation of converting expression to reverse polish notation using shunting yard algorithm.
+     * implementation of converting expression to
+     * reverse polish notation using shunting yard algorithm.
      *
      * @param string we want to parse
      * @return list of parsed values, variables and operators
@@ -35,7 +36,7 @@ public class Parser {
     public static ArrayList<String> polishNotation(String string) {
         int i;
         Stack<Character> stackOperators = new Stack<>();
-        ArrayList<String> outputPN = new ArrayList<>();
+        ArrayList<String> outputpn = new ArrayList<>();
         string = string.replaceAll(" ", "");
         for (i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
@@ -48,18 +49,19 @@ public class Parser {
                     i++;
                 }
                 i--;
-                outputPN.add(temp.toString());
+                outputpn.add(temp.toString());
             } else if (c == ')') {
                 while (!stackOperators.empty() && stackOperators.peek() != '(') {
                     char top = stackOperators.pop();
                     String outputTop = Character.toString(top);
-                    outputPN.add(outputTop);
+                    outputpn.add(outputTop);
                 }
                 stackOperators.pop();
             } else if (c == '+' || c == '*' || c == '-' || c == '/') {
-                while (!stackOperators.empty() && operationOrder(stackOperators.peek()) >= operationOrder(c)) {
+                while (!stackOperators.empty()
+                        && operationOrder(stackOperators.peek()) >= operationOrder(c)) {
                     String operator = Character.toString(stackOperators.pop());
-                    outputPN.add(operator);
+                    outputpn.add(operator);
                 }
                 stackOperators.push(c);
             } else {
@@ -68,15 +70,15 @@ public class Parser {
                     var.append(string.charAt(i));
                     i++;
                 }
-                outputPN.add(var.toString());
+                outputpn.add(var.toString());
                 i--;
             }
         }
         while (!stackOperators.empty()) {
             String operator = Character.toString(stackOperators.pop());
-            outputPN.add(operator);
+            outputpn.add(operator);
         }
-        return outputPN;
+        return outputpn;
     }
 
     /**

@@ -49,7 +49,7 @@ public class VariableTest {
     }
 
     /**
-     * testing convertation to String
+     * testing convertation to String.
      */
     @Test
     public void testConvertToString() {
