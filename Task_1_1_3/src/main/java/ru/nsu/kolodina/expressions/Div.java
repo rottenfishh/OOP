@@ -1,9 +1,5 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.Map;
-
-import static ru.nsu.kolodina.expressions.Parser.parseVar;
-
 /**
  * class which implements division of two expressions.
  */
@@ -30,7 +26,7 @@ public class Div extends Expression {
 
     /**
      * derivative implementation for division of two expressions.
-     *find derivative using formula of derivative from division
+     * find derivative using formula of derivative from division
      *
      * @param variable given variable for which we find derivative
      * @return new expression which is derivative of source expression

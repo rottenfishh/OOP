@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.Map;
-
 /**
  * class which implements difference of two expressions.
  */
@@ -29,7 +27,7 @@ public class Sub extends Expression {
 
     /**
      * derivative implementation for difference of expressions.
-     *find derivative for left part of expression and for the right part recursively
+     * find derivative for left part of expression and for the right part recursively
      * create new sub expression from derivatives
      *
      * @param variable given variable for which we find derivative

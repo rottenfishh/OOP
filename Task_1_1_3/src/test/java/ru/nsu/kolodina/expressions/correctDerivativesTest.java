@@ -1,10 +1,9 @@
 package ru.nsu.kolodina.expressions;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
  * class for testing result of derivative method.
@@ -24,7 +23,7 @@ public class correctDerivativesTest {
         exprString = "3+(2*x)";
         expr = returnExpression(exprString);
         result = expr.derivative("x");
-        exceptedResult ="(0.0+((0.0*x)+(1.0*2.0)))";
+        exceptedResult = "(0.0+((0.0*x)+(1.0*2.0)))";
         assertEquals(exceptedResult, result.convertToString());
     }
 
