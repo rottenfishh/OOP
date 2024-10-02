@@ -17,14 +17,14 @@ public class Variable extends Expression {
 
     /**
      * evaluating variable with passed value.
-     *get value of variable from variables map structure using key which is variable's name
+     * get value of variable from variables map structure using key which is variable's name
      *
      * @param variables map structure containing variables of the expression
      * @return result of evaluating variable with passed value
      */
     @Override
     public double eval(String variables) {
-        Map<String,Double> variablesMap = parseVar(variables);
+        Map<String, Double> variablesMap = parseVar(variables);
         return (variablesMap.get(name));
     }
 

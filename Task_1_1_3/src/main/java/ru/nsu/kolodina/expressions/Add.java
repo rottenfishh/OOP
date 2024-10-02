@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.Map;
-
 /**
  * class which implements sum of two expressions.
  */

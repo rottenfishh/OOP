@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.Map;
-
 /**
  * abstract class Expression.
  */

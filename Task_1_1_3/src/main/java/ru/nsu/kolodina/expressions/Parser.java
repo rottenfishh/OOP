@@ -64,7 +64,7 @@ public class Parser {
                 stackOperators.push(c);
             } else {
                 StringBuilder var = new StringBuilder();
-                while (i<string.length() && string.charAt(i)>64) {
+                while (i < string.length() && string.charAt(i) > 64) {
                     var.append(string.charAt(i));
                     i++;
                 }
@@ -131,11 +131,11 @@ public class Parser {
      * @param string with following structure: "x = 5; y = 4"
      * @return map structure where name of variable is key, and number is mapped value
      */
-    public static Map<String, Double> parseVar(String string){
+    public static Map<String, Double> parseVar(String string) {
         Map<String, Double> variablesMap = new HashMap<>();
         string = string.replaceAll(" ", "");
         String[] variablesList = string.split(";");
-        for (int i = 0; i < variablesList.length ; i++) {
+        for (int i = 0; i < variablesList.length; i++) {
             String[] values = variablesList[i].split("=");
             String var = values[0];
             Double number = Double.parseDouble(values[1]);
