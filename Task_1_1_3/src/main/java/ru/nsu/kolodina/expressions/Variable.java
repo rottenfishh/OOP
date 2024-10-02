@@ -64,4 +64,15 @@ public class Variable extends Expression {
     public void printExpression() {
         System.out.println(this.convertToString());
     }
+
+    /**
+     * simplify implemetation for variable.
+     * you cant really simplify a variable
+     *
+     * @return simplified expression
+     */
+    @Override
+    public Expression simplify() {
+        return new Variable(this.name);
+    }
 }
