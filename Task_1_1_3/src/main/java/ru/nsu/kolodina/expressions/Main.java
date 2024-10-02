@@ -12,9 +12,13 @@ public class Main {
      * @param args - default args
      */
     public static void main(String[] args) {
-        String expr = "x * (3+5)";
+        String expr = "(3+5) - (3+5) + 4/2";
         Expression expression = returnExpression(expr);
+        System.out.print("Expression:");
         expression.printExpression();
+        Expression simple = expression.simplify();
+        System.out.print("Simplified:");
+        simple.printExpression();
         Double result = expression.eval("x=4");
         System.out.println(result);
     }

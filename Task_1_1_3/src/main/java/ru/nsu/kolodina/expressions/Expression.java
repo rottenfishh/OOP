@@ -32,4 +32,6 @@ abstract class Expression {
      * print expression.
      */
     public abstract void printExpression();
+
+    public abstract Expression simplify();
 }

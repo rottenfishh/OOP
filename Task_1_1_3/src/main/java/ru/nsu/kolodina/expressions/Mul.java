@@ -53,4 +53,33 @@ public class Mul extends Expression {
     public void printExpression() {
         System.out.println(this.convertToString());
     }
+
+    @Override
+    public Expression simplify() {
+        Expression simplerLeft = this.left.simplify();
+        Expression simplerRight = this.right.simplify();
+        Double result;
+
+        if (simplerLeft instanceof Number && simplerRight instanceof Number) {
+            result = ((Number) simplerLeft).value * ((Number) simplerRight).value;
+            return new Number(result);
+        }
+
+        if (simplerLeft instanceof Number) {
+            if (((Number) simplerLeft).value == 0)
+                return new Number(0);
+            else if ((((Number) simplerLeft).value) == 1) {
+                return this.right;
+            }
+        }
+
+        if (simplerRight instanceof Number) {
+            if (((Number) simplerRight).value == 0)
+                return new Number(0);
+            else if ((((Number) simplerRight).value) == 1) {
+                return this.left;
+            }
+        }
+        return new Mul(simplerLeft, simplerRight);
+    }
 }

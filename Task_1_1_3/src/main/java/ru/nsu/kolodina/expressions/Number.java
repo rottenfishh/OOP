@@ -50,4 +50,15 @@ public class Number extends Expression {
     public void printExpression() {
         System.out.println(this.convertToString());
     }
+
+    /**
+     * simplify implemetation for number.
+     * you cant simplify a number
+     *
+     * @return simplified expression
+     */
+    @Override
+    public Expression simplify() {
+        return new Number(this.value);
+    }
 }

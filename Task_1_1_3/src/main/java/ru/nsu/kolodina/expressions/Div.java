@@ -53,4 +53,16 @@ public class Div extends Expression {
     public void printExpression() {
         System.out.println(this.convertToString());
     }
+
+    @Override
+    public Expression simplify() {
+        Expression simplerLeft = this.left.simplify();
+        Expression simplerRight = this.right.simplify();
+        Double result;
+        if (simplerLeft instanceof Number && simplerRight instanceof Number) {
+            result = ((Number) simplerLeft).value / ((Number) simplerRight).value;
+            return new Number(result);
+        }
+        return new Div(simplerLeft, simplerRight);
+    }
 }
