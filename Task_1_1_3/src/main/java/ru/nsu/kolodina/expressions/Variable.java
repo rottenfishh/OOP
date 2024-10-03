@@ -27,8 +27,7 @@ public class Variable extends Expression {
         Map<String, Double> variablesMap = parseVar(variables);
         if (variables.contains(name)) {
             return (variablesMap.get(name));
-        }
-        else {
+        } else {
             return 0; // change for exception later
         }
     }

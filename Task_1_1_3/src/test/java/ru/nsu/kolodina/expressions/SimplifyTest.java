@@ -13,6 +13,7 @@ public class SimplifyTest {
     String exprString;
     String excepted;
     Expression simpleExpr;
+
     /**
      * simple test.
      * simplify should evaluate expression
@@ -36,7 +37,7 @@ public class SimplifyTest {
         exprString = "(3+243-4/x) * 0";
         expr = returnExpression(exprString);
         simpleExpr = expr.simplify();
-        excepted ="0.0";
+        excepted = "0.0";
         assertEquals(excepted, simpleExpr.convertToString());
     }
 

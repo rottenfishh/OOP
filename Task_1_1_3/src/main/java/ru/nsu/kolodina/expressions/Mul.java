@@ -66,17 +66,17 @@ public class Mul extends Expression {
         }
 
         if (simplerLeft instanceof Number) {
-            if (((Number) simplerLeft).value == 0)
+            if (((Number) simplerLeft).value == 0) {
                 return new Number(0);
-            else if ((((Number) simplerLeft).value) == 1) {
+            } else if ((((Number) simplerLeft).value) == 1) {
                 return this.right;
             }
         }
 
         if (simplerRight instanceof Number) {
-            if (((Number) simplerRight).value == 0)
+            if (((Number) simplerRight).value == 0) {
                 return new Number(0);
-            else if ((((Number) simplerRight).value) == 1) {
+            } else if ((((Number) simplerRight).value) == 1) {
                 return this.left;
             }
         }
