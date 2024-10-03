@@ -26,12 +26,19 @@ public class Parser {
         return 0;
     }
 
+    /**
+     * check if passed character is a letter from alphabet.
+     *
+     * @param c - passed character
+     * @return true or false
+     */
     public static boolean isCharacter(char c) {
         if ((c > 64 && c < 91) || (c > 96 && c < 123)) {
             return true;
         }
         return false;
     }
+
     /**
      * implementation of converting expression to
      * reverse polish notation using shunting yard algorithm.
@@ -70,7 +77,7 @@ public class Parser {
                     outputpn.add(operator);
                 }
                 stackOperators.push(c);
-            } else if (isCharacter(c)){
+            } else if (isCharacter(c)) {
                 StringBuilder var = new StringBuilder();
                 while (i < string.length() && isCharacter(string.charAt(i))) {
                     var.append(string.charAt(i));
