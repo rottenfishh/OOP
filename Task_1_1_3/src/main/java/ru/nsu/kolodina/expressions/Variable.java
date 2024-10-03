@@ -25,7 +25,12 @@ public class Variable extends Expression {
     @Override
     public double eval(String variables) {
         Map<String, Double> variablesMap = parseVar(variables);
-        return (variablesMap.get(name));
+        if (variables.contains(name)) {
+            return (variablesMap.get(name));
+        }
+        else {
+            return 0; // change for exception later
+        }
     }
 
     /**

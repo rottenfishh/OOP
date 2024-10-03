@@ -65,7 +65,7 @@ public class Sub extends Expression {
             result = ((Number) simplerLeft).value - ((Number) simplerRight).value;
             return new Number(result);
         }
-        else if (simplerRight.convertToString().equals(simplerRight.convertToString())) {
+        else if (simplerRight.convertToString().equals(simplerLeft.convertToString())) {
             return new Number(0);
         }
         return new Sub(simplerLeft, simplerRight);
