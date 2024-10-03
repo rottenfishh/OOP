@@ -12,7 +12,7 @@ public class Main {
      * @param args - default args
      */
     public static void main(String[] args) {
-        String expr = "(3+5) - (3+5) + 4/2";
+        String expr = "3 + (2*5)";
         Expression expression = returnExpression(expr);
         System.out.print("Expression:");
         expression.printExpression();
