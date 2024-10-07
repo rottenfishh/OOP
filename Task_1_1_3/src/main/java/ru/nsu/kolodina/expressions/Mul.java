@@ -57,7 +57,8 @@ public class Mul extends Expression {
         Expression simplerRight = this.right.simplify();
         Double result;
 
-        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+        if (simplerLeft instanceof Number leftNumber
+                && simplerRight instanceof Number rightNumber) {
             result = leftNumber.value * rightNumber.value;
             return new Number(result);
         }
@@ -91,6 +92,7 @@ public class Mul extends Expression {
         Mul mul = (Mul) object;
         return left.equals(mul.left) && right.equals(mul.right);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(left, right);

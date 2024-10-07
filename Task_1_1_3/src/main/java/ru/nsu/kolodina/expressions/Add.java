@@ -56,7 +56,8 @@ public class Add extends Expression {
         Expression simplerLeft = this.left.simplify();
         Expression simplerRight = this.right.simplify();
         Double result;
-        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+        if (simplerLeft instanceof Number leftNumber
+                && simplerRight instanceof Number rightNumber) {
             result = leftNumber.value + rightNumber.value;
             return new Number(result);
         }

@@ -27,7 +27,7 @@ public class Div extends Expression {
         double result = 0;
         try {
             result = left.eval(variables) / right.eval(variables);
-        } catch(ArithmeticException e){
+        } catch (ArithmeticException e){
             System.out.println("division by zero");
             result = Double.NaN;
         }
@@ -63,7 +63,8 @@ public class Div extends Expression {
         Expression simplerLeft = this.left.simplify();
         Expression simplerRight = this.right.simplify();
         Double result;
-        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+        if (simplerLeft instanceof Number leftNumber
+                && simplerRight instanceof Number rightNumber) {
             result = leftNumber.value / rightNumber.value;
             return new Number(result);
         }
@@ -81,6 +82,7 @@ public class Div extends Expression {
         Div div = (Div) object;
         return left.equals(div.left) && right.equals(div.right);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(left, right);

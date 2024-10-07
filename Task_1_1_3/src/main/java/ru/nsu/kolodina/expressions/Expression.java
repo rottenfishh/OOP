@@ -33,7 +33,7 @@ abstract class Expression {
      */
     public void printExpression() {
         System.out.println(this.toString());
-    };
+    }
 
     public abstract Expression simplify();
 }
