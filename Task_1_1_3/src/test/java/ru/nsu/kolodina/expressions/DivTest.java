@@ -37,7 +37,7 @@ public class DivTest {
     public void testDerivative() {
         Expression derivative = expr.derivative("pepo");
         String exceptedDerivative = "(((0.0*pepo)-(1.0*200.0))/(pepo*pepo))";
-        assertEquals(exceptedDerivative, derivative.convertToString());
+        assertEquals(exceptedDerivative, derivative.toString());
     }
 
     /**
@@ -46,7 +46,7 @@ public class DivTest {
     @Test
     public void testConvertToString() {
         String exceptedString = "(200.0/pepo)";
-        assertEquals(exceptedString, expr.convertToString());
+        assertEquals(exceptedString, expr.toString());
     }
 
 }

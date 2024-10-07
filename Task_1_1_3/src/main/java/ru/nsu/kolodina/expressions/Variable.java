@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Variable extends Expression {
 
-    final String name;
+    private final String name;
 
     public Variable(String name) {
         this.name = name;
@@ -25,6 +25,10 @@ public class Variable extends Expression {
     @Override
     public double eval(String variables) {
         Map<String, Double> variablesMap = parseVar(variables);
+        if (variablesMap == null) {
+            System.out.println("error with parsing variables");
+            return Double.NaN;
+        }
         if (variables.contains(name)) {
             return (variablesMap.get(name));
         } else {
@@ -57,16 +61,8 @@ public class Variable extends Expression {
      * @return String version of number
      */
     @Override
-    public String convertToString() {
+    public String toString() {
         return name;
-    }
-
-    /**
-     * print expression.
-     */
-    @Override
-    public void printExpression() {
-        System.out.println(this.convertToString());
     }
 
     /**
@@ -78,5 +74,21 @@ public class Variable extends Expression {
     @Override
     public Expression simplify() {
         return new Variable(this.name);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+        Variable var = (Variable) object;
+        return (this.name.compareTo(var.name) == 0);
+    }
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

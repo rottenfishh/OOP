@@ -39,16 +39,8 @@ public class Number extends Expression {
      * @return String version of number
      */
     @Override
-    public String convertToString() {
+    public String toString() {
         return String.valueOf(value);
-    }
-
-    /**
-     * print expression.
-     */
-    @Override
-    public void printExpression() {
-        System.out.println(this.convertToString());
     }
 
     /**
@@ -60,5 +52,22 @@ public class Number extends Expression {
     @Override
     public Expression simplify() {
         return new Number(this.value);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+        Number num = (Number) object;
+        return (num.value == this.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(this.value);
     }
 }

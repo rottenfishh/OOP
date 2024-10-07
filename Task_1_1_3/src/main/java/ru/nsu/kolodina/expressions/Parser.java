@@ -1,9 +1,13 @@
 package ru.nsu.kolodina.expressions;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.ArrayDeque;
+import java.util.List;
 
 /**
  * Parser class for parsing expressions.
@@ -14,7 +18,7 @@ public class Parser {
      * method to get value of operation order from passed operator.
      *
      * @param operation passed operator
-     * @return vlaue of operation order
+     * @return value of operation order
      */
     public static int operationOrder(char operation) {
         if (operation == '+' || operation == '-') {
@@ -27,29 +31,16 @@ public class Parser {
     }
 
     /**
-     * check if passed character is a letter from alphabet.
-     *
-     * @param c - passed character
-     * @return true or false
-     */
-    public static boolean isCharacter(char c) {
-        if ((c > 64 && c < 91) || (c > 96 && c < 123)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * implementation of converting expression to
      * reverse polish notation using shunting yard algorithm.
      *
      * @param string we want to parse
      * @return list of parsed values, variables and operators
      */
-    public static ArrayList<String> polishNotation(String string) {
+    public static List<String> polishNotation(String string) {
         int i;
-        Stack<Character> stackOperators = new Stack<>();
-        ArrayList<String> outputpn = new ArrayList<>();
+        Deque<Character> stackOperators = new ArrayDeque<>();
+        List<String> outputpn = new ArrayList<>();
         string = string.replaceAll(" ", "");
         for (i = 0; i < string.length(); i++) {
             char c = string.charAt(i);
@@ -64,22 +55,22 @@ public class Parser {
                 i--;
                 outputpn.add(temp.toString());
             } else if (c == ')') {
-                while (!stackOperators.empty() && stackOperators.peek() != '(') {
+                while (!stackOperators.isEmpty() && stackOperators.peek() != '(') {
                     char top = stackOperators.pop();
                     String outputTop = Character.toString(top);
                     outputpn.add(outputTop);
                 }
                 stackOperators.pop();
             } else if (c == '+' || c == '*' || c == '-' || c == '/') {
-                while (!stackOperators.empty()
+                while (!stackOperators.isEmpty()
                         && operationOrder(stackOperators.peek()) >= operationOrder(c)) {
                     String operator = Character.toString(stackOperators.pop());
                     outputpn.add(operator);
                 }
                 stackOperators.push(c);
-            } else if (isCharacter(c)) {
+            } else if (Character.isLetter(c)) {
                 StringBuilder var = new StringBuilder();
-                while (i < string.length() && isCharacter(string.charAt(i))) {
+                while (i < string.length() && Character.isLetter(string.charAt(i))) {
                     var.append(string.charAt(i));
                     i++;
                 }
@@ -87,7 +78,7 @@ public class Parser {
                 i--;
             }
         }
-        while (!stackOperators.empty()) {
+        while (!stackOperators.isEmpty()) {
             String operator = Character.toString(stackOperators.pop());
             outputpn.add(operator);
         }
@@ -101,9 +92,9 @@ public class Parser {
      * @return Expression made from the string
      */
     public static Expression returnExpression(String string) {
-        ArrayList<String> outputpn = polishNotation(string);
+        List<String> outputpn = polishNotation(string);
         String curr;
-        Stack<Expression> expression = new Stack<>();
+        Deque<Expression> expression = new ArrayDeque<>();
         Expression left;
         Expression right;
         Expression newExpr;
@@ -146,15 +137,21 @@ public class Parser {
      * @param string with following structure: "x = 5; y = 4"
      * @return map structure where name of variable is key, and number is mapped value
      */
+    @Nullable
     public static Map<String, Double> parseVar(String string) {
         Map<String, Double> variablesMap = new HashMap<>();
         string = string.replaceAll(" ", "");
-        String[] variablesList = string.split(";");
-        for (int i = 0; i < variablesList.length; i++) {
-            String[] values = variablesList[i].split("=");
-            String var = values[0];
-            Double number = Double.parseDouble(values[1]);
-            variablesMap.put(var, number);
+        try {
+            String[] variablesList = string.split(";");
+            for (int i = 0; i < variablesList.length; i++) {
+                String[] values = variablesList[i].split("=");
+                String var = values[0];
+                Double number = Double.parseDouble(values[1]);
+                variablesMap.put(var, number);
+            }
+        } catch ( Exception s) {
+            System.out.println("wrong format passed");
+            return null;
         }
         return variablesMap;
     }

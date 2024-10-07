@@ -1,14 +1,16 @@
 package ru.nsu.kolodina.expressions;
 
+import java.util.Objects;
+
 /**
  * class which implements difference of two expressions.
  */
 
 public class Sub extends Expression {
 
-    final Expression left;
+    private final Expression left;
 
-    final Expression right;
+    private final Expression right;
 
     public Sub(Expression left, Expression right) {
         this.left = left;
@@ -21,6 +23,7 @@ public class Sub extends Expression {
      * @param variables map structure containing variables of the expression
      * @return result of evaluation
      */
+    @Override
     public double eval(String variables) {
         return left.eval(variables) - right.eval(variables);
     }
@@ -33,7 +36,7 @@ public class Sub extends Expression {
      * @param variable given variable for which we find derivative
      * @return new expression which is derivative of source expression
      */
-
+    @Override
     public Expression derivative(String variable) {
         return new Sub(left.derivative(variable), right.derivative(variable));
     }
@@ -43,17 +46,10 @@ public class Sub extends Expression {
      *
      * @return String version of expression
      */
-    public String convertToString() {
-        String newString = "(" + left.convertToString() + "-" + right.convertToString() + ")";
-        return newString;
-    }
-
-    /**
-     * print expression.
-     */
     @Override
-    public void printExpression() {
-        System.out.println(this.convertToString());
+    public String toString() {
+        String newString = "(" + left.toString() + "-" + right.toString() + ")";
+        return newString;
     }
 
     @Override
@@ -61,12 +57,28 @@ public class Sub extends Expression {
         Expression simplerLeft = this.left.simplify();
         Expression simplerRight = this.right.simplify();
         Double result;
-        if (simplerLeft instanceof Number && simplerRight instanceof Number) {
-            result = ((Number) simplerLeft).value - ((Number) simplerRight).value;
+        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+            result = leftNumber.value - rightNumber.value;
             return new Number(result);
-        } else if (simplerRight.convertToString().equals(simplerLeft.convertToString())) {
+        } else if (simplerRight.equals(simplerLeft)) {
             return new Number(0);
         }
         return new Sub(simplerLeft, simplerRight);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+        Sub sub = (Sub) object;
+        return left.equals(sub.left) && right.equals(sub.right);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }
