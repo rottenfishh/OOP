@@ -1,13 +1,15 @@
 package ru.nsu.kolodina.expressions;
 
+import java.util.Objects;
+
 /**
  * class which implements sum of two expressions.
  */
 public class Add extends Expression {
 
-    final Expression left;
+    private final Expression left;
 
-    final Expression right;
+    private final Expression right;
 
     public Add(Expression left, Expression right) {
         this.left = left;
@@ -44,17 +46,9 @@ public class Add extends Expression {
      * @return String version of expression
      */
     @Override
-    public String convertToString() {
-        String newString = "(" + left.convertToString() + "+" + right.convertToString() + ")";
+    public String toString() {
+        String newString = "(" + left.toString() + "+" + right.toString() + ")";
         return newString;
-    }
-
-    /**
-     * print expression.
-     */
-    @Override
-    public void printExpression() {
-        System.out.println(this.convertToString());
     }
 
     @Override
@@ -62,10 +56,27 @@ public class Add extends Expression {
         Expression simplerLeft = this.left.simplify();
         Expression simplerRight = this.right.simplify();
         Double result;
-        if (simplerLeft instanceof Number && simplerRight instanceof Number) {
-            result = ((Number) simplerLeft).value + ((Number) simplerRight).value;
+        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+            result = leftNumber.value + rightNumber.value;
             return new Number(result);
         }
         return new Add(simplerLeft, simplerRight);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object == null || object.getClass() != this.getClass()) {
+            return false;
+        }
+        Add sum = (Add) object;
+        return left.equals(sum.left) && right.equals(sum.right);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(left, right);
     }
 }

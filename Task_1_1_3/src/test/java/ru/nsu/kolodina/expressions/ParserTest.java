@@ -5,6 +5,8 @@ import static ru.nsu.kolodina.expressions.Parser.polishNotation;
 import static ru.nsu.kolodina.expressions.Parser.returnExpression;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +34,7 @@ public class ParserTest {
      */
     @Test
     public void testPolishNotation() {
-        ArrayList<String> outputpn = polishNotation(testString);
+        List<String> outputpn = polishNotation(testString);
         assertEquals("23423", outputpn.get(0));
         assertEquals("2413", outputpn.get(1));
         assertEquals("2", outputpn.get(2));
@@ -56,6 +58,6 @@ public class ParserTest {
         Expression exceptedExpression = new Sub(new Add(new Number(324),
                 new Mul(new Number(4), new Number(6))),
                 new Div(new Number(9), new Variable("xe")));
-        assertEquals(exceptedExpression.convertToString(), outputExpression.convertToString());
+        assertEquals(exceptedExpression.toString(), outputExpression.toString());
     }
 }

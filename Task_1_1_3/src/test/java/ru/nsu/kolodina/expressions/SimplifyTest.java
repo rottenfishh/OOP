@@ -25,7 +25,7 @@ public class SimplifyTest {
         expr = returnExpression(exprString);
         simpleExpr = expr.simplify();
         excepted = "13.0";
-        assertEquals(excepted, simpleExpr.convertToString());
+        assertEquals(excepted, simpleExpr.toString());
     }
 
     /**
@@ -38,7 +38,7 @@ public class SimplifyTest {
         expr = returnExpression(exprString);
         simpleExpr = expr.simplify();
         excepted = "0.0";
-        assertEquals(excepted, simpleExpr.convertToString());
+        assertEquals(excepted, simpleExpr.toString());
     }
 
     /**
@@ -51,7 +51,7 @@ public class SimplifyTest {
         expr = returnExpression(exprString);
         simpleExpr = expr.simplify();
         excepted = "(34.0-(31.0*x))";
-        assertEquals(excepted, simpleExpr.convertToString());
+        assertEquals(excepted, simpleExpr.toString());
     }
 
     /**
@@ -64,6 +64,6 @@ public class SimplifyTest {
         expr = returnExpression(exprString);
         simpleExpr = expr.simplify();
         excepted = "0.0";
-        assertEquals(excepted, simpleExpr.convertToString());
+        assertEquals(excepted, simpleExpr.toString());
     }
 }

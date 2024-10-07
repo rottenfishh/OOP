@@ -11,6 +11,11 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // Use 17 or higher
+    }
+}
 
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))

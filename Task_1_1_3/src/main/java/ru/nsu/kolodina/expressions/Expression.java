@@ -26,12 +26,14 @@ abstract class Expression {
      *
      * @return String version of expression
      */
-    public abstract String convertToString();
+    public abstract String toString();
 
     /**
      * print expression.
      */
-    public abstract void printExpression();
+    public void printExpression() {
+        System.out.println(this.toString());
+    };
 
     public abstract Expression simplify();
 }

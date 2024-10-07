@@ -41,11 +41,11 @@ public class VariableTest {
     public void testDerivative() {
         Expression derivative = expr.derivative("godzilla");
         Expression exceptedDerivative = new Number(1);
-        assertEquals(exceptedDerivative.convertToString(), derivative.convertToString());
+        assertEquals(exceptedDerivative.toString(), derivative.toString());
 
         Expression derivative2 = expr.derivative("m");
         Expression exceptedDerivative2 = new Number(1);
-        assertNotEquals(exceptedDerivative2.convertToString(), derivative2.convertToString());
+        assertNotEquals(exceptedDerivative2.toString(), derivative2.toString());
     }
 
     /**
@@ -54,7 +54,7 @@ public class VariableTest {
     @Test
     public void testConvertToString() {
         String exceptedString = "godzilla";
-        assertEquals(exceptedString, expr.convertToString());
+        assertEquals(exceptedString, expr.toString());
     }
 
 }

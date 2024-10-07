@@ -24,7 +24,7 @@ public class DerivativesTest {
         expr = returnExpression(exprString);
         result = expr.derivative("x");
         exceptedResult = "(0.0+((0.0*x)+(1.0*2.0)))";
-        assertEquals(exceptedResult, result.convertToString());
+        assertEquals(exceptedResult, result.toString());
     }
 
     /**
@@ -37,7 +37,7 @@ public class DerivativesTest {
         expr = returnExpression(exprString);
         exceptedResult = "(((0.0*3.0)+(0.0*y))+(1.0-0.0))";
         result = expr.derivative("x");
-        assertEquals(exceptedResult, result.convertToString());
+        assertEquals(exceptedResult, result.toString());
     }
 
     /**
@@ -50,6 +50,6 @@ public class DerivativesTest {
         expr = returnExpression(exprString);
         exceptedResult = "((((((0.0*3.0)+(0.0*y))*x)-(1.0*(y*3.0)))/(x*x))-0.0)";
         result = expr.derivative("x");
-        assertEquals(exceptedResult, result.convertToString());
+        assertEquals(exceptedResult, result.toString());
     }
 }

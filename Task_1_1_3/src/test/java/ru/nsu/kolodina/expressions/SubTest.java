@@ -37,7 +37,7 @@ public class SubTest {
     public void testDerivative() {
         Expression derivative = expr.derivative("xp");
         String exceptedDerivative = "(0.0-1.0)";
-        assertEquals(exceptedDerivative, derivative.convertToString());
+        assertEquals(exceptedDerivative, derivative.toString());
     }
 
     /**
@@ -45,9 +45,9 @@ public class SubTest {
      */
     @Test
     public void testConvertToString() {
-        String exceptedString = "(" + (new Number(140.0)).convertToString()
-                + "-" + (new Variable("xp")).convertToString() + ")";
-        assertEquals(exceptedString, expr.convertToString());
+        String exceptedString = "(" + (new Number(140.0)).toString()
+                + "-" + (new Variable("xp")).toString() + ")";
+        assertEquals(exceptedString, expr.toString());
     }
 
 }

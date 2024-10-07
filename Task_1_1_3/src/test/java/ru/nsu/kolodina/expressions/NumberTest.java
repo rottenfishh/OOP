@@ -38,7 +38,7 @@ public class NumberTest {
     public void testDerivative() {
         Expression derivative = expr.derivative("xp");
         Expression exceptedDerivative = new Number(0);
-        assertEquals(exceptedDerivative.convertToString(), derivative.convertToString());
+        assertEquals(exceptedDerivative.toString(), derivative.toString());
     }
 
     /**
@@ -47,7 +47,7 @@ public class NumberTest {
     @Test
     public void testConvertToString() {
         String exceptedString = String.valueOf(342235.0);
-        assertEquals(exceptedString, expr.convertToString());
+        assertEquals(exceptedString, expr.toString());
     }
 
 }

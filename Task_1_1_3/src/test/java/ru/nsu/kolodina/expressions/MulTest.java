@@ -37,7 +37,7 @@ public class MulTest {
     public void testDerivative() {
         Expression derivative = expr.derivative("x");
         String exceptedDerivative = "((0.0*x)+(1.0*23.0))";
-        assertEquals(exceptedDerivative, derivative.convertToString());
+        assertEquals(exceptedDerivative, derivative.toString());
     }
 
     /**
@@ -45,9 +45,9 @@ public class MulTest {
      */
     @Test
     public void testConvertToString() {
-        String exceptedString = "(" + (new Number(23)).convertToString()
-                + "*" + (new Variable("x")).convertToString() + ")";
-        assertEquals(exceptedString, expr.convertToString());
+        String exceptedString = "(" + (new Number(23)).toString()
+                + "*" + (new Variable("x")).toString() + ")";
+        assertEquals(exceptedString, expr.toString());
     }
 
 }

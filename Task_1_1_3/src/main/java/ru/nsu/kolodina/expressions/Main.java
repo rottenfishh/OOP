@@ -12,14 +12,6 @@ public class Main {
      * @param args - default args
      */
     public static void main(String[] args) {
-        String expr = "3 + (2*5)";
-        Expression expression = returnExpression(expr);
-        System.out.print("Expression:");
-        expression.printExpression();
-        Expression simple = expression.simplify();
-        System.out.print("Simplified:");
-        simple.printExpression();
-        Double result = expression.eval("x=4");
-        System.out.println(result);
+        System.out.println("main method");
     }
 }
