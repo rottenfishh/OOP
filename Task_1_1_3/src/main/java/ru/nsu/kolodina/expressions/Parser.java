@@ -1,11 +1,11 @@
 package ru.nsu.kolodina.expressions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
