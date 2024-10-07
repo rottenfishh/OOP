@@ -51,6 +51,14 @@ public class Mul extends Expression {
         return newString;
     }
 
+    /**
+     * simplify mul expression.
+     * if both left and right are numbers, evaluate expression and return result
+     * if left or right is 0 return 0 as result
+     * if left or right is 1 return the remaining not 1 expression
+     *
+     * @return new Mul expression with simplified left and right parts
+     */
     @Override
     public Expression simplify() {
         Expression simplerLeft = this.left.simplify();
