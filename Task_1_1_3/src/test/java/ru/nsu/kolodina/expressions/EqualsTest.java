@@ -6,6 +6,9 @@ import static ru.nsu.kolodina.expressions.Parser.returnExpression;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * class for testing equals method.
+ */
 public class EqualsTest {
     Expression expr1;
     Expression expr2;
