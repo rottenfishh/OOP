@@ -1,13 +1,12 @@
 package ru.nsu.kolodina.expressions;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Parser class for parsing expressions.
@@ -149,7 +148,7 @@ public class Parser {
                 Double number = Double.parseDouble(values[1]);
                 variablesMap.put(var, number);
             }
-        } catch ( Exception s) {
+        } catch (Exception s) {
             System.out.println("wrong format passed");
             return null;
         }

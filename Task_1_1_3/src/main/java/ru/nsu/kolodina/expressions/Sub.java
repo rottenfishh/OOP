@@ -57,7 +57,8 @@ public class Sub extends Expression {
         Expression simplerLeft = this.left.simplify();
         Expression simplerRight = this.right.simplify();
         Double result;
-        if (simplerLeft instanceof Number leftNumber && simplerRight instanceof Number rightNumber) {
+        if (simplerLeft instanceof Number leftNumber
+                && simplerRight instanceof Number rightNumber) {
             result = leftNumber.value - rightNumber.value;
             return new Number(result);
         } else if (simplerRight.equals(simplerLeft)) {
@@ -77,6 +78,7 @@ public class Sub extends Expression {
         Sub sub = (Sub) object;
         return left.equals(sub.left) && right.equals(sub.right);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(left, right);

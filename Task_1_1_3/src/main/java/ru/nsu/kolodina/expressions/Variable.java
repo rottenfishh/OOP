@@ -87,6 +87,7 @@ public class Variable extends Expression {
         Variable var = (Variable) object;
         return (this.name.compareTo(var.name) == 0);
     }
+    
     @Override
     public int hashCode() {
         return name.hashCode();
