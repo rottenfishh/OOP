@@ -3,7 +3,7 @@ package ru.nsu.kolodina.expressions;
 /**
  * abstract class Expression.
  */
-abstract class Expression {
+public abstract class Expression {
 
     /**
      * method to evaluate expression.

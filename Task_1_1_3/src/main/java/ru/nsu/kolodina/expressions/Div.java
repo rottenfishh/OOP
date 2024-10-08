@@ -28,7 +28,7 @@ public class Div extends Expression {
         try {
             result = left.eval(variables) / right.eval(variables);
         } catch (ArithmeticException e) {
-            System.out.println("division by zero");
+            System.err.println("division by zero");
             result = Double.NaN;
         }
         return result;

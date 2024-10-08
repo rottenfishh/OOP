@@ -63,7 +63,7 @@ public class Number extends Expression {
             return false;
         }
         Number num = (Number) object;
-        return (num.value == this.value);
+        return num.value == this.value;
     }
 
     @Override
