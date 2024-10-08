@@ -148,8 +148,8 @@ public class Parser {
                 Double number = Double.parseDouble(values[1]);
                 variablesMap.put(var, number);
             }
-        } catch (Exception s) {
-            System.out.println("wrong format passed");
+        } catch (NumberFormatException s) {
+            System.err.println("wrong format passed");
             return null;
         }
         return variablesMap;
