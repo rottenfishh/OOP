@@ -3,10 +3,13 @@ package ru.nsu.kolodina.graph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class AdjacencyList<T> implements Graph<T>{
+    List<Vertex<T>> used;
+    List<Vertex<T>> topoSortList;
     List<List<Edge<T>>> list;
     List<Vertex<T>> vertices;
     List<Edge> edges;
@@ -112,8 +115,24 @@ public class AdjacencyList<T> implements Graph<T>{
         }
     }
 
+    void dfs(Vertex<T> v) {
+        used.add(v);
+        List<Vertex<T>> neighbors = this.getNeighbours(v);
+        for (Vertex<T> vertex: neighbors) {
+            if (!used.contains(vertex)) {
+                dfs(vertex);
+            }
+        }
+        topoSortList.add(v);
+    }
     @Override
-    public void topoSort() {
-
+    public List<Vertex<T>> topoSort() {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (!used.contains(vertices.get(i))) {
+                dfs(vertices.get(i));
+            }
+        }
+        Collections.reverse(topoSortList);
+        return topoSortList;
     }
 }

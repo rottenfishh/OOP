@@ -14,5 +14,6 @@ interface Graph <T>{
 
     void readFromFile();
 
-    void topoSort();
+    List<Vertex<T>> topoSort();
+
 }
