@@ -3,10 +3,13 @@ package ru.nsu.kolodina.graph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class IncidenceMatrix<T> implements Graph<T>{
+    List<Vertex<T>> used;
+    List<Vertex<T>> topoSortList;
     List<List<Boolean>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
@@ -125,8 +128,25 @@ public class IncidenceMatrix<T> implements Graph<T>{
         }
     }
 
-    @Override
-    public void topoSort() {
-
+    void dfs(Vertex<T> v) {
+        used.add(v);
+        List<Vertex<T>> neighbors = this.getNeighbours(v);
+        for (Vertex<T> vertex: neighbors) {
+            if (!used.contains(vertex)) {
+                dfs(vertex);
+            }
+        }
+        topoSortList.add(v);
     }
+    @Override
+    public List<Vertex<T>> topoSort() {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (!used.contains(vertices.get(i))) {
+                dfs(vertices.get(i));
+            }
+        }
+        Collections.reverse(topoSortList);
+        return topoSortList;
+    }
+
 }

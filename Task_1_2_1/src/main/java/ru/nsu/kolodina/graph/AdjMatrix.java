@@ -1,13 +1,15 @@
 package ru.nsu.kolodina.graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class AdjMatrix<T> implements Graph<T>{
-
+    List<Vertex<T>> used;
+    List<Vertex<T>> topoSortList;
     List<List<Boolean>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
@@ -15,6 +17,8 @@ public class AdjMatrix<T> implements Graph<T>{
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
+        used = new ArrayList<>();
+        topoSortList = new ArrayList<>();
     }
     @Override
     public void addVertex(Vertex<T> vertex) {
@@ -146,8 +150,24 @@ public class AdjMatrix<T> implements Graph<T>{
         }
     }
 
+    void dfs(Vertex<T> v) {
+        used.add(v);
+        List<Vertex<T>> neighbors = this.getNeighbours(v);
+        for (Vertex<T> vertex: neighbors) {
+            if (!used.contains(vertex)) {
+                dfs(vertex);
+            }
+        }
+        topoSortList.add(v);
+    }
     @Override
-    public void topoSort() {
-
+    public List<Vertex<T>> topoSort() {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (!used.contains(vertices.get(i))) {
+                dfs(vertices.get(i));
+            }
+        }
+        Collections.reverse(topoSortList);
+        return topoSortList;
     }
 }

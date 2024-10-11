@@ -36,5 +36,9 @@ public class Main {
         for (int i = 0; i < neighb.size(); i++) {
             System.out.println("newMatrix " + neighb.get(i).name);
         }
+        List<Vertex<String>> sort = newMatrix.topoSort();
+        for (Vertex<String> v : sort) {
+            System.out.println(v.toString());
+        }
     }
 }
