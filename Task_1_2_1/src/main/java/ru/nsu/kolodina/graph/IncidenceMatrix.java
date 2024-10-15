@@ -1,8 +1,12 @@
 package ru.nsu.kolodina.graph;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.*;
 
 public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;

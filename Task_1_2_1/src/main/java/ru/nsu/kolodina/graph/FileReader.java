@@ -3,10 +3,10 @@ package ru.nsu.kolodina.graph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.function.Function;
 
-public class fileReader<T> {
+public class FileReader<T> {
     Parser parser = new Parser();
+
     /**
      * input format: vertex count n.
      * n lines of vertex names
@@ -18,7 +18,8 @@ public class fileReader<T> {
      */
     public void readFromFile(String pathName, Graph<T> graph) {
         int n, m;
-        String vertexName, edgeString;
+        String vertexName;
+        String edgeString;
         Vertex<T> vertex;
         Edge<T> edge;
         Vertex<T> from;
