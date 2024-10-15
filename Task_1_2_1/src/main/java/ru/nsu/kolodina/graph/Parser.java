@@ -1,5 +1,8 @@
 package ru.nsu.kolodina.graph;
 
+/**
+ * class to parse string into concrete types.
+ */
 public class Parser {
     public static Object parse(String input) {
         try {
