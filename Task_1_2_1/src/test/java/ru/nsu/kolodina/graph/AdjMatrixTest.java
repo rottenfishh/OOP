@@ -1,19 +1,22 @@
 package ru.nsu.kolodina.graph;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * testing methods of Adjacency Matrix class.
+ */
 public class AdjMatrixTest {
     AdjMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
-    fileReader reader;
+    FileReader reader;
 
     @BeforeEach
     public void setUp() {
         matrix = new AdjMatrix<>();
-        reader = new fileReader();
+        reader = new FileReader();
         reader.readFromFile(pathGraph, matrix);
     }
 

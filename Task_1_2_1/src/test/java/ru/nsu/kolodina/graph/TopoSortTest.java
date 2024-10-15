@@ -1,14 +1,16 @@
 package ru.nsu.kolodina.graph;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class topoSortTest {
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * testing toposort correctness with different implementation of graph.
+ */
+public class TopoSortTest {
     IncidenceMatrix<String> matrix1;
     IncidenceMatrix<String> matrix2;
 
@@ -18,7 +20,7 @@ public class topoSortTest {
     AdjacencyList<String> adjList2;
     String pathGraph1 = "src/test/resources/Graph1.txt";
     String pathGraph2 = "src/test/resources/Graph2.txt";
-    fileReader reader;
+    FileReader reader;
 
     @BeforeEach
     public void setUp() {
@@ -28,7 +30,7 @@ public class topoSortTest {
         adjMatrix2 = new AdjMatrix<>();
         adjList1 = new AdjacencyList<>();
         adjList2 = new AdjacencyList<>();
-        reader = new fileReader();
+        reader = new FileReader();
         reader.readFromFile(pathGraph1, matrix1);
         reader.readFromFile(pathGraph2, matrix2);
         reader.readFromFile(pathGraph1, adjMatrix1);
@@ -66,7 +68,7 @@ public class topoSortTest {
     }
 
     @Test
-    public void topoSortTestADjCycle() {
+    public void topoSortTestAdjCycle() {
         List<Vertex<String>> sortedList = adjMatrix2.topoSort();
         assertNull(sortedList);
     }

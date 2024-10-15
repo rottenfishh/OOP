@@ -1,12 +1,16 @@
 package ru.nsu.kolodina.graph;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * testing equals methods with objects of different classes.
+ */
 public class EqualsTest {
     String pathGraph = "src/test/resources/Graph2.txt";
-    fileReader<String> reader = new fileReader();
+    FileReader<String> reader = new FileReader();
 
     @Test
     public void edgesTest() {

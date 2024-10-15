@@ -1,19 +1,22 @@
 package ru.nsu.kolodina.graph;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * testing methods of incidence matrix class.
+ */
 public class IncidenceMatrixTest {
     IncidenceMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph2.txt";
-    fileReader reader;
+    FileReader reader;
 
     @BeforeEach
     public void setUp() {
         matrix = new IncidenceMatrix<>();
-        reader = new fileReader();
+        reader = new FileReader();
         reader.readFromFile(pathGraph, matrix);
     }
 
