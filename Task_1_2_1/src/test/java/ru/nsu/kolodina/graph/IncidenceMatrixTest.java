@@ -1,16 +1,15 @@
 package ru.nsu.kolodina.graph;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IncidenceMatrixTest {
     IncidenceMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph2.txt";
     fileReader reader;
+
     @BeforeEach
     public void setUp() {
         matrix = new IncidenceMatrix<>();
@@ -25,6 +24,7 @@ public class IncidenceMatrixTest {
         matrix.removeEdge(edge);
         assertEquals(3, matrix.edges.size());
     }
+
     @Test
     public void removeVertexTest() {
         Vertex<String> vertex = matrix.vertices.get(0);

@@ -18,18 +18,19 @@ public class fileReader<T> {
      * n lines of vertex names
      * edge count m
      * m lines of: edge name vertexFrom name vertexTo name weight
+     *
      * @param pathName
      * @param graph
      */
     public void readFromFile(String pathName, Graph<T> graph) {
-        int n,m;
+        int n, m;
         String vertexName, edgeString;
         Vertex<T> vertex;
         Edge<T> edge;
         Vertex<T> from;
         Vertex<T> to;
         int weight;
-        String edgeList[];
+        String[] edgeList;
         try {
             File myObj = new File(pathName);
             Scanner scanner = new Scanner(myObj);

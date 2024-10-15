@@ -2,17 +2,16 @@ package ru.nsu.kolodina.graph;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
-public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
+public class AdjacencyList<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;
-    private Map<Vertex<T>, Integer> mark;
-    private List<Vertex<T>> topoSortList;
     List<List<Edge<T>>> list;
     List<Vertex<T>> vertices;
     List<Edge> edges;
+    private final Map<Vertex<T>, Integer> mark;
+    private final List<Vertex<T>> topoSortList;
+
     public AdjacencyList() {
         list = new ArrayList<>();
         vertices = new ArrayList<>();
@@ -21,6 +20,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
         hasCycle = false;
         topoSortList = new ArrayList<>();
     }
+
     @Override
     public void addVertex(Vertex<T> vertex) {
         vertices.add(vertex);
@@ -71,7 +71,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         int idx = -1;
         List<Vertex<T>> neighbors = new ArrayList<>();
-        for (int i = 0; i<vertices.size(); i++) {
+        for (int i = 0; i < vertices.size(); i++) {
             if (vertices.get(i).equals(vertex)) {
                 idx = i;
             }
@@ -86,7 +86,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
     public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);
-        for (Vertex<T> vertex: neighbors) {
+        for (Vertex<T> vertex : neighbors) {
             if (!mark.containsKey(vertex)) {
                 if (hasCycle) {
                     return;
@@ -119,6 +119,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
         Collections.reverse(topoSortList);
         return topoSortList;
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -128,6 +129,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
         }
         return sb.toString();
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(list, vertices, edges);
@@ -142,7 +144,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T>{
             return false;
         }
         AdjacencyList<?> graph = (AdjacencyList<?>) obj;
-        return  Objects.equals(this.list, graph.list)
+        return Objects.equals(this.list, graph.list)
                 && Objects.equals(this.vertices, graph.vertices)
                 && Objects.equals(this.edges, graph.edges);
     }

@@ -1,16 +1,15 @@
 package ru.nsu.kolodina.graph;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AdjMatrixTest {
     AdjMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
     fileReader reader;
+
     @BeforeEach
     public void setUp() {
         matrix = new AdjMatrix<>();
@@ -24,6 +23,7 @@ public class AdjMatrixTest {
         matrix.removeEdge(edge);
         assertEquals(6, matrix.edges.size());
     }
+
     @Test
     public void removeVertexTest() {
         Vertex<String> vertex = matrix.vertices.get(0);

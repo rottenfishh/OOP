@@ -2,11 +2,9 @@ package ru.nsu.kolodina.graph;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
-public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
+public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
     List<Vertex<T>> topoSortList;
@@ -26,7 +24,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     @Override
     public void addVertex(Vertex<T> vertex) {
         vertices.add(vertex);
-        List<Integer> newArr= new ArrayList<>();
+        List<Integer> newArr = new ArrayList<>();
         for (int i = 0; i < edges.size(); i++) {
             newArr.add(0);
         }
@@ -36,7 +34,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     @Override
     public void removeVertex(Vertex<T> vertex) {
         int idx = -1;
-        for (int i = 0; i<vertices.size(); i++) {
+        for (int i = 0; i < vertices.size(); i++) {
             if (vertices.get(i).equals(vertex)) {
                 idx = i;
                 break;
@@ -62,7 +60,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     @Override
     public void removeEdge(Edge<T> edge) {
         int idx = -1;
-        for (int i = 0; i <edges.size(); i++) {
+        for (int i = 0; i < edges.size(); i++) {
             if (edges.get(i).equals(edge)) {
                 idx = i;
                 break;
@@ -78,7 +76,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         int idx = -1;
         List<Vertex<T>> neighbors = new ArrayList<>();
-        for (int i = 0; i<vertices.size(); i++) {
+        for (int i = 0; i < vertices.size(); i++) {
             if (vertices.get(i).equals(vertex)) {
                 idx = i;
             }
@@ -97,7 +95,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);
-        for (Vertex<T> vertex: neighbors) {
+        for (Vertex<T> vertex : neighbors) {
             if (!mark.containsKey(vertex)) {
                 if (hasCycle) {
                     return;
@@ -131,6 +129,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
         Collections.reverse(topoSortList);
         return topoSortList;
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -158,7 +157,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
             return false;
         }
         IncidenceMatrix<?> graph = (IncidenceMatrix<?>) obj;
-        return  Objects.equals(this.matrix, graph.matrix)
+        return Objects.equals(this.matrix, graph.matrix)
                 && Objects.equals(this.vertices, graph.vertices)
                 && Objects.equals(this.edges, graph.edges);
     }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class topoSortTest {
     IncidenceMatrix<String> matrix1;
@@ -18,6 +19,7 @@ public class topoSortTest {
     String pathGraph1 = "src/test/resources/Graph1.txt";
     String pathGraph2 = "src/test/resources/Graph2.txt";
     fileReader reader;
+
     @BeforeEach
     public void setUp() {
         matrix1 = new IncidenceMatrix<>();
@@ -29,11 +31,12 @@ public class topoSortTest {
         reader = new fileReader();
         reader.readFromFile(pathGraph1, matrix1);
         reader.readFromFile(pathGraph2, matrix2);
-        reader.readFromFile(pathGraph1,adjMatrix1);
-        reader.readFromFile(pathGraph2,adjMatrix2);
-        reader.readFromFile(pathGraph1,adjList1);
-        reader.readFromFile(pathGraph2,adjList2);
+        reader.readFromFile(pathGraph1, adjMatrix1);
+        reader.readFromFile(pathGraph2, adjMatrix2);
+        reader.readFromFile(pathGraph1, adjList1);
+        reader.readFromFile(pathGraph2, adjList2);
     }
+
     @Test
     public void topoSortTest1() {
         List<Vertex<String>> sortedList = matrix1.topoSort();
@@ -44,11 +47,13 @@ public class topoSortTest {
         assertEquals("v3", sortedList.get(4).toString());
         assertEquals("v4", sortedList.get(5).toString());
     }
+
     @Test
     public void topoSortTestCycle() {
         List<Vertex<String>> sortedList = matrix2.topoSort();
-        assertEquals(null, sortedList);
+        assertNull(sortedList);
     }
+
     @Test
     public void topoSortAdjTest1() {
         List<Vertex<String>> sortedList = adjMatrix1.topoSort();
@@ -59,11 +64,13 @@ public class topoSortTest {
         assertEquals("v3", sortedList.get(4).toString());
         assertEquals("v4", sortedList.get(5).toString());
     }
+
     @Test
     public void topoSortTestADjCycle() {
         List<Vertex<String>> sortedList = adjMatrix2.topoSort();
-        assertEquals(null, sortedList);
+        assertNull(sortedList);
     }
+
     @Test
     public void topoSortAdjListTest1() {
         List<Vertex<String>> sortedList = adjList1.topoSort();
@@ -74,9 +81,10 @@ public class topoSortTest {
         assertEquals("v3", sortedList.get(4).toString());
         assertEquals("v4", sortedList.get(5).toString());
     }
+
     @Test
     public void topoSortTestAdjListCycle() {
         List<Vertex<String>> sortedList = adjList2.topoSort();
-        assertEquals(null, sortedList);
+        assertNull(sortedList);
     }
 }

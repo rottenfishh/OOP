@@ -3,16 +3,15 @@ package ru.nsu.kolodina.graph;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.io.File;
-import java.io.FileNotFoundException;
 
-public class AdjMatrix<T> implements Graph<T>, Algorithm<T>{
+public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
     List<Vertex<T>> topoSortList;
     List<List<Integer>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
+
     public AdjMatrix() {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
@@ -21,10 +20,11 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T>{
         mark = new HashMap<>();
         hasCycle = false;
     }
+
     @Override
     public void addVertex(Vertex<T> vertex) {
         vertices.add(vertex);
-        List<Integer> newArr= new ArrayList<>();
+        List<Integer> newArr = new ArrayList<>();
         for (int i = 0; i < vertices.size(); i++) {
             newArr.add(0);
         }
@@ -112,7 +112,7 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T>{
     public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);
-        for (Vertex<T> vertex: neighbors) {
+        for (Vertex<T> vertex : neighbors) {
             if (!mark.containsKey(vertex)) {
                 if (hasCycle) {
                     return;
@@ -158,6 +158,7 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T>{
         }
         return sb.toString();
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(matrix, vertices, edges);
@@ -172,7 +173,7 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T>{
             return false;
         }
         AdjMatrix<?> graph = (AdjMatrix<?>) obj;
-        return  Objects.equals(this.matrix, graph.matrix)
+        return Objects.equals(this.matrix, graph.matrix)
                 && Objects.equals(this.vertices, graph.vertices)
                 && Objects.equals(this.edges, graph.edges);
     }

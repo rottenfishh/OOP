@@ -1,9 +1,8 @@
 package ru.nsu.kolodina.graph;
 
-import java.util.List;
-
-public class Vertex <T>{
+public class Vertex<T> {
     public final T name;
+
     public Vertex(T v) {
         this.name = v;
     }
@@ -20,6 +19,7 @@ public class Vertex <T>{
         Vertex<T> vertex = (Vertex<T>) object;
         return this.name.equals(vertex.name);
     }
+
     @Override
     public int hashCode() {
         return name.hashCode();

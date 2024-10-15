@@ -9,6 +9,7 @@ public class readFromFileTest {
     IncidenceMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph2.txt";
     fileReader reader;
+
     @BeforeEach
     public void setUp() {
         matrix = new IncidenceMatrix<>();
