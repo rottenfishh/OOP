@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class equalsTest {
+public class EqualsTest {
     String pathGraph = "src/test/resources/Graph2.txt";
     fileReader<String> reader = new fileReader();
 
