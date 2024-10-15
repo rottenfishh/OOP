@@ -1,16 +1,17 @@
 package ru.nsu.kolodina.graph;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AdjacencyListTest {
     AdjacencyList<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
     fileReader<String> reader;
+
     @BeforeEach
     public void setUp() {
         matrix = new AdjacencyList<>();
@@ -24,6 +25,7 @@ public class AdjacencyListTest {
         matrix.removeEdge(edge);
         assertEquals(6, matrix.edges.size());
     }
+
     @Test
     public void removeVertexTest() {
         Vertex<String> vertex = matrix.vertices.get(0);
@@ -34,7 +36,7 @@ public class AdjacencyListTest {
     @Test
     public void getNeighboursTest() {
         Vertex<String> v = matrix.vertices.get(0);
-        List <Vertex<String>> neighbors = matrix.getNeighbours(v);
+        List<Vertex<String>> neighbors = matrix.getNeighbours(v);
         assertEquals("v2", neighbors.get(0).name);
         assertEquals("v3", neighbors.get(1).name);
         assertEquals("v4", neighbors.get(2).name);

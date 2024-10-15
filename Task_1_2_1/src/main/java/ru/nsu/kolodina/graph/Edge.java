@@ -6,6 +6,7 @@ public class Edge<T> {
     public final Vertex<T> vertexTo;
 
     public final int weight;
+
     public Edge(T name, Vertex<T> from, Vertex<T> to, int weight) {
         this.vertexFrom = from;
         this.vertexTo = to;
@@ -24,8 +25,8 @@ public class Edge<T> {
         }
         Edge<T> edge = (Edge<T>) object;
         return (edge.vertexFrom.name.equals(this.vertexFrom.name)
-            && edge.vertexTo.name.equals(this.vertexTo.name)
-            && edge.name.equals(this.name));
+                && edge.vertexTo.name.equals(this.vertexTo.name)
+                && edge.name.equals(this.name));
     }
 
     @Override
