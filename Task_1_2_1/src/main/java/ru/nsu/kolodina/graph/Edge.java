@@ -5,10 +5,12 @@ public class Edge<T> {
     public final Vertex<T> vertexFrom;
     public final Vertex<T> vertexTo;
 
-    public Edge(T name, Vertex<T> from, Vertex<T> to) {
+    public final int weight;
+    public Edge(T name, Vertex<T> from, Vertex<T> to, int weight) {
         this.vertexFrom = from;
         this.vertexTo = to;
         this.name = name;
+        this.weight = weight;
     }
 
     @Override
