@@ -10,20 +10,25 @@ import java.util.List;
 public class IncidenceMatrixTest {
     IncidenceMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph2.txt";
+    fileReader reader;
     @BeforeEach
     public void setUp() {
         matrix = new IncidenceMatrix<>();
-        matrix.readFromFile(pathGraph);
-    }
-    @Test
-    public void readFromFileTest() {
-        assertEquals(4, matrix.vertices.size());
-        assertEquals(4, matrix.edges.size());
+        reader = new fileReader();
+        reader.readFromFile(pathGraph, matrix);
     }
 
+
     @Test
-    public void topoSortTest() {
-        List<Vertex<String>> sortedList = matrix.topoSort();
-        assertEquals(null, sortedList);
+    public void removeEdgeTest() {
+        Edge<String> edge = matrix.edges.get(0);
+        matrix.removeEdge(edge);
+        assertEquals(3, matrix.edges.size());
+    }
+    @Test
+    public void removeVertexTest() {
+        Vertex<String> vertex = matrix.vertices.get(0);
+        matrix.removeVertex(vertex);
+        assertEquals(3, matrix.vertices.size());
     }
 }
