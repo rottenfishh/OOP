@@ -13,6 +13,9 @@ public class IncidenceMatrixTest {
     String pathGraph = "src/test/resources/Graph2.txt";
     FileReader reader;
 
+    /**
+     * setting up needed resources.
+     */
     @BeforeEach
     public void setUp() {
         matrix = new IncidenceMatrix<>();

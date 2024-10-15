@@ -1,10 +1,14 @@
 package ru.nsu.kolodina.graph;
 
+/**
+ * class for edge implementation.
+ *
+ * @param <T> type of object
+ */
 public class Edge<T> {
     public final T name;
     public final Vertex<T> vertexFrom;
     public final Vertex<T> vertexTo;
-
     public final int weight;
 
     public Edge(T name, Vertex<T> from, Vertex<T> to, int weight) {

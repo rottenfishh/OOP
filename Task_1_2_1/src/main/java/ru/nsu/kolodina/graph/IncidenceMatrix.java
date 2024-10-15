@@ -8,6 +8,11 @@ import java.util.Objects;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * incidence matrix implementation of graph.
+ *
+ * @param <T> type of object
+ */
 public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
@@ -96,6 +101,7 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
         return neighbors;
     }
 
+    @Override
     public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);

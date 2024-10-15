@@ -22,6 +22,9 @@ public class TopoSortTest {
     String pathGraph2 = "src/test/resources/Graph2.txt";
     FileReader reader;
 
+    /**
+     * setting up needed resources.
+     */
     @BeforeEach
     public void setUp() {
         matrix1 = new IncidenceMatrix<>();

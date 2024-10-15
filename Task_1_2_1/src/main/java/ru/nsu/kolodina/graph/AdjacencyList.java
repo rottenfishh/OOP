@@ -3,11 +3,16 @@ package ru.nsu.kolodina.graph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * adjacency list implementation of graph.
+ *
+ * @param <T> type of object
+ */
 public class AdjacencyList<T> implements Graph<T>, Algorithm<T> {
     boolean hasCycle;
     List<List<Edge<T>>> list;
@@ -87,6 +92,7 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T> {
         return neighbors;
     }
 
+    @Override
     public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);

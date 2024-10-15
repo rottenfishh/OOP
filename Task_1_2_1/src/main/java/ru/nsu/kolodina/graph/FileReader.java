@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * class for reading graphs from files.
+ *
+ * @param <T> type of object
+ */
 public class FileReader<T> {
     Parser parser = new Parser();
 

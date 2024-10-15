@@ -1,5 +1,10 @@
 package ru.nsu.kolodina.graph;
 
+/**
+ * class for vertex implementation.
+ *
+ * @param <T> type of object
+ */
 public class Vertex<T> {
     public final T name;
 

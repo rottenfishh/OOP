@@ -13,6 +13,9 @@ public class AdjMatrixTest {
     String pathGraph = "src/test/resources/Graph1.txt";
     FileReader reader;
 
+    /**
+     * setting up needed resources.
+     */
     @BeforeEach
     public void setUp() {
         matrix = new AdjMatrix<>();
