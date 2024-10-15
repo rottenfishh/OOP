@@ -162,4 +162,31 @@ public class AdjacencyList<T> implements Graph<T>{
         Collections.reverse(topoSortList);
         return topoSortList;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nAdjacency List:\n");
+        for (int i = 0; i < vertices.size(); i++) {
+            sb.append(list.get(i).toString()).append("\n");
+        }
+        return sb.toString();
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(list, vertices, edges);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        AdjacencyList<?> graph = (AdjacencyList<?>) obj;
+        return  Objects.equals(this.list, graph.list)
+                && Objects.equals(this.vertices, graph.vertices)
+                && Objects.equals(this.edges, graph.edges);
+    }
 }

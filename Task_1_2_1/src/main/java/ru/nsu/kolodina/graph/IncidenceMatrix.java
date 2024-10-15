@@ -10,7 +10,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
     List<Vertex<T>> topoSortList;
-    List<List<Boolean>> matrix;
+    List<List<Integer>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
 
@@ -25,9 +25,9 @@ public class IncidenceMatrix<T> implements Graph<T>{
     @Override
     public void addVertex(Vertex<T> vertex) {
         vertices.add(vertex);
-        List<Boolean> newArr= new ArrayList<>();
+        List<Integer> newArr= new ArrayList<>();
         for (int i = 0; i < edges.size(); i++) {
-            newArr.add(false);
+            newArr.add(0);
         }
         matrix.add(newArr);
     }
@@ -50,9 +50,9 @@ public class IncidenceMatrix<T> implements Graph<T>{
         for (int i = 0; i < vertices.size(); i++) {
             Vertex<T> vertex = vertices.get(i);
             if (vertex.equals(edge.vertexFrom) || vertex.equals(edge.vertexTo)) {
-                matrix.get(i).add(true);
+                matrix.get(i).add(edge.weight);
             } else {
-                matrix.get(i).add(false);
+                matrix.get(i).add(0);
             }
         }
     }
@@ -81,7 +81,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
             }
         }
         for (int j = 0; j < edges.size(); j++) {
-            if (matrix.get(idx).get(j) == true) {
+            if (matrix.get(idx).get(j) != 0) {
                 Edge edge = edges.get(j);
                 if (!edge.vertexFrom.equals(vertex)) {
                     neighbors.add(edge.vertexFrom);
@@ -174,5 +174,35 @@ public class IncidenceMatrix<T> implements Graph<T>{
         Collections.reverse(topoSortList);
         return topoSortList;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nIncidence Matrix:\n");
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = 0; j < matrix.get(i).size(); j++) {
+                sb.append(matrix.get(i).get(j)).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(matrix, vertices, edges);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        IncidenceMatrix<?> graph = (IncidenceMatrix<?>) obj;
+        return  Objects.equals(this.matrix, graph.matrix)
+                && Objects.equals(this.vertices, graph.vertices)
+                && Objects.equals(this.edges, graph.edges);
+    }
 }

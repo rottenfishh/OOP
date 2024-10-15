@@ -10,7 +10,7 @@ public class AdjMatrix<T> implements Graph<T>{
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
     List<Vertex<T>> topoSortList;
-    List<List<Boolean>> matrix;
+    List<List<Integer>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
     public AdjMatrix() {
@@ -24,13 +24,13 @@ public class AdjMatrix<T> implements Graph<T>{
     @Override
     public void addVertex(Vertex<T> vertex) {
         vertices.add(vertex);
-        List<Boolean> newArr= new ArrayList<>();
+        List<Integer> newArr= new ArrayList<>();
         for (int i = 0; i < vertices.size(); i++) {
-            newArr.add(false);
+            newArr.add(0);
         }
         int size = vertices.size() - 1;
         for (int i = 0; i < size; i++) {
-            matrix.get(i).add(false);
+            matrix.get(i).add(0);
         }
         matrix.add(newArr);
     }
@@ -68,7 +68,7 @@ public class AdjMatrix<T> implements Graph<T>{
                 break;
             }
         }
-        matrix.get(from).set(to, true);
+        matrix.get(from).set(to, edge.weight);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class AdjMatrix<T> implements Graph<T>{
                 break;
             }
         }
-        matrix.get(from).set(to, false);
+        matrix.get(from).set(to, 0);
         edges.remove(edge);
     }
 
@@ -101,7 +101,7 @@ public class AdjMatrix<T> implements Graph<T>{
             }
         }
         for (int i = 0; i < vertices.size(); i++) {
-            if (matrix.get(idx).get(i) == true) {
+            if (matrix.get(idx).get(i) != 0) {
                 neighbors.add(vertices.get(i));
             }
         }
@@ -187,5 +187,36 @@ public class AdjMatrix<T> implements Graph<T>{
         }
         Collections.reverse(topoSortList);
         return topoSortList;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nAdjacency Matrix:\n");
+        for (int i = 0; i < vertices.size(); i++) {
+            for (int j = 0; j < vertices.size(); j++) {
+                sb.append(matrix.get(i).get(j)).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(matrix, vertices, edges);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        AdjMatrix<?> graph = (AdjMatrix<?>) obj;
+        return  Objects.equals(this.matrix, graph.matrix)
+                && Objects.equals(this.vertices, graph.vertices)
+                && Objects.equals(this.edges, graph.edges);
     }
 }
