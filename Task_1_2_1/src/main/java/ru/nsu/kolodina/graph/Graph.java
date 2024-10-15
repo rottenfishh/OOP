@@ -12,8 +12,4 @@ interface Graph <T>{
     void removeEdge(Edge<T> edge);
     List<Vertex<T>> getNeighbours(Vertex<T> vertex);
 
-    void readFromFile(String pathName);
-
-    List<Vertex<T>> topoSort();
-
 }

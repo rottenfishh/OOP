@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class IncidenceMatrix<T> implements Graph<T>{
+public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T>{
     boolean hasCycle;
     Map<Vertex<T>, Integer> mark;
     List<Vertex<T>> topoSortList;
@@ -18,6 +18,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
+        topoSortList = new ArrayList<>();
         mark = new HashMap<>();
         hasCycle = false;
     }
@@ -42,6 +43,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
             }
         }
         matrix.remove(idx);
+        vertices.remove(vertex);
     }
 
     @Override
@@ -69,6 +71,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
         for (int j = 0; j < vertices.size(); j++) {
             matrix.get(j).remove(idx);
         }
+        edges.remove(edge);
     }
 
     @Override
@@ -83,9 +86,6 @@ public class IncidenceMatrix<T> implements Graph<T>{
         for (int j = 0; j < edges.size(); j++) {
             if (matrix.get(idx).get(j) != 0) {
                 Edge edge = edges.get(j);
-                if (!edge.vertexFrom.equals(vertex)) {
-                    neighbors.add(edge.vertexFrom);
-                }
                 if (!edge.vertexTo.equals(vertex)) {
                     neighbors.add(edge.vertexTo);
                 }
@@ -94,51 +94,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
         return neighbors;
     }
 
-    /**
-     * input format: vertex count n.
-     * n lines of vertex names
-     * edge count m
-     * m lines of: edge name vertexFrom name vertexTo name weight
-     */
-    @Override
-    public void readFromFile(String pathName) {
-        int n,m;
-        String vertexName, edgeString;
-        Vertex<T> vertex;
-        Edge<T> edge;
-        Vertex<T> from;
-        Vertex<T> to;
-        int weight;
-        String edgeList[];
-        try {
-            File myObj = new File(pathName);
-            Scanner scanner = new Scanner(myObj);
-            n = scanner.nextInt();
-            scanner.nextLine();
-            for (int i = 0; i < n; i++) {
-                vertexName = scanner.nextLine();
-                vertex = new Vertex(vertexName);
-                this.addVertex(vertex);
-            }
-            m = scanner.nextInt();
-            scanner.nextLine();
-            for (int j = 0; j < m; j++) {
-                edgeString = scanner.nextLine();
-                edgeList = edgeString.split(" ");
-                from = new Vertex(edgeList[1]);
-                to = new Vertex(edgeList[2]);
-                weight = Integer.parseInt(edgeList[3]);
-                edge = new Edge(edgeList[0], from, to, weight);
-                this.addEdge(edge);
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    void dfs(Vertex<T> v) {
+    public void dfs(Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);
         for (Vertex<T> vertex: neighbors) {
@@ -160,6 +116,7 @@ public class IncidenceMatrix<T> implements Graph<T>{
     @Override
     @Nullable
     public List<Vertex<T>> topoSort() {
+        hasCycle = false;
         Vertex<T> vertex;
         for (int i = 0; i < vertices.size(); i++) {
             vertex = vertices.get(i);
