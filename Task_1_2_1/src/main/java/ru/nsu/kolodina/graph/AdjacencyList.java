@@ -1,15 +1,15 @@
 package ru.nsu.kolodina.graph;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AdjacencyList<T> implements Graph<T>{
-    List<Vertex<T>> used;
-    List<Vertex<T>> topoSortList;
+    boolean hasCycle;
+    private Map<Vertex<T>, Integer> mark;
+    private List<Vertex<T>> topoSortList;
     List<List<Edge<T>>> list;
     List<Vertex<T>> vertices;
     List<Edge> edges;
@@ -17,6 +17,9 @@ public class AdjacencyList<T> implements Graph<T>{
         list = new ArrayList<>();
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
+        mark = new HashMap<>();
+        hasCycle = false;
+        topoSortList = new ArrayList<>();
     }
     @Override
     public void addVertex(Vertex<T> vertex) {
@@ -79,17 +82,24 @@ public class AdjacencyList<T> implements Graph<T>{
         return neighbors;
     }
 
+    /**
+     * input format: vertex count n.
+     * n lines of vertex names
+     * edge count m
+     * m lines of: edge name vertexFrom name vertexTo name weight
+     */
     @Override
-    public void readFromFile() {
+    public void readFromFile(String pathName) {
         int n,m;
         String vertexName, edgeString;
         Vertex<T> vertex;
         Edge<T> edge;
         Vertex<T> from;
         Vertex<T> to;
+        int weight;
         String edgeList[];
         try {
-            File myObj = new File("src/main/resources/readGraph.txt");
+            File myObj = new File(pathName);
             Scanner scanner = new Scanner(myObj);
             n = scanner.nextInt();
             scanner.nextLine();
@@ -105,7 +115,8 @@ public class AdjacencyList<T> implements Graph<T>{
                 edgeList = edgeString.split(" ");
                 from = new Vertex(edgeList[1]);
                 to = new Vertex(edgeList[2]);
-                edge = new Edge(edgeList[0], from, to);
+                weight = Integer.parseInt(edgeList[3]);
+                edge = new Edge(edgeList[0], from, to, weight);
                 this.addEdge(edge);
             }
             scanner.close();
@@ -116,20 +127,36 @@ public class AdjacencyList<T> implements Graph<T>{
     }
 
     void dfs(Vertex<T> v) {
-        used.add(v);
+        mark.put(v, 1);
         List<Vertex<T>> neighbors = this.getNeighbours(v);
         for (Vertex<T> vertex: neighbors) {
-            if (!used.contains(vertex)) {
+            if (!mark.containsKey(vertex)) {
+                if (hasCycle) {
+                    return;
+                }
                 dfs(vertex);
             }
+            if (mark.get(vertex) == 1 && !hasCycle && !v.equals(vertex)) {
+                hasCycle = true;
+                return;
+            }
         }
+        mark.replace(v, 2);
         topoSortList.add(v);
     }
+
     @Override
+    @Nullable
     public List<Vertex<T>> topoSort() {
+        Vertex<T> vertex;
         for (int i = 0; i < vertices.size(); i++) {
-            if (!used.contains(vertices.get(i))) {
-                dfs(vertices.get(i));
+            vertex = vertices.get(i);
+            if (!mark.containsKey(vertex)) {
+                dfs(vertex);
+                if (hasCycle) {
+                    System.out.println("Graph has cycle, no toposort is possible");
+                    return null;
+                }
             }
         }
         Collections.reverse(topoSortList);
