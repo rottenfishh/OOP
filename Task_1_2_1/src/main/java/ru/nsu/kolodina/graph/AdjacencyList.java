@@ -21,6 +21,9 @@ public class AdjacencyList<T> implements Graph<T>, Algorithm<T> {
     private final Map<Vertex<T>, Integer> mark;
     private final List<Vertex<T>> topoSortList;
 
+    /**
+     * class constructor.
+     */
     public AdjacencyList() {
         list = new ArrayList<>();
         vertices = new ArrayList<>();

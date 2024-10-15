@@ -11,6 +11,14 @@ public class Edge<T> {
     public final Vertex<T> vertexTo;
     public final int weight;
 
+    /**
+     * class constructor.
+     *
+     * @param name name of edge
+     * @param from vertex from
+     * @param to vertex to
+     * @param weight weight of edge
+     */
     public Edge(T name, Vertex<T> from, Vertex<T> to, int weight) {
         this.vertexFrom = from;
         this.vertexTo = to;

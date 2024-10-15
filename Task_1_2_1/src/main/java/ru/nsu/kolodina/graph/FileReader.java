@@ -22,7 +22,8 @@ public class FileReader<T> {
      * @param graph graph to write into
      */
     public void readFromFile(String pathName, Graph<T> graph) {
-        int n, m;
+        int n;
+        int m;
         String vertexName;
         String edgeString;
         Vertex<T> vertex;
