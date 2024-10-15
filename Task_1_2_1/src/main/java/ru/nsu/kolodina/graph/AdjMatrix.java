@@ -21,6 +21,9 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
     List<Vertex<T>> vertices;
     List<Edge> edges;
 
+    /**
+     * class constructor.
+     */
     public AdjMatrix() {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();

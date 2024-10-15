@@ -4,6 +4,12 @@ package ru.nsu.kolodina.graph;
  * class to parse string into concrete types.
  */
 public class Parser {
+    /**
+     * method for parsing.
+     *
+     * @param input input string for parse
+     * @return converted to type or String
+     */
     public static Object parse(String input) {
         try {
             return Integer.valueOf(input);

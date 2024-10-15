@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Map;
+import java.util.Objects;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -21,6 +21,9 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
     List<Vertex<T>> vertices;
     List<Edge> edges;
 
+    /**
+     * class constructor.
+     */
     public IncidenceMatrix() {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
