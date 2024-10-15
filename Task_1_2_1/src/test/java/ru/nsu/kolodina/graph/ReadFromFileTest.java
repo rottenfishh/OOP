@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class readFromFileTest {
+public class ReadFromFileTest {
     IncidenceMatrix<String> matrix;
     String pathGraph = "src/test/resources/Graph2.txt";
     fileReader reader;
