@@ -13,6 +13,7 @@ public class AdjacencyListTest {
     AdjacencyList<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
     FileReader<String> reader;
+
     /**
      * setting up needed resources.
      */
