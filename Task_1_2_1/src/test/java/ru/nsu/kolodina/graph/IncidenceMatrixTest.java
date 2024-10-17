@@ -20,7 +20,7 @@ public class IncidenceMatrixTest {
     public void setUp() {
         matrix = new IncidenceMatrix<>();
         reader = new FileReader();
-        reader.readFromFile(pathGraph, matrix);
+        reader.readFromFile(pathGraph, matrix, s -> s);
     }
 
 

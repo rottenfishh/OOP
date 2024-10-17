@@ -27,8 +27,8 @@ public class EqualsTest {
     public void adjListTest() {
         AdjacencyList<String> list1 = new AdjacencyList<>();
         AdjacencyList<String> list2 = new AdjacencyList<>();
-        reader.readFromFile(pathGraph, list1);
-        reader.readFromFile(pathGraph, list2);
+        reader.readFromFile(pathGraph, list1, s -> s);
+        reader.readFromFile(pathGraph, list2, s -> s);
         assertEquals(list1, list2);
     }
 
@@ -36,8 +36,8 @@ public class EqualsTest {
     public void adjMatrixTest() {
         AdjMatrix<String> adjMatrix1 = new AdjMatrix<>();
         AdjMatrix<String> adjMatrix2 = new AdjMatrix<>();
-        reader.readFromFile(pathGraph, adjMatrix1);
-        reader.readFromFile(pathGraph, adjMatrix2);
+        reader.readFromFile(pathGraph, adjMatrix1, s -> s);
+        reader.readFromFile(pathGraph, adjMatrix2, s -> s);
         assertEquals(adjMatrix1, adjMatrix2);
     }
 
@@ -45,8 +45,8 @@ public class EqualsTest {
     public void incidenceMatrixTest() {
         IncidenceMatrix<String> incMatrix1 = new IncidenceMatrix<>();
         IncidenceMatrix<String> incMatrix2 = new IncidenceMatrix<>();
-        reader.readFromFile(pathGraph, incMatrix1);
-        reader.readFromFile(pathGraph, incMatrix2);
+        reader.readFromFile(pathGraph, incMatrix1, s -> s);
+        reader.readFromFile(pathGraph, incMatrix2, s -> s);
         assertEquals(incMatrix1, incMatrix2);
     }
 }

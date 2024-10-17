@@ -3,6 +3,7 @@ package ru.nsu.kolodina.graph;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.function.Function;
 
 /**
  * class for reading graphs from files.
@@ -10,7 +11,6 @@ import java.util.Scanner;
  * @param <T> type of object
  */
 public class FileReader<T> {
-    Parser parser = new Parser();
 
     /**
      * input format: vertex count n.
@@ -21,7 +21,7 @@ public class FileReader<T> {
      * @param pathName path to the file to be read from
      * @param graph graph to write into
      */
-    public void readFromFile(String pathName, Graph<T> graph) {
+    public void readFromFile(String pathName, Graph<T> graph, Function<String,T> parse) {
         int n;
         int m;
         String vertexName;
@@ -39,7 +39,7 @@ public class FileReader<T> {
             scanner.nextLine();
             for (int i = 0; i < n; i++) {
                 vertexName = scanner.nextLine();
-                vertex = new Vertex(Parser.parse(vertexName));
+                vertex = new Vertex(parse.apply(vertexName));
                 graph.addVertex(vertex);
             }
             m = scanner.nextInt();
@@ -47,10 +47,10 @@ public class FileReader<T> {
             for (int j = 0; j < m; j++) {
                 edgeString = scanner.nextLine();
                 edgeList = edgeString.split(" ");
-                from = new Vertex(Parser.parse(edgeList[1]));
-                to = new Vertex(Parser.parse(edgeList[2]));
+                from = new Vertex(parse.apply(edgeList[1]));
+                to = new Vertex(parse.apply(edgeList[2]));
                 weight = Integer.parseInt(edgeList[3]);
-                edge = new Edge(Parser.parse(edgeList[0]), from, to, weight);
+                edge = new Edge(parse.apply(edgeList[0]), from, to, weight);
                 graph.addEdge(edge);
             }
             scanner.close();
