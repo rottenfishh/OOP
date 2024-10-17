@@ -34,12 +34,12 @@ public class TopoSortTest {
         adjList1 = new AdjacencyList<>();
         adjList2 = new AdjacencyList<>();
         reader = new FileReader();
-        reader.readFromFile(pathGraph1, matrix1);
-        reader.readFromFile(pathGraph2, matrix2);
-        reader.readFromFile(pathGraph1, adjMatrix1);
-        reader.readFromFile(pathGraph2, adjMatrix2);
-        reader.readFromFile(pathGraph1, adjList1);
-        reader.readFromFile(pathGraph2, adjList2);
+        reader.readFromFile(pathGraph1, matrix1, s -> s);
+        reader.readFromFile(pathGraph2, matrix2, s -> s);
+        reader.readFromFile(pathGraph1, adjMatrix1, s -> s);
+        reader.readFromFile(pathGraph2, adjMatrix2, s -> s);
+        reader.readFromFile(pathGraph1, adjList1, s -> s);
+        reader.readFromFile(pathGraph2, adjList2, s -> s);
     }
 
     @Test

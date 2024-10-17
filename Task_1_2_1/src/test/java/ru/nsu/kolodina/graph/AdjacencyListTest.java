@@ -13,7 +13,6 @@ public class AdjacencyListTest {
     AdjacencyList<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
     FileReader<String> reader;
-
     /**
      * setting up needed resources.
      */
@@ -21,7 +20,7 @@ public class AdjacencyListTest {
     public void setUp() {
         matrix = new AdjacencyList<>();
         reader = new FileReader<>();
-        reader.readFromFile(pathGraph, matrix);
+        reader.readFromFile(pathGraph, matrix, s -> s);
     }
 
     @Test

@@ -20,7 +20,7 @@ public class AdjMatrixTest {
     public void setUp() {
         matrix = new AdjMatrix<>();
         reader = new FileReader();
-        reader.readFromFile(pathGraph, matrix);
+        reader.readFromFile(pathGraph, matrix, s -> s);
     }
 
     @Test
