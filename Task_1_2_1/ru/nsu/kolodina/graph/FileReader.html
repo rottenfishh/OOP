@@ -123,8 +123,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.lang.String,ru.nsu.kolodina.graph.Graph)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathName,
- ru.nsu.kolodina.graph.Graph&lt;<a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;graph)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.lang.String,ru.nsu.kolodina.graph.Graph,java.util.function.Function)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathName,
+ ru.nsu.kolodina.graph.Graph&lt;<a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;graph,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;parse)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">input format: vertex count n.</div>
 </div>
@@ -160,10 +161,11 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="readFromFile(java.lang.String,ru.nsu.kolodina.graph.Graph)">
+<section class="detail" id="readFromFile(java.lang.String,ru.nsu.kolodina.graph.Graph,java.util.function.Function)">
 <h3>readFromFile</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readFromFile</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathName,
- ru.nsu.kolodina.graph.Graph&lt;<a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;graph)</span></div>
+ ru.nsu.kolodina.graph.Graph&lt;<a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;graph,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="FileReader.html" title="type parameter in FileReader">T</a>&gt;&nbsp;parse)</span></div>
 <div class="block">input format: vertex count n.
  n lines of vertex names
  edge count m
