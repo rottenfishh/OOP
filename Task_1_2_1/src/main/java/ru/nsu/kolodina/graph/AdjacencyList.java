@@ -41,16 +41,16 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).
-                findAny().orElse(null);
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
+                .findAny().orElse(null);
         int from = vertices.indexOf(v);
         list.get(from).add(edge);
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).
-                findAny().orElse(null);
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
+                .findAny().orElse(null);
         int from = vertices.indexOf(v);
         list.get(from).remove(edge);
         edges.remove(edge);
