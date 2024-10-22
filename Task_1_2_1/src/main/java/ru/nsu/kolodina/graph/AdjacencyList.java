@@ -9,9 +9,9 @@ import java.util.Objects;
  *
  * @param <T> type of object
  */
-public class AdjacencyList<T> implements Graph<T>{
-    List<List<Edge<T>>> list;
+public class AdjacencyList<T> implements Graph<T> {
     public List<Vertex<T>> vertices;
+    List<List<Edge<T>>> list;
     List<Edge> edges;
 
     /**
@@ -42,14 +42,14 @@ public class AdjacencyList<T> implements Graph<T>{
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
         Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
-        int from= vertices.indexOf(v);
+        int from = vertices.indexOf(v);
         list.get(from).add(edge);
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
         Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
-        int from= vertices.indexOf(v);
+        int from = vertices.indexOf(v);
         list.get(from).remove(edge);
         edges.remove(edge);
     }
@@ -58,7 +58,7 @@ public class AdjacencyList<T> implements Graph<T>{
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
         Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx= vertices.indexOf(v);
+        int idx = vertices.indexOf(v);
         for (int j = 0; j < list.get(idx).size(); j++) {
             Vertex neighbor = list.get(idx).get(j).vertexTo();
             neighbors.add(neighbor);

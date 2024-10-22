@@ -2,16 +2,13 @@ package ru.nsu.kolodina.graph;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class TopoSort<T> implements Algorithm<T>{
-    boolean hasCycle;
+public class TopoSort<T> implements Algorithm<T> {
     private final Map<Vertex<T>, Integer> mark;
     private final List<Vertex<T>> topoSortList;
+    boolean hasCycle;
+
     public TopoSort() {
         mark = new HashMap<>();
         hasCycle = false;
