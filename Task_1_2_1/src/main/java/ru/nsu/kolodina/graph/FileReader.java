@@ -20,7 +20,7 @@ public class FileReader {
      * @param pathName path to the file to be read from
      * @param graph graph to write into
      */
-    public<T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse) {
+    public<T> void readFromFile(String pathName, Graph<T> graph, Function <String, T> parse) {
         int n;
         int m;
         String vertexName;
