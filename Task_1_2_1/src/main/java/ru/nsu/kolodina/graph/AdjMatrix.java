@@ -52,8 +52,10 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
-        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo())).findAny().orElse(null);
+        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
+                .findAny().orElse(null);
+        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo()))
+                .findAny().orElse(null);
         int idxFrom = vertices.indexOf(from);
         int idxTo = vertices.indexOf(to);
         matrix.get(idxFrom).set(idxTo, edge.weight());
@@ -61,8 +63,10 @@ public class AdjMatrix<T> implements Graph<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
-        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo())).findAny().orElse(null);
+        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
+                .findAny().orElse(null);
+        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo()))
+                .findAny().orElse(null);
         int idxFrom = vertices.indexOf(from);
         int idxTo = vertices.indexOf(to);
         matrix.get(idxFrom).set(idxTo, 0);
@@ -72,7 +76,8 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex))
+                .findAny().orElse(null);
         int idx = vertices.indexOf(v);
 
         for (int i = 0; i < vertices.size(); i++) {

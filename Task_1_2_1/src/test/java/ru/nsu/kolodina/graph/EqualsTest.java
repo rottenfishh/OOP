@@ -3,9 +3,8 @@ package ru.nsu.kolodina.graph;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Test;
-
 import java.net.URISyntaxException;
+import org.junit.jupiter.api.Test;
 
 /**
  * testing equals methods with objects of different classes.

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.Integer;
 import java.net.URISyntaxException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +13,8 @@ import org.junit.jupiter.api.Test;
 public class ReadFromFileTest {
     IncidenceMatrix<String> matrix;
     AdjacencyList<Integer> intList;
-    String Graph1 = "Graph2.txt";
-    String Graph3 = "Graph3.txt";
+    String graph1 = "Graph2.txt";
+    String graph3 = "Graph3.txt";
     FileReader reader;
 
     /**
@@ -26,8 +25,8 @@ public class ReadFromFileTest {
         matrix = new IncidenceMatrix<>();
         intList = new AdjacencyList<>();
         reader = new FileReader();
-        reader.readFromFile(Graph1, matrix, s -> s);
-        reader.readFromFile(Graph3, intList, Integer::parseInt);
+        reader.readFromFile(graph1, matrix, s -> s);
+        reader.readFromFile(graph3, intList, Integer::parseInt);
     }
 
     @Test
