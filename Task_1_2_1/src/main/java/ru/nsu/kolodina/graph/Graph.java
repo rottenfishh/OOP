@@ -2,6 +2,11 @@ package ru.nsu.kolodina.graph;
 
 import java.util.List;
 
+/**
+ * interface for graphs.
+ *
+ * @param <T> type of object
+ */
 public interface Graph<T> {
 
     void addVertex(Vertex<T> vertex);

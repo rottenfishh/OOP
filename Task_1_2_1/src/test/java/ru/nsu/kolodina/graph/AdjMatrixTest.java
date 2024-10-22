@@ -2,10 +2,9 @@ package ru.nsu.kolodina.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.net.URISyntaxException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.net.URISyntaxException;
 
 /**
  * testing methods of Adjacency Matrix class.

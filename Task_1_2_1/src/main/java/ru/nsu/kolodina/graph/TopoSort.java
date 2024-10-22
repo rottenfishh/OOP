@@ -1,20 +1,37 @@
 package ru.nsu.kolodina.graph;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
-
+/**
+ * class implementing toposort.
+ *
+ * @param <T> type of object
+ */
 public class TopoSort<T> implements Algorithm<T> {
     private final Map<Vertex<T>, Integer> mark;
     private final List<Vertex<T>> topoSortList;
     boolean hasCycle;
 
+    /**
+     * constructor for class.
+     */
     public TopoSort() {
         mark = new HashMap<>();
         hasCycle = false;
         topoSortList = new ArrayList<>();
     }
 
+    /**
+     * dfs implemetation to use in toposort.
+     *
+     * @param graph we use dfs on
+     * @param v vertex we start dfs from
+     */
     public void dfs(Graph<T> graph, Vertex<T> v) {
         mark.put(v, 1);
         List<Vertex<T>> neighbors = graph.getNeighbours(v);
