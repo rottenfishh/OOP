@@ -5,19 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.URISyntaxException;
+
 /**
  * testing methods of incidence matrix class.
  */
 public class IncidenceMatrixTest {
     IncidenceMatrix<String> matrix;
-    String pathGraph = "src/test/resources/Graph2.txt";
+    String pathGraph = "Graph2.txt";
     FileReader reader;
 
     /**
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         matrix = new IncidenceMatrix<>();
         reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);

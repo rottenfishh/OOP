@@ -2,6 +2,8 @@ package ru.nsu.kolodina.graph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -19,7 +21,7 @@ public class FileReader {
      * @param pathName path to the file to be read from
      * @param graph    graph to write into
      */
-    public <T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse) {
+    public <T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse) throws URISyntaxException {
         int n;
         int m;
         String vertexName;
@@ -31,8 +33,13 @@ public class FileReader {
         int weight;
         String[] edgeList;
         try {
-            File myObj = new File(pathName);
-            Scanner scanner = new Scanner(myObj);
+            URL resource = getClass().getClassLoader().getResource(pathName);
+            if (resource == null) {
+                throw new IllegalArgumentException("file not found!");
+            }
+
+            File file = new File(resource.toURI());
+            Scanner scanner = new Scanner(file);
             n = scanner.nextInt();
             scanner.nextLine();
             for (int i = 0; i < n; i++) {
@@ -48,7 +55,7 @@ public class FileReader {
                 from = new Vertex(parse.apply(edgeList[1]));
                 to = new Vertex(parse.apply(edgeList[2]));
                 weight = Integer.parseInt(edgeList[3]);
-                edge = new Edge(parse.apply(edgeList[0]), from, to, weight);
+                edge = new Edge<>(parse.apply(edgeList[0]), from, to, weight);
                 graph.addEdge(edge);
             }
             scanner.close();

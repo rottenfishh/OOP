@@ -5,19 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.URISyntaxException;
+
 /**
  * testing methods of Adjacency Matrix class.
  */
 public class AdjMatrixTest {
     AdjMatrix<String> matrix;
-    String pathGraph = "src/test/resources/Graph1.txt";
+    String pathGraph = "Graph1.txt";
     FileReader reader;
 
     /**
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         matrix = new AdjMatrix<>();
         reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
+
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -13,13 +15,10 @@ import org.jetbrains.annotations.Nullable;
  *
  * @param <T> type of object
  */
-public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
-    boolean hasCycle;
-    Map<Vertex<T>, Integer> mark;
-    List<Vertex<T>> topoSortList;
+public class IncidenceMatrix<T> implements Graph<T> {
     List<List<Integer>> matrix;
     List<Vertex<T>> vertices;
-    List<Edge> edges;
+    List<Edge<T>> edges;
 
     /**
      * class constructor.
@@ -28,9 +27,6 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
-        topoSortList = new ArrayList<>();
-        mark = new HashMap<>();
-        hasCycle = false;
     }
 
     @Override
@@ -45,13 +41,8 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        int idx = -1;
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(vertex)) {
-                idx = i;
-                break;
-            }
-        }
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
+        int idx = vertices.indexOf(v);
         matrix.remove(idx);
         vertices.remove(vertex);
     }
@@ -61,8 +52,8 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
         edges.add(edge);
         for (int i = 0; i < vertices.size(); i++) {
             Vertex<T> vertex = vertices.get(i);
-            if (vertex.equals(edge.vertexFrom) || vertex.equals(edge.vertexTo)) {
-                matrix.get(i).add(edge.weight);
+            if (vertex.equals(edge.vertexFrom()) || vertex.equals(edge.vertexTo())) {
+                matrix.get(i).add(edge.weight());
             } else {
                 matrix.get(i).add(0);
             }
@@ -71,13 +62,8 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        int idx = -1;
-        for (int i = 0; i < edges.size(); i++) {
-            if (edges.get(i).equals(edge)) {
-                idx = i;
-                break;
-            }
-        }
+        Edge<T> e = edges.stream().filter(ver -> ver.equals(edge)).findAny().orElse(null);
+        int idx = edges.indexOf(e);
         for (int j = 0; j < vertices.size(); j++) {
             matrix.get(j).remove(idx);
         }
@@ -86,61 +72,19 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
 
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
-        int idx = -1;
         List<Vertex<T>> neighbors = new ArrayList<>();
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(vertex)) {
-                idx = i;
-            }
-        }
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
+        int idx = vertices.indexOf(v);
+
         for (int j = 0; j < edges.size(); j++) {
             if (matrix.get(idx).get(j) != 0) {
-                Edge edge = edges.get(j);
-                if (!edge.vertexTo.equals(vertex)) {
-                    neighbors.add(edge.vertexTo);
+                Edge<T> edge = edges.get(j);
+                if (!edge.vertexTo().equals(vertex)) {
+                    neighbors.add(edge.vertexTo());
                 }
             }
         }
         return neighbors;
-    }
-
-    @Override
-    public void dfs(Vertex<T> v) {
-        mark.put(v, 1);
-        List<Vertex<T>> neighbors = this.getNeighbours(v);
-        for (Vertex<T> vertex : neighbors) {
-            if (!mark.containsKey(vertex)) {
-                if (hasCycle) {
-                    return;
-                }
-                dfs(vertex);
-            }
-            if (mark.get(vertex) == 1 && !hasCycle && !v.equals(vertex)) {
-                hasCycle = true;
-                return;
-            }
-        }
-        mark.replace(v, 2);
-        topoSortList.add(v);
-    }
-
-    @Override
-    @Nullable
-    public List<Vertex<T>> topoSort() {
-        hasCycle = false;
-        Vertex<T> vertex;
-        for (int i = 0; i < vertices.size(); i++) {
-            vertex = vertices.get(i);
-            if (!mark.containsKey(vertex)) {
-                dfs(vertex);
-                if (hasCycle) {
-                    System.out.println("Graph has cycle, no toposort is possible");
-                    return null;
-                }
-            }
-        }
-        Collections.reverse(topoSortList);
-        return topoSortList;
     }
 
     @Override
@@ -173,5 +117,10 @@ public class IncidenceMatrix<T> implements Graph<T>, Algorithm<T> {
         return Objects.equals(this.matrix, graph.matrix)
                 && Objects.equals(this.vertices, graph.vertices)
                 && Objects.equals(this.edges, graph.edges);
+    }
+
+    @Override
+    public List<Vertex<T>> getVertices() {
+        return vertices;
     }
 }
