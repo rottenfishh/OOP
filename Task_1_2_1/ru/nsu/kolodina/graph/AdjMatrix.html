@@ -91,9 +91,14 @@ loadScripts(document, 'script');</script>
 <dt>Type Parameters:</dt>
 <dd><code>T</code> - type of object</dd>
 </dl>
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;T&gt;</code></dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AdjMatrix&lt;T&gt;</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;T&gt;</span></div>
 <div class="block">adjacency matrix implementation of graph.</div>
 </section>
 <section class="summary">
@@ -130,14 +135,14 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(ru.nsu.kolodina.graph.Vertex)" class="member-name-link">addVertex</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dfs(ru.nsu.kolodina.graph.Vertex)" class="member-name-link">dfs</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;v)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbours(ru.nsu.kolodina.graph.Vertex)" class="member-name-link">getNeighbours</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbours(ru.nsu.kolodina.graph.Vertex)" class="member-name-link">getNeighbours</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -148,12 +153,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeVertex(ru.nsu.kolodina.graph.Vertex)" class="member-name-link">removeVertex</a><wbr>(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topoSort()" class="member-name-link">topoSort</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -190,43 +192,50 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addVertex(ru.nsu.kolodina.graph.Vertex)">
 <h3>addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#addVertex(ru.nsu.kolodina.graph.Vertex)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="removeVertex(ru.nsu.kolodina.graph.Vertex)">
 <h3>removeVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#removeVertex(ru.nsu.kolodina.graph.Vertex)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="addEdge(ru.nsu.kolodina.graph.Edge)">
 <h3>addEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="Edge.html" title="class in ru.nsu.kolodina.graph">Edge</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;edge)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#addEdge(ru.nsu.kolodina.graph.Edge)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="removeEdge(ru.nsu.kolodina.graph.Edge)">
 <h3>removeEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(<a href="Edge.html" title="class in ru.nsu.kolodina.graph">Edge</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;edge)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#removeEdge(ru.nsu.kolodina.graph.Edge)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getNeighbours(ru.nsu.kolodina.graph.Vertex)">
 <h3>getNeighbours</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getNeighbours</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;vertex)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="dfs(ru.nsu.kolodina.graph.Vertex)">
-<h3>dfs</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dfs</span><wbr><span class="parameters">(<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&nbsp;v)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="topoSort()">
-<h3>topoSort</h3>
-<div class="member-signature"><span class="annotations">@Nullable
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">topoSort</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#getNeighbours(ru.nsu.kolodina.graph.Vertex)">getNeighbours</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -256,6 +265,16 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVertices()">
+<h3>getVertices</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="AdjMatrix.html" title="type parameter in AdjMatrix">T</a>&gt;</code></dd>
 </dl>
 </section>
 </li>
