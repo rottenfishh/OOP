@@ -25,7 +25,7 @@ public class ReadFromFileTest {
         intList = new AdjacencyList<>();
         reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);
-        reader.readFromFile(pathGraph3, intList, Integer::parseInt );
+        reader.readFromFile(pathGraph3, intList, Integer::parseInt);
     }
 
     @Test
