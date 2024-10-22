@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  */
 public class EqualsTest {
     String pathGraph = "src/test/resources/Graph2.txt";
-    FileReader<String> reader = new FileReader();
+    FileReader reader = new FileReader();
 
     @Test
     public void edgesTest() {

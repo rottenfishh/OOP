@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class AdjacencyListTest {
     AdjacencyList<String> matrix;
     String pathGraph = "src/test/resources/Graph1.txt";
-    FileReader<String> reader;
+    FileReader reader;
 
     /**
      * setting up needed resources.
@@ -20,7 +20,7 @@ public class AdjacencyListTest {
     @BeforeEach
     public void setUp() {
         matrix = new AdjacencyList<>();
-        reader = new FileReader<>();
+        reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);
     }
 
