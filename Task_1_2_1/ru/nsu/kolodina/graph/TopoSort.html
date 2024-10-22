@@ -87,9 +87,14 @@ loadScripts(document, 'script');</script>
 <div class="inheritance">ru.nsu.kolodina.graph.TopoSort&lt;T&gt;</div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - type of object</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">TopoSort&lt;T&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">class implementing toposort.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,7 +107,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">TopoSort</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">constructor for class.</div>
+</div>
 </div>
 </section>
 </li>
@@ -120,7 +127,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dfs(ru.nsu.kolodina.graph.Graph,ru.nsu.kolodina.graph.Vertex)" class="member-name-link">dfs</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&nbsp;graph,
  <a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&nbsp;v)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">dfs implemetation to use in toposort.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>@Nullable <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#perform(ru.nsu.kolodina.graph.Graph)" class="member-name-link">perform</a><wbr>(<a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&nbsp;graph)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -145,6 +154,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>TopoSort</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TopoSort</span>()</div>
+<div class="block">constructor for class.</div>
 </section>
 </li>
 </ul>
@@ -160,6 +170,12 @@ loadScripts(document, 'script');</script>
 <h3>dfs</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dfs</span><wbr><span class="parameters">(<a href="Graph.html" title="interface in ru.nsu.kolodina.graph">Graph</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&nbsp;graph,
  <a href="Vertex.html" title="class in ru.nsu.kolodina.graph">Vertex</a>&lt;<a href="TopoSort.html" title="type parameter in TopoSort">T</a>&gt;&nbsp;v)</span></div>
+<div class="block">dfs implemetation to use in toposort.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>graph</code> - we use dfs on</dd>
+<dd><code>v</code> - vertex we start dfs from</dd>
+</dl>
 </section>
 </li>
 <li>
