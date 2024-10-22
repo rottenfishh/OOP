@@ -8,9 +8,8 @@ import java.util.function.Function;
 /**
  * class for reading graphs from files.
  *
- * @param <T> type of object
  */
-public class FileReader<T> {
+public class FileReader {
 
     /**
      * input format: vertex count n.
@@ -21,7 +20,7 @@ public class FileReader<T> {
      * @param pathName path to the file to be read from
      * @param graph graph to write into
      */
-    public void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse) {
+    public<T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse) {
         int n;
         int m;
         String vertexName;
