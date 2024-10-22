@@ -3,6 +3,8 @@ package ru.nsu.kolodina.graph;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.Integer;
+import java.net.URISyntaxException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +14,20 @@ import org.junit.jupiter.api.Test;
 public class ReadFromFileTest {
     IncidenceMatrix<String> matrix;
     AdjacencyList<Integer> intList;
-    String pathGraph = "src/test/resources/Graph2.txt";
-    String pathGraph3 = "src/test/resources/Graph3.txt";
+    String Graph1 = "Graph2.txt";
+    String Graph3 = "Graph3.txt";
     FileReader reader;
 
     /**
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         matrix = new IncidenceMatrix<>();
         intList = new AdjacencyList<>();
         reader = new FileReader();
-        reader.readFromFile(pathGraph, matrix, s -> s);
-        reader.readFromFile(pathGraph3, intList, Integer::parseInt);
+        reader.readFromFile(Graph1, matrix, s -> s);
+        reader.readFromFile(Graph3, intList, Integer::parseInt);
     }
 
     @Test

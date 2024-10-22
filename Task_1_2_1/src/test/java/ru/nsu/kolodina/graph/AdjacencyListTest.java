@@ -2,6 +2,7 @@ package ru.nsu.kolodina.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,14 +12,14 @@ import org.junit.jupiter.api.Test;
  */
 public class AdjacencyListTest {
     AdjacencyList<String> matrix;
-    String pathGraph = "src/test/resources/Graph1.txt";
+    String pathGraph = "Graph1.txt";
     FileReader reader;
 
     /**
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         matrix = new AdjacencyList<>();
         reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);
@@ -42,8 +43,8 @@ public class AdjacencyListTest {
     public void getNeighboursTest() {
         Vertex<String> v = matrix.vertices.get(0);
         List<Vertex<String>> neighbors = matrix.getNeighbours(v);
-        assertEquals("v2", neighbors.get(0).name);
-        assertEquals("v3", neighbors.get(1).name);
-        assertEquals("v4", neighbors.get(2).name);
+        assertEquals("v2", neighbors.get(0).name());
+        assertEquals("v3", neighbors.get(1).name());
+        assertEquals("v4", neighbors.get(2).name());
     }
 }

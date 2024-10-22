@@ -1,22 +1,15 @@
 package ru.nsu.kolodina.graph;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * adjacency matrix implementation of graph.
  *
  * @param <T> type of object
  */
-public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
-    boolean hasCycle;
-    Map<Vertex<T>, Integer> mark;
-    List<Vertex<T>> topoSortList;
+public class AdjMatrix<T> implements Graph<T> {
     List<List<Integer>> matrix;
     List<Vertex<T>> vertices;
     List<Edge> edges;
@@ -28,9 +21,6 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
-        topoSortList = new ArrayList<>();
-        mark = new HashMap<>();
-        hasCycle = false;
     }
 
     @Override
@@ -49,13 +39,8 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        int idx = -1;
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(vertex)) {
-                idx = i;
-                break;
-            }
-        }
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
+        int idx = vertices.indexOf(v);
         int size = vertices.size() - 1;
         for (int i = 0; i < size; i++) {
             matrix.get(i).remove(idx);
@@ -67,95 +52,35 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        int from = -1;
-        int to = -1;
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(edge.vertexFrom)) {
-                from = i;
-            }
-            if (vertices.get(i).equals(edge.vertexTo)) {
-                to = i;
-            }
-            if (from != -1 && to != -1) {
-                break;
-            }
-        }
-        matrix.get(from).set(to, edge.weight);
+        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
+        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo())).findAny().orElse(null);
+        int idxFrom = vertices.indexOf(from);
+        int idxTo = vertices.indexOf(to);
+        matrix.get(idxFrom).set(idxTo, edge.weight());
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        int from = -1;
-        int to = -1;
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(edge.vertexFrom)) {
-                from = i;
-            }
-            if (vertices.get(i).equals(edge.vertexTo)) {
-                to = i;
-            }
-            if (from != -1 && to != -1) {
-                break;
-            }
-        }
-        matrix.get(from).set(to, 0);
+        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom())).findAny().orElse(null);
+        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo())).findAny().orElse(null);
+        int idxFrom = vertices.indexOf(from);
+        int idxTo = vertices.indexOf(to);
+        matrix.get(idxFrom).set(idxTo, 0);
         edges.remove(edge);
     }
 
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
-        int idx = -1;
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).equals(vertex)) {
-                idx = i;
-                break;
-            }
-        }
+        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
+        int idx = vertices.indexOf(v);
+
         for (int i = 0; i < vertices.size(); i++) {
             if (matrix.get(idx).get(i) != 0) {
                 neighbors.add(vertices.get(i));
             }
         }
         return neighbors;
-    }
-
-    @Override
-    public void dfs(Vertex<T> v) {
-        mark.put(v, 1);
-        List<Vertex<T>> neighbors = this.getNeighbours(v);
-        for (Vertex<T> vertex : neighbors) {
-            if (!mark.containsKey(vertex)) {
-                if (hasCycle) {
-                    return;
-                }
-                dfs(vertex);
-            }
-            if (mark.get(vertex) == 1 && !hasCycle && !v.equals(vertex)) {
-                hasCycle = true;
-                return;
-            }
-        }
-        mark.replace(v, 2);
-        topoSortList.add(v);
-    }
-
-    @Override
-    @Nullable
-    public List<Vertex<T>> topoSort() {
-        Vertex<T> vertex;
-        for (int i = 0; i < vertices.size(); i++) {
-            vertex = vertices.get(i);
-            if (!mark.containsKey(vertex)) {
-                dfs(vertex);
-                if (hasCycle) {
-                    System.out.println("Graph has cycle, no toposort is possible");
-                    return null;
-                }
-            }
-        }
-        Collections.reverse(topoSortList);
-        return topoSortList;
     }
 
     @Override
@@ -188,5 +113,10 @@ public class AdjMatrix<T> implements Graph<T>, Algorithm<T> {
         return Objects.equals(this.matrix, graph.matrix)
                 && Objects.equals(this.vertices, graph.vertices)
                 && Objects.equals(this.edges, graph.edges);
+    }
+
+    @Override
+    public List<Vertex<T>> getVertices() {
+        return vertices;
     }
 }

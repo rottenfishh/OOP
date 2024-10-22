@@ -2,7 +2,8 @@ package ru.nsu.kolodina.graph;
 
 import java.util.List;
 
-interface Graph<T> {
+public interface Graph<T> {
+
     void addVertex(Vertex<T> vertex);
 
     void removeVertex(Vertex<T> vertex);
@@ -13,4 +14,5 @@ interface Graph<T> {
 
     List<Vertex<T>> getNeighbours(Vertex<T> vertex);
 
+    List<Vertex<T>> getVertices();
 }

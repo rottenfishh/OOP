@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+import java.net.URISyntaxException;
+
 /**
  * testing equals methods with objects of different classes.
  */
 public class EqualsTest {
-    String pathGraph = "src/test/resources/Graph2.txt";
+    String pathGraph = "Graph2.txt";
     FileReader reader = new FileReader();
 
     @Test
@@ -24,7 +26,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void adjListTest() {
+    public void adjListTest() throws URISyntaxException {
         AdjacencyList<String> list1 = new AdjacencyList<>();
         AdjacencyList<String> list2 = new AdjacencyList<>();
         reader.readFromFile(pathGraph, list1, s -> s);
@@ -33,7 +35,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void adjMatrixTest() {
+    public void adjMatrixTest() throws URISyntaxException {
         AdjMatrix<String> adjMatrix1 = new AdjMatrix<>();
         AdjMatrix<String> adjMatrix2 = new AdjMatrix<>();
         reader.readFromFile(pathGraph, adjMatrix1, s -> s);
@@ -42,7 +44,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void incidenceMatrixTest() {
+    public void incidenceMatrixTest() throws URISyntaxException {
         IncidenceMatrix<String> incMatrix1 = new IncidenceMatrix<>();
         IncidenceMatrix<String> incMatrix2 = new IncidenceMatrix<>();
         reader.readFromFile(pathGraph, incMatrix1, s -> s);
