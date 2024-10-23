@@ -22,7 +22,7 @@ public class FileReader {
      * @param graph    graph to write into
      */
     public <T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse)
-            throws URISyntaxException {
+            throws URISyntaxException, FileNotFoundException {
         int n;
         int m;
         String vertexName;
@@ -33,36 +33,31 @@ public class FileReader {
         Vertex<T> to;
         int weight;
         String[] edgeList;
-        try {
-            URL resource = getClass().getClassLoader().getResource(pathName);
-            if (resource == null) {
-                throw new IllegalArgumentException("file not found!");
-            }
-
-            File file = new File(resource.toURI());
-            Scanner scanner = new Scanner(file);
-            n = scanner.nextInt();
-            scanner.nextLine();
-            for (int i = 0; i < n; i++) {
-                vertexName = scanner.nextLine();
-                vertex = new Vertex(parse.apply(vertexName));
-                graph.addVertex(vertex);
-            }
-            m = scanner.nextInt();
-            scanner.nextLine();
-            for (int j = 0; j < m; j++) {
-                edgeString = scanner.nextLine();
-                edgeList = edgeString.split(" ");
-                from = new Vertex(parse.apply(edgeList[1]));
-                to = new Vertex(parse.apply(edgeList[2]));
-                weight = Integer.parseInt(edgeList[3]);
-                edge = new Edge<>(parse.apply(edgeList[0]), from, to, weight);
-                graph.addEdge(edge);
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        URL resource = getClass().getClassLoader().getResource(pathName);
+        if (resource == null) {
+            throw new IllegalArgumentException("file not found!");
         }
+
+        File file = new File(resource.toURI());
+        Scanner scanner = new Scanner(file);
+        n = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0; i < n; i++) {
+            vertexName = scanner.nextLine();
+            vertex = new Vertex(parse.apply(vertexName));
+            graph.addVertex(vertex);
+        }
+        m = scanner.nextInt();
+        scanner.nextLine();
+        for (int j = 0; j < m; j++) {
+            edgeString = scanner.nextLine();
+            edgeList = edgeString.split(" ");
+            from = new Vertex(parse.apply(edgeList[1]));
+            to = new Vertex(parse.apply(edgeList[2]));
+            weight = Integer.parseInt(edgeList[3]);
+            edge = new Edge<>(parse.apply(edgeList[0]), from, to, weight);
+            graph.addEdge(edge);
+        }
+        scanner.close();
     }
 }

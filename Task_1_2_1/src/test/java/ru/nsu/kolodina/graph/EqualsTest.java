@@ -3,6 +3,7 @@ package ru.nsu.kolodina.graph;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void adjListTest() throws URISyntaxException {
+    public void adjListTest() throws URISyntaxException, FileNotFoundException {
         AdjacencyList<String> list1 = new AdjacencyList<>();
         AdjacencyList<String> list2 = new AdjacencyList<>();
         reader.readFromFile(pathGraph, list1, s -> s);
@@ -34,7 +35,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void adjMatrixTest() throws URISyntaxException {
+    public void adjMatrixTest() throws URISyntaxException, FileNotFoundException {
         AdjMatrix<String> adjMatrix1 = new AdjMatrix<>();
         AdjMatrix<String> adjMatrix2 = new AdjMatrix<>();
         reader.readFromFile(pathGraph, adjMatrix1, s -> s);
@@ -43,7 +44,7 @@ public class EqualsTest {
     }
 
     @Test
-    public void incidenceMatrixTest() throws URISyntaxException {
+    public void incidenceMatrixTest() throws URISyntaxException, FileNotFoundException {
         IncidenceMatrix<String> incMatrix1 = new IncidenceMatrix<>();
         IncidenceMatrix<String> incMatrix2 = new IncidenceMatrix<>();
         reader.readFromFile(pathGraph, incMatrix1, s -> s);

@@ -61,7 +61,7 @@ public class TopoSort<T> implements Algorithm<T> {
             if (!mark.containsKey(vertex)) {
                 dfs(graph, vertex);
                 if (hasCycle) {
-                    System.out.println("Graph has cycle, no toposort is possible");
+                    System.err.println("Graph has cycle, no toposort is possible");
                     return null;
                 }
             }

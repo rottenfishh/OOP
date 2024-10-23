@@ -2,6 +2,7 @@ package ru.nsu.kolodina.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.lang.Integer;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ public class ReadFromFileTest {
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() throws URISyntaxException {
+    public void setUp() throws URISyntaxException, FileNotFoundException {
         matrix = new IncidenceMatrix<>();
         intList = new AdjacencyList<>();
         reader = new FileReader();

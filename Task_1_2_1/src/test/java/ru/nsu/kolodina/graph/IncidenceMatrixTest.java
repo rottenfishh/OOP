@@ -2,6 +2,7 @@ package ru.nsu.kolodina.graph;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class IncidenceMatrixTest {
      * setting up needed resources.
      */
     @BeforeEach
-    public void setUp() throws URISyntaxException {
+    public void setUp() throws URISyntaxException, FileNotFoundException {
         matrix = new IncidenceMatrix<>();
         reader = new FileReader();
         reader.readFromFile(pathGraph, matrix, s -> s);

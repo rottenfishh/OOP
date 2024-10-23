@@ -7,4 +7,5 @@ package ru.nsu.kolodina.graph;
  * @param <T> type of object
  */
 public record Vertex<T>(T name) {
+
 }
