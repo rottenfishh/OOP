@@ -35,8 +35,10 @@ public class IncidenceMatrix<T> implements Graph<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
+        if (idx == -1) {
+            return;
+        }
         matrix.remove(idx);
         vertices.remove(vertex);
     }
@@ -56,8 +58,7 @@ public class IncidenceMatrix<T> implements Graph<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        Edge<T> e = edges.stream().filter(ver -> ver.equals(edge)).findAny().orElse(null);
-        int idx = edges.indexOf(e);
+        int idx = edges.indexOf(edge);
         for (int j = 0; j < vertices.size(); j++) {
             matrix.get(j).remove(idx);
         }
@@ -67,8 +68,7 @@ public class IncidenceMatrix<T> implements Graph<T> {
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
 
         for (int j = 0; j < edges.size(); j++) {
             if (matrix.get(idx).get(j) != 0) {

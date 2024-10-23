@@ -32,8 +32,10 @@ public class AdjacencyList<T> implements Graph<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
+        if (idx == -1) {
+            return;
+        }
         list.remove(idx);
         vertices.remove(vertex);
     }
@@ -41,26 +43,21 @@ public class AdjacencyList<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
-                .findAny().orElse(null);
-        int from = vertices.indexOf(v);
-        list.get(from).add(edge);
+        int idxFrom = vertices.indexOf(edge.vertexFrom());
+        list.get(idxFrom).add(edge);
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
-                .findAny().orElse(null);
-        int from = vertices.indexOf(v);
-        list.get(from).remove(edge);
+        int idxFrom = vertices.indexOf(edge.vertexFrom());
+        list.get(idxFrom).remove(edge);
         edges.remove(edge);
     }
 
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
         for (int j = 0; j < list.get(idx).size(); j++) {
             Vertex neighbor = list.get(idx).get(j).vertexTo();
             neighbors.add(neighbor);

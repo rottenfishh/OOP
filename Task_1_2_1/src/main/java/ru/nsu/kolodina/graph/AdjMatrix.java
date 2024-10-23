@@ -39,8 +39,10 @@ public class AdjMatrix<T> implements Graph<T> {
 
     @Override
     public void removeVertex(Vertex<T> vertex) {
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex)).findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
+        if (idx == -1) {
+            return;
+        }
         int size = vertices.size() - 1;
         for (int i = 0; i < size; i++) {
             matrix.get(i).remove(idx);
@@ -52,23 +54,21 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
-        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
-                .findAny().orElse(null);
-        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo()))
-                .findAny().orElse(null);
-        int idxFrom = vertices.indexOf(from);
-        int idxTo = vertices.indexOf(to);
+        int idxFrom = vertices.indexOf(edge.vertexFrom());
+        int idxTo = vertices.indexOf(edge.vertexFrom());
         matrix.get(idxFrom).set(idxTo, edge.weight());
     }
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
+        /*Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
                 .findAny().orElse(null);
         Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo()))
                 .findAny().orElse(null);
         int idxFrom = vertices.indexOf(from);
-        int idxTo = vertices.indexOf(to);
+        int idxTo = vertices.indexOf(to);*/
+        int idxFrom = vertices.indexOf(edge.vertexFrom());
+        int idxTo = vertices.indexOf(edge.vertexFrom());
         matrix.get(idxFrom).set(idxTo, 0);
         edges.remove(edge);
     }
@@ -76,9 +76,7 @@ public class AdjMatrix<T> implements Graph<T> {
     @Override
     public List<Vertex<T>> getNeighbours(Vertex<T> vertex) {
         List<Vertex<T>> neighbors = new ArrayList<>();
-        Vertex<T> v = vertices.stream().filter(ver -> ver.equals(vertex))
-                .findAny().orElse(null);
-        int idx = vertices.indexOf(v);
+        int idx = vertices.indexOf(vertex);
 
         for (int i = 0; i < vertices.size(); i++) {
             if (matrix.get(idx).get(i) != 0) {
