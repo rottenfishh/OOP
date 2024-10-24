@@ -55,7 +55,7 @@ public class AdjMatrix<T> implements Graph<T> {
     public void addEdge(Edge<T> edge) {
         edges.add(edge);
         int idxFrom = vertices.indexOf(edge.vertexFrom());
-        int idxTo = vertices.indexOf(edge.vertexFrom());
+        int idxTo = vertices.indexOf(edge.vertexTo());
         matrix.get(idxFrom).set(idxTo, edge.weight());
     }
 
