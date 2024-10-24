@@ -23,8 +23,6 @@ public class FileReader {
      */
     public <T> void readFromFile(String pathName, Graph<T> graph, Function<String, T> parse)
             throws URISyntaxException, FileNotFoundException {
-        int n;
-        int m;
         String vertexName;
         String edgeString;
         Vertex<T> vertex;
@@ -40,6 +38,7 @@ public class FileReader {
 
         File file = new File(resource.toURI());
         Scanner scanner = new Scanner(file);
+        int n;
         n = scanner.nextInt();
         scanner.nextLine();
         for (int i = 0; i < n; i++) {
@@ -47,6 +46,7 @@ public class FileReader {
             vertex = new Vertex(parse.apply(vertexName));
             graph.addVertex(vertex);
         }
+        int m;
         m = scanner.nextInt();
         scanner.nextLine();
         for (int j = 0; j < m; j++) {
