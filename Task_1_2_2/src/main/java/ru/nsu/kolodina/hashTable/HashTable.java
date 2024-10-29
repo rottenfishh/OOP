@@ -2,7 +2,12 @@ package ru.nsu.kolodina.hashTable;
 
 import java.util.*;
 
-/// GOVNOKOD
+/**
+ * implementing hashtable.
+ *
+ * @param <K> type of key
+ * @param <V> type of value
+ */
 public class HashTable<K,V>{
 
     private int size = 0;
