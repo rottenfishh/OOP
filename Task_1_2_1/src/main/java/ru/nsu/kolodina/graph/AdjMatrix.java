@@ -61,12 +61,6 @@ public class AdjMatrix<T> implements Graph<T> {
 
     @Override
     public void removeEdge(Edge<T> edge) {
-        /*Vertex<T> from = vertices.stream().filter(ver -> ver.equals(edge.vertexFrom()))
-                .findAny().orElse(null);
-        Vertex<T> to = vertices.stream().filter(ver -> ver.equals(edge.vertexTo()))
-                .findAny().orElse(null);
-        int idxFrom = vertices.indexOf(from);
-        int idxTo = vertices.indexOf(to);*/
         int idxFrom = vertices.indexOf(edge.vertexFrom());
         int idxTo = vertices.indexOf(edge.vertexFrom());
         matrix.get(idxFrom).set(idxTo, 0);
