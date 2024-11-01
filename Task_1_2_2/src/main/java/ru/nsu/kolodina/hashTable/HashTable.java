@@ -1,5 +1,7 @@
 package ru.nsu.kolodina.hashTable;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 /**
@@ -8,7 +10,7 @@ import java.util.*;
  * @param <K> type of key
  * @param <V> type of value
  */
-public class HashTable<K,V>{
+public class HashTable<K,V> implements Iterable<Element<K,V>>{
 
     private int size = 0;
     private int capacity = 128;
@@ -92,12 +94,6 @@ public class HashTable<K,V>{
             }
         }
     }
-    Element<K,V> forEach() {
-        if (iterator.hasNext()) {
-            return iterator.next();
-        }
-        return null;
-    }
     boolean equals() {
         return false;
     }
@@ -121,6 +117,54 @@ public class HashTable<K,V>{
                         table[hashValue].add(el);
                     }
                 }
+            }
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Element<K, V>> iterator() {
+        return new TableIterator<>(table, capacity);
+    }
+
+
+    static class TableIterator<K, V> implements Iterator<Element<K, V>> {
+        private final LinkedList<Element<K, V>>[] table;
+        private int currentIndex;
+        private Iterator<Element<K, V>> listIterator;
+
+        public TableIterator(LinkedList<Element<K, V>>[] table, int capacity) {
+            this.table = table;
+            this.currentIndex = -1;
+            advanceToNextNonEmptyList();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return listIterator != null && listIterator.hasNext();
+        }
+
+        @Override
+        public Element<K, V> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Element<K, V> element = listIterator.next();
+            if (!listIterator.hasNext()) {
+                advanceToNextNonEmptyList();
+            }
+            return element;
+        }
+
+        private void advanceToNextNonEmptyList() {
+            listIterator = null;
+            currentIndex++;
+            while (currentIndex < table.length) {
+                if (table[currentIndex] != null && !table[currentIndex].isEmpty()) {
+                    listIterator = table[currentIndex].iterator();
+                    break;
+                }
+                currentIndex++;
             }
         }
     }

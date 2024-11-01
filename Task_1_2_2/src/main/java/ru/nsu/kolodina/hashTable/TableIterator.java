@@ -1,47 +1,45 @@
 package ru.nsu.kolodina.hashTable;
-
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
-public class TableIterator<K,V> implements Iterator<Element<K,V>> {
-    int current;
-    int next = -1;
-    LinkedList<Element<K, V>>[] table;
-    int capacity;
-    public TableIterator(LinkedList<Element<K, V>>[] tablePassed, int cap) {
-        table = tablePassed;
-        capacity = cap;
-        for (int i = 0; i < capacity; i++) {
-            if (table[i] != null) {
-                current = i;
+public class TableIterator<K, V> implements Iterator<Element<K, V>> {
+    private final LinkedList<Element<K, V>>[] table;
+    private int currentIndex;
+    private Iterator<Element<K, V>> listIterator;
+
+    public TableIterator(LinkedList<Element<K, V>>[] table, int capacity) {
+        this.table = table;
+        this.currentIndex = -1;
+        advanceToNextNonEmptyList();
+    }
+
+    @Override
+    public boolean hasNext() {
+        return listIterator != null && listIterator.hasNext();
+    }
+
+    @Override
+    public Element<K, V> next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        Element<K, V> element = listIterator.next();
+        if (!listIterator.hasNext()) {
+            advanceToNextNonEmptyList();
+        }
+        return element;
+    }
+
+    private void advanceToNextNonEmptyList() {
+        listIterator = null;
+        currentIndex++;
+        while (currentIndex < table.length) {
+            if (table[currentIndex] != null && !table[currentIndex].isEmpty()) {
+                listIterator = table[currentIndex].iterator();
                 break;
             }
+            currentIndex++;
         }
-    }
-    public void changeCap(int cap) {
-        capacity = cap;
-    }
-
-    public boolean hasNext() {
-        for (int i = current; i < capacity; i++) {
-            if (table[i] != null) {
-                next = i;
-                return true;
-            }
-        }
-        return false;
-    }
-    public Element<K,V> next() {
-        Element<K,V> el;
-        if (table[next] != null) {
-            ListIterator<Element<K, V>> listIter = table[next].listIterator(0);
-            if (listIter.hasNext()) {
-                el = listIter.next();
-                return el;
-            }
-        }
-        next++;
-        return null;
     }
 }
