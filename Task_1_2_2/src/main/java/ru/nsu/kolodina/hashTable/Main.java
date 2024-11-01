@@ -1,6 +1,8 @@
 package ru.nsu.kolodina.hashTable;
 
-public class Main {
+import java.util.Iterator;
+
+public class Main <K,V>{
     public static void main(String[] args) {
         HashTable<Integer, String> table = new HashTable();
         table.createHashTable();
@@ -9,8 +11,12 @@ public class Main {
         table.update(3, "три");
         table.delete(3, "три");
         table.put(5, "five");
-        while (table.forEach() != null) {
-            System.out.println(table.forEach());
+        System.out.println(table.get(4));
+        Iterator<Element<Integer, String>> iterator = table.iterator();
+        System.out.println("Elements in the hash table:");
+        while (iterator.hasNext()) {
+            Element<Integer, String> element = iterator.next();
+            System.out.println("Key: " + element.returnKey() + ", Value: " + element.returnValue());
         }
     }
 }
