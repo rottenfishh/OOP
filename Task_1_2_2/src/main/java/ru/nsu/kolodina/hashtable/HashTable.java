@@ -1,10 +1,13 @@
-package ru.nsu.kolodina.HashTable;
+package ru.nsu.kolodina.hashtable;
 
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.*;
-
 /**
  * implementing hashtable.
  *
@@ -155,7 +158,8 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
         for (LinkedList<Element<K, V>> list : this.table) {
             if (list != null) {
                 for (Element<K, V> el : list) {
-                    if (objTable.get(el.returnKey()) == null || objTable.get(el.returnKey()) != el.returnValue()) {
+                    if (objTable.get(el.returnKey()) == null
+                            || objTable.get(el.returnKey()) != el.returnValue()) {
                         return false;
                     }
                 }

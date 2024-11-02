@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.HashTable;
+package ru.nsu.kolodina.hashtable;
 
 /**
  * class for hash function.
@@ -7,7 +7,7 @@ package ru.nsu.kolodina.HashTable;
  */
 public class Hash<K> {
     /**
-     * hash function
+     * hash function.
      *
      * @param key of element
      * @param size of hashtable

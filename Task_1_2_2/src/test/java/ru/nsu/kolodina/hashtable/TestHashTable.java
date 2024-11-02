@@ -1,14 +1,18 @@
-package ru.nsu.kolodina.HashTable;
+package ru.nsu.kolodina.hashtable;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * class for tests.
+ */
 public class TestHashTable {
     HashTable<String, String> table;
 
@@ -78,9 +82,9 @@ public class TestHashTable {
         table.put("eight", "восемь");
         table.put("three", "три");
         table.put("nine", "девять");
-        String excepted = "key: eight value: восемь\n" +
-                "key: three value: три\n" +
-                "key: nine value: девять\n";
+        String excepted = "key: eight value: восемь\n"
+                + "key: three value: три\n"
+                + "key: nine value: девять\n";
         assertEquals(excepted, table.toString());
     }
 }
