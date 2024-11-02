@@ -4,7 +4,7 @@ plugins {
     id("jacoco")
 }
 
-group = "ru.nsu.kolodina.graph"
+group = "ru.nsu.kolodina.HashTable"
 version = "1.0-SNAPSHOT"
 
 repositories {

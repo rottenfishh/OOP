@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashTable;
+package ru.nsu.kolodina.HashTable;
 
 public record Element<K,V>(K key, V value){
     public K returnKey() {
