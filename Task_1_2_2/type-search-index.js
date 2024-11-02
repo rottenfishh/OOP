@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.kolodina.HashTable","l":"Element"},{"p":"ru.nsu.kolodina.HashTable","l":"Hash"},{"p":"ru.nsu.kolodina.HashTable","l":"HashTable"}];updateSearchResults();
