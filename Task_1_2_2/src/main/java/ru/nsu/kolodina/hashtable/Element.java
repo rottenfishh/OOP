@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.HashTable;
+package ru.nsu.kolodina.hashtable;
 
 /**
  * record for element of hashtable.
@@ -11,7 +11,7 @@ package ru.nsu.kolodina.HashTable;
 public record Element<K, V>(K key, V value) {
 
     /**
-     * return key
+     * return key.
      *
      * @return key
      */
@@ -20,7 +20,7 @@ public record Element<K, V>(K key, V value) {
     }
 
     /**
-     * return value
+     * return value.
      *
      * @return value
      */
