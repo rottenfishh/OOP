@@ -3,12 +3,11 @@ package ru.nsu.kolodina.HashTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestHashTable {
     HashTable<String, String> table;
@@ -53,7 +52,7 @@ public class TestHashTable {
         table2.put("nine", "девять");
         table2.put("three", "три");
         table2.put("eight", "восемь");
-        assertTrue(table.equals(table2));
+        assertEquals(table, table2);
     }
 
     @Test
