@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashTable;
+package ru.nsu.kolodina.HashTable;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,13 +15,16 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
     private int size = 0;
     private int capacity = 128;
     private final double threshold = 0.75;
+
+    private int modCount = 0;
     LinkedList<Element<K, V>>[] table;
     Hash<K> hash;
     TableIterator<K,V> iterator;
     void createHashTable() {
         table = (LinkedList<Element<K, V>>[]) new LinkedList<?>[capacity];
-        hash = new Hash<K>();
-        iterator = new TableIterator<>(table, capacity);
+        hash = new Hash<>();
+        iterator = new TableIterator<>(table);
+
     }
 
     void put(K key, V value) {
@@ -37,19 +40,21 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
         }
         table[hashValue].add(el);
         size++;
+        modCount++;
     }
 
     void delete(K key, V value) {
         int hashValue = hash.hashFunction(key,capacity);
         Element<K, V> el = new Element<>(key, value);
         table[hashValue].remove(el);
+        modCount++;
     }
 
     //@Nullable
     V get(K key) {
         Element<K,V> el;
         int hashValue = hash.hashFunction(key,capacity);
-        if (table[hashValue].isEmpty()) {
+        if (table[hashValue].isEmpty() || table[hashValue] == null) {
             return null;
         } else {
             for (Element<K, V> kvElement : table[hashValue]) {
@@ -93,14 +98,47 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
                 }
             }
         }
+        modCount++;
     }
-    boolean equals() {
-        return false;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        HashTable<K, V> objTable = (HashTable<K, V>) obj;
+
+        if (this.size != objTable.size) {
+            return false;
+        }
+
+        for (LinkedList<Element<K, V>> list : this.table) {
+            if (list != null) {
+                for (Element<K, V> el : list) {
+                    if (objTable.get(el.returnKey()) == null || objTable.get(el.returnKey()) != el.returnValue()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (LinkedList<Element<K, V>> list : this.table) {
+            if (list != null) {
+                for (Element<K, V> el : list) {
+                    sb.append("key: ").append(el.returnKey()).append(" ")
+                            .append("value: ").append(el.returnValue()).append("\n");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     void reHash() {
@@ -124,18 +162,19 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
     @NotNull
     @Override
     public Iterator<Element<K, V>> iterator() {
-        return new TableIterator<>(table, capacity);
+        return new TableIterator<>(table);
     }
 
-
-    static class TableIterator<K, V> implements Iterator<Element<K, V>> {
+    class TableIterator<K, V> implements Iterator<Element<K, V>> {
+        private int prevModCount;
         private final LinkedList<Element<K, V>>[] table;
         private int currentIndex;
         private Iterator<Element<K, V>> listIterator;
 
-        public TableIterator(LinkedList<Element<K, V>>[] table, int capacity) {
+        public TableIterator(LinkedList<Element<K, V>>[] table) {
             this.table = table;
             this.currentIndex = -1;
+            this.prevModCount = modCount;
             advanceToNextNonEmptyList();
         }
 
@@ -146,6 +185,7 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
 
         @Override
         public Element<K, V> next() {
+            checkForConcurrentModification();
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -157,6 +197,7 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
         }
 
         private void advanceToNextNonEmptyList() {
+            checkForConcurrentModification();
             listIterator = null;
             currentIndex++;
             while (currentIndex < table.length) {
@@ -165,6 +206,12 @@ public class HashTable<K,V> implements Iterable<Element<K,V>>{
                     break;
                 }
                 currentIndex++;
+            }
+        }
+
+        private void checkForConcurrentModification() {
+            if (prevModCount != modCount) {
+                throw new ConcurrentModificationException();
             }
         }
     }
