@@ -1,4 +1,6 @@
-package ru.nsu.kolodina.HashTable;
+package ru.nsu.kolodina.hashTable;
+
+import static java.lang.Math.abs;
 
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
@@ -8,8 +10,6 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import static java.lang.Math.abs;
 
 /**
  * implementing hashtable.
