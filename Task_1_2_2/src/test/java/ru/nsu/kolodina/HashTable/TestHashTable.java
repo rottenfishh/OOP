@@ -1,25 +1,26 @@
-package ru.nsu.kolodina.hashtable;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package ru.nsu.kolodina.HashTable;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * class for tests.
  */
 public class TestHashTable {
     HashTable<String, String> table;
-
+    HashTable<Double, Integer> table2;
     @BeforeEach
     void setup() {
         table = new HashTable<>();
         table.createHashTable();
+        table2 = new HashTable<>();
+        table2.createHashTable();
     }
 
     @Test
@@ -48,15 +49,15 @@ public class TestHashTable {
 
     @Test
     void equalsTest() {
-        HashTable<String, String> table2 = new HashTable<>();
-        table2.createHashTable();
+        HashTable<String, String> tableTest = new HashTable<>();
+        tableTest.createHashTable();
         table.put("eight", "восемь");
         table.put("three", "три");
         table.put("nine", "девять");
-        table2.put("nine", "девять");
-        table2.put("three", "три");
-        table2.put("eight", "восемь");
-        assertEquals(table, table2);
+        tableTest.put("nine", "девять");
+        tableTest.put("three", "три");
+        tableTest.put("eight", "восемь");
+        assertEquals(table, tableTest);
     }
 
     @Test
@@ -86,5 +87,49 @@ public class TestHashTable {
                 + "key: three value: три\n"
                 + "key: nine value: девять\n";
         assertEquals(excepted, table.toString());
+    }
+
+    @Test
+    void collisionTest() {
+        table.put("Aa", "first");
+        table.put("BB", "second");
+        assertEquals("Aa".hashCode(), "BB".hashCode());
+        assertEquals("first", table.get("Aa"));
+        assertEquals("second", table.get("BB"));
+    }
+
+    @Test
+    void concurrentModificationTest() {
+        table.put("One", "один");
+        table.put("Two", "два");
+        table.put("Three", "три");
+        Iterator<Element<String, String>> iterator = table.iterator();
+        assertThrows(ConcurrentModificationException.class, () -> {
+            while (iterator.hasNext()) {
+                iterator.next();
+                table.put("THROW", "EXCEPTION");
+            }
+        });
+    }
+
+    @Test
+    void testSecondTable() {
+        table2.put(3.424, 3);
+        table2.put(2.651, 2);
+        assertEquals(3, table2.get(3.424));
+        assertEquals(2, table2.get(2.651));
+        table2.update(3.424, 4);
+        assertEquals(4, table2.get(3.424));
+        assertTrue(table2.containsValue(2.651));
+    }
+    @Test
+    void testEquals2() {
+        HashTable<Double, Integer> tableTest = new HashTable<>();
+        tableTest.createHashTable();
+        table2.put(2.333, 2);
+        table2.put(100.24, 100);
+        tableTest.put(2.333, 2);
+        tableTest.put(100.24, 100);
+        assertTrue(table2.equals(tableTest));
     }
 }

@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashtable;
+package ru.nsu.kolodina.HashTable;
 
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static java.lang.Math.abs;
+
 /**
  * implementing hashtable.
  *
@@ -16,10 +18,8 @@ import org.jetbrains.annotations.Nullable;
  * @param <V> type of value
  */
 public class HashTable<K, V> implements Iterable<Element<K, V>> {
-    private final double threshold = 0.75;
-    LinkedList<Element<K, V>>[] table;
-    Hash<K> hash;
-    TableIterator<K, V> iterator;
+    private static final double THRESHOLD = 0.75;
+    private LinkedList<Element<K, V>>[] table;
     private int size = 0;
     private int capacity = 128;
     private int modCount = 0;
@@ -29,11 +29,10 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
      */
     void createHashTable() {
         table = (LinkedList<Element<K, V>>[]) new LinkedList<?>[capacity];
-        hash = new Hash<>();
-        iterator = new TableIterator<>(table);
-
     }
-
+    public int hashFunction(K key, int size) {
+        return abs(key.hashCode()) % size;
+    }
     /**
      * putting element in hashtable.
      *
@@ -41,12 +40,12 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
      * @param value of element
      */
     void put(K key, V value) {
-        int hashValue = hash.hashFunction(key, capacity);
+        int hashValue = hashFunction(key, capacity);
         Element<K, V> el = new Element<>(key, value);
         if (table[hashValue] == null) {
             table[hashValue] = new LinkedList<>();
         }
-        if (size > capacity * threshold) {
+        if (size > capacity * THRESHOLD) {
             table = Arrays.copyOf(table, capacity * 2);
             capacity *= 2;
             reHash();
@@ -63,7 +62,7 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
      * @param value of element
      */
     void delete(K key, V value) {
-        int hashValue = hash.hashFunction(key, capacity);
+        int hashValue = hashFunction(key, capacity);
         Element<K, V> el = new Element<>(key, value);
         if (table[hashValue] == null || table[hashValue].isEmpty()) {
             return;
@@ -81,14 +80,14 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
     @Nullable
     V get(K key) {
         Element<K, V> el;
-        int hashValue = hash.hashFunction(key, capacity);
+        int hashValue = hashFunction(key, capacity);
         if (table[hashValue] == null || table[hashValue].isEmpty()) {
             return null;
         } else {
             for (Element<K, V> kvElement : table[hashValue]) {
                 el = kvElement;
-                if (el.returnKey().equals(key)) {
-                    return el.returnValue();
+                if (el.key().equals(key)) {
+                    return el.value();
                 }
             }
         }
@@ -103,13 +102,13 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
      */
     boolean containsValue(K key) {
         Element<K, V> el;
-        int hashValue = hash.hashFunction(key, capacity);
+        int hashValue = hashFunction(key, capacity);
         if (table[hashValue] == null || table[hashValue].isEmpty()) {
             return false;
         } else {
             for (Element<K, V> kvElement : table[hashValue]) {
                 el = kvElement;
-                if (el.returnKey().equals(key)) {
+                if (el.key().equals(key)) {
                     return true;
                 }
             }
@@ -126,13 +125,13 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
     void update(K key, V value) {
         Element<K, V> el;
         Element<K, V> newEl = new Element<>(key, value);
-        int hashValue = hash.hashFunction(key, capacity);
+        int hashValue = hashFunction(key, capacity);
         if (table[hashValue] == null || table[hashValue].isEmpty()) {
             return;
         } else {
             for (Element<K, V> kvElement : table[hashValue]) {
                 el = kvElement;
-                if (el.returnKey().equals(key)) {
+                if (el.key().equals(key)) {
                     table[hashValue].remove(el);
                     table[hashValue].add(newEl);
                     return;
@@ -159,8 +158,8 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
         for (LinkedList<Element<K, V>> list : this.table) {
             if (list != null) {
                 for (Element<K, V> el : list) {
-                    if (objTable.get(el.returnKey()) == null
-                            || objTable.get(el.returnKey()) != el.returnValue()) {
+                    if (objTable.get(el.key()) == null
+                            || objTable.get(el.key()) != el.value()) {
                         return false;
                     }
                 }
@@ -175,8 +174,8 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
         for (LinkedList<Element<K, V>> list : this.table) {
             if (list != null) {
                 for (Element<K, V> el : list) {
-                    sb.append("key: ").append(el.returnKey()).append(" ")
-                            .append("value: ").append(el.returnValue()).append("\n");
+                    sb.append("key: ").append(el.key()).append(" ")
+                            .append("value: ").append(el.value()).append("\n");
                 }
             }
         }
@@ -194,7 +193,7 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
                 ListIterator<Element<K, V>> listIter = table[i].listIterator(0);
                 while (listIter.hasNext()) {
                     el = listIter.next();
-                    hashValue = hash.hashFunction(el.returnKey(), capacity);
+                    hashValue = hashFunction(el.key(), capacity);
                     if (hashValue != i) {
                         table[i].remove(el);
                         table[hashValue].add(el);
@@ -207,17 +206,15 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
     @NotNull
     @Override
     public Iterator<Element<K, V>> iterator() {
-        return new TableIterator<>(table);
+        return new TableIterator();
     }
 
-    class TableIterator<K, V> implements Iterator<Element<K, V>> {
-        private final LinkedList<Element<K, V>>[] table;
+    class TableIterator implements Iterator<Element<K, V>> {
         private final int prevModCount;
         private int currentIndex;
         private Iterator<Element<K, V>> listIterator;
 
-        public TableIterator(LinkedList<Element<K, V>>[] table) {
-            this.table = table;
+        public TableIterator() {
             this.currentIndex = -1;
             this.prevModCount = modCount;
             advanceToNextNonEmptyList();
