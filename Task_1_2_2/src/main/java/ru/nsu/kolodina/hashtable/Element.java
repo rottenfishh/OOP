@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashTable;
+package ru.nsu.kolodina.hashtable;
 
 /**
  * record for element of hashtable.

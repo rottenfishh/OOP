@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashTable;
+package ru.nsu.kolodina.hashtable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 public class TestHashTable {
     HashTable<String, String> table;
     HashTable<Double, Integer> table2;
+
     @BeforeEach
     void setup() {
         table = new HashTable<>();
@@ -125,6 +126,7 @@ public class TestHashTable {
         assertEquals(4, table2.get(3.424));
         assertTrue(table2.containsValue(2.651));
     }
+
     @Test
     void testEquals2() {
         HashTable<Double, Integer> tableTest = new HashTable<>();
