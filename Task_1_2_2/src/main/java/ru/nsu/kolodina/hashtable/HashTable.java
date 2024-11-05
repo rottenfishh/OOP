@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.hashTable;
+package ru.nsu.kolodina.hashtable;
 
 import static java.lang.Math.abs;
 
@@ -30,9 +30,18 @@ public class HashTable<K, V> implements Iterable<Element<K, V>> {
     void createHashTable() {
         table = (LinkedList<Element<K, V>>[]) new LinkedList<?>[capacity];
     }
+
+    /**
+     * function for producing hash.
+     *
+     * @param key of table entry
+     * @param size of hashtable
+     * @return hash
+     */
     public int hashFunction(K key, int size) {
         return abs(key.hashCode()) % size;
     }
+    
     /**
      * putting element in hashtable.
      *
