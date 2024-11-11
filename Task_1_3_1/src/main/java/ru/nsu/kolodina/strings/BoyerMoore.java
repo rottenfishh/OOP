@@ -1,5 +1,9 @@
 package ru.nsu.kolodina.strings;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,10 +108,40 @@ public class BoyerMoore {
         }
         return result;
     }
+
+    public static List<Integer> findInFile(String filePath, String pattern) {
+        List<Integer> res = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        int batchSize = 1024;
+        int maxSize = 50000;
+        int patternLen = pattern.length();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            char[] buffer = new char[batchSize];
+            int allCharsRead = 0;
+            int charsRead;
+            while ((charsRead = reader.read(buffer, 0, batchSize)) != -1) {
+                String batch = new String(buffer, 0, charsRead);
+                allCharsRead += charsRead;
+                sb.append(batch);
+                if (allCharsRead > maxSize) {
+                    String txt = sb.toString();
+                    res.addAll(search(txt, pattern));
+                    allCharsRead = 0;
+                    sb.delete(0, sb.length() - patternLen);
+                }
+            }
+
+            if (!sb.isEmpty()) {
+                String txt = sb.toString();
+                res.addAll(search(txt, pattern));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
     public static void main(String[] args) {
-        String txt = "abrakadabra";
-        String pattern = "bra";
-        List<Integer> res = search(txt, pattern);
+        List<Integer> res = findInFile("file4.txt", "pe");
         System.out.println(res);
     }
 }
