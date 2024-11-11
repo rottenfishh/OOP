@@ -145,3 +145,4 @@ public class BoyerMoore {
         System.out.println(res);
     }
 }
+
