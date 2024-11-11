@@ -23,7 +23,7 @@ public class BoyerMoore {
         return charMap;
     }
 
-    public static List<Integer> findSubstringBad(String string, String pattern) {
+    public List<Integer> findSubstringBad(String string, String pattern) {
         List<Integer> result = new ArrayList<>();
         HashMap<Character, Integer> charMap = badCharacterHeuristic(pattern);
         int stringLen = string.length();
@@ -44,7 +44,7 @@ public class BoyerMoore {
         }
         return result;
     }
-    public static int[] goodSuffixHeuristic(String pattern) {
+    public int[] goodSuffixHeuristic(String pattern) {
         int[] shifts = new int[pattern.length() + 1];
         int[] borderPositions = new int[pattern.length() + 1];
 
@@ -54,7 +54,7 @@ public class BoyerMoore {
         return shifts;
     }
 
-    private static void findShiftsAndBorders(int[] shifts, int[] borderPositions, String pattern) {
+    private  void findShiftsAndBorders(int[] shifts, int[] borderPositions, String pattern) {
         int i = pattern.length();
         int j = pattern.length() + 1;
 
@@ -73,7 +73,7 @@ public class BoyerMoore {
         }
     }
 
-    private static void setShiftsForPrefix(int[] shifts, int[] borderPositions, String pattern) {
+    private void setShiftsForPrefix(int[] shifts, int[] borderPositions, String pattern) {
         int prefixBorder = borderPositions[0];
 
         for (int i = 0; i <= pattern.length(); i++) {
@@ -85,7 +85,7 @@ public class BoyerMoore {
             }
         }
     }
-    public static List<Integer> search(String string, String pattern) {
+    public List<Integer> search(String string, String pattern) {
         List<Integer> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
         HashMap<Character, Integer> badCharMap = badCharacterHeuristic(pattern);
@@ -109,7 +109,7 @@ public class BoyerMoore {
         return result;
     }
 
-    public static List<Integer> findInFile(String filePath, String pattern) {
+    public List<Integer> findInFile(String filePath, String pattern) {
         List<Integer> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int batchSize = 1024;
@@ -139,9 +139,5 @@ public class BoyerMoore {
             e.printStackTrace();
         }
         return res;
-    }
-    public static void main(String[] args) {
-        List<Integer> res = findInFile("file4.txt", "pe");
-        System.out.println(res);
     }
 }
