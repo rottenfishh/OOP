@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,7 +87,7 @@ public class BoyerMoore {
             }
         }
     }
-    public List<Integer> search(String string, String pattern) {
+    public List<Integer> search(String string, String pattern, int index) {
         List<Integer> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
         HashMap<Character, Integer> badCharMap = badCharacterHeuristic(pattern);
@@ -98,7 +100,7 @@ public class BoyerMoore {
                 j--;
             }
             if (j < 0) { // the whole pattern matched. move past it
-                result.add(i);
+                result.add(i + index);
                 i += shiftsGoodSuffix[0];
             } else {
                 int badCharShift = j - badCharMap.getOrDefault(string.charAt(i + j), -1);
@@ -112,28 +114,37 @@ public class BoyerMoore {
     public List<Integer> findInFile(String filePath, String pattern) {
         List<Integer> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        int batchSize = 1024;
+        int batchSize = 50000;
         int maxSize = 50000;
         int patternLen = pattern.length();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        java.nio.charset.Charset charset = StandardCharsets.UTF_8;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath, charset))) {
             char[] buffer = new char[batchSize];
             int allCharsRead = 0;
             int charsRead;
+            int numBatch = 0;
+            int index = 0;
             while ((charsRead = reader.read(buffer, 0, batchSize)) != -1) {
                 String batch = new String(buffer, 0, charsRead);
                 allCharsRead += charsRead;
                 sb.append(batch);
-                if (allCharsRead > maxSize) {
+                if (sb.length() > maxSize) {
                     String txt = sb.toString();
-                    res.addAll(search(txt, pattern));
-                    allCharsRead = 0;
-                    sb.delete(0, sb.length() - patternLen);
+                    if (numBatch > 0) {
+                        index = (numBatch + 1) * maxSize - patternLen;
+                    } else {
+                        index = 0;
+                    }
+                    numBatch++;
+                    res.addAll(search(txt, pattern, index));
+                    int start = Math.max(0, sb.length() - (patternLen));
+                    sb.delete(0, start);
                 }
             }
 
             if (!sb.isEmpty()) {
                 String txt = sb.toString();
-                res.addAll(search(txt, pattern));
+                res.addAll(search(txt, pattern, index));
             }
         } catch (IOException e) {
             e.printStackTrace();
