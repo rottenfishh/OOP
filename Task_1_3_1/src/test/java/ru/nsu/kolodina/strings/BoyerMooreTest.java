@@ -1,21 +1,19 @@
 package ru.nsu.kolodina.strings;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
-import static java.nio.file.Files.delete;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BoyerMooreTest {
     BoyerMoore boyerMoore;
+
     @BeforeEach
     void setUp() {
         boyerMoore = new BoyerMoore();
@@ -35,6 +33,7 @@ public class BoyerMooreTest {
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
+
     @Test
     public void testBig() throws IOException {
         File newFile = new File("file2.txt");
@@ -74,6 +73,7 @@ public class BoyerMooreTest {
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
+
     @Test
     void testReallyyBig() throws IOException {
         int maxSize = 100000;

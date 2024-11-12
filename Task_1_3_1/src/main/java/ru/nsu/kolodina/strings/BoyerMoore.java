@@ -1,16 +1,12 @@
 package ru.nsu.kolodina.strings;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.lang.Math.max;
 
 public class BoyerMoore {
     public static HashMap<Character, Integer> badCharacterHeuristic(String pattern) {
@@ -35,7 +31,7 @@ public class BoyerMoore {
         return shifts;
     }
 
-    private  void findShiftsAndBorders(int[] shifts, int[] borderPositions, String pattern) {
+    private void findShiftsAndBorders(int[] shifts, int[] borderPositions, String pattern) {
         int i = pattern.length();
         int j = pattern.length() + 1;
 
@@ -66,6 +62,7 @@ public class BoyerMoore {
             }
         }
     }
+
     public List<Integer> search(String string, String pattern, int index) {
         List<Integer> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
@@ -75,7 +72,7 @@ public class BoyerMoore {
         int i = 0; // pointer of text
         while (i <= stringLength - patternLength) {
             int j = patternLength - 1; // pointer of pattern. move from the right.
-            while  (j >= 0 && pattern.charAt(j) == string.charAt(i + j)) {
+            while (j >= 0 && pattern.charAt(j) == string.charAt(i + j)) {
                 j--;
             }
             if (j < 0) { // the whole pattern matched. move past it
