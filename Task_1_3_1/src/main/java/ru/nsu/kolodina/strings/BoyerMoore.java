@@ -25,27 +25,6 @@ public class BoyerMoore {
         return charMap;
     }
 
-    public List<Integer> findSubstringBad(String string, String pattern) {
-        List<Integer> result = new ArrayList<>();
-        HashMap<Character, Integer> charMap = badCharacterHeuristic(pattern);
-        int stringLen = string.length();
-        int patternLen = pattern.length();
-        int shift = 0; // shift of string
-        while (shift <= (stringLen - patternLen)) {
-            int j = patternLen - 1;
-            while (j >= 0 && pattern.charAt(j) == string.charAt(shift + j)) {
-                j--;
-            }
-            if (j < 0) { // if we found pattern j will be -1
-                result.add(shift);
-                shift += ((shift + patternLen) < stringLen) ? patternLen - charMap.getOrDefault(string.charAt(shift + patternLen), -1) : 1;
-            } else { // else skip over pattern
-                int idx = charMap.getOrDefault(string.charAt(shift + j), -1);
-                shift += max(1, j - idx);
-            }
-        }
-        return result;
-    }
     public int[] goodSuffixHeuristic(String pattern) {
         int[] shifts = new int[pattern.length() + 1];
         int[] borderPositions = new int[pattern.length() + 1];
