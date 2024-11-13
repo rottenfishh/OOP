@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,10 +24,11 @@ public class BoyerMooreTest {
     public void testSmall() throws IOException {
         File newFile = new File("file1.txt");
         FileWriter fileWriter = new FileWriter(newFile);
-        fileWriter.write("abrakadabra");
+        fileWriter.write("абракадабра");
         fileWriter.close();
-        String pattern = "bra";
+        String pattern = new String("бра".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         List<Integer> resultBoyerMoore = boyerMoore.findInFile("file1.txt", pattern);
+        System.out.println(pattern);
         List<Integer> excepted = new ArrayList<>();
         excepted.add(1);
         excepted.add(8);

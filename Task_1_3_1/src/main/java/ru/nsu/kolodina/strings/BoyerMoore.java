@@ -1,8 +1,6 @@
 package ru.nsu.kolodina.strings;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +9,7 @@ import java.util.List;
 public class BoyerMoore {
     public static HashMap<Character, Integer> badCharacterHeuristic(String pattern) {
         HashMap<Character, Integer> charMap = new HashMap<>();
-        for (int i = 0; i < pattern.codePointCount(0, pattern.length()); i++) {
+        for (int i = 0; i < pattern.length(); i++) {
             if (!charMap.containsKey(pattern.charAt(i))) {
                 charMap.put(pattern.charAt(i), i);
             } else {
@@ -87,21 +85,22 @@ public class BoyerMoore {
         return result;
     }
 
-    public List<Integer> findInFile(String filePath, String pattern) {
+    public List<Integer> findInFile(String filePath, String pat) {
         List<Integer> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int batchSize = 50000;
         int maxSize = 50000;
+        String pattern = new String("бра".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         int patternLen = pattern.length();
         java.nio.charset.Charset charset = StandardCharsets.UTF_8;
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath, charset))) {
-            char[] buffer = new char[batchSize];
+        try (FileInputStream reader = new FileInputStream(filePath)) {
+            byte[] buffer = new byte[batchSize];
             int allCharsRead = 0;
             int charsRead;
             int numBatch = 0;
             int index = 0;
-            while ((charsRead = reader.read(buffer, 0, batchSize)) != -1) {
-                String batch = new String(buffer, 0, charsRead);
+            while ((charsRead = reader.read(buffer)) != -1) {
+                String batch = new String(buffer, 0, charsRead, charset);
                 allCharsRead += charsRead;
                 sb.append(batch);
                 if (sb.length() > maxSize) {
