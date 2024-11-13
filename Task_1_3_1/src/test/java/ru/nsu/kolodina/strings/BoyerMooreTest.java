@@ -26,9 +26,7 @@ public class BoyerMooreTest {
         FileWriter fileWriter = new FileWriter(newFile);
         fileWriter.write("абракадабра");
         fileWriter.close();
-        String pattern = new String("бра".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file1.txt", pattern);
-        System.out.println(pattern);
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file1.txt", "бра");
         List<Integer> excepted = new ArrayList<>();
         excepted.add(1);
         excepted.add(8);
@@ -99,6 +97,35 @@ public class BoyerMooreTest {
         fileWriter.close();
 
         String pattern = "hello";
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file4.txt", pattern);
+        List<Integer> excepted = new ArrayList<>();
+        excepted.add(1000000000);
+        assertEquals(excepted, resultBoyerMoore);
+        newFile.delete();
+    }
+    @Test
+    void testReallyyBigRussian() throws IOException {
+        int maxSize = 100000;
+        File newFile = new File("file4.txt");
+        FileWriter fileWriter = new FileWriter(newFile);
+
+        char[] chunk = new char[maxSize];
+        Arrays.fill(chunk, "й".charAt(0));
+
+        for (int i = 0; i < 10000; i++) {
+            fileWriter.write(chunk);
+        }
+
+        fileWriter.write("прив");
+
+        Arrays.fill(chunk, "л".charAt(0));
+        for (int i = 0; i < 10000; i++) {
+            fileWriter.write(chunk);
+        }
+
+        fileWriter.close();
+
+        String pattern = "прив";
         List<Integer> resultBoyerMoore = boyerMoore.findInFile("file4.txt", pattern);
         List<Integer> excepted = new ArrayList<>();
         excepted.add(1000000000);

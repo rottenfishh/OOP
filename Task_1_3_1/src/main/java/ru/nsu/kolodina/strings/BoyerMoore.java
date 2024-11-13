@@ -1,6 +1,7 @@
 package ru.nsu.kolodina.strings;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,9 +91,10 @@ public class BoyerMoore {
         StringBuilder sb = new StringBuilder();
         int batchSize = 50000;
         int maxSize = 50000;
-        String pattern = new String("бра".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+        String pattern = new String(pat.getBytes(), StandardCharsets.UTF_8);
         int patternLen = pattern.length();
         java.nio.charset.Charset charset = StandardCharsets.UTF_8;
+        java.nio.charset.Charset charset2 = Charset.defaultCharset();
         try (FileInputStream reader = new FileInputStream(filePath)) {
             byte[] buffer = new byte[batchSize];
             int allCharsRead = 0;
