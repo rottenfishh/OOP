@@ -21,8 +21,9 @@ public class BoyerMooreTest {
     @Test
     public void testSmall() throws IOException {
         File newFile = new File("file1.txt");
-        FileWriter fileWriter = new FileWriter(newFile);
-        fileWriter.write("абракадабра");
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        String string = new String("абракадабра".getBytes(), StandardCharsets.UTF_8);
+        fileWriter.write(string);
         fileWriter.close();
         List<Integer> resultBoyerMoore = boyerMoore.findInFile("file1.txt", "бра");
         List<Integer> excepted = new ArrayList<>();
@@ -35,7 +36,7 @@ public class BoyerMooreTest {
     @Test
     public void testBig() throws IOException {
         File newFile = new File("file2.txt");
-        FileWriter fileWriter = new FileWriter(newFile);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
         char[] chunk = new char[20000];
         Arrays.fill(chunk, 'a');
         fileWriter.write(chunk);
@@ -55,7 +56,7 @@ public class BoyerMooreTest {
     void testReallyBig() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file3.txt");
-        FileWriter fileWriter = new FileWriter(newFile);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
 
         char[] chunk = new char[maxSize];
         Arrays.fill(chunk, 'h');
@@ -76,7 +77,7 @@ public class BoyerMooreTest {
     void testReallyyBig() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file4.txt");
-        FileWriter fileWriter = new FileWriter(newFile);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
 
         char[] chunk = new char[maxSize];
         Arrays.fill(chunk, 'h');
@@ -107,17 +108,17 @@ public class BoyerMooreTest {
         File newFile = new File("file5.txt");
         OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
         char[] chunk = new char[maxSize];
-        Arrays.fill(chunk, "й".charAt(0));
+        String string = new String("й".getBytes(), StandardCharsets.UTF_8);
 
         for (int i = 0; i < 10000; i++) {
-            fileWriter.write(chunk);
+            fileWriter.write(string);
         }
+        string = new String("прив".getBytes(), StandardCharsets.UTF_8);
+        fileWriter.write(string);
 
-        fileWriter.write("прив");
-
-        Arrays.fill(chunk, "л".charAt(0));
+        string = new String("л".getBytes(), StandardCharsets.UTF_8);
         for (int i = 0; i < 10000; i++) {
-            fileWriter.write(chunk);
+            fileWriter.write(string);
         }
         fileWriter.flush();
         fileWriter.close();
@@ -125,7 +126,7 @@ public class BoyerMooreTest {
         String pattern = "прив";
         List<Integer> resultBoyerMoore = boyerMoore.findInFile("file5.txt", pattern);
         List<Integer> excepted = new ArrayList<>();
-        excepted.add(100000000);
+        excepted.add(10000);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }

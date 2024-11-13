@@ -95,16 +95,17 @@ public class BoyerMoore {
         int patternLen = pattern.length();
         java.nio.charset.Charset charset = StandardCharsets.UTF_8;
         java.nio.charset.Charset charset2 = Charset.defaultCharset();
-        try (FileInputStream reader = new FileInputStream(filePath)) {
-            byte[] buffer = new byte[batchSize];
+        try (FileInputStream stream = new FileInputStream(filePath)) {
+            InputStreamReader reader0 = new InputStreamReader(stream, StandardCharsets.UTF_8);
+            BufferedReader reader = new BufferedReader(reader0);
+            char[] buffer = new char[batchSize];
             int allCharsRead = 0;
             int charsRead;
             int numBatch = 0;
             int index = 0;
             while ((charsRead = reader.read(buffer)) != -1) {
-                String batch = new String(buffer, 0, charsRead, charset);
                 allCharsRead += charsRead;
-                sb.append(batch);
+                sb.append(buffer, 0, charsRead);
                 if (sb.length() > maxSize) {
                     String txt = sb.toString();
                     if (numBatch > 0) {
