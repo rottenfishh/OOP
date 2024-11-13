@@ -18,7 +18,7 @@ public class BoyerMooreTest {
         boyerMoore = new BoyerMoore();
     }
 
-    /*@Test
+    @Test
     public void testSmall() throws IOException {
         File newFile = new File("file1.txt");
         FileWriter fileWriter = new FileWriter(newFile);
@@ -100,11 +100,11 @@ public class BoyerMooreTest {
         excepted.add(1000000000);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
-    }*/
+    }
     @Test
     void testReallyyBigRussian() throws IOException {
         int maxSize = 10000;
-        File newFile = new File("file4.txt");
+        File newFile = new File("file5.txt");
         OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
         char[] chunk = new char[maxSize];
         Arrays.fill(chunk, "й".charAt(0));
@@ -123,7 +123,7 @@ public class BoyerMooreTest {
         fileWriter.close();
 
         String pattern = "прив";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file4.txt", pattern);
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file5.txt", pattern);
         List<Integer> excepted = new ArrayList<>();
         excepted.add(100000000);
         assertEquals(excepted, resultBoyerMoore);
