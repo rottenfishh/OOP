@@ -1,15 +1,20 @@
 package ru.nsu.kolodina.strings;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+=======
+import java.io.*;
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+<<<<<<< HEAD
 /**
  * implementation of Boyer-Moore algorithm using badCharacterHeuristic and goodSuffixHeuristic.
  */
@@ -22,6 +27,9 @@ public class BoyerMoore {
      * @param pattern we want to match
      * @return hashMap that maps letters to their indexes
      */
+=======
+public class BoyerMoore {
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     public static HashMap<Character, Integer> badCharacterHeuristic(String pattern) {
         HashMap<Character, Integer> charMap = new HashMap<>();
         for (int i = 0; i < pattern.length(); i++) {
@@ -34,6 +42,7 @@ public class BoyerMoore {
         return charMap;
     }
 
+<<<<<<< HEAD
     /**
      * good suffix heuristic.
      * matching shifts for prefixes and suffixes
@@ -41,6 +50,8 @@ public class BoyerMoore {
      * @param pattern we want to match
      * @return int array of shifts
      */
+=======
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     public int[] goodSuffixHeuristic(String pattern) {
         int[] shifts = new int[pattern.length() + 1];
         int[] borderPositions = new int[pattern.length() + 1];
@@ -51,6 +62,7 @@ public class BoyerMoore {
         return shifts;
     }
 
+<<<<<<< HEAD
     /**
      * find shifts and borderPositions of pattern for good character heuristic.
      *
@@ -58,6 +70,8 @@ public class BoyerMoore {
      * @param borderPositions int arr
      * @param pattern         we want to match
      */
+=======
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     private void findShiftsAndBorders(int[] shifts, int[] borderPositions, String pattern) {
         int i = pattern.length();
         int j = pattern.length() + 1;
@@ -77,6 +91,7 @@ public class BoyerMoore {
         }
     }
 
+<<<<<<< HEAD
     /**
      * setting shift for prefix.
      *
@@ -84,6 +99,8 @@ public class BoyerMoore {
      * @param borderPositions int arr
      * @param pattern         string we want to match
      */
+=======
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     private void setShiftsForPrefix(int[] shifts, int[] borderPositions, String pattern) {
         int prefixBorder = borderPositions[0];
 
@@ -97,6 +114,7 @@ public class BoyerMoore {
         }
     }
 
+<<<<<<< HEAD
     /**
      * find all entries of pattern in string.
      * each time we choose the max shift returned by badCharacter and good Suffix heuristic
@@ -106,6 +124,8 @@ public class BoyerMoore {
      * @param index   the offset of file we are reading
      * @return list of indexes of all entries of pattern
      */
+=======
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     public List<Integer> search(String string, String pattern, int index) {
         List<Integer> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
@@ -130,6 +150,7 @@ public class BoyerMoore {
         return result;
     }
 
+<<<<<<< HEAD
     /**
      * read file and find pattern in its text.
      *
@@ -137,6 +158,8 @@ public class BoyerMoore {
      * @param pat      pattern to find
      * @return list of indexes of all entries of pattern
      */
+=======
+>>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     public List<Integer> findInFile(String filePath, String pat) {
         List<Integer> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
