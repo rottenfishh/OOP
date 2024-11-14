@@ -1,34 +1,21 @@
 package ru.nsu.kolodina.strings;
 
-<<<<<<< HEAD
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-=======
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.*;
->>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-<<<<<<< HEAD
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * testing algorithm.
  */
-=======
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
->>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
 public class BoyerMooreTest {
     BoyerMoore boyerMoore;
 
@@ -121,16 +108,12 @@ public class BoyerMooreTest {
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     @Test
     void testReallyyBigRussian() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file5.txt");
         OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
-        char[] chunk = new char[maxSize];
         String s = new String("й".getBytes(), StandardCharsets.UTF_8);
         String string = new String(new char[maxSize]).replace("\0", s);
         for (int i = 0; i < 10000; i++) {
@@ -142,7 +125,7 @@ public class BoyerMooreTest {
         String s2 = new String("л".getBytes(), StandardCharsets.UTF_8);
         String string2 = new String(new char[maxSize]).replace("\0", s2);
         for (int i = 0; i < 10000; i++) {
-            fileWriter.write(string);
+            fileWriter.write(string2);
         }
         fileWriter.flush();
         fileWriter.close();
@@ -162,10 +145,7 @@ public class BoyerMooreTest {
         int excepted = 151;
         assertEquals(excepted, resultBoyerMoore.size());
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> efba6b9458319ba35da77860d01ce5ec806f392c
     @Test
     void testRussianBook() {
         String pattern = "князь";
