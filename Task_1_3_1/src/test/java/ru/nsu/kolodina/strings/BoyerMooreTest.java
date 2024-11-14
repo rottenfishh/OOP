@@ -104,20 +104,21 @@ public class BoyerMooreTest {
     }
     @Test
     void testReallyyBigRussian() throws IOException {
-        int maxSize = 10000;
+        int maxSize = 100000;
         File newFile = new File("file5.txt");
         OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
         char[] chunk = new char[maxSize];
-        String string = new String("й".getBytes(), StandardCharsets.UTF_8);
-
-        for (int i = 0; i < 1000000000; i++) {
+        String s = new String("й".getBytes(), StandardCharsets.UTF_8);
+        String string = new String(new char[maxSize]).replace("\0", s);
+        for (int i = 0; i < 10000; i++) {
             fileWriter.write(string);
         }
-        string = new String("прив".getBytes(), StandardCharsets.UTF_8);
-        fileWriter.write(string);
+        String find = new String("прив".getBytes(), StandardCharsets.UTF_8);
+        fileWriter.write(find);
 
-        string = new String("л".getBytes(), StandardCharsets.UTF_8);
-        for (int i = 0; i < 1000000000; i++) {
+        String s2 = new String("л".getBytes(), StandardCharsets.UTF_8);
+        String string2 = new String(new char[maxSize]).replace("\0", s2);
+        for (int i = 0; i < 10000; i++) {
             fileWriter.write(string);
         }
         fileWriter.flush();
@@ -129,5 +130,20 @@ public class BoyerMooreTest {
         excepted.add(1000000000);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
+    }
+
+    @Test
+    void testBook() {
+        String pattern = "Romeo";
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("romeoAndJuliet.txt", pattern);
+        int excepted = 151;
+        assertEquals(excepted, resultBoyerMoore.size());
+    }
+    @Test
+    void testRussianBook() {
+        String pattern = "князь";
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("tolstoy.txt", pattern);
+        int excepted = 275;
+        assertEquals(excepted, resultBoyerMoore.size());
     }
 }
