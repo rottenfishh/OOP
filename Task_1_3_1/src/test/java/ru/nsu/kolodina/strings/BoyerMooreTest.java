@@ -2,8 +2,6 @@ package ru.nsu.kolodina.strings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,7 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 /**
  * testing algorithm.
  */
@@ -27,7 +26,8 @@ public class BoyerMooreTest {
     @Test
     public void testSmall() throws IOException {
         File newFile = new File("file1.txt");
-        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile)
+                , StandardCharsets.UTF_8);
         String string = new String("абракадабра".getBytes(), StandardCharsets.UTF_8);
         fileWriter.write(string);
         fileWriter.close();
@@ -42,7 +42,8 @@ public class BoyerMooreTest {
     @Test
     public void testBig() throws IOException {
         File newFile = new File("file2.txt");
-        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile)
+                , StandardCharsets.UTF_8);
         char[] chunk = new char[20000];
         Arrays.fill(chunk, 'a');
         fileWriter.write(chunk);
@@ -62,7 +63,8 @@ public class BoyerMooreTest {
     void testReallyBig() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file3.txt");
-        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile)
+                , StandardCharsets.UTF_8);
 
         char[] chunk = new char[maxSize];
         Arrays.fill(chunk, 'h');
@@ -83,7 +85,8 @@ public class BoyerMooreTest {
     void testReallyyBig() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file4.txt");
-        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile)
+                , StandardCharsets.UTF_8);
 
         char[] chunk = new char[maxSize];
         Arrays.fill(chunk, 'h');
@@ -113,7 +116,8 @@ public class BoyerMooreTest {
     void testReallyyBigRussian() throws IOException {
         int maxSize = 100000;
         File newFile = new File("file5.txt");
-        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile), StandardCharsets.UTF_8);
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile)
+                , StandardCharsets.UTF_8);
         String s = new String("й".getBytes(), StandardCharsets.UTF_8);
         String string = new String(new char[maxSize]).replace("\0", s);
         for (int i = 0; i < 10000; i++) {
