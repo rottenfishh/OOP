@@ -170,11 +170,11 @@ public class BoyerMooreTest {
         fileWriter.flush();
         fileWriter.close();
         String pattern = "在光下";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("fileChinese.txt", pattern);
         List<Integer> excepted = new ArrayList<>();
         excepted.add(0);
         excepted.add(10);
         excepted.add(18);
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("fileChinese.txt", pattern);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
