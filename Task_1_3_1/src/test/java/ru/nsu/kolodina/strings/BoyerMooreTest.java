@@ -2,7 +2,10 @@ package ru.nsu.kolodina.strings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -174,5 +177,13 @@ public class BoyerMooreTest {
         excepted.add(18);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
+    }
+
+    @Test
+    void testChineseBook() {
+        String pattern = "啊";
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("chineseWarAndPeace.txt", pattern);
+        int excepted = 555;
+        assertEquals(excepted, resultBoyerMoore.size());
     }
 }

@@ -176,3 +176,4 @@ public class BoyerMoore {
         return res;
     }
 }
+
