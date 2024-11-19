@@ -1,9 +1,6 @@
 package ru.nsu.kolodina.strings;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,15 +133,20 @@ public class BoyerMoore {
      * @param pat      pattern to find
      * @return list of indexes of all entries of pattern
      */
-    public List<Integer> findInFile(String filePath, String pat) {
+    public List<Integer> findInFile(String filePath, String pat, boolean isResource) {
         List<Integer> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int batchSize = 50000;
         int maxSize = 50000;
         String pattern = new String(pat.getBytes(), StandardCharsets.UTF_8);
         int patternLen = pattern.length();
-        try (FileInputStream stream = new FileInputStream(filePath)) {
-            InputStreamReader reader0 = new InputStreamReader(stream, StandardCharsets.UTF_8);
+        try (InputStream inputStream = isResource
+                ? getClass().getClassLoader().getResourceAsStream(filePath)
+                : new FileInputStream(filePath)) {
+            if (inputStream == null) {
+                throw new IOException("File not found: " + filePath);
+            }
+            InputStreamReader reader0 = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader reader = new BufferedReader(reader0);
             char[] buffer = new char[batchSize];
             int charsRead;
