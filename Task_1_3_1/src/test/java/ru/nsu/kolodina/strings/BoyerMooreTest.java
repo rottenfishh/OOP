@@ -26,8 +26,8 @@ public class BoyerMooreTest {
     @Test
     public void testSmall() throws IOException {
         String string = new String("абракадабра".getBytes(), StandardCharsets.UTF_8);
-        List<Integer> resultBoyerMoore = boyerMoore.search(string, "бра", 0);
-        List<Integer> excepted = List.of(1, 8);
+        List<Long> resultBoyerMoore = boyerMoore.search(string, "бра", 0);
+        List<Long> excepted = List.of(1L, 8L);
         assertEquals(excepted, resultBoyerMoore);
     }
 
@@ -44,8 +44,8 @@ public class BoyerMooreTest {
         fileWriter.write(chunk);
         fileWriter.close();
         String pattern = "hello";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file2.txt", pattern, false);
-        List<Integer> excepted = List.of(20000);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file2.txt", pattern, false);
+        List<Long> excepted = List.of(20000L);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
@@ -65,8 +65,8 @@ public class BoyerMooreTest {
         fileWriter.write(chunk);
         fileWriter.close();
         String pattern = "hello";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file3.txt", pattern, false);
-        List<Integer> excepted = List.of(100000);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file3.txt", pattern, false);
+        List<Long> excepted = List.of(100000L);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
@@ -95,8 +95,8 @@ public class BoyerMooreTest {
         fileWriter.close();
 
         String pattern = "hello";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file4.txt", pattern, false);
-        List<Integer> excepted = List.of(1000000000);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file4.txt", pattern, false);
+        List<Long> excepted = List.of(1000000000L);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
@@ -123,8 +123,8 @@ public class BoyerMooreTest {
         fileWriter.close();
 
         String pattern = "прив";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file5.txt", pattern, false);
-        List<Integer> excepted = List.of(1000000000);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file5.txt", pattern, false);
+        List<Long> excepted = List.of(1000000000L);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }
@@ -132,7 +132,7 @@ public class BoyerMooreTest {
     @Test
     void testBook() {
         String pattern = "Romeo";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("romeoAndJuliet.txt", pattern, true);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("romeoAndJuliet.txt", pattern, true);
         int excepted = 151;
         assertEquals(excepted, resultBoyerMoore.size());
     }
@@ -140,7 +140,7 @@ public class BoyerMooreTest {
     @Test
     void testRussianBook() {
         String pattern = "князь";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("warAndPeace.txt", pattern, true);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("warAndPeace.txt", pattern, true);
         int excepted = 976;
         assertEquals(excepted, resultBoyerMoore.size());
     }
@@ -150,15 +150,15 @@ public class BoyerMooreTest {
         String ch = "在光下，我们一同前行在光下，未来无限在光下，不惧风雨";
         String txt = new String(ch.getBytes(), StandardCharsets.UTF_8);
         String pattern = "在光下";
-        List<Integer> excepted = List.of(0, 10, 18);
-        List<Integer> resultBoyerMoore = boyerMoore.search(txt, pattern, 0);
+        List<Long> excepted = List.of(0L, 10L, 18L);
+        List<Long> resultBoyerMoore = boyerMoore.search(txt, pattern, 0);
         assertEquals(excepted, resultBoyerMoore);
     }
 
     @Test
     void testChineseBook() {
         String pattern = "啊";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("chineseWarAndPeace.txt",
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("chineseWarAndPeace.txt",
                 pattern, true);
         int excepted = 555;
         assertEquals(excepted, resultBoyerMoore.size());
@@ -168,9 +168,9 @@ public class BoyerMooreTest {
     void testMixed() {
         String txt = new String("абраkadaбра".getBytes(), StandardCharsets.UTF_8);
         String pattern = "бра";
-        List<Integer> resultBoyerMoore = boyerMoore.search(txt,
+        List<Long> resultBoyerMoore = boyerMoore.search(txt,
                 pattern, 0);
-        List<Integer> excepted = List.of(1, 8);
+        List<Long> excepted = List.of(1L, 8L);
         assertEquals(excepted, resultBoyerMoore);
     }
 
@@ -192,8 +192,32 @@ public class BoyerMooreTest {
         fileWriter.close();
 
         String pattern = "hello";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file6.txt", pattern, false);
-        List<Integer> excepted = List.of(50000 - 2);
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file6.txt", pattern, false);
+        List<Long> excepted = List.of(50000L - 2L);
+        assertEquals(excepted, resultBoyerMoore);
+        newFile.delete();
+    }
+
+    @Test
+    void testGiganticFile() throws IOException {
+        int maxSize = 20000000;
+        File newFile = new File("file7.txt");
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile),
+                StandardCharsets.UTF_8);
+        char[] chunk = new char[maxSize];
+        Arrays.fill(chunk, 'a');
+        for (int i = 0; i < 1000; i++) {
+            fileWriter.write(chunk);
+        }
+        String find = "hello";
+        fileWriter.write(find);
+        fileWriter.write("something");
+        fileWriter.flush();
+        fileWriter.close();
+
+        String pattern = "hello";
+        List<Long> resultBoyerMoore = boyerMoore.findInFile("file7.txt", pattern, false);
+        List<Long> excepted = List.of(20000000000L);
         assertEquals(excepted, resultBoyerMoore);
         newFile.delete();
     }

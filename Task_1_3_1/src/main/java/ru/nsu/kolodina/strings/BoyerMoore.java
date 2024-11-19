@@ -107,8 +107,8 @@ public class BoyerMoore {
      * @param index   the offset of file we are reading
      * @return list of indexes of all entries of pattern
      */
-    public List<Integer> search(String string, String pattern, int index) {
-        List<Integer> result = new ArrayList<>();
+    public List<Long> search(String string, String pattern, long index) {
+        List<Long> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
         Map<Character, Integer> badCharMap = badCharacterHeuristic(pattern);
         int stringLength = string.length();
@@ -138,11 +138,10 @@ public class BoyerMoore {
      * @param pat      pattern to find
      * @return list of indexes of all entries of pattern
      */
-    public List<Integer> findInFile(String filePath, String pat, boolean isResource) {
-        List<Integer> res = new ArrayList<>();
+    public List<Long> findInFile(String filePath, String pat, boolean isResource) {
+        List<Long> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        int batchSize = 50000;
-        int maxSize = 50000;
+        int batchSize = 100000;
         String pattern = new String(pat.getBytes(), StandardCharsets.UTF_8);
         int patternLen = pattern.length();
         try (InputStream inputStream = isResource
@@ -155,22 +154,15 @@ public class BoyerMoore {
             BufferedReader reader = new BufferedReader(reader0);
             char[] buffer = new char[batchSize];
             int charsRead;
-            int numBatch = 0;
-            int index = 0;
+            long index = 0;
+            long pos = 0;
             while ((charsRead = reader.read(buffer)) != -1) {
                 sb.append(buffer, 0, charsRead);
-                if (sb.length() > maxSize) {
-                    String txt = sb.toString();
-                    if (numBatch > 0) {
-                        index = (numBatch + 1) * maxSize - patternLen;
-                    } else {
-                        index = 0;
-                    }
-                    numBatch++;
-                    res.addAll(search(txt, pattern, index));
-                    int start = Math.max(0, sb.length() - (patternLen));
-                    sb.delete(0, start);
-                }
+                String txt = sb.toString();
+                res.addAll(search(txt, pattern, pos));
+                pos += sb.length() - patternLen;
+                int start = Math.max(0, sb.length() - (patternLen));
+                sb.delete(0, start);
             }
 
             if (!sb.isEmpty()) {
