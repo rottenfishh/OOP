@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +27,7 @@ public class BoyerMooreTest {
     public void testSmall() throws IOException {
         String string = new String("абракадабра".getBytes(), StandardCharsets.UTF_8);
         List<Integer> resultBoyerMoore = boyerMoore.search(string, "бра", 0);
-        List<Integer> excepted = List.of(1,8);
+        List<Integer> excepted = List.of(1, 8);
         assertEquals(excepted, resultBoyerMoore);
     }
 
@@ -171,7 +170,31 @@ public class BoyerMooreTest {
         String pattern = "бра";
         List<Integer> resultBoyerMoore = boyerMoore.search(txt,
                 pattern, 0);
-        List<Integer> excepted = List.of(1,8);
+        List<Integer> excepted = List.of(1, 8);
         assertEquals(excepted, resultBoyerMoore);
+    }
+
+    @Test
+    void testBorder() throws IOException {
+        int maxSize = 50000 - 2;
+        File newFile = new File("file6.txt");
+        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(newFile),
+                StandardCharsets.UTF_8);
+        char[] chunk = new char[maxSize];
+        Arrays.fill(chunk, 'a');
+        fileWriter.write(chunk);
+        String find = "hello";
+        fileWriter.write(find);
+
+        Arrays.fill(chunk, 'b');
+        fileWriter.write(chunk);
+        fileWriter.flush();
+        fileWriter.close();
+
+        String pattern = "hello";
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("file6.txt", pattern, false);
+        List<Integer> excepted = List.of(50000 - 2);
+        assertEquals(excepted, resultBoyerMoore);
+        newFile.delete();
     }
 }
