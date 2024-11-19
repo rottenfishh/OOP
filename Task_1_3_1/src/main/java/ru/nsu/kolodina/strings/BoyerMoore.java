@@ -110,7 +110,7 @@ public class BoyerMoore {
     public List<Integer> search(String string, String pattern, int index) {
         List<Integer> result = new ArrayList<>();
         int[] shiftsGoodSuffix = goodSuffixHeuristic(pattern);
-        HashMap<Character, Integer> badCharMap = badCharacterHeuristic(pattern);
+        Map<Character, Integer> badCharMap = badCharacterHeuristic(pattern);
         int stringLength = string.length();
         int patternLength = pattern.length();
         int i = 0; // pointer of text
