@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * implementation of Boyer-Moore algorithm using badCharacterHeuristic and goodSuffixHeuristic.
@@ -22,7 +23,7 @@ public class BoyerMoore {
      * @param pattern we want to match
      * @return hashMap that maps letters to their indexes
      */
-    public static HashMap<Character, Integer> badCharacterHeuristic(String pattern) {
+    public static Map<Character, Integer> badCharacterHeuristic(String pattern) {
         HashMap<Character, Integer> charMap = new HashMap<>();
         for (int i = 0; i < pattern.length(); i++) {
             if (!charMap.containsKey(pattern.charAt(i))) {
