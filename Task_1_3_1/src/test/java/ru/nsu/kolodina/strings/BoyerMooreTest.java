@@ -182,7 +182,8 @@ public class BoyerMooreTest {
     @Test
     void testChineseBook() {
         String pattern = "啊";
-        List<Integer> resultBoyerMoore = boyerMoore.findInFile("chineseWarAndPeace.txt", pattern, true);
+        List<Integer> resultBoyerMoore = boyerMoore.findInFile("chineseWarAndPeace.txt",
+                pattern, true);
         int excepted = 555;
         assertEquals(excepted, resultBoyerMoore.size());
     }
