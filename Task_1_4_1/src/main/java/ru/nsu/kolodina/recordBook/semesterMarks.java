@@ -18,7 +18,7 @@ public class semesterMarks {
         int numDiffs = 0;
         int numPasses = 0;
         int numMarks = 0;
-        switch(semester) {
+        switch (semester) {
             case 1:
                 numExams = numDiffs = numPasses = 3;
                 numMarks = 6;

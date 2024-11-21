@@ -1,17 +1,19 @@
 package ru.nsu.kolodina.recordBook;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class RecordBook {
-    String name;
-    String lastName;
     public List<semesterMarks> gradeBook;
     public int currSemester;
+    String name;
+    String lastName;
     boolean graduated = false;
     double avgScore;
     Score diploma = null;
     Basis basis;
+
     public RecordBook(Basis base, int currSemester, boolean graduated) {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
@@ -27,9 +29,10 @@ public class RecordBook {
         this.name = name;
         this.lastName = lastName;
     }
+
     public void addMark(int semester, Score.Type type, Score.Name name, double score) {
         Score scr = new Score(score, type, name);
-        switch(type) {
+        switch (type) {
             case FINALS:
                 switch (name) {
                     case EXAM -> gradeBook.get(semester).examScores.add(scr);
@@ -38,7 +41,7 @@ public class RecordBook {
                 }
                 break;
             case MARKS:
-                switch(name) {
+                switch (name) {
                     case PASS -> gradeBook.get(semester).passScores.add(scr);
                     default -> gradeBook.get(semester).marks.add(scr);
                 }
@@ -48,6 +51,7 @@ public class RecordBook {
                 break;
         }
     }
+
     public Stream<Score> getFinalScores() {
         Stream<Score> marks = gradeBook.stream().filter(semesterMarks -> semesterMarks.semester < currSemester).
                 flatMap(semesterMarks -> semesterMarks.finalScores.stream()).flatMap(List::stream);
@@ -59,6 +63,7 @@ public class RecordBook {
                 flatMap(semesterMarks -> semesterMarks.allScores.stream()).flatMap(List::stream);
         return marks;
     }
+
     public double getAvgScore() {
         Stream<Score> marks = getFinalScores();
         Stream<Score> stream = marks.filter(element -> element.score != 0);
@@ -97,6 +102,7 @@ public class RecordBook {
         }
         return (stream2.count() >= stream.count() * 0.75) && !hasThrees && ((diplomaScore == 5) || (diplomaScore == 0.0));
     }
+
     public boolean getIncreasedMoney() {
         if (basis == Basis.PAID) {
             System.out.println("You are on paid basis. No money for you:).");
@@ -116,19 +122,20 @@ public class RecordBook {
         StringBuilder sb = new StringBuilder();
         sb.append("Grade book of student " + name + " " + lastName + "\n");
         sb.append("Education basis: " + basis + "\n");
-        int course = (int) Math.ceil((double) currSemester /2);
+        int course = (int) Math.ceil((double) currSemester / 2);
         sb.append("Course: " + course + "\n");
-        sb.append(String.format("                     Average grade book score: %.2f\n\n",getAvgScore()));
+        sb.append(String.format("                     Average grade book score: %.2f\n\n", getAvgScore()));
         for (int i = 1; i < currSemester; i++) {
             sb.append("Semester " + i + "\nExams marks: " + numberMarks(gradeBook.get(i).examScores.stream()) + "\n");
             sb.append("Differential pass marks: " + numberMarks(gradeBook.get(i).diffScores.stream()) + "\n");
-            sb.append("Passes: " +  numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
+            sb.append("Passes: " + numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
             sb.append("Marks: " + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
         }
         System.out.println(sb);
     }
+
     public enum Basis {
         FREE,
-        PAID;
+        PAID
     }
 }
