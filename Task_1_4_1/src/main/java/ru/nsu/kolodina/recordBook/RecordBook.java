@@ -1,12 +1,13 @@
 package ru.nsu.kolodina.recordBook;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class RecordBook {
+    String name;
+    String lastName;
     public List<semesterMarks> gradeBook;
-    int currSemester;
+    public int currSemester;
     boolean graduated = false;
     double avgScore;
     Score diploma = null;
@@ -14,7 +15,7 @@ public class RecordBook {
     public RecordBook(Basis base, int currSemester, boolean graduated) {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
-        for (int i = 1; i <= currSemester; i++) {
+        for (int i = 0; i <= currSemester; i++) {
             semesterMarks semester = new semesterMarks(i);
             gradeBook.add(semester);
         }
@@ -22,6 +23,10 @@ public class RecordBook {
         this.graduated = graduated;
     }
 
+    public void setName(String name, String lastName) {
+        this.name = name;
+        this.lastName = lastName;
+    }
     public void addMark(int semester, Score.Type type, Score.Name name, double score) {
         Score scr = new Score(score, type, name);
         switch(type) {
@@ -33,39 +38,43 @@ public class RecordBook {
                 }
                 break;
             case MARKS:
-                gradeBook.get(semester).marks.add(scr);
+                switch(name) {
+                    case PASS -> gradeBook.get(semester).passScores.add(scr);
+                    default -> gradeBook.get(semester).marks.add(scr);
+                }
                 break;
             case DIPLOMA:
                 this.diploma = scr;
                 break;
         }
     }
-    public List<Score> getFinalScores() {
-        List<Score> marks = new ArrayList<>();
-        for (int i = 1; i < currSemester; i++) {
-            semesterMarks sms = gradeBook.get(i);
-            for (List<Score> ms : sms.finalScores) {
-                marks.addAll(ms);
-            }
-        }
+    public Stream<Score> getFinalScores() {
+        Stream<Score> marks = gradeBook.stream().filter(semesterMarks -> semesterMarks.semester < currSemester).
+                flatMap(semesterMarks -> semesterMarks.finalScores.stream()).flatMap(List::stream);
         return marks;
     }
-    double getAvgScore() {
-        List<Score> marks = getFinalScores();
-        Stream<Score> stream = marks.stream().filter(element -> element.score != 0);
+
+    public Stream<Score> getScores() {
+        Stream<Score> marks = gradeBook.stream().filter(semesterMarks -> semesterMarks.semester < currSemester).
+                flatMap(semesterMarks -> semesterMarks.allScores.stream()).flatMap(List::stream);
+        return marks;
+    }
+    public double getAvgScore() {
+        Stream<Score> marks = getFinalScores();
+        Stream<Score> stream = marks.filter(element -> element.score != 0);
         long num = stream.count();
-        Stream<Score> streamSum = marks.stream();
-        double sum = streamSum.filter(element -> element.score != 0).mapToDouble(Score::getScore).sum();
-        if (num == 0) {
-            return 0;
-        } else {
-            return sum/num;
+        double avgScore = 0.0;
+        double sum = getFinalScores().filter(element -> element.score != 0).mapToDouble(Score::getScore).sum();
+        if (num != 0) {
+            avgScore = sum / num;
         }
+        return avgScore;
     }
 
-    boolean transferToFreeBasis() {
+    public boolean transferToFreeBasis() {
         if (this.basis == Basis.FREE) {
-            return true;
+            System.out.println("Already on free basis!");
+            return false;
         }
         if (currSemester < 3) {
             return false;
@@ -78,29 +87,46 @@ public class RecordBook {
         return !hasThrees;
     }
 
-    boolean getRedDiploma() {
-        List<Score> marks = getFinalScores();
-        Stream<Score> stream = marks.stream().filter(element -> element.score != 0);
-        Stream<Score> stream2 = marks.stream().filter(element -> element.score == 5);
-        boolean hasThrees = marks.stream().anyMatch(element -> element.score == 3);
+    public boolean getRedDiploma() {
+        Stream<Score> stream = getFinalScores().filter(element -> element.score != 0);
+        Stream<Score> stream2 = getFinalScores().filter(element -> element.score == 5);
+        boolean hasThrees = getFinalScores().anyMatch(element -> element.score == 3);
         double diplomaScore = 0.0;
         if (diploma != null) {
             diplomaScore = diploma.score;
         }
         return (stream2.count() >= stream.count() * 0.75) && !hasThrees && ((diplomaScore == 5) || (diplomaScore == 0.0));
     }
-    boolean getIncreasedMoney() {
-        List<Score> marks = new ArrayList<>();
-        for (int i = 1; i < currSemester; i++) {
-            semesterMarks sms = gradeBook.get(i);
-            for (List<Score> ms : sms.finalScores) {
-                marks.addAll(ms);
-            }
+    public boolean getIncreasedMoney() {
+        if (basis == Basis.PAID) {
+            System.out.println("You are on paid basis. No money for you:).");
+            return false;
         }
-        Stream<Score> stream = marks.stream().filter(element -> element.score != 0);
+        Stream<Score> stream = getFinalScores().filter(element -> element.score != 0);
         return stream.noneMatch(element -> element.score != 5);
     }
 
+    public List<Double> numberMarks(Stream<Score> list) {
+        List<Double> marks = new ArrayList<>();
+        list.forEach(element -> marks.add(element.getScore()));
+        return marks;
+    }
+
+    public void printInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Grade book of student " + name + " " + lastName + "\n");
+        sb.append("Education basis: " + basis + "\n");
+        int course = (int) Math.ceil((double) currSemester /2);
+        sb.append("Course: " + course + "\n");
+        sb.append(String.format("                     Average grade book score: %.2f\n\n",getAvgScore()));
+        for (int i = 1; i < currSemester; i++) {
+            sb.append("Semester " + i + "\nExams marks: " + numberMarks(gradeBook.get(i).examScores.stream()) + "\n");
+            sb.append("Differential pass marks: " + numberMarks(gradeBook.get(i).diffScores.stream()) + "\n");
+            sb.append("Passes: " +  numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
+            sb.append("Marks: " + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
+        }
+        System.out.println(sb);
+    }
     public enum Basis {
         FREE,
         PAID;

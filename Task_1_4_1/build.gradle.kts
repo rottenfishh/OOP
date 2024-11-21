@@ -1,5 +1,7 @@
+import org.gradle.testing.jacoco.tasks.JacocoReport
 plugins {
     id("java")
+    id("jacoco")
 }
 
 group = "ru.nsu.kolodina.recordBook"
@@ -9,16 +11,26 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // Use 17 or higher
 
-    testCompileOnly("org.projectlombok:lombok:1.18.30")
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
+    }
+}
+
+dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation ("org.jetbrains:annotations:16.0.2")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.named<JacocoReport>("jacocoTestReport") {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }

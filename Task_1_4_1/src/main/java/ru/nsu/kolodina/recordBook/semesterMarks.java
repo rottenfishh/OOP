@@ -10,6 +10,7 @@ public class semesterMarks {
     public List<Score> diffScores;
     public List<Score> passScores;
     public List<Score> marks; // usual marks. tasks, tests, colloqiums, practice
+    public List<List<Score>> allScores;
 
     public semesterMarks(int semester) { // create semester grades book
         this.semester = semester;
@@ -62,7 +63,12 @@ public class semesterMarks {
         passScores = new ArrayList<>(numPasses);
         marks = new ArrayList<>(numMarks);
         finalScores = new ArrayList<>(numExams + numDiffs);
+        allScores = new ArrayList<>(numMarks + numDiffs + numExams + numPasses);
         finalScores.add(examScores);
         finalScores.add(diffScores);
+        allScores.add(examScores);
+        allScores.add(diffScores);
+        allScores.add(passScores);
+        allScores.add(marks);
     }
 }
