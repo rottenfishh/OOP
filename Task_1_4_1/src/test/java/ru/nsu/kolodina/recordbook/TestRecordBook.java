@@ -16,9 +16,9 @@ import static ru.nsu.kolodina.recordbook.Score.Type.MARKS;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-
+/**
+ * class for testing record book.
+ */
 public class TestRecordBook {
     RecordBook book;
     RecordBook book2;

@@ -85,8 +85,9 @@ public class RecordBook {
      * @return stream of scores
      */
     public Stream<Score> getFinalScores() {
-        Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
-                flatMap(SemesterMarks -> SemesterMarks.finalScores.stream()).flatMap(List::stream);
+        Stream<Score> marks = gradeBook.stream()
+                .filter(semestermarks -> semestermarks.semester < currSemester)
+                .flatMap(semestermarks -> semestermarks.finalScores.stream()).flatMap(List::stream);
         return marks;
     }
 
@@ -96,8 +97,9 @@ public class RecordBook {
      * @return stream of scores
      */
     public Stream<Score> getScores() {
-        Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
-                flatMap(SemesterMarks -> SemesterMarks.allScores.stream()).flatMap(List::stream);
+        Stream<Score> marks = gradeBook.stream()
+                .filter(semestermarks -> semestermarks.semester < currSemester)
+                .flatMap(semestermarks -> semestermarks.allScores.stream()).flatMap(List::stream);
         return marks;
     }
 
@@ -111,7 +113,8 @@ public class RecordBook {
         Stream<Score> stream = marks.filter(element -> element.score != 0);
         long num = stream.count();
         double avgScore = 0.0;
-        double sum = getFinalScores().filter(element -> element.score != 0).mapToDouble(Score::getScore).sum();
+        double sum = getFinalScores().filter(element -> element.score != 0)
+                .mapToDouble(Score::getScore).sum();
         if (num != 0) {
             avgScore = sum / num;
         }
@@ -138,7 +141,8 @@ public class RecordBook {
         for (int i = currSemester - 2; i < currSemester; i++) {
             marks.addAll(gradeBook.get(i).examScores);
         }
-        boolean hasThrees = marks.stream().filter(element -> element.score != 0).anyMatch(element -> element.score == 3 || element.score == 2);
+        boolean hasThrees = marks.stream().filter(element -> element.score != 0)
+                .anyMatch(element -> element.score == 3 || element.score == 2);
         return !hasThrees;
     }
 
@@ -156,7 +160,8 @@ public class RecordBook {
         if (diploma != null) {
             diplomaScore = diploma.score;
         }
-        return (stream2.count() >= stream.count() * 0.75) && !hasThrees && ((diplomaScore == 5) || (diplomaScore == 0.0));
+        return (stream2.count() >= stream.count() * 0.75) && !hasThrees
+                && ((diplomaScore == 5) || (diplomaScore == 0.0));
     }
 
     /**
