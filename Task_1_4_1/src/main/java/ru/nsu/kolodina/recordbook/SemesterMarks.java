@@ -1,9 +1,9 @@
-package ru.nsu.kolodina.recordBook;
+package ru.nsu.kolodina.recordbook;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class semesterMarks {
+public class SemesterMarks {
     public int semester;
     public List<List<Score>> finalScores; // exam, diff pass, pass scores
     public List<Score> examScores;
@@ -12,7 +12,7 @@ public class semesterMarks {
     public List<Score> marks; // usual marks. tasks, tests, colloqiums, practice
     public List<List<Score>> allScores;
 
-    public semesterMarks(int semester) { // create semester grades book
+    public SemesterMarks(int semester) { // create semester grades book
         this.semester = semester;
         int numExams = 0;
         int numDiffs = 0;
@@ -57,6 +57,11 @@ public class semesterMarks {
                 numPasses = 1;
                 numMarks = 2;
                 break;
+            default:
+                numExams = 19;
+                numDiffs = 35;
+                numPasses = 7;
+                numMarks = 33;
         }
         examScores = new ArrayList<>(numExams);
         diffScores = new ArrayList<>(numDiffs);

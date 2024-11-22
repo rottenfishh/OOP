@@ -4,7 +4,7 @@ plugins {
     id("jacoco")
 }
 
-group = "ru.nsu.kolodina.recordBook"
+group = "ru.nsu.kolodina.recordbook"
 version = "1.0-SNAPSHOT"
 
 repositories {

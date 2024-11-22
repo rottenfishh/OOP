@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.recordBook;
+package ru.nsu.kolodina.recordbook;
 
 public class Score {
     public final Double score;

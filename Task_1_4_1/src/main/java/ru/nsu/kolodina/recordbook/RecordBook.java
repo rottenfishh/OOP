@@ -1,11 +1,11 @@
-package ru.nsu.kolodina.recordBook;
+package ru.nsu.kolodina.recordbook;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class RecordBook {
-    public List<semesterMarks> gradeBook;
+    public List<SemesterMarks> gradeBook;
     public int currSemester;
     String name;
     String lastName;
@@ -18,7 +18,7 @@ public class RecordBook {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
         for (int i = 0; i <= currSemester; i++) {
-            semesterMarks semester = new semesterMarks(i);
+            SemesterMarks semester = new SemesterMarks(i);
             gradeBook.add(semester);
         }
         this.basis = base;
@@ -38,6 +38,7 @@ public class RecordBook {
                     case EXAM -> gradeBook.get(semester).examScores.add(scr);
                     case DIFF_PASS -> gradeBook.get(semester).diffScores.add(scr);
                     case PASS -> gradeBook.get(semester).passScores.add(scr);
+                    default -> System.err.println("Wrong name of mark!");
                 }
                 break;
             case MARKS:
@@ -49,18 +50,20 @@ public class RecordBook {
             case DIPLOMA:
                 this.diploma = scr;
                 break;
+            default:
+                System.err.println("Invalid type name!");
         }
     }
 
     public Stream<Score> getFinalScores() {
-        Stream<Score> marks = gradeBook.stream().filter(semesterMarks -> semesterMarks.semester < currSemester).
-                flatMap(semesterMarks -> semesterMarks.finalScores.stream()).flatMap(List::stream);
+        Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
+                flatMap(SemesterMarks -> SemesterMarks.finalScores.stream()).flatMap(List::stream);
         return marks;
     }
 
     public Stream<Score> getScores() {
-        Stream<Score> marks = gradeBook.stream().filter(semesterMarks -> semesterMarks.semester < currSemester).
-                flatMap(semesterMarks -> semesterMarks.allScores.stream()).flatMap(List::stream);
+        Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
+                flatMap(SemesterMarks -> SemesterMarks.allScores.stream()).flatMap(List::stream);
         return marks;
     }
 
@@ -73,6 +76,7 @@ public class RecordBook {
         if (num != 0) {
             avgScore = sum / num;
         }
+        avgScore = Math.floor(avgScore * 100) / 100;
         return avgScore;
     }
 

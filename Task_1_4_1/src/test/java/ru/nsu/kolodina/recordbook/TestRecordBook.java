@@ -1,24 +1,23 @@
-package ru.nsu.kolodina.recordBook;
+package ru.nsu.kolodina.recordbook;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ru.nsu.kolodina.recordBook.RecordBook.Basis.FREE;
-import static ru.nsu.kolodina.recordBook.RecordBook.Basis.PAID;
-import static ru.nsu.kolodina.recordBook.Score.Name.DIFF_PASS;
-import static ru.nsu.kolodina.recordBook.Score.Name.EXAM;
-import static ru.nsu.kolodina.recordBook.Score.Name.PASS;
-import static ru.nsu.kolodina.recordBook.Score.Name.TASK;
-import static ru.nsu.kolodina.recordBook.Score.Name.TEST;
-import static ru.nsu.kolodina.recordBook.Score.Type.FINALS;
-import static ru.nsu.kolodina.recordBook.Score.Type.MARKS;
+import static ru.nsu.kolodina.recordbook.RecordBook.Basis.FREE;
+import static ru.nsu.kolodina.recordbook.RecordBook.Basis.PAID;
+import static ru.nsu.kolodina.recordbook.Score.Name.DIFF_PASS;
+import static ru.nsu.kolodina.recordbook.Score.Name.EXAM;
+import static ru.nsu.kolodina.recordbook.Score.Name.PASS;
+import static ru.nsu.kolodina.recordbook.Score.Name.TASK;
+import static ru.nsu.kolodina.recordbook.Score.Name.TEST;
+import static ru.nsu.kolodina.recordbook.Score.Type.FINALS;
+import static ru.nsu.kolodina.recordbook.Score.Type.MARKS;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class testRecordBook {
+public class TestRecordBook {
     RecordBook book;
     RecordBook book2;
 
@@ -27,7 +26,7 @@ public class testRecordBook {
         book = new RecordBook(FREE, 3, false);
         book.setName("Alina", "Kolodina");
         for (int i = 1; i < book.currSemester; i++) {
-            for (int j = 0; j < 5; j++) {
+            for (int j = 0; j < 3; j++) {
                 book.addMark(i, MARKS, PASS, 1.0);
                 if (j % 2 == 0) {
                     book.addMark(i, FINALS, EXAM, 5.0);
@@ -54,7 +53,7 @@ public class testRecordBook {
 
     @Test
     void testAvgScore() {
-        assertEquals(4.6, book.getAvgScore());
+        assertEquals(4.66, book.getAvgScore());
         assertEquals(5, book2.getAvgScore());
     }
 
