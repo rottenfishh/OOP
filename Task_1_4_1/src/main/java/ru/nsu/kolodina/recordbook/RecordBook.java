@@ -187,7 +187,7 @@ public class RecordBook {
     /**
      * extracts marks as list of double values from stream of scores.
      *
-     * @param stream
+     * @param stream stream of scores
      * @return list of marks as double values
      */
     public List<Double> numberMarks(Stream<Score> stream) {
@@ -207,16 +207,24 @@ public class RecordBook {
         sb.append("Education basis: " + basis + "\n");
         int course = (int) Math.ceil((double) currSemester / 2);
         sb.append("Course: " + course + "\n");
-        sb.append(String.format("                     Average grade book score: %.2f\n\n", getAvgScore()));
+        sb.append(String.format("                     Average grade book score: %.2f\n\n",
+                getAvgScore()));
         for (int i = 1; i < currSemester; i++) {
-            sb.append("Semester " + i + "\nExams marks: " + numberMarks(gradeBook.get(i).examScores.stream()) + "\n");
-            sb.append("Differential pass marks: " + numberMarks(gradeBook.get(i).diffScores.stream()) + "\n");
-            sb.append("Passes: " + numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
-            sb.append("Marks: " + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
+            sb.append("Semester " + i + "\nExams marks: "
+                    + numberMarks(gradeBook.get(i).examScores.stream()) + "\n");
+            sb.append("Differential pass marks: "
+                    + numberMarks(gradeBook.get(i).diffScores.stream()) + "\n");
+            sb.append("Passes: "
+                    + numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
+            sb.append("Marks: "
+                    + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
         }
         return sb.toString();
     }
 
+    /**
+     * enum for basis of education.
+     */
     public enum Basis {
         FREE,
         PAID

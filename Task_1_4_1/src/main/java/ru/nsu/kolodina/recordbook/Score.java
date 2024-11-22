@@ -30,6 +30,12 @@ public class Score {
         return score;
     }
 
+    /**
+     * enum for type of mark.
+     * FINALS: exams and diffs
+     * MARKS: all other marks
+     * DIPLOMA: diploma
+     */
     public enum Type {
         FINALS,
         MARKS,
@@ -37,6 +43,10 @@ public class Score {
 
     }
 
+    /**
+     * enum for names of marks.
+     * all names possible
+     */
     public enum Name {
         TASK,
         TEST,
