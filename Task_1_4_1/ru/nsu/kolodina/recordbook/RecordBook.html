@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">RecordBook</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">main class that contains implementation of student's record book.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -137,7 +138,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kolodina.recordbook.RecordBook.Basis,int,boolean)" class="member-name-link">RecordBook</a><wbr>(<a href="RecordBook.Basis.html" title="enum class in ru.nsu.kolodina.recordbook">RecordBook.Basis</a>&nbsp;base,
  int&nbsp;currSemester,
  boolean&nbsp;graduated)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">constructor for record book.</div>
+</div>
 </div>
 </section>
 </li>
@@ -157,35 +160,55 @@ loadScripts(document, 'script');</script>
  <a href="Score.Type.html" title="enum class in ru.nsu.kolodina.recordbook">Score.Type</a>&nbsp;type,
  <a href="Score.Name.html" title="enum class in ru.nsu.kolodina.recordbook">Score.Name</a>&nbsp;name,
  double&nbsp;score)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">adding mark to the record book.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAvgScore()" class="member-name-link">getAvgScore</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">get average score of student.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a><wbr>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFinalScores()" class="member-name-link">getFinalScores</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">get all final scores using streams.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIncreasedMoney()" class="member-name-link">getIncreasedMoney</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">check if student can get increased scholarship.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInfo()" class="member-name-link">getInfo</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">build a string containing information of record book.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRedDiploma()" class="member-name-link">getRedDiploma</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">check if student can get red diploma.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a><wbr>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getScores()" class="member-name-link">getScores</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">get all scores using streams.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#numberMarks(java.util.stream.Stream)" class="member-name-link">numberMarks</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;&nbsp;list)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#numberMarks(java.util.stream.Stream)" class="member-name-link">numberMarks</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;&nbsp;stream)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">extracts marks as list of double values from stream of scores.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setName(java.lang.String,java.lang.String)" class="member-name-link">setName</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lastName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">setting student name.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#transferToFreeBasis()" class="member-name-link">transferToFreeBasis</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">check if student can transfer to free basis.</div>
+</div>
 </div>
 </div>
 </div>
@@ -229,6 +252,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RecordBook</span><wbr><span class="parameters">(<a href="RecordBook.Basis.html" title="enum class in ru.nsu.kolodina.recordbook">RecordBook.Basis</a>&nbsp;base,
  int&nbsp;currSemester,
  boolean&nbsp;graduated)</span></div>
+<div class="block">constructor for record book.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>base</code> - - paid or free</dd>
+<dd><code>currSemester</code> - - current semester</dd>
+<dd><code>graduated</code> - - did student graduate</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -244,6 +274,12 @@ loadScripts(document, 'script');</script>
 <h3>setName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setName</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lastName)</span></div>
+<div class="block">setting student name.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - name</dd>
+<dd><code>lastName</code> - lastName</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -253,54 +289,109 @@ loadScripts(document, 'script');</script>
  <a href="Score.Type.html" title="enum class in ru.nsu.kolodina.recordbook">Score.Type</a>&nbsp;type,
  <a href="Score.Name.html" title="enum class in ru.nsu.kolodina.recordbook">Score.Name</a>&nbsp;name,
  double&nbsp;score)</span></div>
+<div class="block">adding mark to the record book.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>semester</code> - to add mark to</dd>
+<dd><code>type</code> - type of mark</dd>
+<dd><code>name</code> - name of mark</dd>
+<dd><code>score</code> - double value of mark</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFinalScores()">
 <h3>getFinalScores</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;</span>&nbsp;<span class="element-name">getFinalScores</span>()</div>
+<div class="block">get all final scores using streams.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>stream of scores</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getScores()">
 <h3>getScores</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;</span>&nbsp;<span class="element-name">getScores</span>()</div>
+<div class="block">get all scores using streams.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>stream of scores</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getAvgScore()">
 <h3>getAvgScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAvgScore</span>()</div>
+<div class="block">get average score of student.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>double value - average score</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="transferToFreeBasis()">
 <h3>transferToFreeBasis</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">transferToFreeBasis</span>()</div>
+<div class="block">check if student can transfer to free basis.
+ analyze student's marks for last 2 sessions using streams
+ if student is already on free, return false</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true or false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRedDiploma()">
 <h3>getRedDiploma</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">getRedDiploma</span>()</div>
+<div class="block">check if student can get red diploma.
+ analyze student session scores and diploma score if it exists</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true or false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getIncreasedMoney()">
 <h3>getIncreasedMoney</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">getIncreasedMoney</span>()</div>
+<div class="block">check if student can get increased scholarship.
+ if student is on paid basis, return false
+ analyze scores of the last session</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true or false</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="numberMarks(java.util.stream.Stream)">
 <h3>numberMarks</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</span>&nbsp;<span class="element-name">numberMarks</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;&nbsp;list)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;</span>&nbsp;<span class="element-name">numberMarks</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html" title="class or interface in java.util.stream" class="external-link">Stream</a>&lt;<a href="Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a>&gt;&nbsp;stream)</span></div>
+<div class="block">extracts marks as list of double values from stream of scores.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>stream</code> - </dd>
+<dt>Returns:</dt>
+<dd>list of marks as double values</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getInfo()">
 <h3>getInfo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getInfo</span>()</div>
+<div class="block">build a string containing information of record book.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>string</dd>
+</dl>
 </section>
 </li>
 </ul>
