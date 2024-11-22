@@ -3,6 +3,9 @@ package ru.nsu.kolodina.recordbook;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class implementing logic of containing records for one given semester.
+ */
 public class SemesterMarks {
     public int semester;
     public List<List<Score>> finalScores; // exam, diff pass, pass scores
@@ -12,7 +15,12 @@ public class SemesterMarks {
     public List<Score> marks; // usual marks. tasks, tests, colloqiums, practice
     public List<List<Score>> allScores;
 
-    public SemesterMarks(int semester) { // create semester grades book
+    /**
+     * constructor for semester grades book.
+     *
+     * @param semester current semester of education
+     */
+    public SemesterMarks(int semester) {
         this.semester = semester;
         int numExams = 0;
         int numDiffs = 0;

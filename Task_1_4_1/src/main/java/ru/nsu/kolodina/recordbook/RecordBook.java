@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * main class that contains implementation of student's record book.
+ */
 public class RecordBook {
     public List<SemesterMarks> gradeBook;
     public int currSemester;
@@ -14,6 +17,13 @@ public class RecordBook {
     Score diploma = null;
     Basis basis;
 
+    /**
+     * constructor for record book.
+     *
+     * @param base - paid or free
+     * @param currSemester - current semester
+     * @param graduated - did student graduate
+     */
     public RecordBook(Basis base, int currSemester, boolean graduated) {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
@@ -25,11 +35,25 @@ public class RecordBook {
         this.graduated = graduated;
     }
 
+    /**
+     * setting student name.
+     *
+     * @param name name
+     * @param lastName lastName
+     */
     public void setName(String name, String lastName) {
         this.name = name;
         this.lastName = lastName;
     }
 
+    /**
+     * adding mark to the record book.
+     *
+     * @param semester to add mark to
+     * @param type type of mark
+     * @param name name of mark
+     * @param score double value of mark
+     */
     public void addMark(int semester, Score.Type type, Score.Name name, double score) {
         Score scr = new Score(score, type, name);
         switch (type) {
@@ -55,18 +79,33 @@ public class RecordBook {
         }
     }
 
+    /**
+     * get all final scores using streams.
+     *
+     * @return stream of scores
+     */
     public Stream<Score> getFinalScores() {
         Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
                 flatMap(SemesterMarks -> SemesterMarks.finalScores.stream()).flatMap(List::stream);
         return marks;
     }
 
+    /**
+     * get all scores using streams.
+     *
+     * @return stream of scores
+     */
     public Stream<Score> getScores() {
         Stream<Score> marks = gradeBook.stream().filter(SemesterMarks -> SemesterMarks.semester < currSemester).
                 flatMap(SemesterMarks -> SemesterMarks.allScores.stream()).flatMap(List::stream);
         return marks;
     }
 
+    /**
+     * get average score of student.
+     *
+     * @return double value - average score
+     */
     public double getAvgScore() {
         Stream<Score> marks = getFinalScores();
         Stream<Score> stream = marks.filter(element -> element.score != 0);
@@ -80,6 +119,13 @@ public class RecordBook {
         return avgScore;
     }
 
+    /**
+     * check if student can transfer to free basis.
+     * analyze student's marks for last 2 sessions using streams
+     * if student is already on free, return false
+     *
+     * @return true or false
+     */
     public boolean transferToFreeBasis() {
         if (this.basis == Basis.FREE) {
             System.out.println("Already on free basis!");
@@ -96,6 +142,12 @@ public class RecordBook {
         return !hasThrees;
     }
 
+    /**
+     * check if student can get red diploma.
+     * analyze student session scores and diploma score if it exists
+     *
+     * @return true or false
+     */
     public boolean getRedDiploma() {
         Stream<Score> stream = getFinalScores().filter(element -> element.score != 0);
         Stream<Score> stream2 = getFinalScores().filter(element -> element.score == 5);
@@ -107,21 +159,43 @@ public class RecordBook {
         return (stream2.count() >= stream.count() * 0.75) && !hasThrees && ((diplomaScore == 5) || (diplomaScore == 0.0));
     }
 
+    /**
+     * check if student can get increased scholarship.
+     * if student is on paid basis, return false
+     * analyze scores of the last session
+     *
+     * @return true or false
+     */
     public boolean getIncreasedMoney() {
         if (basis == Basis.PAID) {
             System.out.println("You are on paid basis. No money for you:).");
             return false;
         }
-        Stream<Score> stream = getFinalScores().filter(element -> element.score != 0);
+        List<Score> marks = new ArrayList<>();
+        for (int i = currSemester - 2; i < currSemester; i++) {
+            marks.addAll(gradeBook.get(i).examScores);
+        }
+        Stream<Score> stream = marks.stream().filter(element -> element.score != 0);
         return stream.noneMatch(element -> element.score != 5);
     }
 
-    public List<Double> numberMarks(Stream<Score> list) {
+    /**
+     * extracts marks as list of double values from stream of scores.
+     *
+     * @param stream
+     * @return list of marks as double values
+     */
+    public List<Double> numberMarks(Stream<Score> stream) {
         List<Double> marks = new ArrayList<>();
-        list.forEach(element -> marks.add(element.getScore()));
+        stream.forEach(element -> marks.add(element.getScore()));
         return marks;
     }
 
+    /**
+     * build a string containing information of record book.
+     *
+     * @return string
+     */
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
         sb.append("Grade book of student " + name + " " + lastName + "\n");
