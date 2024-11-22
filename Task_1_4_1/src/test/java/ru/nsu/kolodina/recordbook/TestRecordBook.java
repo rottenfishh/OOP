@@ -16,6 +16,8 @@ import static ru.nsu.kolodina.recordbook.Score.Type.MARKS;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 
 public class TestRecordBook {
     RecordBook book;
@@ -77,7 +79,8 @@ public class TestRecordBook {
 
     @Test
     void testPrintInfo() {
-        book.printInfo();
-        book2.printInfo();
+        String result = book.getInfo();
+        assertTrue(result.contains("Alina Kolodina"));
+        assertTrue(result.contains("Course: 2"));
     }
 }

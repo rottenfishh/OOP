@@ -122,7 +122,7 @@ public class RecordBook {
         return marks;
     }
 
-    public void printInfo() {
+    public String getInfo() {
         StringBuilder sb = new StringBuilder();
         sb.append("Grade book of student " + name + " " + lastName + "\n");
         sb.append("Education basis: " + basis + "\n");
@@ -135,7 +135,7 @@ public class RecordBook {
             sb.append("Passes: " + numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
             sb.append("Marks: " + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
         }
-        System.out.println(sb);
+        return sb.toString();
     }
 
     public enum Basis {
