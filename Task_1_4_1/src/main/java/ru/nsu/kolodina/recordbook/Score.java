@@ -4,6 +4,7 @@ package ru.nsu.kolodina.recordbook;
  * class implementing logic of scores.
  */
 public class Score {
+    String subject;
     public final Double score;
     public final Type type;
     public final Name name;
@@ -15,10 +16,11 @@ public class Score {
      * @param type type of score
      * @param name name of score
      */
-    public Score(Double score, Type type, Name name) {
+    public Score(Double score, Type type, Name name, String subject) {
         this.score = score;
         this.type = type;
         this.name = name;
+        this.subject = subject;
     }
 
     /**

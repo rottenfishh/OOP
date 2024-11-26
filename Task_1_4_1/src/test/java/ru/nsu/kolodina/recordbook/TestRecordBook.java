@@ -16,6 +16,9 @@ import static ru.nsu.kolodina.recordbook.Score.Type.MARKS;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * class for testing record book.
  */
@@ -25,37 +28,46 @@ public class TestRecordBook {
 
     @BeforeEach
     void setup() {
-        book = new RecordBook(FREE, 3, false);
+        List<int[]> numberOfMarks = new ArrayList<>();
+        numberOfMarks.add(new int[]{0, 19, 35, 7, 33});
+        numberOfMarks.add(new int[]{1, 3, 3, 3, 6});
+        numberOfMarks.add(new int[]{2, 3, 3, 2, 6});
+        numberOfMarks.add(new int[]{3, 2, 6, 0, 6});
+        numberOfMarks.add(new int[]{4, 5, 5, 0, 3});
+        numberOfMarks.add(new int[]{5, 3, 4, 0, 4});
+        numberOfMarks.add(new int[]{6, 2, 6, 0, 4});
+        numberOfMarks.add(new int[]{7, 1, 4, 0, 2});
+        numberOfMarks.add(new int[]{8, 0, 4, 1, 2});
+        book = new RecordBook(FREE, 3, false, numberOfMarks);
         book.setName("Alina", "Kolodina");
         for (int i = 1; i < book.currSemester; i++) {
-            for (int j = 0; j < 3; j++) {
-                book.addMark(i, MARKS, PASS, 1.0);
-                if (j % 2 == 0) {
-                    book.addMark(i, FINALS, EXAM, 5.0);
-                    book.addMark(1, FINALS, DIFF_PASS, 5.0);
-                    book.addMark(1, MARKS, TEST, 4.0);
-                    book.addMark(1, MARKS, TEST, 5.0);
-                } else {
-                    book.addMark(i, FINALS, EXAM, 4.0);
-                    book.addMark(i, FINALS, DIFF_PASS, 4.0);
-                    book.addMark(i, MARKS, TEST, 3.0);
-                }
+            book.addMark(i, MARKS, PASS, 1.0, "English");
+            if (i % 2 == 0) {
+                book.addMark(i, FINALS, EXAM, 3.0, "Math");
+                book.addMark(i, FINALS, DIFF_PASS, 5.0, "Programming");
+                book.addMark(i, MARKS, TEST, 4.0, "Math");
+                book.addMark(i, MARKS, TEST, 5.0, "Math");
+            } else {
+                book.addMark(i, FINALS, EXAM, 4.0, "Math");
+                book.addMark(i, FINALS, DIFF_PASS, 4.0, "Programming");
+                book.addMark(i, MARKS, TEST, 3.0, "Math");
             }
         }
-        book2 = new RecordBook(PAID, 8, false);
+        book2 = new RecordBook(PAID, 8, false, numberOfMarks);
         book2.setName("Pupa", "Pupov");
         for (int i = 1; i <= 8; i++) {
             for (int j = 0; j < 4; j++) {
-                book2.addMark(i, FINALS, EXAM, 5.0);
-                book2.addMark(i, FINALS, DIFF_PASS, 5.0);
-                book2.addMark(i, MARKS, TASK, 5.0);
+                book2.addMark(i, FINALS, EXAM, 5.0, "Math");
+                book2.addMark(i, FINALS, DIFF_PASS, 5.0, "Programming");
+                book2.addMark(i, MARKS, TASK, 5.0, "Math");
             }
         }
     }
 
+
     @Test
     void testAvgScore() {
-        assertEquals(4.66, book.getAvgScore());
+        assertEquals(4.0, book.getAvgScore());
         assertEquals(5, book2.getAvgScore());
     }
 
@@ -80,6 +92,7 @@ public class TestRecordBook {
     @Test
     void testPrintInfo() {
         String result = book.getInfo();
+        System.out.println(result);
         assertTrue(result.contains("Alina Kolodina"));
         assertTrue(result.contains("Course: 2"));
     }

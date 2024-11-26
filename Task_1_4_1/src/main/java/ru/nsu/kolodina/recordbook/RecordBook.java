@@ -20,17 +20,21 @@ public class RecordBook {
     /**
      * constructor for record book.
      *
-     * @param base - paid or free
+     * @param base         - paid or free
      * @param currSemester - current semester
-     * @param graduated - did student graduate
+     * @param graduated    - did student graduate
+     * @param numberOfMarks - list of arrays containing number of marks for each semester in following structure:
+     *                      semester, numExams, numDiffs, numPasses, numMarks.
      */
-    public RecordBook(Basis base, int currSemester, boolean graduated) {
+    public RecordBook(Basis base, int currSemester, boolean graduated, List<int[]> numberOfMarks) {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
-        for (int i = 0; i <= currSemester; i++) {
-            SemesterMarks semester = new SemesterMarks(i);
-            gradeBook.add(semester);
+        List<SemesterMarks> semesters = new ArrayList<>();
+        for (int i = 0; i <=8; i++) {
+            SemesterMarks semester = new SemesterMarks(numberOfMarks.get(i)[0], numberOfMarks.get(i)[1], numberOfMarks.get(i)[2], numberOfMarks.get(i)[3], numberOfMarks.get(i)[4]);
+            semesters.add(semester);
         }
+        gradeBook.addAll(semesters);
         this.basis = base;
         this.graduated = graduated;
     }
@@ -38,7 +42,7 @@ public class RecordBook {
     /**
      * setting student name.
      *
-     * @param name name
+     * @param name     name
      * @param lastName lastName
      */
     public void setName(String name, String lastName) {
@@ -50,12 +54,12 @@ public class RecordBook {
      * adding mark to the record book.
      *
      * @param semester to add mark to
-     * @param type type of mark
-     * @param name name of mark
-     * @param score double value of mark
+     * @param type     type of mark
+     * @param name     name of mark
+     * @param score    double value of mark
      */
-    public void addMark(int semester, Score.Type type, Score.Name name, double score) {
-        Score scr = new Score(score, type, name);
+    public void addMark(int semester, Score.Type type, Score.Name name, double score, String subject) {
+        Score scr = new Score(score, type, name, subject);
         switch (type) {
             case FINALS:
                 switch (name) {
@@ -157,11 +161,16 @@ public class RecordBook {
         Stream<Score> stream2 = getFinalScores().filter(element -> element.score == 5);
         boolean hasThrees = getFinalScores().anyMatch(element -> element.score == 3);
         double diplomaScore = 0.0;
+        long fivesCount = stream2.count();
+        long allMarksCount = stream.count();
         if (diploma != null) {
             diplomaScore = diploma.score;
         }
-        return (stream2.count() >= stream.count() * 0.75) && !hasThrees
-                && ((diplomaScore == 5) || (diplomaScore == 0.0));
+        if (graduated) {
+            return (fivesCount >= allMarksCount * 0.75) && !hasThrees
+                    && ((diplomaScore == 5) || (diplomaScore == 0.0));
+        }
+        return ((allMarksCount - fivesCount) < gradeBook.get(0).numExams * 0.25) && ! hasThrees;
     }
 
     /**
@@ -190,9 +199,9 @@ public class RecordBook {
      * @param stream stream of scores
      * @return list of marks as double values
      */
-    public List<Double> numberMarks(Stream<Score> stream) {
-        List<Double> marks = new ArrayList<>();
-        stream.forEach(element -> marks.add(element.getScore()));
+    public List<String> marksList(Stream<Score> stream) {
+        List<String> marks = new ArrayList<>();
+        stream.forEach(element -> marks.add(element.subject + ": " + element.getScore()));
         return marks;
     }
 
@@ -211,13 +220,13 @@ public class RecordBook {
                 getAvgScore()));
         for (int i = 1; i < currSemester; i++) {
             sb.append("Semester " + i + "\nExams marks: "
-                    + numberMarks(gradeBook.get(i).examScores.stream()) + "\n");
+                    + marksList(gradeBook.get(i).examScores.stream()) + "\n");
             sb.append("Differential pass marks: "
-                    + numberMarks(gradeBook.get(i).diffScores.stream()) + "\n");
+                    + marksList(gradeBook.get(i).diffScores.stream()) + "\n");
             sb.append("Passes: "
-                    + numberMarks(gradeBook.get(i).passScores.stream()) + "\n");
+                    + marksList(gradeBook.get(i).passScores.stream()) + "\n");
             sb.append("Marks: "
-                    + numberMarks(gradeBook.get(i).marks.stream()) + "\n");
+                    + marksList(gradeBook.get(i).marks.stream()) + "\n");
         }
         return sb.toString();
     }
