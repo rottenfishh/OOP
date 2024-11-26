@@ -51,7 +51,7 @@ loadScripts(document, 'script');</script>
 <a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
-<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#addMark(int,ru.nsu.kolodina.recordbook.Score.Type,ru.nsu.kolodina.recordbook.Score.Name,double)" class="member-name-link">addMark(int, Score.Type, Score.Name, double)</a> - Method in class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
+<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#addMark(int,ru.nsu.kolodina.recordbook.Score.Type,ru.nsu.kolodina.recordbook.Score.Name,double,java.lang.String)" class="member-name-link">addMark(int, Score.Type, Score.Name, double, String)</a> - Method in class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
 <dd>
 <div class="block">adding mark to the record book.</div>
 </dd>
@@ -131,15 +131,15 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/kolodina/recordbook/Score.Type.html#MARKS" class="member-name-link">MARKS</a> - Enum constant in enum class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/Score.Type.html" title="enum class in ru.nsu.kolodina.recordbook">Score.Type</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#marksList(java.util.stream.Stream)" class="member-name-link">marksList(Stream&lt;Score&gt;)</a> - Method in class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
+<dd>
+<div class="block">extracts marks as list of double values from stream of scores.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
 <dt><a href="ru/nsu/kolodina/recordbook/Score.html#name" class="member-name-link">name</a> - Variable in class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#numberMarks(java.util.stream.Stream)" class="member-name-link">numberMarks(Stream&lt;Score&gt;)</a> - Method in class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
-<dd>
-<div class="block">extracts marks as list of double values from stream of scores.</div>
-</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
@@ -158,7 +158,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">main class that contains implementation of student's record book.</div>
 </dd>
-<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#%3Cinit%3E(ru.nsu.kolodina.recordbook.RecordBook.Basis,int,boolean)" class="member-name-link">RecordBook(RecordBook.Basis, int, boolean)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
+<dt><a href="ru/nsu/kolodina/recordbook/RecordBook.html#%3Cinit%3E(ru.nsu.kolodina.recordbook.RecordBook.Basis,int,boolean,java.util.List)" class="member-name-link">RecordBook(RecordBook.Basis, int, boolean, List&lt;int[]&gt;)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/RecordBook.html" title="class in ru.nsu.kolodina.recordbook">RecordBook</a></dt>
 <dd>
 <div class="block">constructor for record book.</div>
 </dd>
@@ -177,7 +177,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">class implementing logic of scores.</div>
 </dd>
-<dt><a href="ru/nsu/kolodina/recordbook/Score.html#%3Cinit%3E(java.lang.Double,ru.nsu.kolodina.recordbook.Score.Type,ru.nsu.kolodina.recordbook.Score.Name)" class="member-name-link">Score(Double, Score.Type, Score.Name)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a></dt>
+<dt><a href="ru/nsu/kolodina/recordbook/Score.html#%3Cinit%3E(java.lang.Double,ru.nsu.kolodina.recordbook.Score.Type,ru.nsu.kolodina.recordbook.Score.Name,java.lang.String)" class="member-name-link">Score(Double, Score.Type, Score.Name, String)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/Score.html" title="class in ru.nsu.kolodina.recordbook">Score</a></dt>
 <dd>
 <div class="block">constructor for scores.</div>
 </dd>
@@ -195,7 +195,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">class implementing logic of containing records for one given semester.</div>
 </dd>
-<dt><a href="ru/nsu/kolodina/recordbook/SemesterMarks.html#%3Cinit%3E(int)" class="member-name-link">SemesterMarks(int)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/SemesterMarks.html" title="class in ru.nsu.kolodina.recordbook">SemesterMarks</a></dt>
+<dt><a href="ru/nsu/kolodina/recordbook/SemesterMarks.html#%3Cinit%3E(int,int,int,int,int)" class="member-name-link">SemesterMarks(int, int, int, int, int)</a> - Constructor for class ru.nsu.kolodina.recordbook.<a href="ru/nsu/kolodina/recordbook/SemesterMarks.html" title="class in ru.nsu.kolodina.recordbook">SemesterMarks</a></dt>
 <dd>
 <div class="block">constructor for semester grades book.</div>
 </dd>
