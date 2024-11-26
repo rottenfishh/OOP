@@ -13,11 +13,10 @@ import static ru.nsu.kolodina.recordbook.Score.Name.TEST;
 import static ru.nsu.kolodina.recordbook.Score.Type.FINALS;
 import static ru.nsu.kolodina.recordbook.Score.Type.MARKS;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * class for testing record book.

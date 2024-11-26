@@ -23,15 +23,18 @@ public class RecordBook {
      * @param base         - paid or free
      * @param currSemester - current semester
      * @param graduated    - did student graduate
-     * @param numberOfMarks - list of arrays containing number of marks for each semester in following structure:
+     * @param numberOfMarks - list of arrays containing number of marks for
+     *                      each semester in following structure:
      *                      semester, numExams, numDiffs, numPasses, numMarks.
      */
     public RecordBook(Basis base, int currSemester, boolean graduated, List<int[]> numberOfMarks) {
         this.currSemester = currSemester;
         gradeBook = new ArrayList<>(9);
         List<SemesterMarks> semesters = new ArrayList<>();
-        for (int i = 0; i <=8; i++) {
-            SemesterMarks semester = new SemesterMarks(numberOfMarks.get(i)[0], numberOfMarks.get(i)[1], numberOfMarks.get(i)[2], numberOfMarks.get(i)[3], numberOfMarks.get(i)[4]);
+        for (int i = 0; i <= 8; i++) {
+            SemesterMarks semester = new SemesterMarks(numberOfMarks.get(i)[0]
+                    , numberOfMarks.get(i)[1], numberOfMarks.get(i)[2]
+                    , numberOfMarks.get(i)[3], numberOfMarks.get(i)[4]);
             semesters.add(semester);
         }
         gradeBook.addAll(semesters);
