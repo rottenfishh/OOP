@@ -26,7 +26,7 @@ public class FileReader {
         while (scanner.hasNextLine()) {
             idx = 0;
             String[] strings = scanner.nextLine().replaceAll("\\s", "").split(",");
-            for (String s: strings) {
+            for (String s : strings) {
                 marksAll[i][idx] = Integer.parseInt(s);
                 idx++;
             }
@@ -35,6 +35,7 @@ public class FileReader {
         }
         return plan;
     }
+
     public RecordBook readFromFile(String path) throws URISyntaxException, FileNotFoundException {
         String pathPlan = "Plan";
         List<int[]> plan = readPlan(pathPlan);
@@ -77,7 +78,7 @@ public class FileReader {
                     type = Score.Type.DIPLOMA;
                     break;
             }
-            switch(mark[2]) {
+            switch (mark[2]) {
                 case "EXAM":
                     nameMark = Score.Name.EXAM;
                     break;

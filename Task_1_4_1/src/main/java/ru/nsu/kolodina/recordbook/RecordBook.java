@@ -1,6 +1,12 @@
 package ru.nsu.kolodina.recordbook;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -8,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * main class that contains implementation of student's record book.
  */
-public class RecordBook implements java.io.Serializable{
+public class RecordBook implements java.io.Serializable {
     public List<SemesterMarks> gradeBook;
     public int currSemester;
     String name;
@@ -20,9 +26,9 @@ public class RecordBook implements java.io.Serializable{
     /**
      * constructor for record book.
      *
-     * @param base         - paid or free
-     * @param currSemester - current semester
-     * @param graduated    - did student graduate
+     * @param base          - paid or free
+     * @param currSemester  - current semester
+     * @param graduated     - did student graduate
      * @param numberOfMarks - list of arrays containing number of marks for
      *                      each semester in following structure:
      *                      semester, numExams, numDiffs, numPasses, numMarks.
@@ -45,7 +51,7 @@ public class RecordBook implements java.io.Serializable{
     /**
      * setting student name.
      *
-     * @param name     name
+     * @param name name
      */
     public void setName(String name) {
         this.name = name;
@@ -171,7 +177,7 @@ public class RecordBook implements java.io.Serializable{
             return (fivesCount >= allMarksCount * 0.75) && !hasThrees
                     && ((diplomaScore == 5) || (diplomaScore == 0.0));
         }
-        return ((allMarksCount - fivesCount) < gradeBook.get(0).numExams * 0.25) && ! hasThrees;
+        return ((allMarksCount - fivesCount) < gradeBook.get(0).numExams * 0.25) && !hasThrees;
     }
 
     /**
@@ -239,6 +245,7 @@ public class RecordBook implements java.io.Serializable{
         out.close();
         file.close();
     }
+
     public RecordBook fromFile(String filePath) throws IOException, ClassNotFoundException {
         FileInputStream file = new FileInputStream(filePath);
         ObjectInputStream in = new ObjectInputStream(file);
@@ -271,7 +278,7 @@ public class RecordBook implements java.io.Serializable{
         sb.append(basis.toString()).append(";").append(currSemester)
                 .append(";").append(yesOrNo).append(";").append(name).append('\n');
         Stream<Score> stream = getScores();
-        for (Score s: stream.toList()) {
+        for (Score s : stream.toList()) {
             sb.append(s.semester).append(";").append(s.type)
                     .append(";").append(s.name).append(";")
                     .append(s.getScore()).append(";").append(s.subject).append('\n');
@@ -279,6 +286,7 @@ public class RecordBook implements java.io.Serializable{
         writer.write(sb.toString());
         writer.close();
     }
+
     /**
      * enum for basis of education.
      */

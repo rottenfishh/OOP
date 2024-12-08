@@ -4,18 +4,18 @@ package ru.nsu.kolodina.recordbook;
  * class implementing logic of scores.
  */
 public class Score {
-    String subject;
     public final Double score;
     public final Type type;
     public final Name name;
     public int semester;
+    String subject;
 
     /**
      * constructor for scores.
      *
      * @param score double value of score
-     * @param type type of score
-     * @param name name of score
+     * @param type  type of score
+     * @param name  name of score
      */
     public Score(Double score, Type type, Name name, String subject, int semester) {
         this.score = score;
