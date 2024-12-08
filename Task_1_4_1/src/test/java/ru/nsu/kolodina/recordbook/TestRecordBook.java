@@ -56,6 +56,7 @@ public class TestRecordBook {
         assertTrue(result.contains("Alina Kolodina"));
         assertTrue(result.contains("Course: 2"));
     }
+    
     @Test
     void testWriteToFile() throws IOException {
         book.writeToFile("book1.txt");

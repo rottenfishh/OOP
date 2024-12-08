@@ -8,7 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * class for reading RecordBook from file (deserializing).
+ */
 public class FileReader {
+    /**
+     * read plan of education from file.
+     *
+     * @param path to plan
+     * @return List of int arrays which have number of marks for each semester
+     * @throws URISyntaxException if not valid urisyntax
+     * @throws FileNotFoundException if file not found
+     */
     public List<int[]> readPlan(String path) throws URISyntaxException, FileNotFoundException {
         URL resource = getClass().getClassLoader().getResource(path);
         if (resource == null) {
@@ -36,9 +47,15 @@ public class FileReader {
         return plan;
     }
 
+    /**
+     * read student's record book from file.
+     *
+     * @param path to file
+     * @return RecordBook containing all fields read from file
+     * @throws URISyntaxException throw
+     * @throws FileNotFoundException throw
+     */
     public RecordBook readFromFile(String path) throws URISyntaxException, FileNotFoundException {
-        String pathPlan = "Plan";
-        List<int[]> plan = readPlan(pathPlan);
         URL resource = getClass().getClassLoader().getResource(path);
         if (resource == null) {
             throw new IllegalArgumentException("file not found!");
@@ -57,8 +74,10 @@ public class FileReader {
         }
         int currSemester = Integer.parseInt(studentInfo[1]);
         boolean graduated = studentInfo[2].equals("yes");
-
         String name = studentInfo[3];
+
+        String pathPlan = "Plan";
+        List<int[]> plan = readPlan(pathPlan);
         RecordBook book = new RecordBook(basis, currSemester, graduated, plan);
         book.setName(name);
         Score.Type type = null;
@@ -76,6 +95,9 @@ public class FileReader {
                     break;
                 case "DIPLOMA":
                     type = Score.Type.DIPLOMA;
+                    break;
+                default:
+                    System.err.println("Invalid type");
                     break;
             }
             switch (mark[2]) {
@@ -102,6 +124,9 @@ public class FileReader {
                     break;
                 case "COLLOQ":
                     nameMark = Score.Name.COLLOQ;
+                    break;
+                default:
+                    System.err.println("Invalid name");
                     break;
             }
             double score = Double.parseDouble(mark[3]);

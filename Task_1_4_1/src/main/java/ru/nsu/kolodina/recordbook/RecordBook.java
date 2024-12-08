@@ -38,9 +38,9 @@ public class RecordBook implements java.io.Serializable {
         gradeBook = new ArrayList<>(9);
         List<SemesterMarks> semesters = new ArrayList<>();
         for (int i = 0; i <= 8; i++) {
-            SemesterMarks semester = new SemesterMarks(numberOfMarks.get(i)[0]
-                    , numberOfMarks.get(i)[1], numberOfMarks.get(i)[2]
-                    , numberOfMarks.get(i)[3], numberOfMarks.get(i)[4]);
+            SemesterMarks semester = new SemesterMarks(numberOfMarks.get(i)[0],
+                    numberOfMarks.get(i)[1], numberOfMarks.get(i)[2],
+                    numberOfMarks.get(i)[3], numberOfMarks.get(i)[4]);
             semesters.add(semester);
         }
         gradeBook.addAll(semesters);
@@ -65,7 +65,8 @@ public class RecordBook implements java.io.Serializable {
      * @param name     name of mark
      * @param score    double value of mark
      */
-    public void addMark(int semester, Score.Type type, Score.Name name, double score, String subject, int sem) {
+    public void addMark(int semester, Score.Type type, Score.Name name,
+                        double score, String subject, int sem) {
         Score scr = new Score(score, type, name, subject, sem);
         switch (type) {
             case FINALS:
@@ -238,23 +239,12 @@ public class RecordBook implements java.io.Serializable {
         return sb.toString();
     }
 
-    public void toFile(String filePath) throws IOException {
-        FileOutputStream file = new FileOutputStream(filePath);
-        ObjectOutputStream out = new ObjectOutputStream(file);
-        out.writeObject(this);
-        out.close();
-        file.close();
-    }
-
-    public RecordBook fromFile(String filePath) throws IOException, ClassNotFoundException {
-        FileInputStream file = new FileInputStream(filePath);
-        ObjectInputStream in = new ObjectInputStream(file);
-        RecordBook book = (RecordBook) in.readObject();
-        in.close();
-        file.close();
-        return book;
-    }
-
+    /**
+     * method to write recordBook to file(serialization).
+     *
+     * @param path to create file in
+     * @throws IOException throw exception
+     */
     public void writeToFile(String path) throws IOException {
         try {
             File myObj = new File(path);
@@ -267,7 +257,6 @@ public class RecordBook implements java.io.Serializable {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        FileWriter writer = new FileWriter(path);
         StringBuilder sb = new StringBuilder();
         String yesOrNo = "";
         if (graduated) {
@@ -283,6 +272,7 @@ public class RecordBook implements java.io.Serializable {
                     .append(";").append(s.name).append(";")
                     .append(s.getScore()).append(";").append(s.subject).append('\n');
         }
+        FileWriter writer = new FileWriter(path);
         writer.write(sb.toString());
         writer.close();
     }
