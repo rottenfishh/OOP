@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,5 +55,10 @@ public class TestRecordBook {
         System.out.println(result);
         assertTrue(result.contains("Alina Kolodina"));
         assertTrue(result.contains("Course: 2"));
+    }
+    @Test
+    void testWriteToFile() throws IOException {
+        book.writeToFile("book1.txt");
+        book2.writeToFile("book2.txt");
     }
 }
