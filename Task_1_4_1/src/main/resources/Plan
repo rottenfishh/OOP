@@ -1,0 +1,10 @@
+%PLAN: semester, number of exams, diff_passes, passed and marks in this order. First line is numbers for the entire course. (0 semester)
+0, 19, 35, 7, 33
+1, 3, 3, 3, 6
+2, 3, 3, 2, 6
+3, 2, 6, 0, 6
+4, 5, 5, 0, 3
+5, 3, 4, 0, 4
+6, 2, 6, 0, 4
+7, 1, 4, 0, 2
+8, 0, 4, 1, 2

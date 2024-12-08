@@ -8,6 +8,7 @@ public class Score {
     public final Double score;
     public final Type type;
     public final Name name;
+    public int semester;
 
     /**
      * constructor for scores.
@@ -16,11 +17,12 @@ public class Score {
      * @param type type of score
      * @param name name of score
      */
-    public Score(Double score, Type type, Name name, String subject) {
+    public Score(Double score, Type type, Name name, String subject, int semester) {
         this.score = score;
         this.type = type;
         this.name = name;
         this.subject = subject;
+        this.semester = semester;
     }
 
     /**

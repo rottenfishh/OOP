@@ -1,5 +1,6 @@
 package ru.nsu.kolodina.recordbook;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -7,11 +8,10 @@ import java.util.stream.Stream;
 /**
  * main class that contains implementation of student's record book.
  */
-public class RecordBook {
+public class RecordBook implements java.io.Serializable{
     public List<SemesterMarks> gradeBook;
     public int currSemester;
     String name;
-    String lastName;
     boolean graduated = false;
     double avgScore;
     Score diploma = null;
@@ -46,11 +46,9 @@ public class RecordBook {
      * setting student name.
      *
      * @param name     name
-     * @param lastName lastName
      */
-    public void setName(String name, String lastName) {
+    public void setName(String name) {
         this.name = name;
-        this.lastName = lastName;
     }
 
     /**
@@ -61,8 +59,8 @@ public class RecordBook {
      * @param name     name of mark
      * @param score    double value of mark
      */
-    public void addMark(int semester, Score.Type type, Score.Name name, double score, String subject) {
-        Score scr = new Score(score, type, name, subject);
+    public void addMark(int semester, Score.Type type, Score.Name name, double score, String subject, int sem) {
+        Score scr = new Score(score, type, name, subject, sem);
         switch (type) {
             case FINALS:
                 switch (name) {
@@ -215,13 +213,13 @@ public class RecordBook {
      */
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Grade book of student " + name + " " + lastName + "\n");
+        sb.append("Grade book of student " + name + "\n");
         sb.append("Education basis: " + basis + "\n");
         int course = (int) Math.ceil((double) currSemester / 2);
         sb.append("Course: " + course + "\n");
         sb.append(String.format("                     Average grade book score: %.2f\n\n",
                 getAvgScore()));
-        for (int i = 1; i < currSemester; i++) {
+        for (int i = 1; i <= currSemester; i++) {
             sb.append("Semester " + i + "\nExams marks: "
                     + marksList(gradeBook.get(i).examScores.stream()) + "\n");
             sb.append("Differential pass marks: "
@@ -234,6 +232,53 @@ public class RecordBook {
         return sb.toString();
     }
 
+    public void toFile(String filePath) throws IOException {
+        FileOutputStream file = new FileOutputStream(filePath);
+        ObjectOutputStream out = new ObjectOutputStream(file);
+        out.writeObject(this);
+        out.close();
+        file.close();
+    }
+    public RecordBook fromFile(String filePath) throws IOException, ClassNotFoundException {
+        FileInputStream file = new FileInputStream(filePath);
+        ObjectInputStream in = new ObjectInputStream(file);
+        RecordBook book = (RecordBook) in.readObject();
+        in.close();
+        file.close();
+        return book;
+    }
+
+    public void writeToFile(String path) throws IOException {
+        try {
+            File myObj = new File(path);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        FileWriter writer = new FileWriter(path);
+        StringBuilder sb = new StringBuilder();
+        String yesOrNo = "";
+        if (graduated) {
+            yesOrNo = "yes";
+        } else {
+            yesOrNo = "no";
+        }
+        sb.append(basis.toString()).append(";").append(currSemester)
+                .append(";").append(yesOrNo).append(";").append(name).append('\n');
+        Stream<Score> stream = getScores();
+        for (Score s: stream.toList()) {
+            sb.append(s.semester).append(";").append(s.type)
+                    .append(";").append(s.name).append(";")
+                    .append(s.getScore()).append(";").append(s.subject).append('\n');
+        }
+        writer.write(sb.toString());
+        writer.close();
+    }
     /**
      * enum for basis of education.
      */
@@ -241,4 +286,5 @@ public class RecordBook {
         FREE,
         PAID
     }
+
 }
