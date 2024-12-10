@@ -88,12 +88,12 @@ public class FileReader {
             int sem = Integer.parseInt(mark[0]);
             try {
                 type = Score.Type.valueOf(mark[1]);
-            } catch(NullPointerException | IllegalArgumentException e ) {
+            } catch (NullPointerException | IllegalArgumentException e) {
                 System.err.println("Invalid type!");
             }
             try {
                 nameMark = Score.Name.valueOf(mark[2]);
-            } catch(NullPointerException | IllegalArgumentException e ) {
+            } catch (NullPointerException | IllegalArgumentException e) {
                 System.err.println("Invalid name!");
             }
             double score = Double.parseDouble(mark[3]);
