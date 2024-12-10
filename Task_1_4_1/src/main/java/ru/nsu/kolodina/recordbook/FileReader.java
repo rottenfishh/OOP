@@ -86,48 +86,15 @@ public class FileReader {
             String string = scanner.nextLine();
             String[] mark = string.split(";");
             int sem = Integer.parseInt(mark[0]);
-            switch (mark[1]) {
-                case "MARKS":
-                    type = Score.Type.MARKS;
-                    break;
-                case "FINALS":
-                    type = Score.Type.FINALS;
-                    break;
-                case "DIPLOMA":
-                    type = Score.Type.DIPLOMA;
-                    break;
-                default:
-                    System.err.println("Invalid type");
-                    break;
+            try {
+                type = Score.Type.valueOf(mark[1]);
+            } catch (NullPointerException | IllegalArgumentException e ) {
+                System.err.println("Invalid type!");
             }
-            switch (mark[2]) {
-                case "EXAM":
-                    nameMark = Score.Name.EXAM;
-                    break;
-                case "DIFF_PASS":
-                    nameMark = Score.Name.DIFF_PASS;
-                    break;
-                case "PASS":
-                    nameMark = Score.Name.PASS;
-                    break;
-                case "PRACTICE":
-                    nameMark = Score.Name.PRACTICE;
-                    break;
-                case "DIPLOMA":
-                    nameMark = Score.Name.DIPLOMA;
-                    break;
-                case "TASK":
-                    nameMark = Score.Name.TASK;
-                    break;
-                case "TEST":
-                    nameMark = Score.Name.TEST;
-                    break;
-                case "COLLOQ":
-                    nameMark = Score.Name.COLLOQ;
-                    break;
-                default:
-                    System.err.println("Invalid name");
-                    break;
+            try {
+                nameMark = Score.Name.valueOf(mark[2]);
+            } catch (NullPointerException | IllegalArgumentException e ) {
+                System.err.println("Invalid name!");
             }
             double score = Double.parseDouble(mark[3]);
             String subject = mark[4];
