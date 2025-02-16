@@ -75,8 +75,8 @@ public class Multithreading {
             SimpleNumbers testSimple = new SimpleNumbers();
             int len = numbers.length / numOfThreads;
             int start = len * id;
-            int end = (id == numOfThreads - 1) ?
-                    numbers.length : len * (id + 1);  // Handle the last thread
+            int end = (id == numOfThreads - 1)
+                    ? numbers.length : len * (id + 1);  // Handle the last thread
             for (int i = start; i < end && !flag.get(); i++) {
                 if (!testSimple.isSimple(numbers[i])) {
                     flag.set(true);
