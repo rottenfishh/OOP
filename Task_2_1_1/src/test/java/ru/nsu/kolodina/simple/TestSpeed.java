@@ -1,13 +1,15 @@
 package ru.nsu.kolodina.simple;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/**
+ * testing speed of different solutions.
+ */
 public class TestSpeed {
     SimpleNumbers test;
     Multithreading calculate;
@@ -20,7 +22,7 @@ public class TestSpeed {
         test = new SimpleNumbers();
         calculate = new Multithreading();
         arr1 = new Integer[]{20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
         arrBig = new Integer[1000000];
         arrBig2 = new Integer[1000000];
         Arrays.fill(arrBig2, 20165149);
