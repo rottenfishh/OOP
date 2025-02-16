@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Multithreading {
-    public AtomicBoolean flag = new AtomicBoolean(false);
+    public static volatile AtomicBoolean flag = new AtomicBoolean(false);
     public boolean hasNotSimple(Integer[] numbers, int numOfThreads) throws InterruptedException {
+        flag.set(false);
         if (numOfThreads > numbers.length) {
             numOfThreads = numbers.length - 1;
         }
@@ -35,7 +36,7 @@ public class Multithreading {
             SimpleNumbers testSimple = new SimpleNumbers();
             int len = numbers.length / numOfThreads;
             int start = len * id;
-            int end = len * (id+1);
+            int end = (id == numOfThreads - 1) ? numbers.length : len * (id + 1);  // Handle the last thread
             for (int i = start; i < end && !flag.get(); i++) {
                 if (!testSimple.isSimple(numbers[i])) {
                     flag.set(true);
