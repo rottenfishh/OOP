@@ -2,7 +2,6 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
 plugins {
     id("java")
     id("jacoco")
-    id("me.champeau.jmh") version "0.7.1"
 }
 
 group = "ru.nsu.kolodina"
@@ -23,8 +22,9 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation ("org.jetbrains:annotations:16.0.2")
-    implementation("org.openjdk.jmh:jmh-core:1.37")
-    annotationProcessor("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+    implementation("org.openjdk.jmh:jmh-core:1.36")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
 
 }
 
@@ -37,8 +37,4 @@ tasks.named<JacocoReport>("jacocoTestReport") {
         xml.required.set(true)
         html.required.set(true)
     }
-}
-
-tasks.withType<JavaCompile>().configureEach {
-    options.compilerArgs.add("-parameters")
 }

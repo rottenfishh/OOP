@@ -3,12 +3,13 @@ package ru.nsu.kolodina.simple;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Multithreading {
-    public static volatile boolean hasNotSimple = false;
+    public AtomicBoolean flag = new AtomicBoolean(false);
     public boolean hasNotSimple(Integer[] numbers, int numOfThreads) throws InterruptedException {
         if (numOfThreads > numbers.length) {
-            numOfThreads = numbers.length;
+            numOfThreads = numbers.length - 1;
         }
         thread[] threads = new thread[numOfThreads];
         for (int i = 0; i < numOfThreads; i++) {
@@ -17,9 +18,8 @@ public class Multithreading {
         }
         for (int i = 0; i < numOfThreads; i++) {
             threads[i].join();
-            return hasNotSimple;
         }
-        return false;
+        return flag.get();
     }
     public class thread extends Thread {
         Integer[] numbers;
@@ -32,17 +32,21 @@ public class Multithreading {
         }
         @Override
         public void run() {
-            SimpleNumbers test = new SimpleNumbers();
-            boolean result = test.hasNotSimple(numbers, numOfThreads, id, true);
-            if (!hasNotSimple) {
-                hasNotSimple = result;
+            SimpleNumbers testSimple = new SimpleNumbers();
+            int len = numbers.length / numOfThreads;
+            int start = len * id;
+            int end = len * (id+1);
+            for (int i = start; i < end && !flag.get(); i++) {
+                if (!testSimple.isSimple(numbers[i])) {
+                    flag.set(true);
+                }
             }
         }
     }
     public boolean useParallelStream(Integer[] arr) {
         SimpleNumbers test = new SimpleNumbers();
         List<Integer> list = new ArrayList<>(Arrays.asList(arr));
-        boolean result = !(list.parallelStream().allMatch(test::isSimple));
+        boolean result = (list.parallelStream().anyMatch(a -> !test.isSimple(a)));
         return result;
     }
 }

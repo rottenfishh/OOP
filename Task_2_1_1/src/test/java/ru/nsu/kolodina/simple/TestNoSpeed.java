@@ -27,8 +27,8 @@ public class TestNoSpeed {
 
     @Test
     public void testOneThread() {
-        assertFalse(test.hasNotSimple(arr1, 1, 0, false));
-        assertTrue(test.hasNotSimple(arr2,1,0, false));
+        assertFalse(test.hasNotSimpleOneThread(arr1));
+        assertTrue(test.hasNotSimpleOneThread(arr2));
     }
 
     @Test
