@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.kolodina.simple","l":"Multithreading"},{"p":"ru.nsu.kolodina.simple","l":"SimpleNumbers"},{"p":"ru.nsu.kolodina.simple","l":"Multithreading.thread"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.kolodina.simple","l":"Multithreading"},{"p":"ru.nsu.kolodina.simple","l":"Multithreading.MyThread"},{"p":"ru.nsu.kolodina.simple","l":"SimpleNumbers"}];updateSearchResults();
