@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.simple;
 
-import java.util.List;
-
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
 

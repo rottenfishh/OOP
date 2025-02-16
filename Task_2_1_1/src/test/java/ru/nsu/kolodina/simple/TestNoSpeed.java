@@ -11,14 +11,16 @@ public class TestNoSpeed {
     Multithreading calculate;
     Integer[] arr1;
     Integer[] arr2;
+
     @BeforeEach
     void setup() {
         test = new SimpleNumbers();
         calculate = new Multithreading();
         arr1 = new Integer[]{20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
                 6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
-        arr2 = new Integer[] {6, 8, 7, 13, 5, 9, 4};
+        arr2 = new Integer[]{6, 8, 7, 13, 5, 9, 4};
     }
+
     @Test
     public void testMultithreading() throws InterruptedException {
         assertFalse(calculate.hasNotSimple(arr1, 10));

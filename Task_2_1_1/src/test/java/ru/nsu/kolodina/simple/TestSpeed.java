@@ -14,6 +14,7 @@ public class TestSpeed {
     Integer[] arr1;
     Integer[] arrBig;
     Integer[] arrBig2;
+
     @BeforeEach
     void setup() {
         test = new SimpleNumbers();
@@ -34,7 +35,7 @@ public class TestSpeed {
         assertFalse(test.hasNotSimpleOneThread(arrBig2));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("one thread " + time /  1_000_000  + " miliseconds");
+        System.out.println("one thread " + time / 1_000_000 + " miliseconds");
     }
 
     @Test
@@ -44,8 +45,9 @@ public class TestSpeed {
         assertFalse(calculate.hasNotSimple(arrBig2, 2));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("2 threads " + time /  1_000_000 + " miliseconds");
+        System.out.println("2 threads " + time / 1_000_000 + " miliseconds");
     }
+
     @Test
     public void testMultithreading4Threads() throws InterruptedException {
         long startTime = System.nanoTime();
@@ -53,8 +55,9 @@ public class TestSpeed {
         assertFalse(calculate.hasNotSimple(arrBig2, 4));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("4 threads " + time /  1_000_000  + " miliseconds");
+        System.out.println("4 threads " + time / 1_000_000 + " miliseconds");
     }
+
     @Test
     public void testMultithreading8Threads() throws InterruptedException {
         long startTime = System.nanoTime();
@@ -62,8 +65,9 @@ public class TestSpeed {
         assertFalse(calculate.hasNotSimple(arrBig2, 8));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("8 threads " + time /  1_000_000 + " miliseconds");
+        System.out.println("8 threads " + time / 1_000_000 + " miliseconds");
     }
+
     @Test
     public void testMultithreading12Threads() throws InterruptedException {
         long startTime = System.nanoTime();
@@ -71,8 +75,9 @@ public class TestSpeed {
         assertFalse(calculate.hasNotSimple(arrBig2, 12));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("12 threads " + time /  1_000_000  + " miliseconds");
+        System.out.println("12 threads " + time / 1_000_000 + " miliseconds");
     }
+
     @Test
     public void testMultithreading20Threads() throws InterruptedException {
         long startTime = System.nanoTime();
@@ -80,7 +85,7 @@ public class TestSpeed {
         assertFalse(calculate.hasNotSimple(arrBig2, 20));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("20 threads " + time /  1_000_000  + " miliseconds");
+        System.out.println("20 threads " + time / 1_000_000 + " miliseconds");
     }
 
     @Test
@@ -90,6 +95,6 @@ public class TestSpeed {
         assertFalse(calculate.useParallelStream(arrBig2));
         long endTime = System.nanoTime();
         long time = endTime - startTime;
-        System.out.println("parallelStream " + time / 1_000_000  + " miliseconds");
+        System.out.println("parallelStream " + time / 1_000_000 + " miliseconds");
     }
 }
