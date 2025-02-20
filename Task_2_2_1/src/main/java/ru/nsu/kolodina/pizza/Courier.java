@@ -4,13 +4,13 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 
-public class Curier implements Runnable{
+public class Courier implements Runnable{
     int id;
     int backpackCap;
     int fullSlots;
     Storage storage;
     volatile boolean workDayEnded;
-    public Curier(Storage storage, int id, int backpackCap, boolean workDayEnded) {
+    public Courier(Storage storage, int id, int backpackCap, boolean workDayEnded) {
         this.storage = storage;
         this.id = id;
         this.backpackCap = backpackCap;
