@@ -1,0 +1,46 @@
+package ru.nsu.kolodina.pizza;
+
+import java.util.List;
+
+import static java.lang.Thread.sleep;
+
+public class Baker implements Runnable{
+    int id;
+    int speed;
+    Storage storage;
+    Storage orders;
+    volatile boolean workDayEnded;
+    public Baker(Storage storage, Storage orders, int id, int speed, boolean workDayEnded) {
+        this.storage = storage;
+        this.orders = orders;
+        this.id = id;
+        this.speed = speed;
+        this.workDayEnded = workDayEnded;
+    }
+    @Override
+    public void run(){
+        while(!workDayEnded || orders.takenSlots.availablePermits() != 0) {
+            boolean haveOrder = false;
+            Order toBake = orders.getFromStorage(1).getFirst();
+            if (toBake.status.equals("ORDERED")) {
+                toBake.status = "TAKEN";
+                toBake.printStatus();
+                haveOrder = true;
+            }
+            if (haveOrder) {
+                try {
+                    bake(toBake);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+    public void bake(Order order) throws InterruptedException {
+        sleep(1000/speed);
+        order.status = "READY";
+        order.printStatus();
+        storage.putInStorage(order);
+        System.out.println("put in");
+    }
+}
