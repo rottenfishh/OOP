@@ -9,21 +9,16 @@ public class Courier implements Runnable{
     int backpackCap;
     int fullSlots;
     Storage storage;
-    volatile boolean workDayEnded;
-    public Courier(Storage storage, int id, int backpackCap, boolean workDayEnded) {
+    public Courier(Storage storage, int id, int backpackCap) {
         this.storage = storage;
         this.id = id;
         this.backpackCap = backpackCap;
-        this.workDayEnded = workDayEnded;
     }
     public void run(){
-        while(!workDayEnded || storage.takenSlots.availablePermits() != 0) {
+        while(!Pizzeria.workDayEnded || storage.takenSlots.availablePermits() != 0) {
             List<Order> orders;
             try {
                 orders = storage.getFromStorage(backpackCap);
-                if (orders == null) {
-                    return;
-                }
                 for (Order order : orders) {
                     order.status = "DELIVERING";
                     order.printStatus();

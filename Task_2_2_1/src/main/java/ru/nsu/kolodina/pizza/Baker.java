@@ -9,23 +9,17 @@ public class Baker implements Runnable{
     int speed;
     Storage storage;
     Storage orders;
-    volatile boolean workDayEnded;
-    public Baker(Storage storage, Storage orders, int id, int speed, boolean workDayEnded) {
+    public Baker(Storage storage, Storage orders, int id, int speed) {
         this.storage = storage;
         this.orders = orders;
         this.id = id;
         this.speed = speed;
-        this.workDayEnded = workDayEnded;
     }
     @Override
     public void run(){
-        while(!workDayEnded || orders.takenSlots.availablePermits() != 0) {
+        while(!Pizzeria.workDayEnded || orders.takenSlots.availablePermits() != 0) {
             boolean haveOrder = false;
-            List<Order> currOrder = orders.getFromStorage(1);
-            if (currOrder == null) {
-                return;
-            }
-            Order toBake = currOrder.getFirst();
+            Order toBake = orders.getFromStorage(1).getFirst();
             if (toBake.status.equals("ORDERED")) {
                 toBake.status = "TAKEN";
                 toBake.printStatus();

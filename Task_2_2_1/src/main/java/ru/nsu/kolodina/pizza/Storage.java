@@ -9,13 +9,11 @@ public class Storage {
     int capacity;
     Semaphore takenSlots;
     Semaphore emptySlots;
-    volatile boolean workDayEnded;
-    public Storage(int capacity, boolean workDayEnded) {
+    public Storage(int capacity) {
         this.capacity = capacity;
         storage = new ArrayList<>(capacity);
         emptySlots = new Semaphore(capacity);
         takenSlots = new Semaphore(0);
-        this.workDayEnded = workDayEnded;
     }
     public void putInStorage(Order order) {
         try {
@@ -37,9 +35,6 @@ public class Storage {
                     takenSlots.acquire(num);
             }
             else {
-                if (workDayEnded) { //finishing
-                    return null;
-                }
                 takenSlots.acquire();
                 num = 1;
             }

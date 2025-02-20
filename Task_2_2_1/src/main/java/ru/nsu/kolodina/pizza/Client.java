@@ -11,5 +11,6 @@ public class Client implements Runnable{
     }
     public void run() {
         queue.putInStorage(order);
+        order.printStatus();
     }
 }
