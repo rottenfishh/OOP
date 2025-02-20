@@ -9,11 +9,13 @@ public class Storage {
     int capacity;
     Semaphore takenSlots;
     Semaphore emptySlots;
-    public Storage(int capacity) {
+    volatile boolean workDayEnded;
+    public Storage(int capacity, boolean workDayEnded) {
         this.capacity = capacity;
         storage = new ArrayList<>(capacity);
         emptySlots = new Semaphore(capacity);
         takenSlots = new Semaphore(0);
+        this.workDayEnded = workDayEnded;
     }
     public void putInStorage(Order order) {
         try {
@@ -35,6 +37,9 @@ public class Storage {
                     takenSlots.acquire(num);
             }
             else {
+                if (workDayEnded) { //finishing
+                    return null;
+                }
                 takenSlots.acquire();
                 num = 1;
             }
@@ -45,12 +50,9 @@ public class Storage {
         } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        System.out.println("he");
-        System.out.println(num + " num");
         synchronized(storage) {
             for (int i = 0; i < num; i ++) {
                 orders.add(storage.removeFirst());
-                System.out.println("sooo");
             }
         }
         emptySlots.release(num);

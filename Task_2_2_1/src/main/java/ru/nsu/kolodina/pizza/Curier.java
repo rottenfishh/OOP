@@ -18,13 +18,13 @@ public class Curier implements Runnable{
     }
     public void run(){
         while(!workDayEnded || storage.takenSlots.availablePermits() != 0) {
-            List<Order> orders = null;
+            List<Order> orders;
             try {
-                System.out.println("trying to take");
                 orders = storage.getFromStorage(backpackCap);
-                System.out.println("takenn");
+                if (orders == null) {
+                    return;
+                }
                 for (Order order : orders) {
-                    System.out.println("ord");
                     order.status = "DELIVERING";
                     order.printStatus();
                     sleep(1000);

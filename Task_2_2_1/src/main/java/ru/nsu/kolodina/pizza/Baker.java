@@ -21,7 +21,11 @@ public class Baker implements Runnable{
     public void run(){
         while(!workDayEnded || orders.takenSlots.availablePermits() != 0) {
             boolean haveOrder = false;
-            Order toBake = orders.getFromStorage(1).getFirst();
+            List<Order> currOrder = orders.getFromStorage(1);
+            if (currOrder == null) {
+                return;
+            }
+            Order toBake = currOrder.getFirst();
             if (toBake.status.equals("ORDERED")) {
                 toBake.status = "TAKEN";
                 toBake.printStatus();
@@ -41,6 +45,5 @@ public class Baker implements Runnable{
         order.status = "READY";
         order.printStatus();
         storage.putInStorage(order);
-        System.out.println("put in");
     }
 }

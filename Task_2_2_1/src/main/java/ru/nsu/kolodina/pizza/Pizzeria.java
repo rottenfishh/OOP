@@ -16,9 +16,9 @@ public class Pizzeria {
     Thread[] curiers;
     static volatile boolean workDayEnded = false;
     public Pizzeria() {
-        orders = new Storage(10000);
+        orders = new Storage(10000, workDayEnded);
         currTime = startWorkTime;
-        storage = new Storage(storageCapacity);
+        storage = new Storage(storageCapacity, workDayEnded);
         bakers = new Thread[numBakers];
         for (int i = 0; i < numBakers; i++) {
             bakers[i] = new Thread(new Baker(storage, orders, 0, 10, workDayEnded));
@@ -42,6 +42,8 @@ public class Pizzeria {
     }
     public void endWork() throws InterruptedException {
         workDayEnded = true;
+        orders.workDayEnded = true;
+        storage.workDayEnded = true;
         for (Thread i: bakers) {
             i.join();
         }
