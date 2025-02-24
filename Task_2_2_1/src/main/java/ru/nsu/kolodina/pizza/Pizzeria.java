@@ -6,7 +6,7 @@ public class Pizzeria {
     public int endWorkTime = 10;
     int storageCapacity = 100;
     int numBakers = 3;
-    int numCuriers = 3;
+    int numCouriers = 3;
     Storage storage;
     Storage orders;
     Thread[] bakers;
@@ -20,12 +20,12 @@ public class Pizzeria {
         for (int i = 0; i < numBakers; i++) {
             bakers[i] = new Thread(new Baker(storage, orders, 0, 10));
         }
-        couriers = new Thread[numCuriers];
-        for (int i = 0; i < numCuriers; i++) {
+        couriers = new Thread[numCouriers];
+        for (int i = 0; i < numCouriers; i++) {
             couriers[i] = new Thread(new Courier(storage, 0, 10));
         }
     }
-    public void startWork() throws InterruptedException {
+    public void startWork(){
         System.out.println("Work day started!");
         for (Thread i: bakers) {
             i.start();

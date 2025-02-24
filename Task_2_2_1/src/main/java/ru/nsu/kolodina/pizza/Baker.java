@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.pizza;
 
-import java.util.List;
-
 import static java.lang.Thread.sleep;
 
 public class Baker implements Runnable{
@@ -17,7 +15,7 @@ public class Baker implements Runnable{
     }
     @Override
     public void run(){
-        while(!Pizzeria.workDayEnded || orders.takenSlots.availablePermits() != 0) {
+        while(!Pizzeria.workDayEnded || !orders.isEmpty()) {
             boolean haveOrder = false;
             Order toBake = orders.getFromStorage(1).getFirst();
             if (toBake.status.equals("ORDERED")) {

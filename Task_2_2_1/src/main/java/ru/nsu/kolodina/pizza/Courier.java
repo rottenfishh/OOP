@@ -7,7 +7,6 @@ import static java.lang.Thread.sleep;
 public class Courier implements Runnable{
     int id;
     int backpackCap;
-    int fullSlots;
     Storage storage;
     public Courier(Storage storage, int id, int backpackCap) {
         this.storage = storage;
@@ -15,7 +14,7 @@ public class Courier implements Runnable{
         this.backpackCap = backpackCap;
     }
     public void run(){
-        while(!Pizzeria.workDayEnded || storage.takenSlots.availablePermits() != 0) {
+        while(!Pizzeria.workDayEnded || !storage.isEmpty()) {
             List<Order> orders;
             try {
                 orders = storage.getFromStorage(backpackCap);

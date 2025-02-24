@@ -2,55 +2,50 @@ package ru.nsu.kolodina.pizza;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 public class Storage {
-    List<Order> storage;
-    int capacity;
-    Semaphore takenSlots;
-    Semaphore emptySlots;
+    private List<Order> storage;
+    private final int capacity;
+
     public Storage(int capacity) {
         this.capacity = capacity;
         storage = new ArrayList<>(capacity);
-        emptySlots = new Semaphore(capacity);
-        takenSlots = new Semaphore(0);
     }
-    public void putInStorage(Order order) {
+
+    public synchronized void putInStorage(Order order) {
         try {
-            emptySlots.acquire();
-            synchronized (storage) {
-                storage.add(order);
+            while (storage.size() == capacity) {
+                wait();
             }
-            takenSlots.release();
-        } catch (InterruptedException e){
-            throw(new RuntimeException());
+        } catch (InterruptedException e) {
+            throw (new RuntimeException());
         }
+        storage.add(order);
+        notifyAll();
     }
-    public List<Order> getFromStorage(int capacity) {
+
+    public synchronized List<Order> getFromStorage(int count) {
         List<Order> orders = new ArrayList<>();
         int num;
         try {
-        if ((num = takenSlots.availablePermits()) < capacity) {
-            if (num != 0) {
-                    takenSlots.acquire(num);
+            while (storage.isEmpty()) {
+                wait();
             }
-            else {
-                takenSlots.acquire();
-                num = 1;
+            if (storage.size() >= count) {
+                num = count;
+            } else {
+                num = storage.size();
             }
-        } else {
-            takenSlots.acquire(capacity);
-            num = capacity;
-        }
         } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        synchronized(storage) {
-            for (int i = 0; i < num; i ++) {
-                orders.add(storage.removeFirst());
-            }
+            throw (new RuntimeException());
         }
-        emptySlots.release(num);
+        for (int i = 0; i < num; i++) {
+            orders.add(storage.removeFirst());
+        }
+        notifyAll();
         return orders;
+    }
+    public boolean isEmpty() {
+        return storage.isEmpty();
     }
 }
