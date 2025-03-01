@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Storage</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">the storage.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -102,7 +103,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">Storage</a><wbr>(int&nbsp;capacity)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">init with a given capacity.</div>
+</div>
 </div>
 </section>
 </li>
@@ -119,13 +122,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFromStorage(int)" class="member-name-link">getFromStorage</a><wbr>(int&nbsp;count)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">get orders from buffer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isEmpty()" class="member-name-link">isEmpty</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">check if buffer is empty.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putInStorage(ru.nsu.kolodina.pizza.Order)" class="member-name-link">putInStorage</a><wbr>(<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&nbsp;order)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">put order in buffer.</div>
+</div>
 </div>
 </div>
 </div>
@@ -147,6 +156,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(int)">
 <h3>Storage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Storage</span><wbr><span class="parameters">(int&nbsp;capacity)</span></div>
+<div class="block">init with a given capacity.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>capacity</code> - yes</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -161,18 +175,35 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="putInStorage(ru.nsu.kolodina.pizza.Order)">
 <h3>putInStorage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">putInStorage</span><wbr><span class="parameters">(<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&nbsp;order)</span></div>
+<div class="block">put order in buffer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - to put</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFromStorage(int)">
 <h3>getFromStorage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&gt;</span>&nbsp;<span class="element-name">getFromStorage</span><wbr><span class="parameters">(int&nbsp;count)</span></div>
+<div class="block">get orders from buffer.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>count</code> - num of orders</dd>
+<dt>Returns:</dt>
+<dd>the list of orders</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isEmpty()">
 <h3>isEmpty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isEmpty</span>()</div>
+<div class="block">check if buffer is empty.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true or false</dd>
+</dl>
 </section>
 </li>
 </ul>

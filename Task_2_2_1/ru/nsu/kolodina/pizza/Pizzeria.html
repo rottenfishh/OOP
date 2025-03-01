@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Pizzeria</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">main class of Pizzeria to bring everything together.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -104,7 +105,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>class&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Pizzeria.JsonReader.html" class="type-name-link" title="class in ru.nsu.kolodina.pizza">Pizzeria.JsonReader</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">read from json.</div>
+</div>
 </div>
 </section>
 </li>
@@ -135,7 +138,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Pizzeria</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">initializing Pizzeria with parameters from json file.</div>
+</div>
 </div>
 </section>
 </li>
@@ -152,10 +157,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#endWork()" class="member-name-link">endWork</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">end work, wait for all threads to join.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#startWork()" class="member-name-link">startWork</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">start work of pizzeria, make all threads run.</div>
+</div>
 </div>
 </div>
 </div>
@@ -197,6 +206,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Pizzeria</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Pizzeria</span>()</div>
+<div class="block">initializing Pizzeria with parameters from json file.
+ creating threads of bakers and couriers</div>
 </section>
 </li>
 </ul>
@@ -211,6 +222,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="startWork()">
 <h3>startWork</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">startWork</span>()</div>
+<div class="block">start work of pizzeria, make all threads run.</div>
 </section>
 </li>
 <li>
@@ -218,9 +230,10 @@ loadScripts(document, 'script');</script>
 <h3>endWork</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">endWork</span>()
              throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">end work, wait for all threads to join.</div>
 <dl class="notes">
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - happens</dd>
 </dl>
 </section>
 </li>

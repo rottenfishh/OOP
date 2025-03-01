@@ -95,6 +95,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Baker</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></span></div>
+<div class="block">class implementing baker.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -110,7 +111,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
  <a href="Storage.html" title="class in ru.nsu.kolodina.pizza">Storage</a>&nbsp;orders,
  int&nbsp;id,
  int&nbsp;speed)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">init everything baker needs.</div>
+</div>
 </div>
 </section>
 </li>
@@ -127,10 +130,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#bake(ru.nsu.kolodina.pizza.Order)" class="member-name-link">bake</a><wbr>(<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&nbsp;order)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">bake the order.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">run our thread.</div>
+</div>
 </div>
 </div>
 </div>
@@ -155,6 +162,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
  <a href="Storage.html" title="class in ru.nsu.kolodina.pizza">Storage</a>&nbsp;orders,
  int&nbsp;id,
  int&nbsp;speed)</span></div>
+<div class="block">init everything baker needs.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>storage</code> - to put orders in</dd>
+<dd><code>orders</code> - queue of orders</dd>
+<dd><code>id</code> - of baker</dd>
+<dd><code>speed</code> - of baker</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -169,6 +184,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
+<div class="block">run our thread.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
@@ -180,9 +196,12 @@ implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base
 <h3>bake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">bake</span><wbr><span class="parameters">(<a href="Order.html" title="class in ru.nsu.kolodina.pizza">Order</a>&nbsp;order)</span>
           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">bake the order.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>order</code> - order</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - happens</dd>
 </dl>
 </section>
 </li>
