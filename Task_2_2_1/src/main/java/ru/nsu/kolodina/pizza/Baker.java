@@ -2,12 +2,23 @@ package ru.nsu.kolodina.pizza;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * class implementing baker.
+ */
 public class Baker implements Runnable {
     int id;
     int speed;
     Storage storage;
     Storage orders;
 
+    /**
+     * init everything baker needs.
+     *
+     * @param storage to put orders in
+     * @param orders queue of orders
+     * @param id of baker
+     * @param speed of baker
+     */
     public Baker(Storage storage, Storage orders, int id, int speed) {
         this.storage = storage;
         this.orders = orders;
@@ -15,6 +26,9 @@ public class Baker implements Runnable {
         this.speed = speed;
     }
 
+    /**
+     * run our thread.
+     */
     @Override
     public void run() {
         while (!Pizzeria.workDayEnded || !orders.isEmpty()) {
@@ -35,6 +49,12 @@ public class Baker implements Runnable {
         }
     }
 
+    /**
+     * bake the order.
+     *
+     * @param order order
+     * @throws InterruptedException happens
+     */
     public void bake(Order order) throws InterruptedException {
         order.status = "BAKING";
         order.printStatus();
