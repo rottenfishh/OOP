@@ -1,11 +1,12 @@
 package ru.nsu.kolodina.pizza;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * test the work of Pizzeria.
@@ -13,14 +14,16 @@ import java.io.PrintStream;
 public class TestPizzeria {
     private ByteArrayOutputStream outputStream;
     Pizzeria dominos;
+
     @BeforeEach
     public void setUp() {
         dominos = new Pizzeria();
         outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
     }
+
     @Test
-    public void Test() throws InterruptedException {
+    public void test() throws InterruptedException {
         dominos.startWork();
         dominos.endWork();
         String output = outputStream.toString();
@@ -30,6 +33,7 @@ public class TestPizzeria {
         assertTrue(output.contains("DELIVERING"));
         assertTrue(output.contains("DELIVERED"));
     }
+
     @Test
     public void testStorage() {
         Storage storage = new Storage(100);

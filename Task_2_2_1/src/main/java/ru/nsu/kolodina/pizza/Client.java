@@ -1,7 +1,7 @@
 package ru.nsu.kolodina.pizza;
 
 /**
- * class of client
+ * class of client.
  */
 public class Client implements Runnable {
     Order order;
