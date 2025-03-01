@@ -36,6 +36,8 @@ public class Baker implements Runnable {
     }
 
     public void bake(Order order) throws InterruptedException {
+        order.status = "BAKING";
+        order.printStatus();
         sleep(1000 / speed);
         order.status = "READY";
         order.printStatus();
