@@ -23,6 +23,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation ("org.jetbrains:annotations:16.0.2")
     implementation("org.openjdk.jmh:jmh-core:1.36")
+    implementation ("org.json:json:20171018")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
 

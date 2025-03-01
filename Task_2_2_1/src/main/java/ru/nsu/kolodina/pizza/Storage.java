@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
-    private List<Order> storage;
     private final int capacity;
+    private final List<Order> storage;
 
     public Storage(int capacity) {
         this.capacity = capacity;
@@ -45,6 +45,7 @@ public class Storage {
         notifyAll();
         return orders;
     }
+
     public boolean isEmpty() {
         return storage.isEmpty();
     }
