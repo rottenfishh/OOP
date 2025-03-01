@@ -15,6 +15,9 @@ public class TestPizzeria {
     private ByteArrayOutputStream outputStream;
     Pizzeria dominos;
 
+    /**
+     * set up Pizzeria and outputStream.
+     */
     @BeforeEach
     public void setUp() {
         dominos = new Pizzeria();
