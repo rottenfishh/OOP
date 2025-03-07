@@ -5,7 +5,7 @@ package ru.nsu.kolodina.pizza;
  */
 public class Order {
     int orderId;
-    STATUS status;
+    Status status;
 
     /**
      * init it.
@@ -14,7 +14,7 @@ public class Order {
      */
     public Order(int orderId) {
         this.orderId = orderId;
-        this.status = STATUS.ORDERED;
+        this.status = Status.ORDERED;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Order {
     /**
      * enum of order's status.
      */
-    enum STATUS{
+    enum Status {
         ORDERED,
         TAKEN,
         BAKING,

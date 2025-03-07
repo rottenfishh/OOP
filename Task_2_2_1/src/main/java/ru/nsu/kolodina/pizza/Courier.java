@@ -35,10 +35,10 @@ public class Courier implements Runnable {
             try {
                 orders = storage.getFromStorage(backpackCap);
                 for (Order order : orders) {
-                    order.status = Order.STATUS.DELIVERING;
+                    order.status = Order.Status.DELIVERING;
                     order.printStatus();
                     sleep(1000);
-                    order.status = Order.STATUS.DELIVERED;
+                    order.status = Order.Status.DELIVERED;
                     order.printStatus();
                 }
             } catch (InterruptedException e) {
