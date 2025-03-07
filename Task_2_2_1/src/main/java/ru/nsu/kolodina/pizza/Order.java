@@ -5,7 +5,7 @@ package ru.nsu.kolodina.pizza;
  */
 public class Order {
     int orderId;
-    String status;
+    STATUS status;
 
     /**
      * init it.
@@ -14,13 +14,25 @@ public class Order {
      */
     public Order(int orderId) {
         this.orderId = orderId;
-        this.status = "ORDERED"; // ordered, taken, ready, delivering, delivered
+        this.status = STATUS.ORDERED;
     }
 
     /**
      * print status of order.
      */
     public void printStatus() {
-        System.out.println(orderId + " " + status + "\n");
+        System.out.println(orderId + " " + status.toString() + "\n");
+    }
+
+    /**
+     * enum of order's status.
+     */
+    enum STATUS{
+        ORDERED,
+        TAKEN,
+        BAKING,
+        READY,
+        DELIVERING,
+        DELIVERED;
     }
 }

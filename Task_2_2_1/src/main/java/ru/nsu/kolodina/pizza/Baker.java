@@ -34,8 +34,8 @@ public class Baker implements Runnable {
         while (!Pizzeria.workDayEnded || !orders.isEmpty()) {
             boolean haveOrder = false;
             Order toBake = orders.getFromStorage(1).getFirst();
-            if (toBake.status.equals("ORDERED")) {
-                toBake.status = "TAKEN";
+            if (toBake.status.equals(Order.STATUS.ORDERED)) {
+                toBake.status = Order.STATUS.TAKEN;
                 toBake.printStatus();
                 haveOrder = true;
             }
@@ -56,10 +56,10 @@ public class Baker implements Runnable {
      * @throws InterruptedException happens
      */
     public void bake(Order order) throws InterruptedException {
-        order.status = "BAKING";
+        order.status = Order.STATUS.BAKING;
         order.printStatus();
         sleep(1000 / speed);
-        order.status = "READY";
+        order.status =Order.STATUS.READY;
         order.printStatus();
         storage.putInStorage(order);
     }
