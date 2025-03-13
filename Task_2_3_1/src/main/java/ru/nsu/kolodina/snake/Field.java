@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Field {
     int n, m;
+    int fruitsEaten = 0;
     public Pixel[][] field;
     Random rand;
 
@@ -22,17 +23,20 @@ public class Field {
         int x, y;
         boolean taken = false;
         boolean wall;
-        boolean fruit;
-        public Pixel(int x, int y, boolean wall, boolean fruit) {
+        private boolean hasFruit = false;
+        private Fruit fruit;
+        public Pixel(int x, int y, boolean wall) {
             this.x = x;
             this.y = y;
             this.wall = wall;
-            this.fruit = fruit;
             if (wall) {
                 pixel = new Rectangle(20, 20, Color.rgb(11, 64, 27));
             } else {
                 pixel = new Rectangle(20, 20, Color.rgb(181, 230, 29));
             }
+        }
+        public void addFruit(Fruit fruit) {
+            this.fruit = fruit;
         }
 
     }
@@ -46,7 +50,7 @@ public class Field {
                 } else {
                     flag = false;
                 }
-                field[i][j] = new Pixel(j, i, flag, false);
+                field[i][j] = new Pixel(j, i, flag);
                 root.addRow(i, field[i][j].pixel);
             }
         }
@@ -60,18 +64,25 @@ public class Field {
         field[pixel.y][pixel.x].pixel.setFill( Color.rgb(181, 230, 29));
     }
     public boolean hasFruit(Coordinates pixel) {
-        return field[pixel.y][pixel.x].fruit;
+        return field[pixel.y][pixel.x].hasFruit;
     }
     public void eatFruit(Coordinates pixel, Color color) {
-        field[pixel.y][pixel.x].fruit = false;
+        field[pixel.y][pixel.x].hasFruit = false;
+        field[pixel.y][pixel.x].fruit.eaten = true;
         field[pixel.y][pixel.x].pixel.setFill(color);
+        fruitsEaten++;
         spawnFruit();
     }
     public void spawnFruit() {
         int y = rand.nextInt(n);
         int x = rand.nextInt(m);
+        while (field[y][x].taken || field[y][x].wall) {
+            y = rand.nextInt(n);
+            x = rand.nextInt(m);
+        }
         Fruit fruit = new Fruit(new Coordinates(x,y));
-        field[y][x].fruit = true;
-        field[y][x].pixel.setFill(Color.rgb(216,53,39));
+        field[y][x].hasFruit = true;
+        field[y][x].addFruit(fruit);
+        field[y][x].pixel.setFill(fruit.color);
     }
 }

@@ -1,7 +1,6 @@
 package ru.nsu.kolodina.snake;
 
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import static java.lang.Thread.sleep;
 import static javafx.application.Platform.exit;
 
 public class Snake implements Runnable{
-    private Coordinates fieldCoords;
     private int fieldN, fieldM;
     private int len;
     private int speed;
@@ -26,7 +24,7 @@ public class Snake implements Runnable{
         snakeBody.add(head);
         tail = snakeBody.getLast();
         this.len = len;
-        this.speed = speed;
+        this.speed = 200;
         this.movement = new Coordinates(0, speed);
         this.fieldM = fieldM;
         this.fieldN = fieldN;
@@ -37,22 +35,9 @@ public class Snake implements Runnable{
     public void addLen() {
         len++;
     }
-
-    public void pressLeft() {
-        movement.x = - speed;
-        movement.y = 0;
-    }
-    public void pressRight() {
-        movement.x = + speed;
-        movement.y = 0;
-    }
-    public void pressUp() {
-        movement.y = - speed;
-        movement.x = 0;
-    }
-    public void pressDown() {
-        movement.y = + speed;
-        movement.x = 0;
+    public void updateMovement(int x, int y) {
+        this.movement.x = x;
+        this.movement.y = y;
     }
 
     @Override
@@ -78,7 +63,7 @@ public class Snake implements Runnable{
                 tail = snakeBody.getLast();
             }
             try {
-                sleep(200);
+                sleep(speed);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

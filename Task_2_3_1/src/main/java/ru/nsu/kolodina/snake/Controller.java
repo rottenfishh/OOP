@@ -19,16 +19,16 @@ public class Controller {
     public void start() {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
-                snake.pressLeft();
+                snake.updateMovement(-1, 0);
             }
             if (event.getCode() == KeyCode.RIGHT) {
-                snake.pressRight();
+                snake.updateMovement(1, 0);
             }
             if (event.getCode() == KeyCode.UP) {
-                snake.pressUp();
+                snake.updateMovement(0, -1);
             }
             if (event.getCode() == KeyCode.DOWN) {
-                snake.pressDown();
+                snake.updateMovement(0, 1);
             }
         });
     }
