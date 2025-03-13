@@ -26,6 +26,7 @@ public class MainApp extends Application {
         Controller controller = new Controller(scene, snake, field);
         controller.start();
         threadSnake.start();
+        field.spawnFruit();
         Stage primaryStage = new Stage();
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import static java.lang.Thread.sleep;
+
 public class Controller {
     private Snake snake;
     private Field field;

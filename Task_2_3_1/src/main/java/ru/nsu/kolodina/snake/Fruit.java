@@ -7,7 +7,4 @@ public class Fruit {
     public Fruit(Coordinates coords) {
         this.coords = coords;
     }
-    public void eatFruit() {
-        eaten = true;
-    }
 }

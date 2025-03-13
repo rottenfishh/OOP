@@ -23,10 +23,8 @@ public class Snake implements Runnable{
     public Snake(int len, int speed, int fieldM, int fieldN, Field field) {
         snakeBody = new ArrayList<>();
         head = new Coordinates(0, 2);
-        tail = new Coordinates(0, 0);
         snakeBody.add(head);
-        snakeBody.add(new Coordinates(0, 1));
-        snakeBody.add(tail);
+        tail = snakeBody.getLast();
         this.len = len;
         this.speed = speed;
         this.movement = new Coordinates(0, speed);
@@ -35,11 +33,9 @@ public class Snake implements Runnable{
         this.color = Color.rgb(185,111,35);
         this.field = field;
         field.setAsTaken(head, color);
-        field.setAsTaken(new Coordinates(head.x, head.y-1), color);
-        field.setAsTaken(tail, color);
     }
     public void addLen() {
-
+        len++;
     }
 
     public void pressLeft() {
@@ -62,17 +58,24 @@ public class Snake implements Runnable{
     @Override
     public void run() {
         while(true) {
-            field.setAsFree(tail);
-            snakeBody.remove(tail);
-            tail = snakeBody.getLast();
             Coordinates newHead = new Coordinates(head.x + movement.x, head.y + movement.y);
             snakeBody.addFirst(newHead);
             head = newHead;
-            field.setAsTaken(head, color);
-            if (newHead.x < 0 || newHead.x == fieldN || newHead.y < 0 ||  newHead.y  == fieldM || field.field[newHead.y][newHead.x].wall) {
+            if (newHead.x < 0 || newHead.x == fieldN || newHead.y < 0
+                    ||  newHead.y  == fieldM
+                    || field.field[newHead.y][newHead.x].wall
+                    || field.field[newHead.y][newHead.x].taken) {
                 System.out.println("you died!");
-                exit();
                 break;
+            }
+            field.setAsTaken(head, color);
+            if (field.hasFruit(newHead)) {
+                field.eatFruit(newHead, color);
+                addLen();
+            } else {
+                field.setAsFree(tail);
+                snakeBody.remove(tail);
+                tail = snakeBody.getLast();
             }
             try {
                 sleep(200);
