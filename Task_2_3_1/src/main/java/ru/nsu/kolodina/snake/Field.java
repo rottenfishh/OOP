@@ -3,6 +3,7 @@ package ru.nsu.kolodina.snake;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.util.Random;
 
@@ -11,11 +12,13 @@ public class Field {
     int fruitsEaten = 0;
     public Pixel[][] field;
     Random rand;
-
-    public Field(int n, int m) {
+    Text text;
+    public Field(int n, int m, Text texst) {
         this.n = n;
         this.m = m;
         rand = new Random();
+        text = texst;
+        text.setText("Fruits eaten " + fruitsEaten);
     }
 
     public class Pixel {
@@ -40,6 +43,7 @@ public class Field {
         }
 
     }
+
     public void createField(GridPane root) {
         field = new Pixel[n][m];
         boolean flag;
@@ -55,24 +59,17 @@ public class Field {
             }
         }
     }
+
     public void setAsTaken(Coordinates pixel, Color color) {
         field[pixel.y][pixel.x].taken = true;
         field[pixel.y][pixel.x].pixel.setFill(color);
     }
+
     public void setAsFree(Coordinates pixel) {
         field[pixel.y][pixel.x].taken = false;
         field[pixel.y][pixel.x].pixel.setFill( Color.rgb(181, 230, 29));
     }
-    public boolean hasFruit(Coordinates pixel) {
-        return field[pixel.y][pixel.x].hasFruit;
-    }
-    public void eatFruit(Coordinates pixel, Color color) {
-        field[pixel.y][pixel.x].hasFruit = false;
-        field[pixel.y][pixel.x].fruit.eaten = true;
-        field[pixel.y][pixel.x].pixel.setFill(color);
-        fruitsEaten++;
-        spawnFruit();
-    }
+
     public void spawnFruit() {
         int y = rand.nextInt(n);
         int x = rand.nextInt(m);
@@ -84,5 +81,18 @@ public class Field {
         field[y][x].hasFruit = true;
         field[y][x].addFruit(fruit);
         field[y][x].pixel.setFill(fruit.color);
+    }
+
+    public boolean hasFruit(Coordinates pixel) {
+        return field[pixel.y][pixel.x].hasFruit;
+    }
+
+    public void eatFruit(Coordinates pixel, Color color) {
+        field[pixel.y][pixel.x].hasFruit = false;
+        field[pixel.y][pixel.x].fruit.eaten = true;
+        field[pixel.y][pixel.x].pixel.setFill(color);
+        fruitsEaten++;
+        spawnFruit();
+        text.setText("Fruits eaten " + fruitsEaten);
     }
 }
