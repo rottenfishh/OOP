@@ -2,19 +2,21 @@ package ru.nsu.kolodina.snake;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class MainApp extends Application {
+
+    public static void main(String[] args) {
+        launch();
+    }
 
     @Override
     public void start(Stage stage) {
@@ -28,7 +30,7 @@ public class MainApp extends Application {
 
         Scene scene = new Scene(root, 800, 600);
         Text text = new Text();
-        Field field = new Field(height,width, text);
+        Field field = new Field(height, width, text);
         field.createField(root);
         root.addRow(0, text);
 
@@ -47,10 +49,6 @@ public class MainApp extends Application {
         });
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 
 }

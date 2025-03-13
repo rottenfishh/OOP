@@ -7,8 +7,9 @@ public class Fruit {
     int type = 0;
     Color color;
     boolean eaten = false;
+
     public Fruit(Coordinates coords) {
         this.coords = coords;
-        color = Color.rgb(216,53,39);
+        color = Color.rgb(216, 53, 39);
     }
 }

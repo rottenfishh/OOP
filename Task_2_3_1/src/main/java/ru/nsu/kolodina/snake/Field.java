@@ -8,11 +8,12 @@ import javafx.scene.text.Text;
 import java.util.Random;
 
 public class Field {
+    public Pixel[][] field;
     int n, m;
     int fruitsEaten = 0;
-    public Pixel[][] field;
     Random rand;
     Text text;
+
     public Field(int n, int m, Text texst) {
         this.n = n;
         this.m = m;
@@ -21,39 +22,12 @@ public class Field {
         text.setText("Fruits eaten " + fruitsEaten);
     }
 
-    public class Pixel {
-        Rectangle pixel;
-        int x, y;
-        boolean taken = false;
-        boolean wall;
-        private boolean hasFruit = false;
-        private Fruit fruit;
-        public Pixel(int x, int y, boolean wall) {
-            this.x = x;
-            this.y = y;
-            this.wall = wall;
-            if (wall) {
-                pixel = new Rectangle(20, 20, Color.rgb(11, 64, 27));
-            } else {
-                pixel = new Rectangle(20, 20, Color.rgb(181, 230, 29));
-            }
-        }
-        public void addFruit(Fruit fruit) {
-            this.fruit = fruit;
-        }
-
-    }
-
     public void createField(GridPane root) {
         field = new Pixel[n][m];
         boolean flag;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j ++) {
-                if (i == 10 && 1 <= j  && j < 5) {
-                    flag = true;
-                } else {
-                    flag = false;
-                }
+            for (int j = 0; j < m; j++) {
+                flag = i == 10 && 1 <= j && j < 5;
                 field[i][j] = new Pixel(j, i, flag);
                 root.addRow(i, field[i][j].pixel);
             }
@@ -67,7 +41,7 @@ public class Field {
 
     public void setAsFree(Coordinates pixel) {
         field[pixel.y][pixel.x].taken = false;
-        field[pixel.y][pixel.x].pixel.setFill( Color.rgb(181, 230, 29));
+        field[pixel.y][pixel.x].pixel.setFill(Color.rgb(181, 230, 29));
     }
 
     public void spawnFruit() {
@@ -77,7 +51,7 @@ public class Field {
             y = rand.nextInt(n);
             x = rand.nextInt(m);
         }
-        Fruit fruit = new Fruit(new Coordinates(x,y));
+        Fruit fruit = new Fruit(new Coordinates(x, y));
         field[y][x].hasFruit = true;
         field[y][x].addFruit(fruit);
         field[y][x].pixel.setFill(fruit.color);
@@ -94,5 +68,30 @@ public class Field {
         fruitsEaten++;
         spawnFruit();
         text.setText("Fruits eaten " + fruitsEaten);
+    }
+
+    public class Pixel {
+        Rectangle pixel;
+        int x, y;
+        boolean taken = false;
+        boolean wall;
+        private boolean hasFruit = false;
+        private Fruit fruit;
+
+        public Pixel(int x, int y, boolean wall) {
+            this.x = x;
+            this.y = y;
+            this.wall = wall;
+            if (wall) {
+                pixel = new Rectangle(20, 20, Color.rgb(11, 64, 27));
+            } else {
+                pixel = new Rectangle(20, 20, Color.rgb(181, 230, 29));
+            }
+        }
+
+        public void addFruit(Fruit fruit) {
+            this.fruit = fruit;
+        }
+
     }
 }
