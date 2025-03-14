@@ -2,15 +2,13 @@ package ru.nsu.kolodina.snake;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainApp extends Application {
 
@@ -22,25 +20,31 @@ public class MainApp extends Application {
     public void start(Stage stage) {
         int height = 20;
         int width = 30;
-
-        GridPane root = new GridPane();
-        root.setHgap(1);
-        root.setVgap(1);
-        root.setBackground(new Background(new BackgroundFill(Color.rgb(128, 128, 128), CornerRadii.EMPTY, Insets.EMPTY)));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLdoc.fxml"));
+        GridPane root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Scene scene = new Scene(root, 800, 600);
         Text text = new Text();
-        Field field = new Field(height, width, text);
+        Map map = new Map();
+        map.createDefaultMap();
+        Level firstLevel = new Level(map, 200, 1);
+        Field field = new Field(firstLevel.map);
         field.createField(root);
         root.addRow(0, text);
 
-        Snake snake = new Snake(3, 1, height, width, field);
+        Fruits fruits = new Fruits(field, text);
+        fruits.spawnFruit();
+
+        Snake snake = new Snake(1, firstLevel.speed, height, width, field, fruits);
         Thread threadSnake = new Thread(snake);
         Controller controller = new Controller(scene, snake, field);
-
         controller.start();
         threadSnake.start();
-        field.spawnFruit();
 
         Stage primaryStage = new Stage();
         primaryStage.setOnCloseRequest(t -> {

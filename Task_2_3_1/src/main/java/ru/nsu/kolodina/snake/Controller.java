@@ -17,16 +17,24 @@ public class Controller {
     public void start() {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.LEFT) {
-                snake.updateMovement(-1, 0);
+                if (!(snake.getMovement().x == 1)) {
+                    snake.updateMovement(-1, 0);
+                }
             }
             if (event.getCode() == KeyCode.RIGHT) {
-                snake.updateMovement(1, 0);
+                if (!(snake.getMovement().x == -1)) {
+                    snake.updateMovement(1, 0);
+                }
             }
             if (event.getCode() == KeyCode.UP) {
-                snake.updateMovement(0, -1);
+                if (!(snake.getMovement().y == 1)) {
+                    snake.updateMovement(0, -1);
+                }
             }
             if (event.getCode() == KeyCode.DOWN) {
-                snake.updateMovement(0, 1);
+                if (!(snake.getMovement().y == -1)) {
+                    snake.updateMovement(0, 1);
+                }
             }
         });
     }

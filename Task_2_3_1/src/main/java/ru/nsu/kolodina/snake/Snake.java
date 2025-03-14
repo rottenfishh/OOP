@@ -15,6 +15,7 @@ public class Snake implements Runnable {
     private final int fieldM;
     private final int speed;
     private final Field field;
+    Fruits fruits;
     private final List<Coordinates> snakeBody;
     private final Coordinates movement;
     Color color;
@@ -22,18 +23,19 @@ public class Snake implements Runnable {
     private Coordinates head;
     private Coordinates tail;
 
-    public Snake(int len, int speed, int fieldM, int fieldN, Field field) {
+    public Snake(int len, int speed, int fieldM, int fieldN, Field field, Fruits fruits) {
         snakeBody = new ArrayList<>();
-        head = new Coordinates(0, 2);
+        head = new Coordinates(0, 0);
         snakeBody.add(head);
         tail = snakeBody.getLast();
         this.len = len;
-        this.speed = 200;
-        this.movement = new Coordinates(0, speed);
+        this.speed = speed;
+        this.movement = new Coordinates(0, 1);
         this.fieldM = fieldM;
         this.fieldN = fieldN;
         this.color = Color.rgb(185, 111, 35);
         this.field = field;
+        this.fruits = fruits;
         field.setAsTaken(head, color);
     }
 
@@ -45,7 +47,9 @@ public class Snake implements Runnable {
         this.movement.x = x;
         this.movement.y = y;
     }
-
+    public Coordinates getMovement() {
+        return movement;
+    }
     @Override
     public void run() {
         while (true) {
@@ -54,20 +58,26 @@ public class Snake implements Runnable {
             head = newHead;
             if (newHead.x < 0 || newHead.x == fieldN || newHead.y < 0
                     || newHead.y == fieldM
-                    || field.field[newHead.y][newHead.x].wall
-                    || field.field[newHead.y][newHead.x].taken) {
+                    || field.getType(newHead) == Pixel.pixelType.WALL
+                    || field.getType(newHead) ==  Pixel.pixelType.SNAKE) {
                 System.out.println("you died!");
                 break;
             }
-            field.setAsTaken(head, color);
-            if (field.hasFruit(newHead)) {
-                field.eatFruit(newHead, color);
+            if (len == 100) {
+                System.out.println("You won!");
+                break;
+            }
+
+            if (field.getType(newHead) == Pixel.pixelType.FRUIT) {
+                fruits.eatFruit(newHead, color);
                 addLen();
             } else {
                 field.setAsFree(tail);
                 snakeBody.remove(tail);
                 tail = snakeBody.getLast();
             }
+
+            field.setAsTaken(head, color);
             try {
                 sleep(speed);
             } catch (InterruptedException e) {
