@@ -19,11 +19,12 @@ public class Snake implements Runnable {
     private final List<Coordinates> snakeBody;
     private final Coordinates movement;
     Color color;
-    private int len;
+    public int len;
+    Level level;
     private Coordinates head;
     private Coordinates tail;
 
-    public Snake(int len, int speed, int fieldM, int fieldN, Field field, Fruits fruits) {
+    public Snake(int len, int speed,Field field, Fruits fruits, Level level) {
         snakeBody = new ArrayList<>();
         head = new Coordinates(0, 0);
         snakeBody.add(head);
@@ -31,11 +32,12 @@ public class Snake implements Runnable {
         this.len = len;
         this.speed = speed;
         this.movement = new Coordinates(0, 1);
-        this.fieldM = fieldM;
-        this.fieldN = fieldN;
+        this.fieldM = field.m;
+        this.fieldN = field.n;
         this.color = Color.rgb(185, 111, 35);
         this.field = field;
         this.fruits = fruits;
+        this.level = level;
         field.setAsTaken(head, color);
     }
 
@@ -63,7 +65,7 @@ public class Snake implements Runnable {
                 System.out.println("you died!");
                 break;
             }
-            if (len == 100) {
+            if (level.victoryCheck(this)) {
                 System.out.println("You won!");
                 break;
             }

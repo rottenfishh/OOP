@@ -4,13 +4,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Pixel {
+    public boolean hasFruit = false;
+    public Fruits.Fruit fruit;
+    public pixelType type;
     Rectangle pixel;
     int x, y;
     boolean taken = false;
     boolean wall;
-    public boolean hasFruit = false;
-    public Fruits.Fruit fruit;
-    public pixelType type;
 
     public Pixel(int x, int y, boolean wall) {
         this.x = x;
@@ -29,11 +29,12 @@ public class Pixel {
         this.type = Pixel.pixelType.FRUIT;
         this.fruit = fruit;
     }
-    public enum pixelType{
+
+    public enum pixelType {
         WALL,
         SNAKE,
         FRUIT,
-        FREE;
+        FREE
     }
 }
 

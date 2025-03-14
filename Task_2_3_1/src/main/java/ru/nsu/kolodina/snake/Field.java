@@ -2,8 +2,6 @@ package ru.nsu.kolodina.snake;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 import java.util.Random;
 
@@ -13,6 +11,7 @@ public class Field {
     int fruitsEaten = 0;
     Random rand;
     Map map;
+
     public Field(Map map) {
         this.n = map.n;
         this.m = map.m;
@@ -25,25 +24,25 @@ public class Field {
         boolean flag;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (map.arr[i][j] == 1) {
-                    flag = true;
-                } else {
-                    flag = false;
-                }
+                flag = map.arr[i][j] == 1;
                 field[i][j] = new Pixel(j, i, flag);
                 root.addRow(i, field[i][j].pixel);
             }
         }
     }
+
     public void setColor(Coordinates pixel, Color color) {
         field[pixel.y][pixel.x].pixel.setFill(color);
     }
+
     public void setType(Coordinates coords, Pixel.pixelType type) {
         field[coords.y][coords.x].type = type;
     }
+
     public Pixel.pixelType getType(Coordinates coords) {
         return field[coords.y][coords.x].type;
     }
+
     public void setAsTaken(Coordinates pixel, Color color) {
         field[pixel.y][pixel.x].type = Pixel.pixelType.SNAKE;
         setColor(pixel, color);

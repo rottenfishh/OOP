@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Fruits {
+    public Text text;
     List<Fruit> fruits;
     int numFruits;
     Field field;
-    int n,m;
+    int n, m;
     int fruitsEaten = 0;
     Random rand;
-    public Text text;
 
     public Fruits(Field field, Text text) {
         this.fruits = new ArrayList<>();
@@ -26,11 +26,12 @@ public class Fruits {
         this.field = field;
         rand = new Random();
     }
+
     public void spawnFruit() {
         int y = rand.nextInt(n);
         int x = rand.nextInt(m);
         Coordinates coords = new Coordinates(x, y);
-        while (field.getType(coords)  == Pixel.pixelType.SNAKE
+        while (field.getType(coords) == Pixel.pixelType.SNAKE
                 || field.getType(coords) == Pixel.pixelType.WALL) {
             y = rand.nextInt(n);
             x = rand.nextInt(m);

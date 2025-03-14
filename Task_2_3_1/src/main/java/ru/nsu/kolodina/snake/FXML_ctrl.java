@@ -11,8 +11,10 @@ import javafx.scene.text.Text;
 
 public class FXML_ctrl {
 
-    @FXML private GridPane root;
-    @FXML private Text gameText; // Matches fx:id="gameText" in FXML
+    @FXML
+    private GridPane root;
+    @FXML
+    private Text gameText; // Matches fx:id="gameText" in FXML
 
     @FXML
     public void initialize() {
