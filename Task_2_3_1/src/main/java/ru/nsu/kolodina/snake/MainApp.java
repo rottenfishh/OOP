@@ -4,8 +4,11 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,7 +34,7 @@ public class MainApp extends Application {
         Map map = new Map();
         map.createDefaultMap();
 
-        Level firstLevel = new Level(map, 200, 1, 50);
+        Level firstLevel = new Level(map, 200, 1, 30);
 
         Field field = new Field(firstLevel.map);
         field.createField(root);
@@ -43,19 +46,18 @@ public class MainApp extends Application {
         fruits.spawnFruit();
 
         Snake snake = new Snake(1, firstLevel.speed, field, fruits, firstLevel);
-        Thread threadSnake = new Thread(snake);
-        threadSnake.start();
-
-        Controller controller = new Controller(scene, snake, field);
+        Controller controller = new Controller(scene, snake, field, firstLevel, fruits);
         controller.start();
-
-        Stage primaryStage = new Stage();
-        primaryStage.setOnCloseRequest(t -> {
+        stage.setOnCloseRequest(t -> {
             Platform.exit();
             System.exit(0);
         });
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
+        stage.setScene(scene);
+        stage.show();
+        tickTimer timer = new tickTimer(controller);
+        timer.start();
+        //controller.runSnake();
     }
 
 }
