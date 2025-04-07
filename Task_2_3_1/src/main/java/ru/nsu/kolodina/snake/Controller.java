@@ -14,7 +14,6 @@ public class Controller extends baseController{
 
     Fruits fruits;
     long currTime = System.currentTimeMillis();
-    boolean flag = false;
 
     Controller(Scene scene, Snake snake, Field field, Level level, Fruits fruits) {
         super(scene, snake, field, level, fruits);

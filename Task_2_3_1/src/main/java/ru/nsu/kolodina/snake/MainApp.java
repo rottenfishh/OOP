@@ -44,12 +44,20 @@ public class MainApp extends Application {
         fruits.spawnFruit();
         Color ourSnake = Color.rgb(185, 111, 35);
         Color otherSnake = Color.rgb(228, 18, 18);
-        Coordinates ourHead = new Coordinates(0,0);
+        Color evilSnakeColor = Color.rgb(166,19,198);
+        Color parasiteSnakeColor = Color.rgb(250,141,72);
+        Coordinates ourHead = new Coordinates(5,5);
         Coordinates otherHead = new Coordinates(3,4);
+        Coordinates evilHead = new Coordinates(10,7);
+        Coordinates parasiteHead = new Coordinates(15,8);
         Snake snake = new Snake(ourHead, 1, firstLevel.speed, field, fruits, firstLevel, ourSnake);
-        Snake enemySnake = new Snake(otherHead, 1, firstLevel.speed, field, fruits, firstLevel, otherSnake);
+        Snake enemySnake = new Snake(otherHead, 3, firstLevel.speed, field, fruits, firstLevel, otherSnake);
+        Snake evilSnake = new Snake(evilHead, 4, firstLevel.speed + 50, field, fruits, firstLevel, evilSnakeColor);
+        Snake parasiteSnake = new Snake(parasiteHead, 5, firstLevel.speed + 100, field, fruits, firstLevel, parasiteSnakeColor);
+        ControllerEvilSnake controllerEvilSnake = new ControllerEvilSnake(scene, evilSnake, field, firstLevel, fruits, snake);
         Controller controller = new Controller(scene, snake, field, firstLevel, fruits);
-        ControllerOtherSnake controllerOtherSnake = new ControllerOtherSnake(scene, enemySnake, field, firstLevel, fruits);
+        ControllerStupidSnake controllerStupidSnake = new ControllerStupidSnake(scene, enemySnake, field, firstLevel, fruits);
+        ControllerParasiteSnake controllerParasiteSnake = new ControllerParasiteSnake(scene, parasiteSnake, field, firstLevel, fruits);
         controller.start();
         stage.setOnCloseRequest(t -> {
             Platform.exit();
@@ -58,7 +66,7 @@ public class MainApp extends Application {
 
         stage.setScene(scene);
         stage.show();
-        TickTimer timer = new TickTimer(controller, controllerOtherSnake);
+        TickTimer timer = new TickTimer(controller, controllerStupidSnake, controllerEvilSnake, controllerParasiteSnake);
         timer.start();
     }
 

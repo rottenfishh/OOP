@@ -17,7 +17,7 @@ public abstract class baseController {
     private final Level level;
     Fruits fruits;
     long currTime = System.currentTimeMillis();
-    boolean flag = false;
+    public boolean flag = false;
 
     baseController(Scene scene, Snake snake, Field field, Level level, Fruits fruits) {
         this.snake = snake;
@@ -37,6 +37,7 @@ public abstract class baseController {
             snake.snakeBody.addFirst(newHead);
             snake.head = newHead;
             if (checkDeath(newHead)) {
+                System.out.println("you died");
                 flag = true;
                 return;
             }

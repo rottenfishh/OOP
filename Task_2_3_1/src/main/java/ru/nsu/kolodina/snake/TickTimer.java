@@ -4,21 +4,36 @@ import javafx.animation.AnimationTimer;
 
 public class TickTimer extends AnimationTimer {
     Controller controller;
-    ControllerOtherSnake controllerOtherSnake;
-    public TickTimer(Controller controller, ControllerOtherSnake controllerOtherSnake) {
+    ControllerStupidSnake controllerStupidSnake;
+    ControllerEvilSnake controllerEvilSnake;
+    ControllerParasiteSnake controllerParasiteSnake;
+    int count = 0;
+    public TickTimer(Controller controller, ControllerStupidSnake controllerStupidSnake,
+                     ControllerEvilSnake controllerEvilSnake, ControllerParasiteSnake controllerParasiteSnake) {
         this.controller = controller;
-        this.controllerOtherSnake = controllerOtherSnake;
+        this.controllerStupidSnake = controllerStupidSnake;
+        this.controllerEvilSnake = controllerEvilSnake;
+        this.controllerParasiteSnake = controllerParasiteSnake;
     }
     @Override
     public void handle(long l) {
+        count++;
         controller.updateSnake();
-        controllerOtherSnake.changeMovement();
-        controllerOtherSnake.updateSnake();
-        if (controller.flag) {
-            stop();
+        if (!controllerStupidSnake.flag) {
+            controllerStupidSnake.changeMovement();
+            controllerStupidSnake.updateSnake();
         }
-        if (controllerOtherSnake.flag) {
-
+        if (!controllerEvilSnake.flag) {
+            controllerEvilSnake.changeMovement();
+            controllerEvilSnake.updateSnake();
+        }
+        if (!controllerParasiteSnake.flag) {
+            controllerParasiteSnake.changeMovement();
+            controllerParasiteSnake.updateSnake();
+        }
+        if (controller.flag) {
+            System.out.println("what");
+            this.stop();
         }
     }
 }

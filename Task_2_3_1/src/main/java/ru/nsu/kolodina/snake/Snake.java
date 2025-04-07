@@ -39,8 +39,16 @@ public class Snake {
         this.fruits = fruits;
         this.level = level;
         field.setAsTaken(head, color);
+        initSnake();
     }
 
+    public void initSnake() {
+        for (int i = 1; i < len; i++) {
+            Coordinates snakePart = new Coordinates(head.x, head.y+1);
+            snakeBody.add(snakePart);
+            field.setAsTaken(snakePart, color);
+        }
+    }
     public void addLen() {
         len++;
     }
