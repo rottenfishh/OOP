@@ -8,7 +8,6 @@ import java.util.Random;
 public class Field {
     public Pixel[][] field;
     int n, m;
-    int fruitsEaten = 0;
     Random rand;
     Map map;
 

@@ -11,8 +11,6 @@ import static java.lang.Thread.sleep;
  * snake class.
  */
 public class Snake {
-    private final int fieldN;
-    private final int fieldM;
     final int speed;
     private final Field field;
     Fruits fruits;
@@ -32,8 +30,6 @@ public class Snake {
         this.len = len;
         this.speed = speed;
         this.movement = new Coordinates(0, 1);
-        this.fieldM = field.n;
-        this.fieldN = field.m;
         this.color = color;
         this.field = field;
         this.fruits = fruits;

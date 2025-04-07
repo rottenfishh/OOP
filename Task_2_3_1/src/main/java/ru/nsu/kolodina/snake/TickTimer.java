@@ -18,18 +18,15 @@ public class TickTimer extends AnimationTimer {
     @Override
     public void handle(long l) {
         count++;
-        controller.updateSnake();
+        controller.moveSnake();
         if (!controllerStupidSnake.flag) {
-            controllerStupidSnake.changeMovement();
-            controllerStupidSnake.updateSnake();
+            controllerStupidSnake.moveSnake();
         }
         if (!controllerEvilSnake.flag) {
-            controllerEvilSnake.changeMovement();
-            controllerEvilSnake.updateSnake();
+            controllerEvilSnake.moveSnake();
         }
         if (!controllerParasiteSnake.flag) {
-            controllerParasiteSnake.changeMovement();
-            controllerParasiteSnake.updateSnake();
+            controllerParasiteSnake.moveSnake();
         }
         if (controller.flag) {
             System.out.println("what");

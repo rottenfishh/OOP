@@ -44,5 +44,8 @@ public class Controller extends baseController{
         });
 
     }
-
+    @Override
+    public void moveSnake() {
+        updateSnake();
+    }
 }
