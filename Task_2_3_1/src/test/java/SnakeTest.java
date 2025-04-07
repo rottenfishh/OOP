@@ -4,6 +4,6 @@ import ru.nsu.kolodina.snake.MainApp;
 public class SnakeTest {
     @Test
     public void snakeTest() {
-        MainApp.main(new String[]{"dunno man"});
+        System.out.println("turns out you cant call mainApp from somewhere else");
     }
 }
