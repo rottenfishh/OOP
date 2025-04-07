@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,9 +42,14 @@ public class MainApp extends Application {
 
         Fruits fruits = new Fruits(field, text);
         fruits.spawnFruit();
-
-        Snake snake = new Snake(1, firstLevel.speed, field, fruits, firstLevel);
+        Color ourSnake = Color.rgb(185, 111, 35);
+        Color otherSnake = Color.rgb(228, 18, 18);
+        Coordinates ourHead = new Coordinates(0,0);
+        Coordinates otherHead = new Coordinates(3,4);
+        Snake snake = new Snake(ourHead, 1, firstLevel.speed, field, fruits, firstLevel, ourSnake);
+        Snake enemySnake = new Snake(otherHead, 1, firstLevel.speed, field, fruits, firstLevel, otherSnake);
         Controller controller = new Controller(scene, snake, field, firstLevel, fruits);
+        ControllerOtherSnake controllerOtherSnake = new ControllerOtherSnake(scene, enemySnake, field, firstLevel, fruits);
         controller.start();
         stage.setOnCloseRequest(t -> {
             Platform.exit();
@@ -55,9 +58,8 @@ public class MainApp extends Application {
 
         stage.setScene(scene);
         stage.show();
-        tickTimer timer = new tickTimer(controller);
+        TickTimer timer = new TickTimer(controller, controllerOtherSnake);
         timer.start();
-        //controller.runSnake();
     }
 
 }

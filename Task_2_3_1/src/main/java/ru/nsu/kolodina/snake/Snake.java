@@ -24,9 +24,9 @@ public class Snake {
     public Coordinates head;
     public Coordinates tail;
 
-    public Snake(int len, int speed,Field field, Fruits fruits, Level level) {
+    public Snake(Coordinates head, int len, int speed,Field field, Fruits fruits, Level level, Color color) {
         snakeBody = new ArrayList<>();
-        head = new Coordinates(5, 5);
+        this.head = head;
         snakeBody.add(head);
         tail = snakeBody.getLast();
         this.len = len;
@@ -34,7 +34,7 @@ public class Snake {
         this.movement = new Coordinates(0, 1);
         this.fieldM = field.n;
         this.fieldN = field.m;
-        this.color = Color.rgb(185, 111, 35);
+        this.color = color;
         this.field = field;
         this.fruits = fruits;
         this.level = level;

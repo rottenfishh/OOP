@@ -10,20 +10,14 @@ import javafx.stage.Stage;
 
 import static java.lang.Thread.sleep;
 
-public class Controller {
-    private final Snake snake;
-    private final Field field;
-    private final Scene scene;
-    private final Level level;
+public class Controller extends baseController{
+
     Fruits fruits;
     long currTime = System.currentTimeMillis();
     boolean flag = false;
+
     Controller(Scene scene, Snake snake, Field field, Level level, Fruits fruits) {
-        this.snake = snake;
-        this.field = field;
-        this.scene = scene;
-        this.level = level;
-        this.fruits = fruits;
+        super(scene, snake, field, level, fruits);
     }
 
     public void start() {
@@ -51,56 +45,5 @@ public class Controller {
         });
 
     }
-    public void lose(Stage stage) {
-        Platform.runLater(() -> {
-            Stage popupStage = new Stage();
-            popupStage.initOwner(stage);
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("Game Over");
 
-            Label popupLabel = new Label("You lose!");
-            popupLabel.setStyle("-fx-background-color: black; -fx-text-fill: white;");
-            popupLabel.setMinSize(120, 50);
-            GridPane newS = new GridPane();
-            newS.getChildren().addAll(popupLabel);
-            Scene popupScene = new Scene(newS, 200, 100);
-            popupStage.setScene(popupScene);
-
-            popupStage.setAlwaysOnTop(true);
-            popupStage.show();
-        });
-    }
-
-    public void updateSnake() {
-        if (System.currentTimeMillis() - currTime > snake.speed) {
-            currTime = System.currentTimeMillis();
-            Coordinates newHead = new Coordinates(snake.head.x + snake.movement.x, snake.head.y + snake.movement.y);
-            snake.snakeBody.addFirst(newHead);
-            snake.head = newHead;
-            if (newHead.x < 0 || newHead.x == field.m || newHead.y < 0
-                    || newHead.y == field.n
-                    || field.getType(newHead) == Pixel.pixelType.WALL
-                    || field.getType(newHead) == Pixel.pixelType.SNAKE) {
-                System.out.println("you died!");
-                flag = true;
-                return;
-            }
-            if (level.victoryCheck(snake)) {
-                System.out.println("You won!");
-                flag = true;
-                return;
-            }
-
-            if (field.getType(newHead) == Pixel.pixelType.FRUIT) {
-                fruits.eatFruit(newHead, snake.color);
-                snake.addLen();
-            } else {
-                field.setAsFree(snake.tail);
-                snake.snakeBody.remove(snake.tail);
-                snake.tail = snake.snakeBody.getLast();
-            }
-
-            field.setAsTaken(snake.head, snake.color);
-        }
-    }
 }
