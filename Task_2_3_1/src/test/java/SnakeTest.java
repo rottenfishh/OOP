@@ -4,6 +4,6 @@ import ru.nsu.kolodina.snake.MainApp;
 public class SnakeTest {
     @Test
     public void snakeTest() {
-        MainApp.main(null);
+        MainApp.main(new String[]{"dunno man"});
     }
 }
