@@ -19,7 +19,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     public List<Group> groupList;
     public List<Task> tasksList;
     public List<Assignment> assignmentList;
-
+    public BuildTool.buildToolCommands buildToolCommands;
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
         String fileName = ctx.STRING().getText().replace("\"", ""); // Remove the surrounding quotes
@@ -46,7 +46,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList);
+        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, buildToolCommands);
         visitor.visit(tree);
     }
 
@@ -118,6 +118,11 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         for (CourseDSLParser.BuildRulesContext buildRules : ctx.buildRules()) {
             args.add(buildRules.STRING().getText().replace("\"", ""));
         }
+        buildToolCommands.buildToolName = buildTool;
+        buildToolCommands.compile = args.get(0);
+        buildToolCommands.test = args.get(1);
+        buildToolCommands.checkstyle = args.get(2);
+        buildToolCommands.docGen = args.get(3);
         System.out.println("Build Tool: " + buildTool);
         System.out.println(args);
         return null;
