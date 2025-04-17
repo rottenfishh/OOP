@@ -1,0 +1,5 @@
+import "src/main/DSL/tasks.dsl"
+import "src/main/DSL/groups.dsl"
+import "src/main/DSL/assignments.dsl"
+import "src/main/DSL/checkpoints.dsl"
+import "src/main/DSL/settings.dsl"
