@@ -1,9 +1,9 @@
 assignments {
-    student "aliceGH" {
+    student "Alice" {
         task "task1"
         task "task2"
     }
-    student "bobGH" {
+    student "Bob" {
         task "task2"
     }
 }

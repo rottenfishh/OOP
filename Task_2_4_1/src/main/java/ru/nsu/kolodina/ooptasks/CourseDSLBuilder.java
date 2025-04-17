@@ -18,6 +18,7 @@ import ru.nsu.kolodina.ooptasks.CourseDSLLexer;
 public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisitor<Void> {
     public List<Group> groupList;
     public List<Task> tasksList;
+    public List<Assignment> assignmentList;
 
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
@@ -45,19 +46,23 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLPrinter visitor = new CourseDSLPrinter();
+        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList);
         visitor.visit(tree);
     }
 
     @Override
     public Void visitAssignmentBlock(CourseDSLParser.AssignmentBlockContext ctx) {
+        List<String> tasks = new ArrayList<>();
         for (CourseDSLParser.AssignmentDeclContext assignmentDecl : ctx.assignmentDecl()) {
-            String studentNick = assignmentDecl.STRING().getText();
+            String studentNick = assignmentDecl.STRING().getText().replace("\"", "");
 
             for (CourseDSLParser.AssignedTaskContext assignedTask : assignmentDecl.assignedTask()) {
-                String taskId = assignedTask.STRING().getText();
+                String taskId = assignedTask.STRING().getText().replace("\"", "");
+                tasks.add(taskId);
                 System.out.println("Assign " + taskId + " to " + studentNick);
             }
+            Assignment assignment = new Assignment(studentNick, tasks);
+            assignmentList.add(assignment);
         }
         return null;
     }
@@ -66,11 +71,11 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     public Void visitGroupBlock(CourseDSLParser.GroupBlockContext ctx) {
         for (CourseDSLParser.GroupDeclContext groupDecl : ctx.groupDecl()) { // parse group list
             List<Group.Student> students = new ArrayList<>();
-            String groupName = groupDecl.STRING().getText();
+            String groupName = groupDecl.STRING().getText().replace("\"", "");
             for (CourseDSLParser.StudentDeclContext studentDecl : groupDecl.studentDecl()) { //parse students list
                 List<String> args = new ArrayList<>();
                 for (CourseDSLParser.StudentBodyContext studentBody : studentDecl.studentBody()) { // parse one student
-                    args.add(studentBody.STRING().getText());
+                    args.add(studentBody.STRING().getText().replace("\"", ""));
                 }
                 Group.Student student = new Group.Student(args.get(0), args.get(1), args.get(2));
                 students.add(student);
@@ -94,15 +99,27 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     @Override
     public Void visitTaskDecl(CourseDSLParser.TaskDeclContext ctx) {
         List<String> args = new ArrayList<>();
-        String id = ctx.STRING(0).getText();
-        String name = ctx.STRING(1).getText();
+        String id = ctx.STRING(0).getText().replace("\"", "");
+        String name = ctx.STRING(1).getText().replace("\"", "");
         System.out.println("Task ID: " + id + ", Name: " + name);
         for (CourseDSLParser.TaskBodyContext body : ctx.taskBody()) {
-            args.add(body.STRING().getText());
+            args.add(body.STRING().getText().replace("\"", ""));
         }
         Task task = new Task(id, name, Integer.parseInt(args.get(0)), args.get(1), args.get(2));
         tasksList.add(task);
         System.out.println("Max Score: " + args.get(0) + ", SoftDeadline: " + args.get(1) + ", HardDeadline: " + args.get(2));
+        return null;
+    }
+
+    @Override
+    public Void visitBuildtoolBlock(CourseDSLParser.BuildtoolBlockContext ctx) {
+        List<String> args = new ArrayList<>();
+        String buildTool = ctx.STRING().getText().replace("\"", "");
+        for (CourseDSLParser.BuildRulesContext buildRules : ctx.buildRules()) {
+            args.add(buildRules.STRING().getText().replace("\"", ""));
+        }
+        System.out.println("Build Tool: " + buildTool);
+        System.out.println(args);
         return null;
     }
 }

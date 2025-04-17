@@ -1,4 +1,4 @@
-package ru.nsu.kolodina.ooptasks;
+package ru.nsu.kolodina.ooptasks.shit;
 
 public class Conditions {
     public boolean compilationOk;

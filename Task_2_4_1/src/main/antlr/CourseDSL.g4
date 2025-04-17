@@ -15,6 +15,7 @@ statement
     | bonusStmt
     | checkpointBlock
     | gradingDecl
+    | buildtoolBlock
     ;
 
 taskBlock: 'tasks' '{' taskDecl* '}';
@@ -45,7 +46,11 @@ gradingDecl: 'grading' '{' gradingRule+ '}';
 gradingRule: '3' INT
            | '4' INT
            | '5' INT;
-
+buildtoolBlock: 'build tool' STRING '{' buildRules+ '}';
+buildRules: 'build' STRING
+          | 'test' STRING
+          | 'checkstyle' STRING
+          | 'docgeneration' STRING;
 STRING : '"' .*? '"';
 INT    : [0-9]+;
 WS     : [ \t\r\n]+ -> skip;

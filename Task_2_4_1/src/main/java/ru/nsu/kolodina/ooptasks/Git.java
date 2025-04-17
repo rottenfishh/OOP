@@ -1,11 +1,10 @@
 package ru.nsu.kolodina.ooptasks;
 
 
-import java.io.File;
-import java.io.IOException;
+import java.util.List;
 
 public class Git {
-
+    Command command = new Command();
     public String extractRepoName(String repoUrl) {
         String[] parts = repoUrl.split("/");
         String repoName = parts[parts.length - 1];
@@ -15,50 +14,18 @@ public class Git {
         return repoName;
     }
 
-    public void runGitClone(String command, String arg) {
-        try {
-            Process p = new ProcessBuilder("git", command, arg).inheritIO().start();
-            int exitCode = p.waitFor();
-            if (exitCode != 0) {
-                System.err.println("Command git clone fail!");
-            }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void runGitCheckout(String repoName, String branch){
-        File repoDir = new File(repoName);
-        System.out.println(repoDir.getAbsolutePath());
-        try {
-            Process p = new ProcessBuilder("git", "checkout", branch).directory(repoDir).inheritIO().start();
-            int exitCode = p.waitFor();
-            if (exitCode != 0) {
-                System.err.println("Command git checkout fail!");
-            }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void checkFolder(String repoDir, String folder) {
-        File srcFolder = new File(repoDir, "TEST");
-        if (srcFolder.exists()) {
-            System.out.println("Found source folder: " + srcFolder.getAbsolutePath());
-        } else {
-            System.out.println("No src folder found.");
-        }
+    public int runGitClone(String repoUrl) {
+        List<String> args = command.buildArgs("git", "clone", repoUrl);
+        return command.runCommand(null, args);
     }
 
-    public void getLastCommitDate(String repoName, String folder) {
-        File repoDir = new File(repoName);
-        System.out.println(repoDir.getAbsolutePath());
-        try {
-            Process p = new ProcessBuilder("git", "log", "-1", "--format=%cd", "--" , folder).directory(repoDir).inheritIO().start();
-            int exitCode = p.waitFor();
-            if (exitCode != 0) {
-                System.err.println("Command git checkout fail!");
-            }
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    public int runGitCheckout(String repoName, String branch){
+        List<String> args = command.buildArgs("git", "checkout", branch);
+        return command.runCommand(repoName, args);
+    }
+
+    public int getLastCommitDate(String repoName, String folder) {
+        List<String> args = command.buildArgs("git", "log", "-1", "--format=%cd", "--", folder);
+        return command.runCommand(repoName, args);
     }
 }

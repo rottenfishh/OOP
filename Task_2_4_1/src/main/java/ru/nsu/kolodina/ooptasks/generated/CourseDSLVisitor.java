@@ -126,4 +126,16 @@ public interface CourseDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitGradingRule(CourseDSLParser.GradingRuleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CourseDSLParser#buildtoolBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBuildtoolBlock(CourseDSLParser.BuildtoolBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CourseDSLParser#buildRules}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBuildRules(CourseDSLParser.BuildRulesContext ctx);
 }
