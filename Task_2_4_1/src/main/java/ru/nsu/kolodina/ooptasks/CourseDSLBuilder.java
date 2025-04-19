@@ -10,16 +10,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import ru.nsu.kolodina.ooptasks.CourseDSLParser;
 import ru.nsu.kolodina.ooptasks.CourseDSLLexer;
-
+//parsetreelistener
 @AllArgsConstructor
 public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisitor<Void> {
     public List<Group> groupList;
     public List<Task> tasksList;
     public List<Assignment> assignmentList;
-    public BuildTool.buildToolCommands buildToolCommands;
+    public Map<String, String> pathToClasses;
+
+
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
         String fileName = ctx.STRING().getText().replace("\"", ""); // Remove the surrounding quotes
@@ -46,7 +51,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, buildToolCommands);
+        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses);
         visitor.visit(tree);
     }
 
@@ -59,7 +64,6 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
             for (CourseDSLParser.AssignedTaskContext assignedTask : assignmentDecl.assignedTask()) {
                 String taskId = assignedTask.STRING().getText().replace("\"", "");
                 tasks.add(taskId);
-                System.out.println("Assign " + taskId + " to " + studentNick);
             }
             Assignment assignment = new Assignment(studentNick, tasks);
             assignmentList.add(assignment);
@@ -77,13 +81,11 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
                 for (CourseDSLParser.StudentBodyContext studentBody : studentDecl.studentBody()) { // parse one student
                     args.add(studentBody.STRING().getText().replace("\"", ""));
                 }
-                Group.Student student = new Group.Student(args.get(0), args.get(1), args.get(2));
+                Group.Student student = new Group.Student(args.get(0), args.get(1), args.get(2), args.get(3));
                 students.add(student);
-                System.out.println("Name " + args.get(0) + ", " + args.get(1) + ", " + args.get(2));
             }
             Group group = new Group(groupName, students);
             groupList.add(group);
-            System.out.println("group name " + groupName);
         }
         return null;
     }
@@ -101,30 +103,33 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         List<String> args = new ArrayList<>();
         String id = ctx.STRING(0).getText().replace("\"", "");
         String name = ctx.STRING(1).getText().replace("\"", "");
-        System.out.println("Task ID: " + id + ", Name: " + name);
         for (CourseDSLParser.TaskBodyContext body : ctx.taskBody()) {
             args.add(body.STRING().getText().replace("\"", ""));
         }
         Task task = new Task(id, name, Integer.parseInt(args.get(0)), args.get(1), args.get(2));
         tasksList.add(task);
-        System.out.println("Max Score: " + args.get(0) + ", SoftDeadline: " + args.get(1) + ", HardDeadline: " + args.get(2));
         return null;
     }
 
     @Override
-    public Void visitBuildtoolBlock(CourseDSLParser.BuildtoolBlockContext ctx) {
-        List<String> args = new ArrayList<>();
-        String buildTool = ctx.STRING().getText().replace("\"", "");
-        for (CourseDSLParser.BuildRulesContext buildRules : ctx.buildRules()) {
-            args.add(buildRules.STRING().getText().replace("\"", ""));
-        }
-        buildToolCommands.buildToolName = buildTool;
-        buildToolCommands.compile = args.get(0);
-        buildToolCommands.test = args.get(1);
-        buildToolCommands.checkstyle = args.get(2);
-        buildToolCommands.docGen = args.get(3);
-        System.out.println("Build Tool: " + buildTool);
-        System.out.println(args);
+    public Void visitBuildSystemDecl(CourseDSLParser.BuildSystemDeclContext ctx) {
+        String toolName = ctx.STRING(0).getText().replace("\"", "");
+        String toolPath = ctx.STRING(1).getText().replace("\"", "");
+        pathToClasses.put(toolName, toolPath);
+        return null;
+    }
+
+    @Override
+    public Void visitCriteriesDecl(CourseDSLParser.CriteriesDeclContext ctx) {
+        String criteriaPath = ctx.STRING().getText().replace("\"", "");
+        pathToClasses.put("criteries", criteriaPath);
+        return null;
+    }
+
+    @Override
+    public Void visitGradingDecl(CourseDSLParser.GradingDeclContext ctx) {
+        String gradingPath = ctx.STRING().getText().replace("\"", "");
+        pathToClasses.put("grading", gradingPath);
         return null;
     }
 }

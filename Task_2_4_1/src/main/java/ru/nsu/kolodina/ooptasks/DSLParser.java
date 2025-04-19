@@ -5,12 +5,14 @@ import org.antlr.v4.runtime.tree.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import ru.nsu.kolodina.ooptasks.CourseDSLLexer;
 import ru.nsu.kolodina.ooptasks.CourseDSLParser;
 
 public class DSLParser {
 
-    public void extractData(String path, List<Group> groupList, List<Task> tasksList, List<Assignment> assignmentList, BuildTool.buildToolCommands buildToolCommands) {
+    public void extractData(String path, List<Group> groupList, List<Task> tasksList, List<Assignment> assignmentList,  Map<String, String> pathToClasses) {
         CharStream input = null;
         try {
             input = CharStreams.fromFileName(path);
@@ -22,7 +24,7 @@ public class DSLParser {
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor2 = new CourseDSLBuilder(groupList, tasksList, assignmentList, buildToolCommands);
+        CourseDSLBuilder visitor2 = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses);
         visitor2.visit(tree);
     }
 
@@ -39,7 +41,7 @@ public class DSLParser {
             List<Task> matchedTasks = new ArrayList<>();
             for (String task: assignment.tasks) {
                 for (Task taskId : tasks) {
-                    if (task.equals(taskId.name)) {
+                    if (task.equals(taskId.id)) {
                         matchedTasks.add(taskId);
                         break;
                     }

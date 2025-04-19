@@ -115,27 +115,21 @@ public interface CourseDSLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCheckpointDecl(CourseDSLParser.CheckpointDeclContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link CourseDSLParser#buildSystemDecl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBuildSystemDecl(CourseDSLParser.BuildSystemDeclContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CourseDSLParser#criteriesDecl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCriteriesDecl(CourseDSLParser.CriteriesDeclContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CourseDSLParser#gradingDecl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitGradingDecl(CourseDSLParser.GradingDeclContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CourseDSLParser#gradingRule}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGradingRule(CourseDSLParser.GradingRuleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CourseDSLParser#buildtoolBlock}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBuildtoolBlock(CourseDSLParser.BuildtoolBlockContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link CourseDSLParser#buildRules}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBuildRules(CourseDSLParser.BuildRulesContext ctx);
 }

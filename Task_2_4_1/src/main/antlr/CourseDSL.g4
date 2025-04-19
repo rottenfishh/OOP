@@ -15,7 +15,8 @@ statement
     | bonusStmt
     | checkpointBlock
     | gradingDecl
-    | buildtoolBlock
+    | buildSystemDecl
+    | criteriesDecl
     ;
 
 taskBlock: 'tasks' '{' taskDecl* '}';
@@ -28,8 +29,9 @@ groupBlock: 'groups' '{' groupDecl* '}';
 groupDecl: 'group' STRING '{' studentDecl+ '}';
 studentDecl: 'student' '{' studentBody+ '}';
 studentBody: 'name' STRING
-           | 'githubNickName' STRING
-           | 'repository' STRING;
+           | 'NickName' STRING
+           | 'repository' STRING
+           | 'buildtool' STRING;
 
 projectDecl: '{' taskDecl '}' '{' studentDecl '}';
 
@@ -42,15 +44,13 @@ bonusStmt: 'bonus' STRING 'for' STRING '+' INT;
 checkpointBlock: 'checkpoints' '{' checkpointDecl* '}';
 checkpointDecl: 'checkpoint' STRING '{' 'date' STRING '}';
 
-gradingDecl: 'grading' '{' gradingRule+ '}';
-gradingRule: '3' INT
-           | '4' INT
-           | '5' INT;
-buildtoolBlock: 'build tool' STRING '{' buildRules+ '}';
-buildRules: 'build' STRING
-          | 'test' STRING
-          | 'checkstyle' STRING
-          | 'docgeneration' STRING;
+buildSystemDecl: 'buildTool' STRING STRING;
+
+criteriesDecl: 'criteries' STRING;
+
+gradingDecl: 'grading' STRING;
+
 STRING : '"' .*? '"';
 INT    : [0-9]+;
 WS     : [ \t\r\n]+ -> skip;
+COMMENTARY : '//' .*? '//';

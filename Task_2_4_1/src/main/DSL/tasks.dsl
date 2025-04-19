@@ -1,12 +1,12 @@
 tasks {
-    task id "task1" name "Intro" {
+    task id "Task_1_4_1" name "Zachetka" {
         maxScore "100"
-        softDeadline "2025-05-01"
-        hardDeadline "2025-05-10"
+        softDeadline "10.12.2024"
+        hardDeadline "24.12.2024"
     }
     task id "task2" name "Advanced" {
         maxScore "200"
-        softDeadline "2025-06-01"
-        hardDeadline "2025-06-10"
+        softDeadline "01.06.2025"
+        hardDeadline "25.06.2025"
     }
 }

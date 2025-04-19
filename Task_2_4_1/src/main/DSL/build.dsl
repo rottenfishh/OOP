@@ -4,4 +4,3 @@ build tool "gradlew.bat" {
     checkstyle "checkstyleMain checkstyleTest" 
     docgeneration "javadoc"
 }
-    

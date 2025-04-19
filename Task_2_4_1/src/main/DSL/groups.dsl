@@ -1,14 +1,18 @@
 groups {
-    group "G1" {
+    group "23213" {
         student {
-            name "Alice"
-            githubNickName "aliceGH"
-            repository "https://github.com/alice/repo"
+            name "Alina"
+            NickName "rottenfishh"
+            repository "https://github.com/rottenfishh/OOP.git"
+            buildtool "gradlew.bat"
         }
+    }
+    group "lala" {
         student {
-            name "Bob"
-            githubNickName "bobGH"
-            repository "https://github.com/bob/repo"
+            name "Lolo"
+            NickName "Lolo"
+            repository "haha.git"
+            buildtool "maven"
         }
     }
 }

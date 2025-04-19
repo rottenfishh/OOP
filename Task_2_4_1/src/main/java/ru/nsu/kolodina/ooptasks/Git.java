@@ -1,6 +1,7 @@
 package ru.nsu.kolodina.ooptasks;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Git {
@@ -16,16 +17,25 @@ public class Git {
 
     public int runGitClone(String repoUrl) {
         List<String> args = command.buildArgs("git", "clone", repoUrl);
-        return command.runCommand(null, args);
+        return command.runCommand(null, args, null);
     }
 
     public int runGitCheckout(String repoName, String branch){
         List<String> args = command.buildArgs("git", "checkout", branch);
-        return command.runCommand(repoName, args);
+        return command.runCommand(repoName, args, null);
     }
 
-    public int getLastCommitDate(String repoName, String folder) {
+    public int getLastCommitDate(String repoName, String folder, List<String> result) {
         List<String> args = command.buildArgs("git", "log", "-1", "--format=%cd", "--", folder);
-        return command.runCommand(repoName, args);
+        return command.runCommand(repoName, args, result);
+    }
+
+    public int getFirstCommitDate(String repoName, String folder, List<String> result) {
+        List<String> temp = new ArrayList<>();
+        List<String> args = command.buildArgs("git", "log", "--reverse",
+                "--format=%cd", "--", folder);
+        int code = command.runCommand(repoName, args, temp);
+        result.add(temp.get(0));
+        return code;
     }
 }

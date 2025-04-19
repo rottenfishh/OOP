@@ -1,0 +1,1 @@
+criteries "ru.nsu.kolodina.ooptasks.OOPCriteria"

@@ -1,13 +1,11 @@
 package ru.nsu.kolodina.ooptasks;
 
-import ru.nsu.kolodina.ooptasks.shit.Conditions;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DSLParser dslParser = new DSLParser();
+        /*DSLParser dslParser = new DSLParser();
         String link = "https://github.com/rottenfishh/OOP.git";
         String repoName = new Git().extractRepoName(link);
         String taskName = "Task_1_4_1";
@@ -23,5 +21,16 @@ public class Main {
         System.out.println(buildToolCommands.buildToolName);
         BuildTool check = new BuildTool(buildToolCommands);
         check.runTests(repoName, taskName);
+        List<String> res = new ArrayList<>();
+        Git git = new Git();
+        git.getLastCommitDate(repoName, taskName, res);
+        git.getFirstCommitDate(repoName, taskName, res);*/
+        String path = "src/main/DSL/course.dsl";
+        DriverTool driverTool = new DriverTool();
+        List<Assignment> assignmentList = driverTool.extractData(path);
+        Assignment ass = assignmentList.get(0);
+        Group.Student student = ass.studentObj;
+        driverTool.checkStudent(ass);
+        System.out.println(student.getScore());
     }
 }

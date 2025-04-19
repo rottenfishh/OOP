@@ -1,12 +1,21 @@
 package ru.nsu.kolodina.ooptasks;
 
-import lombok.AllArgsConstructor;
+import lombok.*;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Task {
+    @Getter
+    @Setter
+    double mark;
+    @NonNull
     String id;
+    @NonNull
     String name;
-    Integer maxScore;
+    @NonNull
+    double maxScore;
+    @NonNull
     String softDeadline;
+    @NonNull
     String hardDeadline;
+    Boolean buildOk = false;
 }
