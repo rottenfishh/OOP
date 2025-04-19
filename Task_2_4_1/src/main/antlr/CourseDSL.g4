@@ -42,7 +42,7 @@ assignedTask: 'task' STRING;
 bonusStmt: 'bonus' STRING 'for' STRING '+' INT;
 
 checkpointBlock: 'checkpoints' '{' checkpointDecl* '}';
-checkpointDecl: 'checkpoint' STRING '{' 'date' STRING '}';
+checkpointDecl: 'checkpoint' STRING '{' 'date' STRING 'score' STRING'}';
 
 buildSystemDecl: 'buildTool' STRING STRING;
 

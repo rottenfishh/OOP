@@ -1,9 +1,12 @@
 package ru.nsu.kolodina.ooptasks;
 
+import java.util.Map;
+
 public class OOPGrading implements Grading {
 
     OOPCriteria criteria = new OOPCriteria();
 
+    @Override
     public double calculateScore(Group.Student student, String repo, Task task) {
         if (task.buildOk) {
             task.mark = task.maxScore;
@@ -20,13 +23,29 @@ public class OOPGrading implements Grading {
         return task.mark;
     }
 
+    @Override
     public int calculateFinalMark(Group.Student student) {
-        Double score = student.getScore();
+        double score = student.getScore();
         if (score >= 5) {
             student.mark = 5;
         } else if (score >= 3) {
             student.mark = 4;
         } else if (score >= 2) {
+            student.mark = 3;
+        } else {
+            student.mark = 2;
+        }
+        return student.mark;
+    }
+
+    @Override
+    public int calculateCheckPoint(Group.Student student, int requiredScore) {
+        double score = student.getScore();
+        if (score >= requiredScore * 0.9) {
+            student.mark = 5;
+        } else if (score >= requiredScore * 0.75) {
+            student.mark = 4;
+        } else if (score >= requiredScore * 0.5) {
             student.mark = 3;
         } else {
             student.mark = 2;

@@ -3,6 +3,7 @@ package ru.nsu.kolodina.ooptasks;
 import lombok.RequiredArgsConstructor;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -21,7 +22,6 @@ public class DriverTool {
         DSLParser dslParser = new DSLParser();
         dslParser.extractData(path, groupList, tasksList, assignmentList, pathToClasses);
         dslParser.matchStudentsAndTasks(groupList, tasksList, assignmentList);
-        System.out.println(pathToClasses.get("gradlew.bat"));
         return assignmentList;
     }
 
@@ -34,29 +34,20 @@ public class DriverTool {
     }
 
     public boolean runBuildChecks(String toolName, String repo, Task task) {
-
-        /*Class<?> clazz = null;
-        Build tool = null;
-        try {
-            clazz = Class.forName(pathToClasses.get(toolName));
-            if (!Build.class.isAssignableFrom(clazz)) {
-                throw new IllegalArgumentException("Class " + toolName + " does not implement BuildTool");
-            }
-            tool = (Build) clazz.getDeclaredConstructor().newInstance();
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }*/
         Build tool = null;
         try {
             tool = Utils.loadClassInstance(pathToClasses.get(toolName), Build.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
+        File srcFolder = new File(repo, task.id);
+        if (!srcFolder.exists()) {
+            task.buildOk = false;
+            task.mark = 0.0;
+            return false;
+        }
         boolean everythingOk = true;
         int err = 0;
-        System.out.println(task.id);
         err = tool.compile(repo, task.id);
         if (err != 0) {
             System.err.println("Compilation failed!");
@@ -96,12 +87,6 @@ public class DriverTool {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        /*BuildInvoker criteriaCheck = new BuildInvoker();
-        criteriaCheck.getBuildClass(pathToClasses.get("criteries"));
-
-        BuildInvoker gradingCheck = new BuildInvoker();
-        gradingCheck.getBuildClass(pathToClasses.get("grading"));*/
-
         String repository = getStudentRepo(assignment);
         Group.Student student = assignment.studentObj;
         String toolName = student.buildTool;

@@ -1,8 +1,8 @@
 checkpoints {
     checkpoint "midterm" {
-        date "2025-05-15"
+        date "15.03.2025" score "5"
     }
     checkpoint "final" {
-        date "2025-06-15"
+        date "30.05.2025" score "10"
     }
 }
