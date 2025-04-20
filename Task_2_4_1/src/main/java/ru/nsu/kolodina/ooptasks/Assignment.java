@@ -1,5 +1,6 @@
 package ru.nsu.kolodina.ooptasks;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ public class Assignment {
     List<String> tasksNames;
     @Setter
     Group.Student student;
+    @Getter
     @Setter
     List<Task> tasks;
 

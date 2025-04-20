@@ -14,5 +14,6 @@ public class Main {
         Assignment alinaAssignment = driverTool.getAssignment("Alina");
         driverTool.checkStudent(alinaAssignment, firstCheck);
         System.out.println(student.getMark());
+        HTMLGeneration.generateHTML(alinaAssignment, "lol.html");
     }
 }

@@ -22,7 +22,6 @@ public class OOPCriteria implements Criteries {
         DateTimeFormatter desiredFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         ZonedDateTime dateTime = ZonedDateTime.parse(gitDate, gitFormat);
         String formatted = dateTime.format(desiredFormat);
-        System.out.println(formatted);
         return formatted;
     }
     public boolean softDeadlineMeet(String repo, Task task) {
@@ -49,7 +48,6 @@ public class OOPCriteria implements Criteries {
         if (dateLast.isBefore(hardHeadline)) {
             return true;
         }
-        System.out.println("hard " + hardHeadline + " " + dateLast);
         return false;
     }
 }
