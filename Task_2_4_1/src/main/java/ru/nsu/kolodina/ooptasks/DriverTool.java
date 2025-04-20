@@ -3,7 +3,7 @@ package ru.nsu.kolodina.ooptasks;
 import lombok.RequiredArgsConstructor;
 
 import java.io.File;
-import java.nio.file.Files;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -14,19 +14,17 @@ public class DriverTool {
     List<Assignment> assignmentList = new ArrayList<>();
     public Git git = new Git();
     public Map<String, String> pathToClasses = new HashMap<>();
+    public List<CheckPoint> checkPointsList = new ArrayList<>();
 
-    public void setUpClasses() {
-
-    }
     public List<Assignment> extractData(String path) {
         DSLParser dslParser = new DSLParser();
-        dslParser.extractData(path, groupList, tasksList, assignmentList, pathToClasses);
+        dslParser.extractData(path, groupList, tasksList, assignmentList, pathToClasses, checkPointsList);
         dslParser.matchStudentsAndTasks(groupList, tasksList, assignmentList);
         return assignmentList;
     }
 
     public String getStudentRepo(Assignment assignment) {
-        String githubLink = assignment.studentObj.githubLink;
+        String githubLink = assignment.student.githubLink;
         String repository = git.extractRepoName(githubLink);
         git.runGitClone(githubLink);
         git.runGitCheckout(repository, "main");
@@ -61,7 +59,7 @@ public class DriverTool {
         err = tool.checkstyle(repo, task.id);
         if (err != 0) {
             System.err.println("Checkstyle failed!");
-            everythingOk = false;
+            //everythingOk = false;
         }
         err = tool.test(repo, task.id);
         if (err != 0) {
@@ -74,7 +72,7 @@ public class DriverTool {
         return everythingOk;
     }
 
-    public void checkStudent(Assignment assignment) {
+    public void checkStudent(Assignment assignment, CheckPoint checkPoint) {
         Criteries criteriaCheck = null;
         try {
             criteriaCheck = Utils.loadClassInstance(pathToClasses.get("criteries"), Criteries.class);
@@ -88,24 +86,33 @@ public class DriverTool {
             throw new RuntimeException(e);
         }
         String repository = getStudentRepo(assignment);
-        Group.Student student = assignment.studentObj;
+        Group.Student student = assignment.student;
         String toolName = student.buildTool;
-        for (Task t : assignment.taskObj) {
+        for (Task t : assignment.tasks) {
             runBuildChecks(toolName, repository, t);
             criteriaCheck.meetsCriteria(repository, t);
             gradingCheck.calculateScore(student, repository, t);
             Double score = t.getMark();
-            System.out.println(score);
             student.addScore(score);
         }
-        gradingCheck.calculateFinalMark(student);
-        System.out.println(student.mark);
+        gradingCheck.calculateCheckPoint(student, checkPoint);
         Utils.deleteDirectory(new File(repository));
     }
 
-    public void checkAll() {
-        for (Assignment assignment : assignmentList) {
-            checkStudent(assignment);
+    public Assignment getAssignment(String studentName) {
+        for (Assignment a : assignmentList) {
+            if (a.studentName.equals(studentName)) {
+                return a;
+            }
         }
+        return null;
+    }
+    public CheckPoint getCheckPoint(String checkPointName) {
+        for (CheckPoint c: checkPointsList) {
+            if (c.name.equals(checkPointName)) {
+                return c;
+            }
+        }
+        return null;
     }
 }

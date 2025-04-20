@@ -22,6 +22,7 @@ statement
 taskBlock: 'tasks' '{' taskDecl* '}';
 taskDecl: 'task id' STRING 'name' STRING '{' taskBody+ '}';
 taskBody: 'maxScore' STRING
+        | 'bonusScore' STRING
         | 'softDeadline' STRING
         | 'hardDeadline' STRING;
 

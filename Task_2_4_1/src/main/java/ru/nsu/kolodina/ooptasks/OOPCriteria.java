@@ -2,6 +2,7 @@ package ru.nsu.kolodina.ooptasks;
 
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class OOPCriteria implements Criteries {
         return task.buildOk;
     }
 
-    public String convertDate(String gitDate) {
+    public static String convertDate(String gitDate) {
         DateTimeFormatter gitFormat = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy Z", Locale.ENGLISH);
         DateTimeFormatter desiredFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         ZonedDateTime dateTime = ZonedDateTime.parse(gitDate, gitFormat);
@@ -30,26 +31,25 @@ public class OOPCriteria implements Criteries {
         List<String> res = new ArrayList<>();
         git.getFirstCommitDate(repo, task.id, res);
         String dateFirstCommit = convertDate(res.get(0));
-        ZonedDateTime dateFirst = ZonedDateTime.parse(dateFirstCommit, formatter);
-        ZonedDateTime softDeadline = ZonedDateTime.parse(task.softDeadline, formatter);
+        LocalDate dateFirst = LocalDate.parse(dateFirstCommit, formatter);
+        LocalDate softDeadline = LocalDate.parse(task.softDeadline, formatter);
         if (dateFirst.isBefore(softDeadline)) {
             return true;
         }
-        System.out.println(dateFirstCommit);
         return false;
     }
     public boolean hardDeadlineMeet(String repo, Task task) {
         Git git = new Git();
         List<String> res = new ArrayList<>();
         git.getLastCommitDate(repo, task.id, res);
-        String dateLastCommit = convertDate(res.get(1));
+        String dateLastCommit = convertDate(res.get(0));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        ZonedDateTime dateLast = ZonedDateTime.parse(dateLastCommit, formatter);
-        ZonedDateTime hardHeadline = ZonedDateTime.parse(task.hardDeadline, formatter);
-        if (hardHeadline.isBefore(dateLast)) {
+        LocalDate dateLast = LocalDate.parse(dateLastCommit, formatter);
+        LocalDate hardHeadline = LocalDate.parse(task.hardDeadline, formatter);
+        if (dateLast.isBefore(hardHeadline)) {
             return true;
         }
-        System.out.println(dateLastCommit);
+        System.out.println("hard " + hardHeadline + " " + dateLast);
         return false;
     }
 }

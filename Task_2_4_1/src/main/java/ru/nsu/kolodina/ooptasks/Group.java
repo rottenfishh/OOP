@@ -17,6 +17,7 @@ public class Group {
     public static class Student {
         @Getter
         double score = 0.0;
+        @Getter
         int mark = 0;
         @NonNull
         String name;

@@ -1,7 +1,5 @@
 package ru.nsu.kolodina.ooptasks;
 
-import java.util.Map;
-
 public class OOPGrading implements Grading {
 
     OOPCriteria criteria = new OOPCriteria();
@@ -39,7 +37,8 @@ public class OOPGrading implements Grading {
     }
 
     @Override
-    public int calculateCheckPoint(Group.Student student, int requiredScore) {
+    public int calculateCheckPoint(Group.Student student, CheckPoint checkPoint) {
+        int requiredScore = checkPoint.requiredScore;
         double score = student.getScore();
         if (score >= requiredScore * 0.9) {
             student.mark = 5;
@@ -51,5 +50,15 @@ public class OOPGrading implements Grading {
             student.mark = 2;
         }
         return student.mark;
+    }
+
+    public void giveBonusScore(Assignment assignment, String taskId, double score) {
+        for (Task t: assignment.tasks) {
+            if (taskId.equals(t.id)) {
+                t.mark += score;
+                break;
+            }
+        }
+        assignment.student.score += score;
     }
 }

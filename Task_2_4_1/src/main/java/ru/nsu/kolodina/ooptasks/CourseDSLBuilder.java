@@ -23,7 +23,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     public List<Task> tasksList;
     public List<Assignment> assignmentList;
     public Map<String, String> pathToClasses;
-
+    public List<CheckPoint> checkPointList;
 
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
@@ -51,7 +51,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses);
+        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses, checkPointList);
         visitor.visit(tree);
     }
 
@@ -102,11 +102,28 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     public Void visitTaskDecl(CourseDSLParser.TaskDeclContext ctx) {
         List<String> args = new ArrayList<>();
         String id = ctx.STRING(0).getText().replace("\"", "");
+        int maxScore = 0;
+        String softDeadline = "";
+        String hardDeadline = "";
         String name = ctx.STRING(1).getText().replace("\"", "");
         for (CourseDSLParser.TaskBodyContext body : ctx.taskBody()) {
+            String firstToken = body.getStart().getText();
+            String arg = body.STRING().getText().replace("\"", "");
+            if (firstToken.equals("maxScore")) {
+                maxScore = Integer.parseInt(arg);
+            }
+            if (firstToken.equals("softDeadline")) {
+                softDeadline = arg;
+            }
+            if (firstToken.equals("hardDeadline")) {
+                hardDeadline = arg;
+            }
+            if (firstToken.equals("bonusScore")) {
+                maxScore += Integer.parseInt(arg);
+            }
             args.add(body.STRING().getText().replace("\"", ""));
         }
-        Task task = new Task(id, name, Integer.parseInt(args.get(0)), args.get(1), args.get(2));
+        Task task = new Task(id, name, maxScore, softDeadline, hardDeadline);
         tasksList.add(task);
         return null;
     }
@@ -130,6 +147,16 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
     public Void visitGradingDecl(CourseDSLParser.GradingDeclContext ctx) {
         String gradingPath = ctx.STRING().getText().replace("\"", "");
         pathToClasses.put("grading", gradingPath);
+        return null;
+    }
+
+    @Override
+    public Void visitCheckpointDecl(CourseDSLParser.CheckpointDeclContext ctx) {
+        String name = ctx.STRING(0).getText().replace("\"", "");
+        String date = ctx.STRING(1).getText().replace("\"", "");
+        int score = Integer.parseInt(ctx.STRING(2).getText().replace("\"", ""));
+        CheckPoint checkpoint = new CheckPoint(name, date, score);
+        checkPointList.add(checkpoint);
         return null;
     }
 }

@@ -5,3 +5,4 @@ grading: описание grading и ссылка на класс. +
 // choose between tools ну типа вот снизу
 // для репозитория указывать tools +
 checkpoints parsing and adding and checking and
+make checkstyle work

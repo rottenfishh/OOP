@@ -1,22 +1,19 @@
 package ru.nsu.kolodina.ooptasks;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 public class Assignment {
-    String student;
-    List<String> tasks;
+    String studentName;
+    List<String> tasksNames;
     @Setter
-    Group.Student studentObj;
+    Group.Student student;
     @Setter
-    List<Task> taskObj;
+    List<Task> tasks;
 
-    public Assignment(String student, List<String> tasks) {
-        this.student = student;
-        this.tasks = tasks;
+    public Assignment(String studentName, List<String> tasksNames) {
+        this.studentName = studentName;
+        this.tasksNames = tasksNames;
     }
 }
