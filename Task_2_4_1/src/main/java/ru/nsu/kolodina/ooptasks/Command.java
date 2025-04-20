@@ -13,20 +13,35 @@ public class Command {
     public List<String> buildArgs(String... strings) {
         return new ArrayList<>(Arrays.asList(strings));
     }
-    public int runCommand(String dir, List<String> args, List<String> result) {
+    public int runCommand(String dir, List<String> args, List<String> result, boolean noOutput) {
         try {
             Process p;
             if (dir != null) {
                 File folder = new File(dir);
-                p = new ProcessBuilder(args).directory(folder).start();
+                if (noOutput) {
+                    p = new ProcessBuilder(args).directory(folder).inheritIO().start();
+                } else {
+                    p = new ProcessBuilder(args).directory(folder).start();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if (result != null) {
+                            result.add(line);
+                        }
+                    }
+                }
             } else {
-                p = new ProcessBuilder(args).start();
-            }
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (result != null) {
-                    result.add(line);
+                if (noOutput) {
+                    p = new ProcessBuilder(args).inheritIO().start();
+                } else {
+                    p = new ProcessBuilder(args).start();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if (result != null) {
+                            result.add(line);
+                        }
+                    }
                 }
             }
             int exitCode = p.waitFor();

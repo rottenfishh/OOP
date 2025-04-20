@@ -12,7 +12,7 @@ public class OOPGrading implements Grading {
                 task.mark -= 0.5;
             }
             if (!criteria.hardDeadlineMeet(repo, task)) {
-                task.mark -=- 0.5;
+                task.mark -= 0.5;
             }
         } else {
             task.mark = 0.0;

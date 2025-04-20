@@ -32,10 +32,7 @@ public class OOPCriteria implements Criteries {
         String dateFirstCommit = convertDate(res.get(0));
         LocalDate dateFirst = LocalDate.parse(dateFirstCommit, formatter);
         LocalDate softDeadline = LocalDate.parse(task.softDeadline, formatter);
-        if (dateFirst.isBefore(softDeadline)) {
-            return true;
-        }
-        return false;
+        return dateFirst.isBefore(softDeadline);
     }
     public boolean hardDeadlineMeet(String repo, Task task) {
         Git git = new Git();
@@ -45,9 +42,6 @@ public class OOPCriteria implements Criteries {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate dateLast = LocalDate.parse(dateLastCommit, formatter);
         LocalDate hardHeadline = LocalDate.parse(task.hardDeadline, formatter);
-        if (dateLast.isBefore(hardHeadline)) {
-            return true;
-        }
-        return false;
+        return dateLast.isBefore(hardHeadline);
     }
 }
