@@ -81,7 +81,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
                 for (CourseDSLParser.StudentBodyContext studentBody : studentDecl.studentBody()) { // parse one student
                     args.add(studentBody.STRING().getText().replace("\"", ""));
                 }
-                Group.Student student = new Group.Student(args.get(0), args.get(1), args.get(2), args.get(3));
+                Group.Student student = new Group.Student(groupName, args.get(0), args.get(1), args.get(2), args.get(3));
                 students.add(student);
             }
             Group group = new Group(groupName, students);

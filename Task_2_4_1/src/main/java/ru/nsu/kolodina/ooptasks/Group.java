@@ -15,6 +15,8 @@ public class Group {
 
     @RequiredArgsConstructor
     public static class Student {
+        @NonNull
+        String groupName;
         @Getter
         double score = 0.0;
         @Getter

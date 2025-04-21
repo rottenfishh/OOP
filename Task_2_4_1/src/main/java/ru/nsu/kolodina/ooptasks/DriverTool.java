@@ -1,5 +1,6 @@
 package ru.nsu.kolodina.ooptasks;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.io.File;
@@ -11,6 +12,7 @@ public class DriverTool {
 
     List<Group> groupList = new ArrayList<>();
     List<Task> tasksList = new ArrayList<>();
+    @Getter
     List<Assignment> assignmentList = new ArrayList<>();
     public Git git = new Git();
     public Map<String, String> pathToClasses = new HashMap<>();
@@ -56,10 +58,10 @@ public class DriverTool {
             System.err.println("Documentation generation failed!");
             everythingOk = false;
         }
-        //err = tool.checkstyle(repo, task.id);
+        err = tool.checkstyle(repo, task.id);
         if (err != 0) {
             System.err.println("Checkstyle failed!");
-            //everythingOk = false;
+            everythingOk = false;
         }
         err = tool.test(repo, task.id);
         if (err != 0) {
@@ -107,6 +109,7 @@ public class DriverTool {
         }
         return null;
     }
+
     public CheckPoint getCheckPoint(String checkPointName) {
         for (CheckPoint c: checkPointsList) {
             if (c.name.equals(checkPointName)) {
