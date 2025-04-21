@@ -28,15 +28,13 @@ public class GradleBuild implements Build{
         List<String> args = cmd.buildArgs("gradlew.bat", "javadoc", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
-    
+
     @Override
     public int checkstyle(String repo, String task) {
         String dir = repo + File.separator + task;
         List<String> res = new ArrayList<String>();
         List<String> args = cmd.buildArgs("java", "-jar", "checkstyle.jar", "-c", "google_checks.xml", dir);
         int exitCode = cmd.runCommand(null, args, res, false);
-        System.out.println("aa");
-        System.out.println(res);
         if (res.size() > 10) {
             return 1;
         }
