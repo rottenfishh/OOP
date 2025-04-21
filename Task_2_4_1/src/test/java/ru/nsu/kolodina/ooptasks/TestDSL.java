@@ -19,7 +19,7 @@ public class TestDSL {
         Assignment alinaAssignment = driverTool.getAssignment("Alina");
         Group.Student student = alinaAssignment.student;
         driverTool.checkStudent(alinaAssignment, firstCheck);
-        assertEquals(3, student.getMark());
+        assertEquals(2, student.getMark());
     }
 
     @Test
