@@ -20,9 +20,6 @@ public class TestDSL {
         Group.Student student = alinaAssignment.student;
         driverTool.checkStudent(alinaAssignment, firstCheck);
         assertEquals(3, student.getMark());
-        System.out.println(student.getMark());
-        List<Assignment> assignments = driverTool.getAssignmentList();
-        HTMLGeneration.generateHTML(assignments, "lol.html");
     }
 
     @Test
