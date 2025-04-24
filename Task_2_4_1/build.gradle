@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'antlr'
+    id 'application'
 }
 
 group = 'ru.nsu.kolodina.ooptasks'
@@ -54,3 +55,7 @@ generateGrammarSource {
 }
 
 sourceSets.main.java.srcDirs += 'src/main/java/ru/nsu/kolodina/ooptasks/generated'
+
+application {
+    mainClass = 'ru.nsu.kolodina.ooptasks.Main'
+}

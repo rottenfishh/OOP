@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String path = "src/main/DSL/course.dsl";
+        /*String path = "src/main/DSL/course.dsl";
         DriverTool driverTool = new DriverTool();
         List<Assignment> assignmentList = driverTool.extractData(path);
         Assignment ass = assignmentList.get(0);
@@ -15,6 +15,7 @@ public class Main {
         driverTool.checkStudent(alinaAssignment, firstCheck);
         System.out.println(student.getMark());
         List<Assignment> assignments = driverTool.getAssignmentList();
-        HTMLGeneration.generateHTML(assignments, "lol.html");
+        HTMLGeneration.generateHTML(assignments, "lol.html");*/
+        System.out.println(System.getProperty("os.name"));
     }
 }

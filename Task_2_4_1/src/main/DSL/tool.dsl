@@ -1,1 +1,1 @@
-buildTool "gradlew.bat" "ru.nsu.kolodina.ooptasks.GradleBuild"
+buildTool "gradle" "ru.nsu.kolodina.ooptasks.GradleBuild"

@@ -6,26 +6,34 @@ import java.util.List;
 
 public class GradleBuild implements Build{
 
+    String gradleName = "gradlew.bat";
     Command cmd = new Command();
 
+    GradleBuild() {
+        if (System.getProperty("os.name").toLowerCase().contains("Windows")) {
+            gradleName = "gradlew.bat";
+        } else if (System.getProperty("os.name").toLowerCase().contains("Linux")) {
+            gradleName = "./gradlew";
+        }
+    }
     @Override
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs("gradlew.bat", "compileJava", "--quiet");
+        List<String> args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 
     @Override
     public int test(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs("gradlew.bat", "test",  "--quiet");
+        List<String> args = cmd.buildArgs(gradleName, "test",  "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 
     @Override
     public int docGen(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs("gradlew.bat", "javadoc", "--quiet");
+        List<String> args = cmd.buildArgs(gradleName, "javadoc", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 

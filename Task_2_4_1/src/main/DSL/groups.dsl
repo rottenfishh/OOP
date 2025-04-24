@@ -4,7 +4,7 @@ groups {
             name "Alina"
             NickName "rottenfishh"
             repository "https://github.com/rottenfishh/OOP.git"
-            buildtool "gradlew.bat"
+            buildtool "gradle"
         }
     }
     group "lala" {
