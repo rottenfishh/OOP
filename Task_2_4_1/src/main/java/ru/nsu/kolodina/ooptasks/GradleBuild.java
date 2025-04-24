@@ -19,7 +19,7 @@ public class GradleBuild implements Build{
     @Override
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
-        args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
+        List<String> args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 
