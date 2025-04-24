@@ -19,8 +19,6 @@ public class GradleBuild implements Build{
     @Override
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs("dos2unix", gradleName);
-        cmd.runCommand(dir, args, null, true);
         args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
