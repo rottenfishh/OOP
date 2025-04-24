@@ -6,20 +6,22 @@ import java.util.List;
 
 public class GradleBuild implements Build{
 
-    String gradleName = "gradlew.bat";
+    String gradleName = "";
     Command cmd = new Command();
 
     GradleBuild() {
-        if (System.getProperty("os.name").toLowerCase().contains("Windows")) {
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             gradleName = "gradlew.bat";
-        } else if (System.getProperty("os.name").toLowerCase().contains("Linux")) {
+        } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
             gradleName = "./gradlew";
         }
     }
     @Override
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
+        List<String> args = cmd.buildArgs("dos2unix", gradleName);
+        cmd.runCommand(dir, args, null, true);
+        args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 
