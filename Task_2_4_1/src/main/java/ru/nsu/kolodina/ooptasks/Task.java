@@ -2,6 +2,8 @@ package ru.nsu.kolodina.ooptasks;
 
 import lombok.*;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 public class Task {
     @Getter
@@ -18,4 +20,7 @@ public class Task {
     @NonNull
     String hardDeadline;
     Boolean buildOk = false;
+    @Getter
+    @Setter
+    Map<String, Boolean> conditions;
 }

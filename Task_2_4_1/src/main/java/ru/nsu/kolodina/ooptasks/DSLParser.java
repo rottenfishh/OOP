@@ -22,7 +22,7 @@ public class DSLParser {
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor2 = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses, checkPointsList);
+        CourseDSLBuilder visitor2 = new CourseDSLBuilder(path, groupList, tasksList, assignmentList, pathToClasses, checkPointsList);
         visitor2.visit(tree);
     }
 

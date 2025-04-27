@@ -18,10 +18,13 @@ public class GradleBuild implements Build{
     }
     @Override
     public int compile(String repo, String task) {
-        //sed -i 's/\r$//' filename
         String dir = repo + File.separator + task;
-        List<String> args = cmd.buildArgs("sed", "-i", "'s/\\r$//'", gradleName);
-        cmd.runCommand(dir, args, null, true);
+        List<String> args = null;
+        //sed -i 's/\r$//' filename
+        if (gradleName.equals("./gradlew")) {
+            args = cmd.buildArgs("sed", "-i", "'s/\\r$//'", gradleName);
+            cmd.runCommand(dir, args, null, true);
+        }
         args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }

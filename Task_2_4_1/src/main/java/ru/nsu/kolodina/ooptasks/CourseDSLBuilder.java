@@ -19,6 +19,7 @@ import ru.nsu.kolodina.ooptasks.CourseDSLLexer;
 //parsetreelistener
 @AllArgsConstructor
 public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisitor<Void> {
+    String path;
     public List<Group> groupList;
     public List<Task> tasksList;
     public List<Assignment> assignmentList;
@@ -27,9 +28,14 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
 
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
+        String [] pathSplit = path.split("/");
+        StringBuilder pathToFolder = new StringBuilder();
+        for (int i = 0; i < pathSplit.length-1; i++) {
+            pathToFolder.append(pathSplit[i]).append("/");
+        }
         String fileName = ctx.STRING().getText().replace("\"", ""); // Remove the surrounding quotes
         try {
-            processImportedFile(fileName);
+            processImportedFile(pathToFolder + fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +57,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         CourseDSLParser parser = new CourseDSLParser(tokens);
 
         ParseTree tree = parser.program();
-        CourseDSLBuilder visitor = new CourseDSLBuilder(groupList, tasksList, assignmentList, pathToClasses, checkPointList);
+        CourseDSLBuilder visitor = new CourseDSLBuilder(path, groupList, tasksList, assignmentList, pathToClasses, checkPointList);
         visitor.visit(tree);
     }
 

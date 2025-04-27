@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
 public class DriverTool {
+    String cwd = System.getProperty("user.dir");
 
     List<Group> groupList = new ArrayList<>();
     List<Task> tasksList = new ArrayList<>();
@@ -19,6 +20,10 @@ public class DriverTool {
     public Git git = new Git();
     public Map<String, String> pathToClasses = new HashMap<>();
     public List<CheckPoint> checkPointsList = new ArrayList<>();
+
+    public DriverTool(String path) {
+        extractData(path);
+    }
 
     public List<Assignment> extractData(String path) {
         DSLParser dslParser = new DSLParser();
@@ -30,53 +35,18 @@ public class DriverTool {
     public String getStudentRepo(Assignment assignment) {
         String githubLink = assignment.student.githubLink;
         String repository = git.extractRepoName(githubLink);
-        git.runGitClone(githubLink);
-        git.runGitCheckout(repository, "main");
-        return repository;
+        String studentPath = cwd + File.separator + assignment.studentName;
+        String fullPath = studentPath + File.separator + repository;
+        if (Files.exists(new File(fullPath).toPath())) {
+            git.gitPull(fullPath, "main");
+        } else {
+            git.runGitClone(studentPath, githubLink);
+        }
+        git.runGitCheckout(fullPath, "main");
+        return fullPath;
     }
 
-    public boolean runBuildChecks(String toolName, String repo, Task task) {
-        Build tool = null;
-        try {
-            tool = Utils.loadClassInstance(pathToClasses.get(toolName), Build.class);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        File srcFolder = new File(repo, task.id);
-        if (!srcFolder.exists()) {
-            task.buildOk = false;
-            task.mark = 0.0;
-            return false;
-        }
-        boolean everythingOk = true;
-        int err = 0;
-        err = tool.compile(repo, task.id);
-        if (err != 0) {
-            System.err.println("Compilation failed!");
-            everythingOk = false;
-        }
-        err = tool.docGen(repo, task.id);
-        if (err != 0) {
-            System.err.println("Documentation generation failed!");
-            everythingOk = false;
-        }
-        err = tool.checkstyle(repo, task.id);
-        if (err != 0) {
-            System.err.println("Checkstyle failed!");
-            everythingOk = false;
-        }
-        err = tool.test(repo, task.id);
-        if (err != 0) {
-            System.err.println("Tests failed!");
-            everythingOk = false;
-        }
-        if (everythingOk) {
-            task.buildOk = true;
-        }
-        return everythingOk;
-    }
-
-    public void checkStudent(Assignment assignment, CheckPoint checkPoint) {
+    private double checkStudentPrivate(Assignment assignment, CheckPoint checkPoint) {
         Criteries criteriaCheck = null;
         try {
             criteriaCheck = Utils.loadClassInstance(pathToClasses.get("criteries"), Criteries.class);
@@ -93,17 +63,18 @@ public class DriverTool {
         Group.Student student = assignment.student;
         String toolName = student.buildTool;
         for (Task t : assignment.tasks) {
-            runBuildChecks(toolName, repository, t);
-            criteriaCheck.meetsCriteria(repository, t);
+            criteriaCheck.meetsCriteria(pathToClasses.get(toolName), repository, t);
             gradingCheck.calculateScore(student, repository, t);
-            Double score = t.getMark();
+            double score = t.getMark();
             student.addScore(score);
+            System.out.println(t.conditions.get("Compilation"));
         }
         gradingCheck.calculateCheckPoint(student, checkPoint);
-        Utils.deleteDirectory(new File(repository));
+        git.gitClean(repository);
+        return student.getScore();
     }
 
-    public Assignment getAssignment(String studentName) {
+    private Assignment getAssignment(String studentName) {
         for (Assignment a : assignmentList) {
             if (a.studentName.equals(studentName)) {
                 return a;
@@ -112,7 +83,7 @@ public class DriverTool {
         return null;
     }
 
-    public CheckPoint getCheckPoint(String checkPointName) {
+    private CheckPoint getCheckPoint(String checkPointName) {
         for (CheckPoint c: checkPointsList) {
             if (c.name.equals(checkPointName)) {
                 return c;
@@ -120,4 +91,20 @@ public class DriverTool {
         }
         return null;
     }
+    public void checkStudent(String studentName, String checkPointName, String htmlPath) {
+        Assignment assignment = getAssignment(studentName);
+        CheckPoint checkPoint = getCheckPoint(checkPointName);
+        checkStudentPrivate(assignment, checkPoint);
+        List<Assignment> assignmentsTemp = new ArrayList<>();
+        assignmentsTemp.add(assignment);
+        HTMLGeneration.generateHTML(assignmentsTemp, htmlPath);
+    }
+    public void runAllChecks(String checkpointName, String htmlPath) {
+        CheckPoint checkPoint = getCheckPoint(checkpointName);
+        for (Assignment assignment : assignmentList) {
+            checkStudentPrivate(assignment, checkPoint);
+        }
+        HTMLGeneration.generateHTML(assignmentList, htmlPath);
+    }
 }
+//git log git fetch
