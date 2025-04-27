@@ -28,11 +28,12 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
 
     @Override
     public Void visitImportStmt(CourseDSLParser.ImportStmtContext ctx) {
-        String [] pathSplit = path.split("/");
+        String [] pathSplit = path.split("\\\\");
         StringBuilder pathToFolder = new StringBuilder();
         for (int i = 0; i < pathSplit.length-1; i++) {
             pathToFolder.append(pathSplit[i]).append("/");
         }
+        System.out.println(pathToFolder.toString());
         String fileName = ctx.STRING().getText().replace("\"", ""); // Remove the surrounding quotes
         try {
             processImportedFile(pathToFolder + fileName);

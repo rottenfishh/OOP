@@ -26,6 +26,7 @@ public class DriverTool {
     }
 
     public List<Assignment> extractData(String path) {
+        System.out.println(path);
         DSLParser dslParser = new DSLParser();
         dslParser.extractData(path, groupList, tasksList, assignmentList, pathToClasses, checkPointsList);
         dslParser.matchStudentsAndTasks(groupList, tasksList, assignmentList);
@@ -91,13 +92,14 @@ public class DriverTool {
         }
         return null;
     }
-    public void checkStudent(String studentName, String checkPointName, String htmlPath) {
+    public int checkStudent(String studentName, String checkPointName, String htmlPath) {
         Assignment assignment = getAssignment(studentName);
         CheckPoint checkPoint = getCheckPoint(checkPointName);
         checkStudentPrivate(assignment, checkPoint);
         List<Assignment> assignmentsTemp = new ArrayList<>();
         assignmentsTemp.add(assignment);
         HTMLGeneration.generateHTML(assignmentsTemp, htmlPath);
+        return assignment.student.mark;
     }
     public void runAllChecks(String checkpointName, String htmlPath) {
         CheckPoint checkPoint = getCheckPoint(checkpointName);

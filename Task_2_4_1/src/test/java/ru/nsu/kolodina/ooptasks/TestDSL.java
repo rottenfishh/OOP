@@ -2,14 +2,18 @@ package ru.nsu.kolodina.ooptasks;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TestDSL {
-    DriverTool driverTool = new DriverTool("src/main/DSL/course.dsl");
+    String path = System.getProperty("user.dir") + File.separator + "src" +
+            File.separator + "main" + File.separator + "DSL" + File.separator + "course.dsl";
+    DriverTool driverTool = new DriverTool(path);
 
     @Test
     public void testMark() {
-        String path = "src/main/DSL/course.dsl";
-        driverTool.extractData(path);
-        driverTool.checkStudent("Alina", "midterm", "lol2.html");
-
+        int score = driverTool.checkStudent("Alina", "midterm", "lol2.html");
+        assertEquals(5, score);
     }
 }
