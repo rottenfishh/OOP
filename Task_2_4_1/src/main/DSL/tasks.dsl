@@ -30,7 +30,7 @@ tasks {
         softDeadline "12.11.2024"
         hardDeadline "19.11.2024"
     }
-    task id "Task_1_4_1" name "Zachetka" {
+    task id "Task_1_4_1" name "RecordBook" {
         maxScore "1"
         softDeadline "26.11.2024"
         hardDeadline "26.11.2024"

@@ -3,5 +3,5 @@ package ru.nsu.kolodina.ooptasks;
 import java.util.Map;
 
 public interface Criteries {
-    Map<String, Boolean> meetsCriteria(String tool, String repo, Task task);
+    Map<String, String> meetsCriteria(String tool, String repo, Task task);
 }

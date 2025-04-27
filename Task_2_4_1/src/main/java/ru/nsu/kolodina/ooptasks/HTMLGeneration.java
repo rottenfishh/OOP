@@ -16,24 +16,24 @@ public class HTMLGeneration {
             html.append("<tr>")
                     .append("<th>Task ID</th>")
                     .append("<th>Task Name</th>");
-            Map<String, Boolean> map = assignment.getTasks().get(0).conditions;
+            Map<String, String> map = assignment.getTasks().get(0).conditions;
             for (String entry: map.keySet()) {
                 html.append("<th> " + entry + " </th>");
             }
-                html.append("<th>Max Score</th>")
-                .append("<th>Mark</th>")
+                html.append("<th>Score</th>")
+                .append("<th>Max Score</th>")
                 .append("</tr>");
 
             for (Task task : assignment.getTasks()) {
                 html.append("<tr>");
                 html.append("<td>").append(task.id).append("</td>");
                 html.append("<td>").append(task.name).append("</td>");
-                Map<String, Boolean> taskMap = task.conditions;
-                for (boolean value  : taskMap.values()) {
-                    html.append("<td> ").append(value ? "+" : "-").append(" </td>");
+                Map<String, String> taskMap = task.conditions;
+                for (String value  : taskMap.values()) {
+                    html.append("<td> ").append(value).append(" </td>");
                 }
-                html.append("<td>").append(task.maxScore).append("</td>");
                 html.append("<td>").append(task.getMark()).append("</td>");
+                html.append("<td>").append(task.maxScore).append("</td>");
                 html.append("</tr>");
             }
 

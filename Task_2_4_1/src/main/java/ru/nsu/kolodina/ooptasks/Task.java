@@ -22,5 +22,5 @@ public class Task {
     Boolean buildOk = false;
     @Getter
     @Setter
-    Map<String, Boolean> conditions;
+    Map<String, String> conditions;
 }

@@ -10,12 +10,12 @@ import java.util.*;
 
 public class OOPCriteria implements Criteries {
 
-    public Map<String, Boolean> meetsCriteria(String tool, String repo, Task task) {
+    public Map<String, String> meetsCriteria(String tool, String repo, Task task) {
         return runBuildChecks(tool, repo, task);
     }
 
-    public Map<String, Boolean> runBuildChecks(String toolPath, String repo, Task task) {
-        Map<String, Boolean> criteries = new HashMap<>();
+    public Map<String, String> runBuildChecks(String toolPath, String repo, Task task) {
+        Map<String, String> criteries = new HashMap<>();
         Build tool = null;
         try {
             tool = Utils.loadClassInstance(toolPath, Build.class);
@@ -32,35 +32,37 @@ public class OOPCriteria implements Criteries {
         int err = 0;
         err = tool.compile(repo, task.id);
         if (err != 0) {
-            criteries.put("Compilation", false);
+            criteries.put("Build", "-");
             System.err.println("Compilation failed!");
             everythingOk = false;
         } else {
-            criteries.put("Compilation", true);
+            criteries.put("Build", "+");
         }
         err = tool.docGen(repo, task.id);
         if (err != 0) {
-            criteries.put("Documentation", false);
+            criteries.put("Docs", "-");
             System.err.println("Documentation generation failed!");
             everythingOk = false;
         } else {
-            criteries.put("Documentation", true);
+            criteries.put("Docs", "+");
         }
         err = tool.checkstyle(repo, task.id);
         if (err != 0) {
-            criteries.put("Checkstyle", false);
+            criteries.put("Checkstyle", "-");
             System.err.println("Checkstyle failed!");
             everythingOk = false;
         } else {
-            criteries.put("Checkstyle", true);
+            criteries.put("Checkstyle", "+");
         }
-        err = tool.test(repo, task.id);
+        List<Integer> tests = new ArrayList<>();
+        err = tool.test(repo, task.id, tests);
+        String testsStr = tests.get(0).toString() + "/" + tests.get(1).toString() + "/" + tests.get(2).toString();
         if (err != 0) {
-            criteries.put("Tests", false);
+            criteries.put(" Test ", testsStr);
             System.err.println("Tests failed!");
             everythingOk = false;
         } else {
-            criteries.put("Tests", true);
+            criteries.put(" Test ", testsStr);
         }
         if (everythingOk) {
             task.buildOk = true;
@@ -70,7 +72,7 @@ public class OOPCriteria implements Criteries {
     }
 
     public static String convertDate(String gitDate) {
-        DateTimeFormatter gitFormat = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss yyyy Z", Locale.ENGLISH);
+        DateTimeFormatter gitFormat = DateTimeFormatter.ofPattern("EEE MMM d HH:mm:ss yyyy Z", Locale.ENGLISH);
         DateTimeFormatter desiredFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         ZonedDateTime dateTime = ZonedDateTime.parse(gitDate, gitFormat);
         String formatted = dateTime.format(desiredFormat);
