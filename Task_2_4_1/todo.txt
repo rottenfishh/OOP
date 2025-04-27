@@ -5,4 +5,4 @@
 // в html добавить общий скор и оценку студента +
 // критерии по отдельности, каждый критерий в html. +
 // move build checks to oopcriteria and make it return map (criteria - ok/not ok) +
-// количество passed tests
+// количество passed tests +
