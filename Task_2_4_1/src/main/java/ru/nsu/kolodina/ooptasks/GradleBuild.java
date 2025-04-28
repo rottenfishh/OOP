@@ -20,9 +20,11 @@ public class GradleBuild implements Build{
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
         List<String> args = null;
-        //sed -i 's/\r$//' filename
+        //tr -d '\r' < filename > temp && mv temp filename
         if (gradleName.equals("./gradlew")) {
-            args = cmd.buildArgs("sed", "-i", "'s/\\r$//'", gradleName);
+            System.out.println("aaaaaaaaaaaa");
+            args = cmd.buildArgs("tr", "-d", "'\r", "<", gradleName, ">", "temp", "&&", "mv", "temp", gradleName);
+            //args = cmd.buildArgs("dos2unix", gradleName);
             cmd.runCommand(dir, args, null, true);
         }
         args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
