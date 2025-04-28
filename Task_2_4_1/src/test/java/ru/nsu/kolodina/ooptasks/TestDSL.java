@@ -15,5 +15,6 @@ public class TestDSL {
     public void testMark() {
         int score = driverTool.checkStudent("Alina", "midterm", "lol2.html");
         assertEquals(5, score);
+        System.out.println(score);
     }
 }

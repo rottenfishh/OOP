@@ -66,9 +66,6 @@ public class DriverTool {
         for (Task t : assignment.tasks) {
             criteriaCheck.meetsCriteria(pathToClasses.get(toolName), repository, t);
             gradingCheck.calculateScore(student, repository, t);
-            double score = t.getMark();
-            student.addScore(score);
-            System.out.println(t.conditions.get("Compilation"));
         }
         gradingCheck.calculateCheckPoint(student, checkPoint);
         git.gitClean(repository);
