@@ -13,6 +13,7 @@ public class Client implements Runnable {
     SimpleNumbers numbers = new SimpleNumbers();
     //private final int[] numbersArray;
     private final int id;
+    boolean connectionClosed = false;
 
     public Client(String ip, int port, int id) {
         try {
@@ -35,7 +36,12 @@ public class Client implements Runnable {
     public JSONArray getData() {
         JSONArray numbersArr = null;
         try {
-            numbersArr = new JSONArray(in.readLine());
+            String line = in.readLine();
+            if (line == null) {
+                stopConnection();
+                return null;
+            }
+            numbersArr = new JSONArray(line);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -43,7 +49,10 @@ public class Client implements Runnable {
     }
     public boolean calculate() {
         JSONArray arr = getData();
-        System.out.println(arr.toString());
+        if (arr == null) {
+            return false;
+        }
+        System.out.println("oh" + arr.toString());
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);
             if (!numbers.isSimple(num)) { // если есть непростое = true
@@ -53,28 +62,27 @@ public class Client implements Runnable {
         return false;
     }
 
-    public String sendMessage(String msg) throws IOException {
+    public void sendMessage(String msg) throws IOException {
         out.println(msg);
-        return in.readLine();
     }
 
     public void stopConnection() throws IOException {
         in.close();
         out.close();
         clientSocket.close();
+        connectionClosed = true;
     }
 
     @Override
     public void run() {
         startConnection();
-        boolean res = calculate();
-        try {
-            String resp = sendMessage(String.valueOf(res));
-            if (resp != null) {
-                stopConnection();
+        do {
+            boolean res = calculate();
+            try {
+                sendMessage(String.valueOf(res));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            throw  new RuntimeException();
-        }
+        } while (!connectionClosed);
     }
 }

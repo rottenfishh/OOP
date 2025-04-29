@@ -12,9 +12,10 @@ import java.util.List;
 
 public class Server {
     private ServerSocket serverSocket;
-    List<ClientConnection> clients = new ArrayList<>();
+    List<ClientConnection> activeClients = new ArrayList<>();
     int[] arr;
     int numOfClients;
+    List<JSONArray> taskArrs = new ArrayList<>();
 
     public Server(int port, int numOfClients) {
         try {
@@ -25,56 +26,89 @@ public class Server {
         }
         this.numOfClients = numOfClients;
     }
-
-    private JSONArray sendData(ClientConnection client) {
-        System.out.println("len" + arr.length);
-        int start = client.id * arr.length / numOfClients;
-        int end = (client.id + 1) * arr.length / numOfClients;
+    private JSONArray createArray(int id) {
+        int start = id * arr.length / numOfClients;
+        int end = (id + 1) * arr.length / numOfClients;
         int[] newArr = Arrays.copyOfRange(arr, start, end);
         System.out.println("newArr" + Arrays.toString(newArr));
-        JSONArray ja = JsonWriter.createJson(newArr);
-        client.out.println(ja.toString());
-        System.out.println(ja.toString());
-        return ja;
+        return JsonWriter.createJson(newArr);
+    }
+
+    private void splitArrIntoTasks(int[] arr) {
+        for (int i = 0; i < numOfClients; i++) {
+            JSONArray taskArr = createArray(i);
+            taskArrs.add(taskArr);
+        }
+    }
+
+    private void sendData() {
+        int i = 0;
+        for (ClientConnection c : activeClients) {
+            if (i == arr.length) {
+                break;
+            }
+            JSONArray taskArr = taskArrs.get(i);
+            c.out.println(taskArr.toString());
+            c.setArr(taskArrs.get(i));
+            i++;
+        }
     }
 
     private void acceptClients() throws IOException {
         for (int i = 0; i < numOfClients; i++) {
             Socket clientSocket = serverSocket.accept();
             ClientConnection clientConnection = new ClientConnection(clientSocket, i);
-            clients.add(clientConnection);
-            JSONArray ar = sendData(clientConnection);
-            clientConnection.setArr(ar);
+            activeClients.add(clientConnection);
         }
-
     }
+
     private boolean collectResults() {
-        String res = "false";
-        for (ClientConnection client : clients) {
+        boolean res = false;
+        String input;
+        for (ClientConnection client : activeClients) {
+            input = null;
             try {
-                res = client.in.readLine();
-                client.out.println("ok");
-                if (res.equals("true")) {
-                    for (ClientConnection c : clients) {
-                        c.out.println("ok");
-                    }
-                    return true;
+                input  = client.in.readLine();
+                if (input.equals("true")) {
+                    res = true;
                 }
+            }
+            catch (SocketTimeoutException e) {
+                activeClients.remove(client);
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if (input != null) {
+                taskArrs.remove(client.arr);
+            }
+        }
+        return res;
+    }
+
+    private void closeClients() {
+        for (ClientConnection client : activeClients) {
+            try {
+                client.clientSocket.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        return false;
     }
-
     private void stop() throws IOException {
         serverSocket.close();
     }
 
     public boolean runServer(int[] numbersToCheck) throws IOException {
         this.arr = numbersToCheck;
+        boolean res = false;
+        splitArrIntoTasks(arr);
         acceptClients();
-        boolean res = collectResults();
+        while (!taskArrs.isEmpty() && !activeClients.isEmpty()) {
+            sendData();
+            res = collectResults();
+        }
+        closeClients();
         stop();
         return res;
     }

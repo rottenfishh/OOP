@@ -2,7 +2,6 @@ package ru.nsu.kolodina.simple2;
 
 import lombok.Setter;
 import org.json.JSONArray;
-import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public class ClientConnection {
     int id;
     @Setter
     JSONArray arr;
-    
+
     public ClientConnection(Socket clientSocket, int id) {
         this.id = id;
         this.clientSocket = clientSocket;
