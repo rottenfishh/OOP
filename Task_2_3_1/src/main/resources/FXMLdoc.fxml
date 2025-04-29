@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Text?>
+
+<GridPane fx:controller="ru.nsu.kolodina.snake.FXML_ctrl"
+          fx:id="root"
+          xmlns:fx="http://javafx.com/fxml"
+          hgap="1" vgap="1">
+
+</GridPane>
