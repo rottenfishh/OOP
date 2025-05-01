@@ -1,23 +1,21 @@
 package ru.nsu.kolodina.simple2;
 
-// Demonstrating Client-side Programming
 import org.json.JSONArray;
 
 import java.io.*;
 import java.net.*;
 
-public class Client implements Runnable {
-    private final Socket clientSocket;
+public class Worker implements Runnable {
+    private final Socket workerSocket;
     private PrintWriter out;
     private BufferedReader in;
     SimpleNumbers numbers = new SimpleNumbers();
-    //private final int[] numbersArray;
     private final int id;
     boolean connectionClosed = false;
 
-    public Client(String ip, int port, int id) {
+    public Worker(String ip, int port, int id) {
         try {
-            this.clientSocket = new Socket(ip, port);
+            this.workerSocket = new Socket(ip, port);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -26,11 +24,12 @@ public class Client implements Runnable {
 
     public void startConnection(){
         try {
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(workerSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(workerSocket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        out.println(id);
     }
 
     public JSONArray getData() {
@@ -52,7 +51,6 @@ public class Client implements Runnable {
         if (arr == null) {
             return false;
         }
-        System.out.println("oh" + arr.toString());
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);
             if (!numbers.isSimple(num)) { // если есть непростое = true
@@ -69,7 +67,7 @@ public class Client implements Runnable {
     public void stopConnection() throws IOException {
         in.close();
         out.close();
-        clientSocket.close();
+        workerSocket.close();
         connectionClosed = true;
     }
 
@@ -78,6 +76,7 @@ public class Client implements Runnable {
         startConnection();
         do {
             boolean res = calculate();
+            if (connectionClosed) break;
             try {
                 sendMessage(String.valueOf(res));
             } catch (IOException e) {
