@@ -46,11 +46,7 @@ public class Worker implements Runnable {
         }
         return numbersArr;
     }
-    public boolean calculate() {
-        JSONArray arr = getData();
-        if (arr == null) {
-            return false;
-        }
+    public boolean calculate(JSONArray arr) {
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);
             if (!numbers.isSimple(num)) { // если есть непростое = true
@@ -75,8 +71,11 @@ public class Worker implements Runnable {
     public void run() {
         startConnection();
         do {
-            boolean res = calculate();
-            if (connectionClosed) break;
+            JSONArray arr = getData();
+            if (arr == null) {
+                break;
+            }
+            boolean res = calculate(arr);
             try {
                 sendMessage(String.valueOf(res));
             } catch (IOException e) {
