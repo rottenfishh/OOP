@@ -1,0 +1,6 @@
+import "tasks.dsl"
+import "groups.dsl"
+import "assignments.dsl"
+import "checkpoints.dsl"
+import "tool.dsl"
+import "config.dsl"
