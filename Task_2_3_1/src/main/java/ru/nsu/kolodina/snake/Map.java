@@ -1,9 +1,25 @@
 package ru.nsu.kolodina.snake;
 
+/**
+ * Represents the game map, which includes the dimensions and wall placements.
+ * The map is represented as a 2D array where 0 indicates free space and 1 indicates a wall.
+ */
 public class Map {
+    /**
+     * The number of rows in the map.
+     */
     int n, m;
-    int[][] arr; //0 - free, 1 - wall
 
+    /**
+     * The 2D array representing the map.
+     * 0 - free space, 1 - wall.
+     */
+    int[][] arr;
+
+    /**
+     * Creates the default map by initializing the 2D array with specific wall placements.
+     * The map is defined with walls placed at specific coordinates, while the rest is free space.
+     */
     public void createDefaultMap() {
         n = 20;
         m = 30;

@@ -1,20 +1,34 @@
 package ru.nsu.kolodina.snake;
 
 import javafx.scene.Scene;
+
 import java.util.Random;
 
 import static java.lang.Math.abs;
+
+/**
+ * Base controller class for Snake game.
+ */
 public abstract class baseController {
     public final Snake snake;
-    private final Field field;
     public final Scene scene;
+    private final Field field;
     private final Level level;
+    private final Coordinates[] movementChoice;
+    public boolean flag = false;
     Fruits fruits;
     long currTime = System.currentTimeMillis();
-    public boolean flag = false;
     Random rand;
-    private final Coordinates[] movementChoice;
 
+    /**
+     * Create baseController.
+     *
+     * @param scene  scene of game
+     * @param snake  snake object
+     * @param field  game field
+     * @param level  game level
+     * @param fruits fruits manager
+     */
     baseController(Scene scene, Snake snake, Field field, Level level, Fruits fruits) {
         this.snake = snake;
         this.field = field;
@@ -29,6 +43,9 @@ public abstract class baseController {
         rand = new Random();
     }
 
+    /**
+     * Update snake position and check game status.
+     */
     public void updateSnake() {
         if (flag) {
             return;
@@ -61,6 +78,12 @@ public abstract class baseController {
             field.setAsTaken(snake.head, snake.color);
         }
     }
+
+    /**
+     * Calculate movement direction toward target coordinates.
+     *
+     * @param coords target coordinates
+     */
     public void calculateDirection(Coordinates coords) {
         int diffX = coords.x - snake.head.x;
         int diffY = coords.y - snake.head.y;
@@ -70,8 +93,7 @@ public abstract class baseController {
             } else {
                 snake.updateMovement(-1, 0);
             }
-        }
-        else {
+        } else {
             if (diffY > 0) {
                 snake.updateMovement(0, 1);
             } else {
@@ -80,10 +102,13 @@ public abstract class baseController {
         }
     }
 
+    /**
+     * Try to avoid death by choosing random directions.
+     */
     public void tryNotToDie() {
         Coordinates newHead = new Coordinates(snake.head.x + snake.movement.x, snake.head.y + snake.movement.y);
         int tries = 0;
-        while (checkDeath(newHead) && tries < 10){
+        while (checkDeath(newHead) && tries < 10) {
             tries++;
             int choice = rand.nextInt(4);
             snake.updateMovement(movementChoice[choice].x, movementChoice[choice].y);
@@ -91,11 +116,21 @@ public abstract class baseController {
         }
     }
 
+    /**
+     * Check if snake would die at given coordinates.
+     *
+     * @param newHead coordinates to check
+     * @return true if dead, false otherwise
+     */
     public boolean checkDeath(Coordinates newHead) {
         return newHead.x < 0 || newHead.x == field.m || newHead.y < 0
                 || newHead.y == field.n
                 || field.getType(newHead) == Pixel.pixelType.WALL
                 || field.getType(newHead) == Pixel.pixelType.SNAKE;
     }
+
+    /**
+     * Abstract method to move snake (to be implemented by subclass).
+     */
     public abstract void moveSnake();
 }
