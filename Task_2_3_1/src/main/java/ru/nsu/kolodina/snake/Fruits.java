@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Manages fruits on the game field, including spawning and tracking eaten fruits.
+ */
 public class Fruits {
     public Text text;
     List<Fruit> fruits;
@@ -16,6 +19,12 @@ public class Fruits {
     int fruitsEaten = 0;
     Random rand;
 
+    /**
+     * Constructs a Fruits manager for the game field.
+     *
+     * @param field the game field
+     * @param text  the UI text to display the number of fruits eaten
+     */
     public Fruits(Field field, Text text) {
         this.fruits = new ArrayList<>();
         numFruits = fruits.size();
@@ -27,6 +36,9 @@ public class Fruits {
         rand = new Random();
     }
 
+    /**
+     * Spawns a new fruit on a random free cell of the field.
+     */
     public void spawnFruit() {
         int y = rand.nextInt(n);
         int x = rand.nextInt(m);
@@ -43,6 +55,12 @@ public class Fruits {
         field.setColor(coords, newFruit.color);
     }
 
+    /**
+     * Handles eating a fruit at a given position, updates counters, and spawns a new fruit.
+     *
+     * @param pixel the coordinates where the fruit was eaten
+     * @param color the color to apply to the cell after eating
+     */
     public void eatFruit(Coordinates pixel, Color color) {
         field.setType(pixel, Pixel.pixelType.FREE);
         field.setColor(pixel, color);
@@ -53,6 +71,9 @@ public class Fruits {
         text.setText("Fruits eaten " + fruitsEaten);
     }
 
+    /**
+     * Represents a fruit on the field.
+     */
     public class Fruit {
         Coordinates coords;
         int type = 0;
@@ -60,6 +81,11 @@ public class Fruits {
         Color color;
         boolean eaten = false;
 
+        /**
+         * Constructs a fruit at the specified coordinates.
+         *
+         * @param coords the location of the fruit
+         */
         public Fruit(Coordinates coords) {
             this.coords = coords;
             color = Color.rgb(216, 53, 39);
