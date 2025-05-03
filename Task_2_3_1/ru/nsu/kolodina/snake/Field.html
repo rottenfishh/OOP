@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Field</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents the game field consisting of pixels.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -117,7 +118,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kolodina.snake.Map)" class="member-name-link">Field</a><wbr>(<a href="Map.html" title="class in ru.nsu.kolodina.snake">Map</a>&nbsp;map)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a field with a given map.</div>
+</div>
 </div>
 </section>
 </li>
@@ -134,32 +137,48 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createField(javafx.scene.layout.GridPane)" class="member-name-link">createField</a><wbr>(javafx.scene.layout.GridPane&nbsp;root)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initializes the field grid and adds it to the UI.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFruit(ru.nsu.kolodina.snake.Coordinates)" class="member-name-link">getFruit</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the fruit from a pixel.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType(ru.nsu.kolodina.snake.Coordinates)" class="member-name-link">getType</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the type of a pixel.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putFruit(ru.nsu.kolodina.snake.Coordinates,ru.nsu.kolodina.snake.Fruits.Fruit)" class="member-name-link">putFruit</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  <a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a>&nbsp;fruit)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Places a fruit on a pixel.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAsFree(ru.nsu.kolodina.snake.Coordinates)" class="member-name-link">setAsFree</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Marks a pixel as free and sets it to the default color.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAsTaken(ru.nsu.kolodina.snake.Coordinates,javafx.scene.paint.Color)" class="member-name-link">setAsTaken</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Marks a pixel as taken by the snake and sets its color.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setColor(ru.nsu.kolodina.snake.Coordinates,javafx.scene.paint.Color)" class="member-name-link">setColor</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the color of a pixel.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setType(ru.nsu.kolodina.snake.Coordinates,ru.nsu.kolodina.snake.Pixel.pixelType)" class="member-name-link">setType</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords,
  <a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a>&nbsp;type)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the type of a pixel.</div>
+</div>
 </div>
 </div>
 </div>
@@ -195,6 +214,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.kolodina.snake.Map)">
 <h3>Field</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Field</span><wbr><span class="parameters">(<a href="Map.html" title="class in ru.nsu.kolodina.snake">Map</a>&nbsp;map)</span></div>
+<div class="block">Creates a field with a given map.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>map</code> - map containing the layout</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -209,6 +233,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="createField(javafx.scene.layout.GridPane)">
 <h3>createField</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">createField</span><wbr><span class="parameters">(javafx.scene.layout.GridPane&nbsp;root)</span></div>
+<div class="block">Initializes the field grid and adds it to the UI.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>root</code> - the GridPane to attach the field to</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -216,6 +245,12 @@ loadScripts(document, 'script');</script>
 <h3>setColor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setColor</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</span></div>
+<div class="block">Sets the color of a pixel.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates of the pixel</dd>
+<dd><code>color</code> - the color to set</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -223,12 +258,25 @@ loadScripts(document, 'script');</script>
 <h3>setType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setType</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords,
  <a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a>&nbsp;type)</span></div>
+<div class="block">Sets the type of a pixel.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>coords</code> - the coordinates of the pixel</dd>
+<dd><code>type</code> - the pixel type to set</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getType(ru.nsu.kolodina.snake.Coordinates)">
 <h3>getType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a></span>&nbsp;<span class="element-name">getType</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords)</span></div>
+<div class="block">Gets the type of a pixel.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>coords</code> - the coordinates of the pixel</dd>
+<dt>Returns:</dt>
+<dd>the pixel type</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -236,12 +284,23 @@ loadScripts(document, 'script');</script>
 <h3>setAsTaken</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setAsTaken</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</span></div>
+<div class="block">Marks a pixel as taken by the snake and sets its color.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates of the pixel</dd>
+<dd><code>color</code> - the color of the snake</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setAsFree(ru.nsu.kolodina.snake.Coordinates)">
 <h3>setAsFree</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setAsFree</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel)</span></div>
+<div class="block">Marks a pixel as free and sets it to the default color.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates of the pixel</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -249,12 +308,25 @@ loadScripts(document, 'script');</script>
 <h3>putFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">putFruit</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  <a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a>&nbsp;fruit)</span></div>
+<div class="block">Places a fruit on a pixel.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates of the pixel</dd>
+<dd><code>fruit</code> - the fruit to place</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getFruit(ru.nsu.kolodina.snake.Coordinates)">
 <h3>getFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a></span>&nbsp;<span class="element-name">getFruit</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel)</span></div>
+<div class="block">Gets the fruit from a pixel.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates of the pixel</dd>
+<dt>Returns:</dt>
+<dd>the fruit at the pixel</dd>
+</dl>
 </section>
 </li>
 </ul>

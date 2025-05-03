@@ -94,6 +94,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">baseController</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Base controller class for Snake game.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -131,19 +132,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#calculateDirection(ru.nsu.kolodina.snake.Coordinates)" class="member-name-link">calculateDirection</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calculate movement direction toward target coordinates.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkDeath(ru.nsu.kolodina.snake.Coordinates)" class="member-name-link">checkDeath</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;newHead)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Check if snake would die at given coordinates.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#moveSnake()" class="member-name-link">moveSnake</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Abstract method to move snake (to be implemented by subclass).</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tryNotToDie()" class="member-name-link">tryNotToDie</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Try to avoid death by choosing random directions.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateSnake()" class="member-name-link">updateSnake</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Update snake position and check game status.</div>
+</div>
 </div>
 </div>
 </div>
@@ -191,30 +202,45 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="updateSnake()">
 <h3>updateSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateSnake</span>()</div>
+<div class="block">Update snake position and check game status.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="calculateDirection(ru.nsu.kolodina.snake.Coordinates)">
 <h3>calculateDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">calculateDirection</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;coords)</span></div>
+<div class="block">Calculate movement direction toward target coordinates.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>coords</code> - target coordinates</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="tryNotToDie()">
 <h3>tryNotToDie</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">tryNotToDie</span>()</div>
+<div class="block">Try to avoid death by choosing random directions.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="checkDeath(ru.nsu.kolodina.snake.Coordinates)">
 <h3>checkDeath</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkDeath</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;newHead)</span></div>
+<div class="block">Check if snake would die at given coordinates.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newHead</code> - coordinates to check</dd>
+<dt>Returns:</dt>
+<dd>true if dead, false otherwise</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="moveSnake()">
 <h3>moveSnake</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveSnake</span>()</div>
+<div class="block">Abstract method to move snake (to be implemented by subclass).</div>
 </section>
 </li>
 </ul>

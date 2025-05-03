@@ -90,7 +90,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">snake class.</div>
+<div class="block">Represents a snake in the game. The snake is made up of a list of coordinates that represent its body,
+ and its movement is controlled by updating its direction.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,19 +106,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></code></div>
 <div class="col-second even-row-color"><code><a href="#head" class="member-name-link">head</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The coordinates of the snake's head.</div>
+</div>
 <div class="col-first odd-row-color"><code>int</code></div>
 <div class="col-second odd-row-color"><code><a href="#len" class="member-name-link">len</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">The length of the snake.</div>
+</div>
 <div class="col-first even-row-color"><code>final <a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></code></div>
 <div class="col-second even-row-color"><code><a href="#movement" class="member-name-link">movement</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The current direction of movement (x and y coordinates).</div>
+</div>
 <div class="col-first odd-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&gt;</code></div>
 <div class="col-second odd-row-color"><code><a href="#snakeBody" class="member-name-link">snakeBody</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">A list that holds the coordinates of the snake's body.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></code></div>
 <div class="col-second even-row-color"><code><a href="#tail" class="member-name-link">tail</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The coordinates of the snake's tail.</div>
+</div>
 </div>
 </section>
 </li>
@@ -136,7 +147,9 @@ loadScripts(document, 'script');</script>
  <a href="Fruits.html" title="class in ru.nsu.kolodina.snake">Fruits</a>&nbsp;fruits,
  <a href="Level.html" title="class in ru.nsu.kolodina.snake">Level</a>&nbsp;level,
  javafx.scene.paint.Color&nbsp;color)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a new snake.</div>
+</div>
 </div>
 </section>
 </li>
@@ -153,17 +166,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addLen()" class="member-name-link">addLen</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Increases the length of the snake by one.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMovement()" class="member-name-link">getMovement</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the current movement direction of the snake.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initSnake()" class="member-name-link">initSnake</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initializes the snake by creating its body parts starting from the head.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateMovement(int,int)" class="member-name-link">updateMovement</a><wbr>(int&nbsp;x,
  int&nbsp;y)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates the movement direction of the snake.</div>
+</div>
 </div>
 </div>
 </div>
@@ -185,30 +206,35 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="snakeBody">
 <h3>snakeBody</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&gt;</span>&nbsp;<span class="element-name">snakeBody</span></div>
+<div class="block">A list that holds the coordinates of the snake's body.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="movement">
 <h3>movement</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></span>&nbsp;<span class="element-name">movement</span></div>
+<div class="block">The current direction of movement (x and y coordinates).</div>
 </section>
 </li>
 <li>
 <section class="detail" id="len">
 <h3>len</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">len</span></div>
+<div class="block">The length of the snake.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="head">
 <h3>head</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></span>&nbsp;<span class="element-name">head</span></div>
+<div class="block">The coordinates of the snake's head.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="tail">
 <h3>tail</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></span>&nbsp;<span class="element-name">tail</span></div>
+<div class="block">The coordinates of the snake's tail.</div>
 </section>
 </li>
 </ul>
@@ -229,6 +255,17 @@ loadScripts(document, 'script');</script>
  <a href="Fruits.html" title="class in ru.nsu.kolodina.snake">Fruits</a>&nbsp;fruits,
  <a href="Level.html" title="class in ru.nsu.kolodina.snake">Level</a>&nbsp;level,
  javafx.scene.paint.Color&nbsp;color)</span></div>
+<div class="block">Constructs a new snake.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>head</code> - The starting coordinates of the snake's head.</dd>
+<dd><code>len</code> - The initial length of the snake.</dd>
+<dd><code>speed</code> - The speed at which the snake moves.</dd>
+<dd><code>field</code> - The field on which the snake exists.</dd>
+<dd><code>fruits</code> - The fruits in the game.</dd>
+<dd><code>level</code> - The level in which the snake is playing.</dd>
+<dd><code>color</code> - The color of the snake.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -243,12 +280,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="initSnake()">
 <h3>initSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initSnake</span>()</div>
+<div class="block">Initializes the snake by creating its body parts starting from the head.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="addLen()">
 <h3>addLen</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addLen</span>()</div>
+<div class="block">Increases the length of the snake by one.</div>
 </section>
 </li>
 <li>
@@ -256,12 +295,23 @@ loadScripts(document, 'script');</script>
 <h3>updateMovement</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateMovement</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y)</span></div>
+<div class="block">Updates the movement direction of the snake.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - The new x-direction of movement.</dd>
+<dd><code>y</code> - The new y-direction of movement.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getMovement()">
 <h3>getMovement</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a></span>&nbsp;<span class="element-name">getMovement</span>()</div>
+<div class="block">Gets the current movement direction of the snake.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>The current direction of the snake's movement as a Coordinates object.</dd>
+</dl>
 </section>
 </li>
 </ul>

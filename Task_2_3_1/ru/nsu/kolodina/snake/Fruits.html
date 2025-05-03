@@ -90,6 +90,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Fruits</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Manages fruits on the game field, including spawning and tracking eaten fruits.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -104,7 +105,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>class&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Fruits.Fruit.html" class="type-name-link" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Represents a fruit on the field.</div>
+</div>
 </div>
 </section>
 </li>
@@ -133,7 +136,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.kolodina.snake.Field,javafx.scene.text.Text)" class="member-name-link">Fruits</a><wbr>(<a href="Field.html" title="class in ru.nsu.kolodina.snake">Field</a>&nbsp;field,
  javafx.scene.text.Text&nbsp;text)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a Fruits manager for the game field.</div>
+</div>
 </div>
 </section>
 </li>
@@ -151,10 +156,14 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eatFruit(ru.nsu.kolodina.snake.Coordinates,javafx.scene.paint.Color)" class="member-name-link">eatFruit</a><wbr>(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Handles eating a fruit at a given position, updates counters, and spawns a new fruit.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#spawnFruit()" class="member-name-link">spawnFruit</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Spawns a new fruit on a random free cell of the field.</div>
+</div>
 </div>
 </div>
 </div>
@@ -191,6 +200,12 @@ loadScripts(document, 'script');</script>
 <h3>Fruits</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Fruits</span><wbr><span class="parameters">(<a href="Field.html" title="class in ru.nsu.kolodina.snake">Field</a>&nbsp;field,
  javafx.scene.text.Text&nbsp;text)</span></div>
+<div class="block">Constructs a Fruits manager for the game field.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>field</code> - the game field</dd>
+<dd><code>text</code> - the UI text to display the number of fruits eaten</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -205,6 +220,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="spawnFruit()">
 <h3>spawnFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">spawnFruit</span>()</div>
+<div class="block">Spawns a new fruit on a random free cell of the field.</div>
 </section>
 </li>
 <li>
@@ -212,6 +228,12 @@ loadScripts(document, 'script');</script>
 <h3>eatFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">eatFruit</span><wbr><span class="parameters">(<a href="Coordinates.html" title="class in ru.nsu.kolodina.snake">Coordinates</a>&nbsp;pixel,
  javafx.scene.paint.Color&nbsp;color)</span></div>
+<div class="block">Handles eating a fruit at a given position, updates counters, and spawns a new fruit.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pixel</code> - the coordinates where the fruit was eaten</dd>
+<dd><code>color</code> - the color to apply to the cell after eating</dd>
+</dl>
 </section>
 </li>
 </ul>

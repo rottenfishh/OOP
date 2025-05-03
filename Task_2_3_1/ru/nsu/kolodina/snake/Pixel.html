@@ -90,6 +90,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Pixel</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents a single pixel in the game field. Each pixel can be of different types:
+ wall, snake, fruit, or free space. The pixel is represented by a rectangle in the UI.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -104,7 +106,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="Pixel.pixelType.html" class="type-name-link" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Enum representing the possible types of a pixel.</div>
+</div>
 </div>
 </section>
 </li>
@@ -119,13 +123,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code><a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a></code></div>
 <div class="col-second even-row-color"><code><a href="#fruit" class="member-name-link">fruit</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The fruit that the pixel contains, if any.</div>
+</div>
 <div class="col-first odd-row-color"><code>boolean</code></div>
 <div class="col-second odd-row-color"><code><a href="#hasFruit" class="member-name-link">hasFruit</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Indicates whether the pixel has a fruit.</div>
+</div>
 <div class="col-first even-row-color"><code><a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a></code></div>
 <div class="col-second even-row-color"><code><a href="#type" class="member-name-link">type</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">The type of the pixel (e.g., WALL, SNAKE, FRUIT, FREE).</div>
+</div>
 </div>
 </section>
 </li>
@@ -140,7 +150,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,boolean)" class="member-name-link">Pixel</a><wbr>(int&nbsp;x,
  int&nbsp;y,
  boolean&nbsp;wall)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for creating a pixel at a specific position with a specified wall status.</div>
+</div>
 </div>
 </section>
 </li>
@@ -157,7 +169,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addFruit(ru.nsu.kolodina.snake.Fruits.Fruit)" class="member-name-link">addFruit</a><wbr>(<a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a>&nbsp;fruit)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a fruit to the pixel and changes its type to FRUIT.</div>
+</div>
 </div>
 </div>
 </div>
@@ -179,18 +193,21 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="hasFruit">
 <h3>hasFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasFruit</span></div>
+<div class="block">Indicates whether the pixel has a fruit.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="fruit">
 <h3>fruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a></span>&nbsp;<span class="element-name">fruit</span></div>
+<div class="block">The fruit that the pixel contains, if any.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="type">
 <h3>type</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Pixel.pixelType.html" title="enum class in ru.nsu.kolodina.snake">Pixel.pixelType</a></span>&nbsp;<span class="element-name">type</span></div>
+<div class="block">The type of the pixel (e.g., WALL, SNAKE, FRUIT, FREE).</div>
 </section>
 </li>
 </ul>
@@ -207,6 +224,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Pixel</span><wbr><span class="parameters">(int&nbsp;x,
  int&nbsp;y,
  boolean&nbsp;wall)</span></div>
+<div class="block">Constructor for creating a pixel at a specific position with a specified wall status.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>x</code> - The x-coordinate of the pixel.</dd>
+<dd><code>y</code> - The y-coordinate of the pixel.</dd>
+<dd><code>wall</code> - Indicates if the pixel is a wall.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -221,6 +245,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addFruit(ru.nsu.kolodina.snake.Fruits.Fruit)">
 <h3>addFruit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addFruit</span><wbr><span class="parameters">(<a href="Fruits.Fruit.html" title="class in ru.nsu.kolodina.snake">Fruits.Fruit</a>&nbsp;fruit)</span></div>
+<div class="block">Adds a fruit to the pixel and changes its type to FRUIT.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>fruit</code> - The fruit to add to the pixel.</dd>
+</dl>
 </section>
 </li>
 </ul>

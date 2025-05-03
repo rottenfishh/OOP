@@ -90,6 +90,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Level</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Class representing a level in the Snake game.
+ It holds information about the map, speed, level number, and the required snake length for victory.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,7 +107,9 @@ loadScripts(document, 'script');</script>
  int&nbsp;speed,
  int&nbsp;number,
  int&nbsp;victoryLen)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructor for initializing a level.</div>
+</div>
 </div>
 </section>
 </li>
@@ -122,7 +126,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#victoryCheck(ru.nsu.kolodina.snake.Snake)" class="member-name-link">victoryCheck</a><wbr>(<a href="Snake.html" title="class in ru.nsu.kolodina.snake">Snake</a>&nbsp;snake)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the snake has reached the required length to win the level.</div>
+</div>
 </div>
 </div>
 </div>
@@ -147,6 +153,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;speed,
  int&nbsp;number,
  int&nbsp;victoryLen)</span></div>
+<div class="block">Constructor for initializing a level.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>map</code> - The map associated with the level.</dd>
+<dd><code>speed</code> - The speed of the snake in this level.</dd>
+<dd><code>number</code> - The level number.</dd>
+<dd><code>victoryLen</code> - The length the snake must reach to win the level.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -161,6 +175,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="victoryCheck(ru.nsu.kolodina.snake.Snake)">
 <h3>victoryCheck</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">victoryCheck</span><wbr><span class="parameters">(<a href="Snake.html" title="class in ru.nsu.kolodina.snake">Snake</a>&nbsp;snake)</span></div>
+<div class="block">Checks if the snake has reached the required length to win the level.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snake</code> - The current snake object.</dd>
+<dt>Returns:</dt>
+<dd>True if the snake has reached the required length, otherwise false.</dd>
+</dl>
 </section>
 </li>
 </ul>

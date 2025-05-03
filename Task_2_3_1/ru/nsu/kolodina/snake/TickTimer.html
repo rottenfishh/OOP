@@ -92,6 +92,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">TickTimer</span>
 <span class="extends-implements">extends javafx.animation.AnimationTimer</span></div>
+<div class="block">A custom timer that controls the movement of the snakes in the game.
+ It uses the <code>AnimationTimer</code> to repeatedly call the move methods
+ for the various snake controllers at each frame.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,7 +110,9 @@ loadScripts(document, 'script');</script>
  <a href="ControllerStupidSnake.html" title="class in ru.nsu.kolodina.snake">ControllerStupidSnake</a>&nbsp;controllerStupidSnake,
  <a href="ControllerEvilSnake.html" title="class in ru.nsu.kolodina.snake">ControllerEvilSnake</a>&nbsp;controllerEvilSnake,
  <a href="ControllerParasiteSnake.html" title="class in ru.nsu.kolodina.snake">ControllerParasiteSnake</a>&nbsp;controllerParasiteSnake)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a new <code>TickTimer</code> with the provided controllers for each snake.</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,7 +129,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handle(long)" class="member-name-link">handle</a><wbr>(long&nbsp;l)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method is called on each frame by the <code>AnimationTimer</code>.</div>
+</div>
 </div>
 </div>
 </div>
@@ -152,6 +159,14 @@ loadScripts(document, 'script');</script>
  <a href="ControllerStupidSnake.html" title="class in ru.nsu.kolodina.snake">ControllerStupidSnake</a>&nbsp;controllerStupidSnake,
  <a href="ControllerEvilSnake.html" title="class in ru.nsu.kolodina.snake">ControllerEvilSnake</a>&nbsp;controllerEvilSnake,
  <a href="ControllerParasiteSnake.html" title="class in ru.nsu.kolodina.snake">ControllerParasiteSnake</a>&nbsp;controllerParasiteSnake)</span></div>
+<div class="block">Constructs a new <code>TickTimer</code> with the provided controllers for each snake.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>controller</code> - The controller for the main player snake.</dd>
+<dd><code>controllerStupidSnake</code> - The controller for the "stupid" snake.</dd>
+<dd><code>controllerEvilSnake</code> - The controller for the "evil" snake.</dd>
+<dd><code>controllerParasiteSnake</code> - The controller for the "parasite" snake.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -166,9 +181,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="handle(long)">
 <h3>handle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">handle</span><wbr><span class="parameters">(long&nbsp;l)</span></div>
+<div class="block">This method is called on each frame by the <code>AnimationTimer</code>.
+ It moves all snakes using their respective controllers and stops the timer
+ if the main snake reaches a certain condition.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>handle</code>&nbsp;in class&nbsp;<code>javafx.animation.AnimationTimer</code></dd>
+<dt>Parameters:</dt>
+<dd><code>l</code> - The timestamp of the current frame.</dd>
 </dl>
 </section>
 </li>
