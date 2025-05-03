@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.*;
 
 public class Worker implements Runnable {
+
     private final Socket workerSocket;
     private PrintWriter out;
     private BufferedReader in;
@@ -46,6 +47,7 @@ public class Worker implements Runnable {
         }
         return numbersArr;
     }
+
     public boolean calculate(JSONArray arr) {
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);

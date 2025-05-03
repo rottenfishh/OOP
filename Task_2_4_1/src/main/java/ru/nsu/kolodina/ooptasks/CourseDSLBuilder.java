@@ -34,6 +34,7 @@ public class CourseDSLBuilder extends ru.nsu.kolodina.ooptasks.CourseDSLBaseVisi
         } else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
             pathSplit = path.split(File.separator);
         }
+        var p = Paths.get(path).getParent();
         StringBuilder pathToFolder = new StringBuilder();
         for (int i = 0; i < pathSplit.length-1; i++) {
             pathToFolder.append(pathSplit[i]).append("/");
