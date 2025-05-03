@@ -8,11 +8,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Command class for building and running system commands.
+ */
 public class Command {
 
+    /**
+     * Builds a list of arguments from a variable number of string inputs.
+     *
+     * @param strings command arguments
+     * @return list of arguments
+     */
     public List<String> buildArgs(String... strings) {
         return new ArrayList<>(Arrays.asList(strings));
     }
+
+    /**
+     * Runs a system command with the given arguments.
+     *
+     * @param dir      working directory, can be null
+     * @param args     list of command arguments
+     * @param result   list to collect command output lines, can be null
+     * @param noOutput if true, output is inherited directly; if false, captured in result
+     * @return exit code of the process
+     */
     public int runCommand(String dir, List<String> args, List<String> result, boolean noOutput) {
         try {
             Process p;

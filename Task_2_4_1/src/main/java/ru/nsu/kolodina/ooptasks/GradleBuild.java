@@ -4,11 +4,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradleBuild implements Build{
+/**
+ * GradleBuild handles compilation, testing, documentation generation,
+ * and checkstyle checks for Java projects using Gradle.
+ */
+public class GradleBuild implements Build {
 
     String gradleName = "";
     Command cmd = new Command();
 
+    /**
+     * Constructs a GradleBuild instance and determines the appropriate Gradle wrapper
+     * depending on the operating system.
+     */
     GradleBuild() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             gradleName = "gradlew.bat";
@@ -16,21 +24,34 @@ public class GradleBuild implements Build{
             gradleName = "./gradlew";
         }
     }
+
+    /**
+     * Compiles the Java project using Gradle.
+     *
+     * @param repo the repository path
+     * @param task the task directory
+     * @return the command's exit code
+     */
     @Override
     public int compile(String repo, String task) {
         String dir = repo + File.separator + task;
         List<String> args = null;
-        //cat filename | tr -d '\r' > temp && mv temp filename
         if (gradleName.equals("./gradlew")) {
-            System.out.println("aaaaaaaaaaaa");
             args = cmd.buildArgs("sh", "-c", "cat", gradleName, "|", "tr", "-d", "'\r'", ">", "temp", "&&", "mv", "temp", gradleName);
-            //args = cmd.buildArgs("dos2unix", gradleName);
             cmd.runCommand(dir, args, null, true);
         }
         args = cmd.buildArgs(gradleName, "compileJava", "--quiet");
         return cmd.runCommand(dir, args, null, true);
     }
 
+    /**
+     * Runs tests using Gradle and parses test result files.
+     *
+     * @param repo  the repository path
+     * @param task  the task directory
+     * @param tests a list to store test statistics: [total, skipped, failed]
+     * @return the command's exit code
+     */
     @Override
     public int test(String repo, String task, List<Integer> tests) {
         String dir = repo + File.separator + task;
@@ -48,13 +69,18 @@ public class GradleBuild implements Build{
         return exitCode;
     }
 
+    /**
+     * Reads and extracts test result statistics from the given XML report file.
+     *
+     * @param file the test result XML file
+     * @return a list containing [total, skipped, failed] counts
+     */
     private List<Integer> readTestResults(File file) {
         BufferedReader reader = null;
         String currentLine;
         int skipped = 0;
         int failed = 0;
         int all = 0;
-        int success = 0;
         try {
             reader = new BufferedReader(new FileReader(file));
             while ((currentLine = reader.readLine()) != null) {
@@ -62,7 +88,6 @@ public class GradleBuild implements Build{
                     all = extractNumber(currentLine, "tests=");
                     skipped = extractNumber(currentLine, "skipped=");
                     failed = extractNumber(currentLine, "failures=");
-                    success = all - skipped - failed;
                     break;
                 }
             }
@@ -77,6 +102,13 @@ public class GradleBuild implements Build{
         return tests;
     }
 
+    /**
+     * Extracts an integer value of an attribute from a line of text.
+     *
+     * @param line      the line containing the attribute
+     * @param attribute the attribute name (e.g., "tests=")
+     * @return the extracted integer value
+     */
     private int extractNumber(String line, String attribute) {
         int idx = line.indexOf(attribute);
         idx += attribute.length() + 1;
@@ -85,9 +117,16 @@ public class GradleBuild implements Build{
             sb.append(line.charAt(idx));
             idx++;
         }
-        String see = sb.toString();
         return Integer.parseInt(sb.toString());
     }
+
+    /**
+     * Generates JavaDoc documentation using Gradle.
+     *
+     * @param repo the repository path
+     * @param task the task directory
+     * @return the command's exit code
+     */
     @Override
     public int docGen(String repo, String task) {
         String dir = repo + File.separator + task;
@@ -95,10 +134,17 @@ public class GradleBuild implements Build{
         return cmd.runCommand(dir, args, null, true);
     }
 
+    /**
+     * Runs Checkstyle using the Google style configuration.
+     *
+     * @param repo the repository path
+     * @param task the task directory
+     * @return 1 if violations are found (>10 lines), otherwise the command's exit code
+     */
     @Override
     public int checkstyle(String repo, String task) {
         String dir = repo + File.separator + task;
-        List<String> res = new ArrayList<String>();
+        List<String> res = new ArrayList<>();
         List<String> args = cmd.buildArgs("java", "-jar", "checkstyle.jar", "-c", "google_checks.xml", dir);
         int exitCode = cmd.runCommand(null, args, res, false);
         if (res.size() > 10) {
@@ -107,6 +153,12 @@ public class GradleBuild implements Build{
         return exitCode;
     }
 
+    /**
+     * Parses test result summary from Gradle test output lines.
+     *
+     * @param output the list of Gradle output lines
+     * @return a list containing [total, failed, skipped] test counts or null if not found
+     */
     public List<Integer> parseTestResult(List<String> output) {
         for (String line : output) {
             if (line.contains("tests completed")) {

@@ -29,6 +29,7 @@ public class Group {
         String githubLink;
         @NonNull
         String buildTool;
+
         public void addScore(double newScore) {
             this.score += newScore;
         }
