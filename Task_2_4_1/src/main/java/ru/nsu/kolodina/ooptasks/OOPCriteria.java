@@ -22,7 +22,8 @@ public class OOPCriteria implements Criteries {
      * @return the formatted date as a String in "dd.MM.yyyy" format.
      */
     public static String convertDate(String gitDate) {
-        DateTimeFormatter gitFormat = DateTimeFormatter.ofPattern("EEE MMM d HH:mm:ss yyyy Z", Locale.ENGLISH);
+        DateTimeFormatter gitFormat = DateTimeFormatter.
+                ofPattern("EEE MMM d HH:mm:ss yyyy Z", Locale.ENGLISH);
         DateTimeFormatter desiredFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         ZonedDateTime dateTime = ZonedDateTime.parse(gitDate, gitFormat);
         return dateTime.format(desiredFormat);
@@ -32,7 +33,7 @@ public class OOPCriteria implements Criteries {
      * Evaluates the criteria for a given task by running build, documentation,
      * checkstyle, and test checks.
      *
-     * @param toolPath the path to the build tool.
+     * @param tool the path to the build tool.
      * @param repo     the repository path.
      * @param task     the task to evaluate.
      * @return a map containing the status of each evaluation criterion.

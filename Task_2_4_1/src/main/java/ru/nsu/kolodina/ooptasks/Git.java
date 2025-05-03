@@ -74,7 +74,8 @@ public class Git {
      */
     public int getFirstCommitDate(String repoName, String folder, List<String> result) {
         List<String> temp = new ArrayList<>();
-        List<String> args = command.buildArgs("git", "log", "--reverse", "--format=%cd", "--", folder);
+        List<String> args = command.buildArgs("git", "log",
+                "--reverse", "--format=%cd", "--", folder);
         int code = command.runCommand(repoName, args, temp, false);
         result.add(temp.get(0));
         return code;

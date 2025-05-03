@@ -60,7 +60,8 @@ public class OOPGrading implements Grading {
 
     /**
      * Calculates the mark for a student at a specific checkpoint.
-     * The mark depends on how well the student's score compares to the required score at the checkpoint.
+     * The mark depends on how well the student's
+     * score compares to the required score at the checkpoint.
      *
      * @param student    the student for whom the checkpoint mark is calculated.
      * @param checkPoint the checkpoint with the required score.
