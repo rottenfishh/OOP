@@ -8,10 +8,8 @@ public class Main {
         String path = args[0];
         String studentName = args[1];
         String checkpointName = args[2];
-        String htmlPath = args[3];
         DriverTool driverTool = new DriverTool(path);
         driverTool.checkStudent(studentName, checkpointName, "lol.html");
         System.out.println(System.getProperty("user.dir"));
-        driverTool.checkStudent(studentName, checkpointName, htmlPath);
     }
 }
