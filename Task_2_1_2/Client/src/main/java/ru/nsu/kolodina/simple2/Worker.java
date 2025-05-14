@@ -5,7 +5,7 @@ import org.json.JSONArray;
 import java.io.*;
 import java.net.*;
 
-public class Worker implements Runnable {
+public class Worker{
 
     private final Socket workerSocket;
     private PrintWriter out;
@@ -54,6 +54,10 @@ public class Worker implements Runnable {
             if (!numbers.isSimple(num)) { // если есть непростое = true
                 return true;
             }
+            if (i % 1000 == 0) {
+                out.println("STILL ALIVE");
+                System.out.println("ys");
+            }
         }
         return false;
     }
@@ -69,15 +73,17 @@ public class Worker implements Runnable {
         connectionClosed = true;
     }
 
-    @Override
     public void run() {
         startConnection();
+        System.out.println("Connection established");
         do {
             JSONArray arr = getData();
+            System.out.println("got data: " + arr);
             if (arr == null) {
                 break;
             }
             boolean res = calculate(arr);
+            System.out.println("calculated: " + res);
             try {
                 sendMessage(String.valueOf(res));
             } catch (IOException e) {
