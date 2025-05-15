@@ -7,9 +7,7 @@ import ru.nsu.kolodina.snake.MainApp;
 public class SnakeTest {
 
     /**
-     * A simple test to demonstrate that the main method of {@link MainApp}
-     * cannot be called from somewhere else directly. This test prints a message
-     * to the console indicating this limitation.
+     * No tests for snake.
      */
     @Test
     public void snakeTest() {
