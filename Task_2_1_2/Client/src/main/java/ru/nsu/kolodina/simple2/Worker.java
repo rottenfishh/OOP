@@ -1,12 +1,11 @@
 package ru.nsu.kolodina.simple2;
 
-import org.json.JSONArray;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import org.json.JSONArray;
 
 /**
  * worker class logic.

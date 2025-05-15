@@ -22,7 +22,7 @@ public class Server {
 
     private final ServerSocket serverSocket;
     int numOfWorkers = 0;
-    JSONArray JsonArray;
+    JSONArray jsonArray;
     Map<Integer, WorkerConnection> workerMap = new HashMap<>();
     Queue<WorkerConnection> activeWorkers = new LinkedList<>();
     Queue<JSONArray> activeTasks = new LinkedList<>();
@@ -52,10 +52,10 @@ public class Server {
      */
     private JSONArray createArray(int id) {
         JSONArray taskArr = new JSONArray();
-        int start = id * JsonArray.length() / numberOfTasks;
-        int end = (id + 1) * JsonArray.length() / numberOfTasks;
+        int start = id * jsonArray.length() / numberOfTasks;
+        int end = (id + 1) * jsonArray.length() / numberOfTasks;
         for (int i = start; i < end; i++) {
-            taskArr.put(JsonArray.get(i));
+            taskArr.put(jsonArray.get(i));
         }
         return taskArr;
     }
@@ -85,8 +85,8 @@ public class Server {
                 break;
             }
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader
-                        (workerSocket.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(
+               workerSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(workerSocket.getOutputStream(), true);
                 int id = Integer.parseInt(in.readLine());
                 System.out.println("Connected worker with id: " + id);
@@ -200,7 +200,7 @@ public class Server {
      * @return result of checking
      */
     public boolean runServer(JSONArray numbersToCheck) {
-        this.JsonArray = numbersToCheck;
+        this.jsonArray = numbersToCheck;
         acceptWorkers();
         splitArrIntoTasks();
         long startTime = System.currentTimeMillis();

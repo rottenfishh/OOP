@@ -1,10 +1,9 @@
 package ru.nsu.kolodina.simple2;
 
+import java.io.InputStream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
-import java.io.InputStream;
 
 /**
  * reading jsons.

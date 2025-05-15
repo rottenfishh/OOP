@@ -1,8 +1,8 @@
 package ru.nsu.kolodina.simple2;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * needed only to build on git.
