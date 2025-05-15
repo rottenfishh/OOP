@@ -55,6 +55,7 @@ public class Server {
             Socket workerSocket = null;
             try {
                 workerSocket = serverSocket.accept();
+                workerSocket.setSoTimeout(10000);
             }
             catch (IOException e) {
                 break;
