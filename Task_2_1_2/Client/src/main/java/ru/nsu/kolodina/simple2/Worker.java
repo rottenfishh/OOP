@@ -5,6 +5,9 @@ import org.json.JSONArray;
 import java.io.*;
 import java.net.*;
 
+/**
+ * worker class logic.
+ */
 public class Worker{
 
     private Socket workerSocket;

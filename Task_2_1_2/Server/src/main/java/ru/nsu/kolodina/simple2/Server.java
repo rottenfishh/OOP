@@ -49,13 +49,13 @@ public class Server {
         numberOfTasks = activeTasks.size();
     }
 
-    private void acceptWorkers() throws IOException {
+    private void acceptWorkers(){
         while (true){
             Socket workerSocket = null;
             try {
                 workerSocket = serverSocket.accept();
             }
-            catch (SocketTimeoutException e) {
+            catch (IOException e) {
                 break;
             }
             try {
@@ -142,11 +142,15 @@ public class Server {
             }
         }
     }
-    private void stop() throws IOException {
-        serverSocket.close();
+    private void stop(){
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public boolean runServer(JSONArray numbersToCheck) throws IOException {
+    public boolean runServer(JSONArray numbersToCheck){
         this.jArray = numbersToCheck;
         acceptWorkers();
         splitArrIntoTasks();

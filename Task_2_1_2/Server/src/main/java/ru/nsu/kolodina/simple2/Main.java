@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         Server server = new Server(4444);
-        JSONArray arr = JsonReader.read("ArraySimpleBig.json");
+        JSONArray arr = JsonReader.read(args[0]);
         boolean res = server.runServer(arr);
         System.out.println("Result = " + res);
     }
