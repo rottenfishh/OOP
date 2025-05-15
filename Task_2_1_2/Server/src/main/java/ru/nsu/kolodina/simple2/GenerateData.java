@@ -2,8 +2,7 @@ package ru.nsu.kolodina.simple2;
 
 import org.json.JSONArray;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -14,13 +13,14 @@ public class GenerateData {
      * generate prime numbers.
      *
      * @param start number
-     * @param end number
+     * @param end   number
      * @return array
      */
     public static int[] primeNumbersTill(int start, int end) {
         return IntStream.rangeClosed(start, end)
                 .filter(x -> isPrime(x)).boxed().mapToInt(x -> x).toArray();
     }
+
     private static boolean isPrime(int number) {
         return IntStream.rangeClosed(2, (int) (Math.sqrt(number)))
                 .allMatch(n -> number % n != 0);

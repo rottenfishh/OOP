@@ -23,9 +23,9 @@ public class WorkerConnection {
      * constructor.
      *
      * @param workerSocket created for worker
-     * @param id its id
-     * @param in its input part of socket
-     * @param out output part of socket
+     * @param id           its id
+     * @param in           its input part of socket
+     * @param out          output part of socket
      */
     public WorkerConnection(Socket workerSocket, int id, BufferedReader in, PrintWriter out) {
         this.id = id;

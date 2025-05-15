@@ -2,29 +2,32 @@ package ru.nsu.kolodina.simple2;
 
 import org.json.JSONArray;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 /**
  * worker class logic.
  */
-public class Worker{
+public class Worker {
 
-    private Socket workerSocket;
-    private PrintWriter out;
-    private BufferedReader in;
-    SimpleNumbers numbers = new SimpleNumbers();
     private final int id;
+    SimpleNumbers numbers = new SimpleNumbers();
     boolean connectionClosed = false;
     int port;
     String host;
+    private Socket workerSocket;
+    private PrintWriter out;
+    private BufferedReader in;
 
     /**
      * constructor.
      *
-     * @param ip to connect to
+     * @param ip   to connect to
      * @param port to connect to
-     * @param id of worker
+     * @param id   of worker
      */
     public Worker(String ip, int port, int id) {
         this.host = ip;
@@ -58,7 +61,7 @@ public class Worker{
     /**
      * start connecting to server.
      */
-    public void startConnection(){
+    public void startConnection() {
         int retries = 10;
         this.workerSocket = connectToServer(retries);
         if (workerSocket == null) {
@@ -98,7 +101,7 @@ public class Worker{
      * calculate the result on given array
      *
      * @param arr task
-     * @return  result
+     * @return result
      */
     public boolean calculate(JSONArray arr) {
         for (int i = 0; i < arr.length(); i++) {

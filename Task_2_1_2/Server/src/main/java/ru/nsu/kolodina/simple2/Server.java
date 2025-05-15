@@ -1,13 +1,14 @@
 package ru.nsu.kolodina.simple2;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
-
-import static java.lang.Thread.sleep;
 
 /**
  * server implementation.
@@ -72,14 +73,13 @@ public class Server {
     /**
      * accept workers and establish connection.
      */
-    private void acceptWorkers(){
-        while (true){
+    private void acceptWorkers() {
+        while (true) {
             Socket workerSocket = null;
             try {
                 workerSocket = serverSocket.accept();
                 workerSocket.setSoTimeout(10000);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 break;
             }
             try {
@@ -110,7 +110,7 @@ public class Server {
      * send data to all active workers.
      */
     private void sendData() {
-        for (WorkerConnection worker: activeWorkers) {
+        for (WorkerConnection worker : activeWorkers) {
             if (activeTasks.isEmpty()) {
                 System.out.println("No data available");
                 break;
@@ -123,6 +123,7 @@ public class Server {
 
     /**
      * collect results from all workers.
+     *
      * @return result
      */
     private boolean collectResults() {
@@ -135,10 +136,12 @@ public class Server {
             int id = worker.id;
             input = null;
             try {
-                input  = worker.in.readLine();
+                input = worker.in.readLine();
                 System.out.println("Got message " + input + " from worker " + id);
                 switch (input) {
-                    case null : death = true; break;
+                    case null:
+                        death = true;
+                        break;
                     case "true":
                         res = true;
                         collectedResults++;
@@ -149,12 +152,11 @@ public class Server {
                     default:
                         continue;
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 death = true;
             }
             if (death) {
-                System.out.println("Worker "+ id + " died!");
+                System.out.println("Worker " + id + " died!");
                 activeTasks.add(worker.currTask);
                 numOfWorkers--;
                 iterator.remove();
@@ -180,7 +182,7 @@ public class Server {
     /**
      * close server.
      */
-    private void stop(){
+    private void stop() {
         try {
             serverSocket.close();
         } catch (IOException e) {
@@ -194,7 +196,7 @@ public class Server {
      * @param numbersToCheck task array
      * @return result of checking
      */
-    public boolean runServer(JSONArray numbersToCheck){
+    public boolean runServer(JSONArray numbersToCheck) {
         this.jArray = numbersToCheck;
         acceptWorkers();
         splitArrIntoTasks();
@@ -212,7 +214,7 @@ public class Server {
             System.out.println("EVERYONE DIED");
         }
         long endTime = System.currentTimeMillis();
-        System.out.println("Time taken: " + (endTime - startTime)/1000.0 + " seconds");
+        System.out.println("Time taken: " + (endTime - startTime) / 1000.0 + " seconds");
         closeWorkers();
         stop();
         return res;

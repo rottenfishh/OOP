@@ -28,7 +28,7 @@ public class JsonWriter {
     /**
      * write json to file.
      *
-     * @param ja to write
+     * @param ja       to write
      * @param fileName to save
      */
     public static void writeToFile(JSONArray ja, String fileName) {

@@ -5,8 +5,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * reading jsons.
