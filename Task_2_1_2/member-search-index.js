@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ru.nsu.kolodina.simple2","c":"SimpleNumbers","l":"isSimple(int)"},{"p":"ru.nsu.kolodina.simple2","c":"SimpleNumbers","l":"SimpleNumbers()","u":"%3Cinit%3E()"}];updateSearchResults();
