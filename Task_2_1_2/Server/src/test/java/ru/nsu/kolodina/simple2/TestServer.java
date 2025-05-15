@@ -1,11 +1,14 @@
 package ru.nsu.kolodina.simple2;
 
-import org.json.JSONArray;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import org.json.JSONArray;
+import org.junit.jupiter.api.Test;
+
+/**
+ * testing the server without clients.
+ */
 public class TestServer {
 
     @Test

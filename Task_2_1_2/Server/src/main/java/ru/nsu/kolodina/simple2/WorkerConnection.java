@@ -1,11 +1,10 @@
 package ru.nsu.kolodina.simple2;
 
-import lombok.Setter;
-import org.json.JSONArray;
-
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import lombok.Setter;
+import org.json.JSONArray;
 
 /**
  * worker connection.

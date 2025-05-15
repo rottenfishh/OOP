@@ -1,10 +1,9 @@
 package ru.nsu.kolodina.simple2;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * writing jsons.

@@ -1,14 +1,17 @@
 package ru.nsu.kolodina.simple2;
 
-import org.json.JSONArray;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import org.json.JSONArray;
 
 /**
  * server implementation.
@@ -19,8 +22,7 @@ public class Server {
 
     private final ServerSocket serverSocket;
     int numOfWorkers = 0;
-    List<JSONArray> tasks = new ArrayList<>();
-    JSONArray jArray;
+    JSONArray JsonArray;
     Map<Integer, WorkerConnection> workerMap = new HashMap<>();
     Queue<WorkerConnection> activeWorkers = new LinkedList<>();
     Queue<JSONArray> activeTasks = new LinkedList<>();
@@ -50,10 +52,10 @@ public class Server {
      */
     private JSONArray createArray(int id) {
         JSONArray taskArr = new JSONArray();
-        int start = id * jArray.length() / numberOfTasks;
-        int end = (id + 1) * jArray.length() / numberOfTasks;
+        int start = id * JsonArray.length() / numberOfTasks;
+        int end = (id + 1) * JsonArray.length() / numberOfTasks;
         for (int i = start; i < end; i++) {
-            taskArr.put(jArray.get(i));
+            taskArr.put(JsonArray.get(i));
         }
         return taskArr;
     }
@@ -83,7 +85,8 @@ public class Server {
                 break;
             }
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(workerSocket.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader
+                        (workerSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(workerSocket.getOutputStream(), true);
                 int id = Integer.parseInt(in.readLine());
                 System.out.println("Connected worker with id: " + id);
@@ -197,7 +200,7 @@ public class Server {
      * @return result of checking
      */
     public boolean runServer(JSONArray numbersToCheck) {
-        this.jArray = numbersToCheck;
+        this.JsonArray = numbersToCheck;
         acceptWorkers();
         splitArrIntoTasks();
         long startTime = System.currentTimeMillis();

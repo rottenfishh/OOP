@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * needed only to build on git.
+ */
 public class TestMain {
     @Test
     public void test() {

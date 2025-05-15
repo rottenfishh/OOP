@@ -1,9 +1,8 @@
 package ru.nsu.kolodina.simple2;
 
-import org.json.JSONArray;
-
 import java.util.Random;
 import java.util.stream.IntStream;
+import org.json.JSONArray;
 
 /**
  * generating data for tests.

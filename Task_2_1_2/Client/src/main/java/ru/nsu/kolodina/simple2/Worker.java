@@ -98,7 +98,7 @@ public class Worker {
     }
 
     /**
-     * calculate the result on given array
+     * calculate the result on given array.
      *
      * @param arr task
      * @return result
