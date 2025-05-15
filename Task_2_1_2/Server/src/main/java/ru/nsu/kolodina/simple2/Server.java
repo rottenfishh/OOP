@@ -164,7 +164,7 @@ public class Server {
             System.out.println("EVERYONE DIED");
         }
         long endTime = System.currentTimeMillis();
-        System.out.println("Time taken: " + (endTime - startTime)/1000 + " seconds");
+        System.out.println("Time taken: " + (endTime - startTime)/1000.0 + " seconds");
         closeWorkers();
         stop();
         return res;

@@ -7,29 +7,49 @@ import java.net.*;
 
 public class Worker{
 
-    private final Socket workerSocket;
+    private Socket workerSocket;
     private PrintWriter out;
     private BufferedReader in;
     SimpleNumbers numbers = new SimpleNumbers();
     private final int id;
     boolean connectionClosed = false;
+    int port;
+    String host;
 
     public Worker(String ip, int port, int id) {
-        try {
-            this.workerSocket = new Socket(ip, port);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        this.host = ip;
+        this.port = port;
         this.id = id;
     }
-
+    public Socket connectToServer(int retries) {
+        for (int i = 0; i < retries; i++) {
+            System.out.println("Trying to connect to " + host + ":" + port);
+            try {
+                return new Socket(this.host, this.port);
+            } catch (IOException e) {
+                System.out.println("Error in connecting to " + this.host + ":" + this.port);
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException ex) {
+                    System.out.println("bububububu");
+                }
+            }
+        }
+        return null;
+    }
     public void startConnection(){
+        int retries = 10;
+        this.workerSocket = connectToServer(retries);
+        if (workerSocket == null) {
+            return;
+        }
         try {
             out = new PrintWriter(workerSocket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(workerSocket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("Connected to " + this.host + ":" + this.port);
         out.println(id);
     }
 
