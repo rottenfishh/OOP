@@ -8,8 +8,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * reading jsons.
+ */
 public class JsonReader {
-
+    /**
+     * read json from file in resources.
+     *
+     * @param resourceName file name
+     * @return JSONarr
+     */
     public static JSONArray read(String resourceName) {
         InputStream is = JsonReader.class.getClassLoader().getResourceAsStream(resourceName);
         if (is == null) {

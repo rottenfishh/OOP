@@ -6,8 +6,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * generating data for tests.
+ */
 public class GenerateData {
-//12403 24500
+    /**
+     * generate prime numbers.
+     *
+     * @param start number
+     * @param end number
+     * @return array
+     */
     public static int[] primeNumbersTill(int start, int end) {
         return IntStream.rangeClosed(start, end)
                 .filter(x -> isPrime(x)).boxed().mapToInt(x -> x).toArray();
@@ -17,14 +26,17 @@ public class GenerateData {
                 .allMatch(n -> number % n != 0);
     }
 
-    public static void main(String[] args) {
+    /**
+     * generate data and write to file in json.
+     */
+    public void generateData() {
         Random rand = new Random();
-        /*for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             int[] arr0 = rand.ints(1000, 2, 1000000).toArray();
             JSONArray ja = JsonWriter.createJson(arr0);
             String name = "Array" + i + ".json";
             JsonWriter.writeToFile(ja, name);
-        }*/
+        }
         int[] arr = primeNumbersTill(450000, 1000000);
         JSONArray ja = JsonWriter.createJson(arr);
         String name = "ArraySimpleBig.json";

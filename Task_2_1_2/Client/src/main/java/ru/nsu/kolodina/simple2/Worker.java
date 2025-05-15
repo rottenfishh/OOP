@@ -19,11 +19,25 @@ public class Worker{
     int port;
     String host;
 
+    /**
+     * constructor.
+     *
+     * @param ip to connect to
+     * @param port to connect to
+     * @param id of worker
+     */
     public Worker(String ip, int port, int id) {
         this.host = ip;
         this.port = port;
         this.id = id;
     }
+
+    /**
+     * connecting to server for a given number of tries.
+     *
+     * @param retries number
+     * @return created socket of connection
+     */
     public Socket connectToServer(int retries) {
         for (int i = 0; i < retries; i++) {
             System.out.println("Trying to connect to " + host + ":" + port);
@@ -40,6 +54,10 @@ public class Worker{
         }
         return null;
     }
+
+    /**
+     * start connecting to server.
+     */
     public void startConnection(){
         int retries = 10;
         this.workerSocket = connectToServer(retries);
@@ -56,6 +74,11 @@ public class Worker{
         out.println(id);
     }
 
+    /**
+     * get data from server.
+     *
+     * @return json with task array
+     */
     public JSONArray getData() {
         JSONArray numbersArr = null;
         try {
@@ -71,6 +94,12 @@ public class Worker{
         return numbersArr;
     }
 
+    /**
+     * calculate the result on given array
+     *
+     * @param arr task
+     * @return  result
+     */
     public boolean calculate(JSONArray arr) {
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);
@@ -85,10 +114,11 @@ public class Worker{
         return false;
     }
 
-    public void sendMessage(String msg) throws IOException {
-        out.println(msg);
-    }
-
+    /**
+     * stop connection with server.
+     *
+     * @throws IOException sadly
+     */
     public void stopConnection() throws IOException {
         in.close();
         out.close();
@@ -96,6 +126,9 @@ public class Worker{
         connectionClosed = true;
     }
 
+    /**
+     * run the worker.
+     */
     public void run() {
         startConnection();
         System.out.println("Connection established");
@@ -107,11 +140,7 @@ public class Worker{
             }
             boolean res = calculate(arr);
             System.out.println("calculated: " + res);
-            try {
-                sendMessage(String.valueOf(res));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            out.println(res);
         } while (!connectionClosed);
     }
 }

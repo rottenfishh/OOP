@@ -1,6 +1,5 @@
 package ru.nsu.kolodina.simple2;
 
-// Demonstrating Server-side Programming
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,7 +9,13 @@ import java.util.*;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * server implementation.
+ * is created with a set task, which it
+ * distributes between clients
+ */
 public class Server {
+
     private final ServerSocket serverSocket;
     int numOfWorkers = 0;
     List<JSONArray> tasks = new ArrayList<>();
@@ -22,6 +27,11 @@ public class Server {
     int collectedResults = 0;
     int numberOfTasks = 0;
 
+    /**
+     * constructor.
+     *
+     * @param port to listen on
+     */
     public Server(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -31,6 +41,12 @@ public class Server {
         }
     }
 
+    /**
+     * split task array in parts based on id.
+     *
+     * @param id of client
+     * @return chunk of array
+     */
     private JSONArray createArray(int id) {
         JSONArray taskArr = new JSONArray();
         int start = id * jArray.length() / numberOfTasks;
@@ -41,6 +57,9 @@ public class Server {
         return taskArr;
     }
 
+    /**
+     * split task array.
+     */
     private void splitArrIntoTasks() {
         numberOfTasks = numOfWorkers * 2;
         for (int i = 0; i < numberOfTasks; i++) {
@@ -50,6 +69,9 @@ public class Server {
         numberOfTasks = activeTasks.size();
     }
 
+    /**
+     * accept workers and establish connection.
+     */
     private void acceptWorkers(){
         while (true){
             Socket workerSocket = null;
@@ -84,6 +106,9 @@ public class Server {
         numOfWorkers = activeWorkers.size();
     }
 
+    /**
+     * send data to all active workers.
+     */
     private void sendData() {
         for (WorkerConnection worker: activeWorkers) {
             if (activeTasks.isEmpty()) {
@@ -96,6 +121,10 @@ public class Server {
         }
     }
 
+    /**
+     * collect results from all workers.
+     * @return result
+     */
     private boolean collectResults() {
         boolean death = false;
         String input;
@@ -134,6 +163,9 @@ public class Server {
         return res;
     }
 
+    /**
+     * close connections with workers.
+     */
     private void closeWorkers() {
         for (var entry : workerMap.entrySet()) {
             WorkerConnection worker = entry.getValue();
@@ -144,6 +176,10 @@ public class Server {
             }
         }
     }
+
+    /**
+     * close server.
+     */
     private void stop(){
         try {
             serverSocket.close();
@@ -152,6 +188,12 @@ public class Server {
         }
     }
 
+    /**
+     * main function to run server.
+     *
+     * @param numbersToCheck task array
+     * @return result of checking
+     */
     public boolean runServer(JSONArray numbersToCheck){
         this.jArray = numbersToCheck;
         acceptWorkers();

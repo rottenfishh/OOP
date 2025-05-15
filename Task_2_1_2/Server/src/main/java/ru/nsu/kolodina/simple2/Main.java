@@ -5,6 +5,9 @@ import org.json.JSONArray;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * run the server.
+ */
 public class Main {
     public static void main(String[] args){
         Server server = new Server(4444);
