@@ -33,8 +33,8 @@ public class Server {
 
     private JSONArray createArray(int id) {
         JSONArray taskArr = new JSONArray();
-        int start = id * jArray.length() / numOfWorkers;
-        int end = (id + 1) * jArray.length() / numOfWorkers;
+        int start = id * jArray.length() / numberOfTasks;
+        int end = (id + 1) * jArray.length() / numberOfTasks;
         for (int i = start; i < end; i++) {
             taskArr.put(jArray.get(i));
         }
@@ -42,7 +42,8 @@ public class Server {
     }
 
     private void splitArrIntoTasks() {
-        for (int i = 0; i < numOfWorkers; i++) {
+        numberOfTasks = numOfWorkers * 2;
+        for (int i = 0; i < numberOfTasks; i++) {
             JSONArray taskArr = createArray(i);
             activeTasks.add(taskArr);
         }
