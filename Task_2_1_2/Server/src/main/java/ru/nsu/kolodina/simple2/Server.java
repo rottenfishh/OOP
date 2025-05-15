@@ -2,16 +2,19 @@ package ru.nsu.kolodina.simple2;
 
 // Demonstrating Server-side Programming
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.net.*;
 import java.io.*;
 import java.util.*;
 
+import static java.lang.Thread.sleep;
+
 public class Server {
-    private ServerSocket serverSocket;
-    int[] arr;
+    private final ServerSocket serverSocket;
     int numOfWorkers = 0;
-    List<JSONArray> taskArrs = new ArrayList<>();
+    List<JSONArray> tasks = new ArrayList<>();
+    JSONArray jArray;
     Map<Integer, WorkerConnection> workerMap = new HashMap<>();
     Queue<WorkerConnection> activeWorkers = new LinkedList<>();
     Queue<JSONArray> activeTasks = new LinkedList<>();
@@ -22,17 +25,20 @@ public class Server {
     public Server(int port) {
         try {
             serverSocket = new ServerSocket(port);
-            serverSocket.setSoTimeout(10000);
+            serverSocket.setSoTimeout(30000);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private JSONArray createArray(int id) {
-        int start = id * arr.length / numOfWorkers;
-        int end = (id + 1) * arr.length / numOfWorkers;
-        int[] newArr = Arrays.copyOfRange(arr, start, end);
-        return JsonWriter.createJson(newArr);
+        JSONArray taskArr = new JSONArray();
+        int start = id * jArray.length() / numOfWorkers;
+        int end = (id + 1) * jArray.length() / numOfWorkers;
+        for (int i = start; i < end; i++) {
+            taskArr.put(jArray.get(i));
+        }
+        return taskArr;
     }
 
     private void splitArrIntoTasks() {
@@ -79,6 +85,7 @@ public class Server {
     private void sendData() {
         for (WorkerConnection worker: activeWorkers) {
             if (activeTasks.isEmpty()) {
+                System.out.println("No data available");
                 break;
             }
             JSONArray taskArr = activeTasks.remove();
@@ -139,10 +146,11 @@ public class Server {
         serverSocket.close();
     }
 
-    public boolean runServer(int[] numbersToCheck) throws IOException {
-        this.arr = numbersToCheck;
+    public boolean runServer(JSONArray numbersToCheck) throws IOException {
+        this.jArray = numbersToCheck;
         acceptWorkers();
         splitArrIntoTasks();
+        long startTime = System.currentTimeMillis();
         while ((collectedResults < numberOfTasks) && !activeWorkers.isEmpty()) {
             if (!activeTasks.isEmpty()) {
                 sendData();
@@ -155,6 +163,8 @@ public class Server {
         if (activeWorkers.isEmpty()) {
             System.out.println("EVERYONE DIED");
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken: " + (endTime - startTime)/1000 + " seconds");
         closeWorkers();
         stop();
         return res;
