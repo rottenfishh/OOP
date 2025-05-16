@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+}
+
+group = 'ru.nsu.kolodina.simple2'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0' //version required
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:16.0.2'
+    implementation 'org.openjdk.jmh:jmh-core:1.36'
+    implementation 'org.json:json:20171018'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
+
+application {
+    mainClass = 'ru.nsu.kolodina.simple2.Main'
+}
