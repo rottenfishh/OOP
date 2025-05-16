@@ -64,7 +64,8 @@ public class Server {
      * split task array.
      */
     private void splitArrIntoTasks() {
-        numberOfTasks = numOfWorkers * 2;
+        numberOfTasks = numOfWorkers;
+        System.out.println("Number of tasks: " + numberOfTasks);
         for (int i = 0; i < numberOfTasks; i++) {
             JSONArray taskArr = createArray(i);
             activeTasks.add(taskArr);
@@ -205,13 +206,14 @@ public class Server {
         splitArrIntoTasks();
         long startTime = System.currentTimeMillis();
         while ((collectedResults < numberOfTasks) && !activeWorkers.isEmpty()) {
+            System.out.println("results " + collectedResults);
+            acceptWorkers();
             if (!activeTasks.isEmpty()) {
                 sendData();
             }
             if (collectResults()) {
                 res = true;
             }
-            acceptWorkers();
         }
         if (activeWorkers.isEmpty()) {
             System.out.println("EVERYONE DIED");

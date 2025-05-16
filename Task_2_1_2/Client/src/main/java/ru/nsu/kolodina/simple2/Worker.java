@@ -103,16 +103,25 @@ public class Worker {
      * @return result
      */
     public boolean calculate(JSONArray arr) {
+        long startTime = System.currentTimeMillis();
+        long prevTime = startTime;
         for (int i = 0; i < arr.length(); i++) {
             int num = arr.getInt(i);
             if (!numbers.isSimple(num)) { // если есть непростое = true
+                long endTime = System.currentTimeMillis();
+                System.out.println("Worker" + id + " Time taken: " + (endTime - startTime) / 1000.0);
                 return true;
             }
-            if (i % 1000 == 0) {
+            long time = System.currentTimeMillis();
+            if (time - prevTime > 10000) {
+                System.out.println("calculating");
                 out.println("STILL ALIVE");
-                System.out.println("ys");
+                out.flush();
+                prevTime = time;
             }
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Worker" + id + " Time taken: " + (endTime - startTime) / 1000.0);
         return false;
     }
 
@@ -136,13 +145,14 @@ public class Worker {
         System.out.println("Connection established");
         do {
             JSONArray arr = getData();
-            System.out.println("got data: " + arr);
             if (arr == null) {
                 break;
             }
+            System.out.println(arr.length() + " numbers received");
             boolean res = calculate(arr);
             System.out.println("calculated: " + res);
             out.println(res);
         } while (!connectionClosed);
+        System.out.println("Worker stopped");
     }
 }

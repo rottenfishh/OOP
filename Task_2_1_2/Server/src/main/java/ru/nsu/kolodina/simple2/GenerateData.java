@@ -30,16 +30,17 @@ public class GenerateData {
      */
     public void generateData() {
         Random rand = new Random();
-        for (int i = 0; i < 10; i++) {
-            int[] arr0 = rand.ints(1000, 2, 1000000).toArray();
-            JSONArray ja = JsonWriter.createJson(arr0);
-            String name = "Array" + i + ".json";
-            JsonWriter.writeToFile(ja, name);
-        }
-        int[] arr = primeNumbersTill(450000, 1000000);
+//        int[] arr0 = rand.ints(100000, 2, 1000000).toArray();
+//        JSONArray ja = JsonWriter.createJson(arr0);
+//        String name = "ArrayBig.json";
+//        JsonWriter.writeToFile(ja, name);
+        int[] arr = primeNumbersTill(2, 10000000);
         JSONArray ja = JsonWriter.createJson(arr);
-        String name = "ArraySimpleBig.json";
+        String name = "ArraySimpleVeryBig.json";
         JsonWriter.writeToFile(ja, name);
+    }
 
+    public static void main(String[] args) {
+        new GenerateData().generateData();
     }
 }
